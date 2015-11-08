@@ -1,0 +1,25 @@
+<ion-view class="welcome-view" cache-view="false">
+  <ion-content scroll="false">
+    <div multi-bg="['img/bg-img2.jpeg']" helper-class="facebook-welcome-bg">
+      <div class="top-content row">
+        <div class="app-copy col col-center">
+          <h1 class="app-logo">logo</h1>
+          <p class="app-tagline">
+            Your tag line
+          </p>
+        </div>
+      </div>
+      <div class="bottom-content row">
+        <div class="col col-bottom">
+          <a class="facebook-sign-in button-large button button-block" ng-click="googleLogin()">
+            Sign In with Facebook
+          </a>
+          <a class="dont-have-facebook button button-clear button-block"  ng-click="dontLogin()">
+            Log in as a guest
+          </a>
+          <section ng-include="'views/partials/legal-notice.html'"></section>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

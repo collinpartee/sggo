@@ -1,0 +1,34 @@
+<ion-view view-title="Dashboard">
+
+  <ion-content class="padding">
+      <ion-list>
+        <ion-item ng-repeat="list in lists" class="myBackground">
+          {{list.title}}
+<!--          <img src="img/steak.jpg" class="" />-->
+          <ion-option-button class="button-assertive" ng-click="">
+<!--            <i class="icon ion-delete"></i>-->
+              delete
+          </ion-option-button>
+            <ion-option-button class="button-positive" ng-click="">
+<!--            <i class="icon ion-delete"></i>-->
+                share
+          </ion-option-button>
+        </ion-item>
+        </ion-list>
+  </ion-content>
+
+    
+<!--
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          fsgd
+          <img src="img/steak.jpg" />
+          <ion-option-button class="button-royal" ng-click="purchaseItem(item)">
+            <i class="icon ion-checkmark"></i>
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+-->
+</ion-view>
