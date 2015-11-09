@@ -4,7 +4,7 @@ angular.module('starter.services', [])
 .service('Root', ['FBURL', Firebase])
 
 // create a custom Auth factory to handle $firebaseAuth
-.factory('Auth', function($firebaseAuth, Root, $timeout){
+.factory('Auth', function($firebaseAuth, Root, $timeout,$state){
   var auth = $firebaseAuth(Root);
   return {
     // helper method to login with multiple providers
@@ -17,7 +17,9 @@ angular.module('starter.services', [])
     },
     // wrapping the unauth function
     logout: function logout() {
+        
       auth.$unauth();
+        $state.go("loginPage");
     },
     // wrap the $onAuth function with $timeout so it processes
     // in the digest loop.

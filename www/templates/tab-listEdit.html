@@ -1,0 +1,21 @@
+
+<ion-view view-title="Edit My List">
+        
+    <ion-content>
+      <h3>List edit</h3>
+         <div class="row">
+        <div class="col-md-12">
+            <h1>Usage with Options</h1>
+
+            <form class="form">
+                <input class="form-control" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
+            </form>
+            <button class="button" ng-click="addToList(place)">add to list</button>
+
+            <h5>Result:</h5>
+            <pre>{{place | json}}</pre>
+        </div>
+    </div>
+    </ion-content>
+
+</ion-view>

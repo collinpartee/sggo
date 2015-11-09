@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.listNearMe', 'starter.accountSetting', 'starter.services','firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -40,34 +40,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.myList', {
+    url: '/myList',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-myList': {
+        templateUrl: 'templates/tab-myList.html',
+        controller: 'myListCtrl'
       }
+        
     }
   })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+  
+  .state('tab.listEdit', {
+    url: '/listEdit',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-listEdit.html',
+        controller: 'editListCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+        
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
@@ -79,15 +72,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     }
   })
   
-  .state('google-sign-in', {
-    url: "/google-sign-in",
+  .state('loginPage', {
+    url: "/loginPage",
     templateUrl: "templates/loginPage.html",
     controller: 'WelcomeCtrl'
   })
+  
+  .state('tab.listNearMe', {
+    url: '/listNearMe',
+    views: {
+      'tab-listNearMe': {
+        templateUrl: 'templates/tab-listNearMe.html',
+        controller: 'nearMeCtrl'
+      }
+    }
+  })
+  
+  
   ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/google-sign-in');
+  $urlRouterProvider.otherwise('/loginPage');
 
 })
 
