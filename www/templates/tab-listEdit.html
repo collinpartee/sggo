@@ -1,21 +1,37 @@
 
-<ion-view view-title="Edit My List">
+<ion-view view-title="Create New List">
         
     <ion-content>
       <h3>List edit</h3>
-         <div class="row">
-        <div class="col-md-12">
-            <h1>Usage with Options</h1>
+         
+        <div class="row">
 
-            <form class="form">
+            <form class="">
                 <input class="form-control" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
             </form>
-            <button class="button" ng-click="addToList(place)">add to list</button>
+            <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(place)"></button>
+        </div>
 
+        <ion-list class="list">
+            
+                <ion-item class="item" ng-repeat="item in myList">
+                    {{item.name}}
+                    <ion-option-button class="button-assertive" ng-click="">
+            <i class="icon ion-close"></i>
+          </ion-option-button>
+            </ion-item>
+            
+        </ion-list>
+        
+        <div class="row" ng-show="myList.length >= 2">
+        <button class="button button-balanced" ng-click="saveList()">Save</button>
+        <button class="button button-energized" ng-click="clearList()">Clear</button>
+        </div>
+        
+<!--
             <h5>Result:</h5>
             <pre>{{place | json}}</pre>
-        </div>
-    </div>
+-->
     </ion-content>
 
 </ion-view>

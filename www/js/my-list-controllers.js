@@ -31,7 +31,24 @@ angular.module('starter.myList', ['google.places'])
     $scope.myList = [];
     
     $scope.addToList = function(place){
-        $scope.myList[place.id] = place.name;
+        $scope.myList.push(place);
+//        $scope.myList[place.id] = place.name;
         console.log($scope.myList);
     };
+    
+    $scope.saveList = function(place){
+       $state.go('tab.listDetails');
+        console.log("save button pressed");
+    };
+    
+    $scope.clearList = function(place){
+       
+    };
+    
+
+})
+.controller('listDetailsCtrl', function($scope, $state){
+
+    
+    
 });
