@@ -53,4 +53,13 @@ angular.module('starter.services', [])
       return angular.copy(currListItem);
     }
   };
-});
+})
+
+//global item list base on user
+.factory('myListFirebase', ['$firebaseArray', function($firebaseArray) {
+  var ref = new Firebase('https://sggo.firebaseio.com');
+  var authData = ref.getAuth();
+  console.log(authData.uid);
+  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myLists');
+  return $firebaseArray(myListsRef);
+}]);

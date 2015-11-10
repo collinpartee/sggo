@@ -1,37 +1,18 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, global) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, global,myListFirebase) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
-    var myListsRef= ref.child('users').child(authData.uid).child('myLists');
 
-    $scope.myLists =[];
-    myListsRef.once("value", function(snapshot) {
-       snapshot.forEach(function(childSnapshot) {
-        // getting each list
-        var childData = childSnapshot.val();
-        console.log('child data'+childData);
-        var listDataRef=ref.child('lists').child(childData);
-        listDataRef.once("value",function(snap){
-            var listItem={
-                'ListName':snap.val().ListName,
-                'creater_id':snap.val().creater_id,
-                'creater_name':snap.val().creater_name,
-                'places':snap.val().places
-            };
-            console.log('listitem'+listItem);
-            $scope.myLists.push(listItem);
-            //console.log($scope.myLists);
-        });
-      });
-    });
+    $scope.myLists =myListFirebase;
+    console.log($scope.myLists);
 
     $scope.addNewList = function(){
     global.setCurrList([]);
     $state.go('tab.listAdd');
     };
 
-$scope.editList = function(listItem){
+    $scope.editList = function(listItem){
          
         global.setCurrList(listItem);
         $state.go('tab.listAdd');
@@ -40,17 +21,18 @@ $scope.editList = function(listItem){
     
     $scope.deleteList=function(listItem){ 
          
-      $scope.myLists.splice(listItem); 
+        //$scope.myLists.splice(listItem); 
         $ionicListDelegate.closeOptionButtons();
+        //var itemRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myLists' + listItem.$id);
         //might need callback later
-        var delListRef=ref.child('users').child(authData.uid).child('myLists');
-        console.log('scope mylist '+$scope.myLists);
-        delListRef.set($scope.myLists);
+        $scope.myLists.$remove(listItem).then(function(ref){
+            ref.key()==listItem.$id;
+        });
     }
     
 })
 
-.controller('addListCtrl', function($scope, $state,global){
+.controller('addListCtrl', function($scope, $state,global,myListFirebase){
 
     $scope.place = null;
     var ref = new Firebase('https://sggo.firebaseio.com');
@@ -116,20 +98,9 @@ $scope.editList = function(listItem){
     
     $scope.saveListWithName = function(name){
         //save list to lists
-       
-       
-       
        var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':global.getCurrList()};
-       console.log(finalList);
-       var newListRef= ref.child('lists').push();
-       newListRef.set(finalList)
-       var listId=newListRef.key();
-
        //add to my list
-       
-       var myListRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid);
-       var newMyListRef=myListRef.child('myLists').push();
-        newMyListRef.set(listId);
+       myListFirebase.$add(finalList);
 
     };
       function getName(authData) {
