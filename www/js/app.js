@@ -52,12 +52,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     }
   })
   
-  .state('tab.listEdit', {
-    url: '/listEdit',
+  .state('tab.listAdd', {
+    url: '/listAdd',
     views: {
       'tab-myList': {
-        templateUrl: 'templates/tab-listEdit.html',
-        controller: 'editListCtrl'
+        templateUrl: 'templates/tab-listAdd.html',
+        controller: 'addListCtrl'
       }
         
     }
@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     views: {
       'tab-myList': {
         templateUrl: 'templates/tab-listDetails.html',
-        controller: 'listDetailsCtrl'
+        controller: 'addListCtrl'
       }
         
     }

@@ -7,14 +7,17 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in lists" class="item item-thumbnail-left">
-          {{list.title}}
+        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" >
+          {{list.ListName}}
           <img src="img/steak.jpg" />
-          <ion-option-button class="button-assertive" ng-click="purchaseItem(item)">
-            Delete
-          </ion-option-button>
-            <ion-option-button class="button-positive" ng-click="">
+            <ion-option-button class="button-positive" ng-click="shareList(list)">
             Share
+          </ion-option-button>
+            <ion-option-button class="button-balanced" ng-click="editList(list)">
+            Edit
+          </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="deleteList(list)">
+            Delete
           </ion-option-button>
         </ion-item>
       </ion-list>

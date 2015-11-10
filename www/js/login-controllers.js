@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
         });
 
 
-        $state.go('tab.dash');
+        $state.go('tab.myList');
     }
   }
   // Logs a user out

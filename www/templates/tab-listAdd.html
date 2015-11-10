@@ -7,7 +7,7 @@
         <div class="row">
 
             <form class="">
-                <input class="form-control" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
+                <input type="text" class="form-control" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
             </form>
             <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(place)"></button>
         </div>
@@ -24,8 +24,8 @@
         </ion-list>
         
         <div class="row" ng-show="myList.length >= 2">
-        <button class="button button-balanced" ng-click="saveList()">Save</button>
-        <button class="button button-energized" ng-click="clearList()">Clear</button>
+        <button class="button button-balanced col col-30" ng-click="saveList()">Save</button>
+        <button class="button button-energized col col-30 col-offset-10" ng-click="clearList()">Clear</button>
         </div>
         
 <!--
