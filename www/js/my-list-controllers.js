@@ -1,27 +1,46 @@
 angular.module('starter.myList', ['google.places'])
 
+<<<<<<< HEAD
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate, global) {
+=======
+.controller('myListCtrl', function($scope, $state) {
+>>>>>>> origin/master
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
     var myListsRef= ref.child('users').child(authData.uid).child('myLists');
 
+<<<<<<< HEAD
     $scope.myLists =[];
+=======
+    $scope.lists =[];
+>>>>>>> origin/master
     myListsRef.once("value", function(snapshot) {
        snapshot.forEach(function(childSnapshot) {
         // getting each list
         var childData = childSnapshot.val();
+<<<<<<< HEAD
         console.log('child data'+childData);
         var listDataRef=ref.child('lists').child(childData);
         listDataRef.once("value",function(snap){
             var listItem={
                 'ListName':snap.val().ListName,
+=======
+        var listDataRef=ref.child('lists').child(childData);
+        listDataRef.once("value",function(snap){
+            var listItem={
+                'title':snap.val().ListName,
+>>>>>>> origin/master
                 'creater_id':snap.val().creater_id,
                 'creater_name':snap.val().creater_name,
                 'places':snap.val().places
             };
+<<<<<<< HEAD
             console.log('listitem'+listItem);
             $scope.myLists.push(listItem);
             //console.log($scope.myLists);
+=======
+            $scope.lists .push(listItem);
+>>>>>>> origin/master
         });
       });
     });
@@ -38,6 +57,7 @@ $scope.editList = function(listItem){
         $ionicListDelegate.closeOptionButtons();
     };
     
+<<<<<<< HEAD
     $scope.deleteList=function(listItem){ 
          
       $scope.myLists.splice(listItem); 
@@ -51,6 +71,14 @@ $scope.editList = function(listItem){
 })
 
 .controller('addListCtrl', function($scope, $state,global){
+=======
+    $state.go('tab.listEdit');
+    };
+    
+})
+
+.controller('editListCtrl', function($scope, $state,global){
+>>>>>>> origin/master
 
     $scope.place = null;
     var ref = new Firebase('https://sggo.firebaseio.com');
@@ -112,8 +140,11 @@ $scope.editList = function(listItem){
     $scope.clearList = function(place){
        
     };
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> origin/master
     $scope.saveListWithName = function(name){
         //save list to lists
        
