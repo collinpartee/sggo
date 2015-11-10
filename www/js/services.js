@@ -31,4 +31,18 @@ angular.module('starter.services', [])
       });
     }
   };
+})
+// globle varibale usage
+.factory('global', function(){
+  var currList = [];
+  return {
+    // helper method to login with multiple providers
+    setCurrList: function setCurrList(mylist) {
+      currList=mylist;
+    },
+    // convenience method for logging in with Google
+    getCurrList: function getCurrList() {
+      return angular.copy(currList);
+    },
+  };
 });

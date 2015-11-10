@@ -6,12 +6,12 @@
          
         <div class="row">
 
-            <form class="">
-                <input class="form-control" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
+            <form class="" >
+                <input type="text" class="form-control" g-places-autocomplete ng-model="place"/>
             </form>
             <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(place)"></button>
         </div>
-
+<!--addToList(place)-->
         <ion-list class="list">
             
                 <ion-item class="item" ng-repeat="item in myList">

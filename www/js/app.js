@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     views: {
       'tab-myList': {
         templateUrl: 'templates/tab-listDetails.html',
-        controller: 'listDetailsCtrl'
+        controller: 'editListCtrl'
       }
         
     }
