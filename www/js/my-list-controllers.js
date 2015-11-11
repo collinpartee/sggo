@@ -15,6 +15,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.editList = function(listItem){
          
         global.setCurrList(listItem);
+        global.setPrevList(listItem.$id);
         $state.go('tab.listAdd');
         $ionicListDelegate.closeOptionButtons();
     };
@@ -34,10 +35,12 @@ angular.module('starter.myList', ['google.places'])
 
 .controller('addListCtrl', function($scope, $state,global,myListFirebase){
 
-    $scope.place = null;
+    var currListItem=global.getCurrList();
+
+
+
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
-    var myListsRef= ref.child('users').child(authData.uid).child('myLists');
     var bruceHouse = new google.maps.LatLng(34.029, -84.203);
 
     $scope.autocompleteOptions = {
@@ -47,10 +50,10 @@ angular.module('starter.myList', ['google.places'])
         radius: '1000'
     }
     
-    $scope.myList = global.getCurrList().places;
-    if($scope.myList==null)
-        $scope.myList=[];
-    console.log(global.getCurrList());
+    $scope.placeList = currListItem.places;
+    if($scope.placeList==null)
+        $scope.placeList=[];
+    console.log(currListItem);
     $scope.addToList = function(place){
         console.log(place);
         var _place={};
@@ -74,21 +77,23 @@ angular.module('starter.myList', ['google.places'])
                 
             }
             
-            $scope.place="abc";
-            $scope.myList.push(_place);
+            $scope.placeList.push(_place);
     //        $scope.myList[place.id] = place.name;
-            console.log($scope.myList);
+            console.log($scope.placeList);
         }
         else
         {
             //alert
         }
+        this.place=null;
     };
     
     $scope.saveList = function(){
-        global.setCurrList($scope.myList);
-       $state.go('tab.listDetails');
-        console.log("save button pressed");
+        currListItem.places=$scope.placeList;
+        console.log("save button pressed "+JSON.stringify(currListItem));
+        global.setCurrList(currListItem);
+        $state.go('tab.listDetails');
+        
     };
     
     $scope.clearList = function(place){
@@ -96,14 +101,47 @@ angular.module('starter.myList', ['google.places'])
     };
     
     
+
+
+})
+.controller('saveListCtrl', function($scope, $state,global,myListFirebase){
+    var ref = new Firebase('https://sggo.firebaseio.com');
+    var authData = ref.getAuth();
+    var currListItem=global.getCurrList();
+    var newList=true;
+
+    if(currListItem.ListName!=null)
+    {
+        
+        $scope.ListName = currListItem.ListName;
+        
+        newList=false;
+    }
+
     $scope.saveListWithName = function(name){
         //save list to lists
-       var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':global.getCurrList()};
-       //add to my list
-       myListFirebase.$add(finalList);
+        if(newList)
+        {
+           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':currListItem.places};
+           //add to my list
+           myListFirebase.$add(finalList);
+               
+        }
+        else
+        {
 
+            var item= myListFirebase.$getRecord(global.getPrevList());
+            console.log("getPrevList "+JSON.stringify(global.getPrevList()));
+            console.log('scope'+$scope.ListName);
+            item.ListName=name;
+            item.places=currListItem.places;
+            myListFirebase.$save(item);
+        }
+
+        $state.go('tab.myList');  
     };
-      function getName(authData) {
+
+    function getName(authData) {
         switch(authData.provider) {
            case 'google':
              return authData.google.displayName;

@@ -14,7 +14,7 @@
 
         <ion-list class="list">
             
-                <ion-item class="item" ng-repeat="item in myList">
+                <ion-item class="item" ng-repeat="item in placeList">
                     {{item.name}}
                     <ion-option-button class="button-assertive" ng-click="">
             <i class="icon ion-close"></i>
@@ -23,7 +23,7 @@
             
         </ion-list>
         
-        <div class="row" ng-show="myList.length >= 2">
+        <div class="row" ng-show="placeList.length >= 2">
         <button class="button button-balanced col col-30" ng-click="saveList()">Save</button>
         <button class="button button-energized col col-30 col-offset-10" ng-click="clearList()">Clear</button>
         </div>

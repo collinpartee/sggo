@@ -35,7 +35,7 @@ angular.module('starter.services', [])
 // globle varibale usage
 .factory('global', function(){
   var currList = [];
-    var currListItem = [];
+  var prevList = null;
   return {
     // helper method to login with multiple providers
     setCurrList: function setCurrList(mylist) {
@@ -45,12 +45,12 @@ angular.module('starter.services', [])
     getCurrList: function getCurrList() {
       return angular.copy(currList);
     },
-    setCurrListItem: function setCurrListItem(mylistItem) {
-      currListItem=mylistItem;
+    setPrevList: function setPrevList(mylistItem) {
+      prevList=mylistItem;
     },
     // convenience method for logging in with Google
-    getCurrListItem: function getCurrListItem() {
-      return angular.copy(currListItem);
+    getPrevList: function getPrevList() {
+      return angular.copy(prevList);
     }
   };
 })
