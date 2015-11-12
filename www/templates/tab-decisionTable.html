@@ -1,0 +1,29 @@
+
+<ion-view view-title="{{currList.ListName}}"  cache-view="false">
+        
+    <ion-content>
+      <h3>List edit</h3>
+
+        <ion-list class="list">
+            
+                <ion-item class="item" ng-repeat="item in currList.places">
+                    {{item.name}}
+                    <ion-option-button class="button-assertive" ng-click="deletePlace(item)">
+            <i class="icon ion-close"></i>
+          </ion-option-button>
+            </ion-item>
+            
+        </ion-list>
+        
+        <div class="row" ng-show="currList.places.length >= 2">
+        <button class="button button-balanced col col-30" ng-click="saveList()">Save</button>
+        <button class="button button-energized col col-30 col-offset-10" ng-click="createTable()">Create Table</button>
+        </div>
+        
+<!--
+            <h5>Result:</h5>
+            <pre>{{place | json}}</pre>
+-->
+    </ion-content>
+
+</ion-view>

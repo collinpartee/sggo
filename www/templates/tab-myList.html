@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" >
+        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
           {{list.ListName}}
           <img src="img/steak.jpg" />
             <ion-option-button class="button-positive" ng-click="shareList(list)">

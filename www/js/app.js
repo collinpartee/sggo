@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.listNearMe', 'starter.accountSetting', 'starter.services','firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.services','firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -62,7 +62,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
         
     }
   })
-  
+  .state('tab.decisionTable', {
+    url: '/decisionTable',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-decisionTable.html',
+        controller: 'decisionTableCtrl'
+      }
+        
+    }
+  })
   .state('tab.listDetails', {
     url: '/listDetails',
     views: {
@@ -100,7 +109,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     }
   })
   
-  
+  .state('tab.decisionTableList', {
+    url: '/decisionTableList',
+    views: {
+      'tab-decisionTableList': {
+        templateUrl: 'templates/tab-decisionTableList.html',
+        controller: 'decisionTableListCtrl'
+      }
+        
+    }
+  })
+  .state('tab.decisionTableDetail', {
+    url: '/decisionTableDetail',
+    views: {
+      'tab-decisionTableList': {
+        templateUrl: 'templates/tab-decisionTableDetail.html',
+        controller: 'decisionTableDetailCtrl'
+      }
+        
+    }
+  })
   ;
 
   // if none of the above states are matched, use this as the fallback

@@ -8,12 +8,15 @@ angular.module('starter.services', [])
   var auth = $firebaseAuth(Root);
   return {
     // helper method to login with multiple providers
-    loginWithProvider: function loginWithProvider(provider) {
-      return auth.$authWithOAuthPopup(provider);
+    loginWithProvider: function loginWithProvider(provider,scope) {
+      return auth.$authWithOAuthPopup(provider,scope);
     },
     // convenience method for logging in with Google
     loginWithGoogle: function login() {
-      return this.loginWithProvider("google");
+      return this.loginWithProvider("google",{scope:'email'});
+    },
+    loginWithFacebook: function login() {
+      return this.loginWithProvider("facebook",{scope:'email'});
     },
     // wrapping the unauth function
     logout: function logout() {
@@ -63,4 +66,21 @@ angular.module('starter.services', [])
   console.log(authData.uid);
   var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myLists');
   return $firebaseArray(myListsRef);
+}])
+//global item list base on tables
+.factory('myTables', ['$firebaseArray', function($firebaseArray) {
+  var ref = new Firebase('https://sggo.firebaseio.com/');
+  var authData = ref.getAuth();
+  console.log(authData.uid);
+  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myTables');
+  return $firebaseArray(myListsRef);
+}])
+//global item list base on friendlist
+.factory('friendList', ['$firebaseArray', function($firebaseArray) {
+  var ref = new Firebase('https://sggo.firebaseio.com/');
+  var authData = ref.getAuth();
+  console.log(authData.uid);
+  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/friendList');
+  return $firebaseArray(myListsRef);
 }]);
+;

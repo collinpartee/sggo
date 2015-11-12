@@ -1,0 +1,36 @@
+
+<ion-view view-title="Create Decision Table"  cache-view="false">
+        
+    <ion-content>
+      <h3>add friend</h3>
+         
+        <div class="row">
+            <input type="text" class="form-control" ng-model="email"/>
+            <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="searchFriend(email)"></button>
+            <input type="text" class="form-control" ng-model="friend"/>
+            <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(friend)"></button>
+
+        </div>
+        <input type="text" class="form-control" ng-model="currTable.tableName"/>
+        <ion-list class="list">
+            
+                <ion-item class="item" ng-repeat="item in currTable.inviteFriendList">
+                    {{item.name}}
+                    <ion-option-button class="button-assertive" ng-click="deleteFriend(item)">
+            <i class="icon ion-close"></i>
+          </ion-option-button>
+            </ion-item>
+            
+        </ion-list>
+        
+        <div class="row">
+        <button class="button button-balanced col col-30" ng-click="saveAndSendInvite()">save and send Invite</button>
+        </div>
+        
+<!--
+            <h5>Result:</h5>
+            <pre>{{place | json}}</pre>
+-->
+    </ion-content>
+
+</ion-view>

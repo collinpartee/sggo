@@ -1,0 +1,17 @@
+
+<ion-view view-title="Decision Table" cache-view="false">
+    <ion-nav-buttons side="right">
+      <button class="button button-icon icon ion-plus-round" ng-click="addNewTable()">
+        
+      </button>
+    </ion-nav-buttons>
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="table in myTableLists" class="item item-thumbnail-left" >
+          {{table.tableName}}
+          <img src="img/steak.jpg" />
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+</ion-view>

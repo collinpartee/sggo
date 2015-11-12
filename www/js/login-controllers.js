@@ -52,9 +52,9 @@ angular.module('starter.controllers', [])
         console.log("user doesnt exist");
         itemRef.child("users").child(authData.uid).set({
             provider: authData.provider,
-            name: getName(authData)
+            name: getName(authData),
+            email: getEmail(authData)
         });
-
 
         $state.go('tab.myList');
     }
@@ -76,6 +76,18 @@ angular.module('starter.controllers', [])
          return authData.twitter.displayName;
        case 'facebook':
          return authData.facebook.displayName;
+    }
+  }
+
+    function getEmail(authData) {
+      console.log(authData.google.email);
+    switch(authData.provider) {
+       case 'google':
+         return authData.google.email;
+       case 'twitter':
+         return authData.twitter.email;
+       case 'facebook':
+         return authData.facebook.email;
     }
   }
 })

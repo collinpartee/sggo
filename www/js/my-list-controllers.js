@@ -29,7 +29,11 @@ angular.module('starter.myList', ['google.places'])
         $scope.myLists.$remove(listItem).then(function(ref){
             ref.key()==listItem.$id;
         });
-    }
+    };
+    $scope.goToDecisionTable=function(listItem){ 
+        global.setCurrList(listItem);   
+        $state.go('tab.decisionTable');
+    };
     
 })
 
