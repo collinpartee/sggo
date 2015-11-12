@@ -8,12 +8,12 @@ angular.module('starter.myList', ['google.places'])
     console.log($scope.myLists);
 
     $scope.addNewList = function(){
-    global.setCurrList([]);
+    global.setCurrList({});
     $state.go('tab.listAdd');
     };
 
     $scope.editList = function(listItem){
-         
+         console.log('edit '+JSON.stringify(listItem));
         global.setCurrList(listItem);
         global.setPrevList(listItem.$id);
         $state.go('tab.listAdd');
@@ -37,7 +37,7 @@ angular.module('starter.myList', ['google.places'])
 
     var currListItem=global.getCurrList();
 
-
+    console.log('first call'+currListItem);
 
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
@@ -52,8 +52,11 @@ angular.module('starter.myList', ['google.places'])
     
     $scope.placeList = currListItem.places;
     if($scope.placeList==null)
+    {
         $scope.placeList=[];
-    console.log(currListItem);
+    }
+        
+    
     $scope.addToList = function(place){
         console.log(place);
         var _place={};
@@ -89,15 +92,19 @@ angular.module('starter.myList', ['google.places'])
     };
     
     $scope.saveList = function(){
-        currListItem.places=$scope.placeList;
+        
+        currListItem['places']=$scope.placeList;
+        console.log("place list "+JSON.stringify($scope.placeList));
         console.log("save button pressed "+JSON.stringify(currListItem));
+        
         global.setCurrList(currListItem);
         $state.go('tab.listDetails');
         
     };
     
-    $scope.clearList = function(place){
-       
+    $scope.deletePlace = function(place){
+        console.log($scope.placeList.indexOf(place));
+       $scope.placeList.splice($scope.placeList.indexOf(place),1);
     };
     
     
@@ -109,7 +116,7 @@ angular.module('starter.myList', ['google.places'])
     var authData = ref.getAuth();
     var currListItem=global.getCurrList();
     var newList=true;
-
+    console.log(currListItem.ListName+" tf "+newList);
     if(currListItem.ListName!=null)
     {
         
@@ -117,7 +124,7 @@ angular.module('starter.myList', ['google.places'])
         
         newList=false;
     }
-
+    console.log(currListItem.ListName+" tf "+newList);
     $scope.saveListWithName = function(name){
         //save list to lists
         if(newList)
@@ -137,7 +144,7 @@ angular.module('starter.myList', ['google.places'])
             item.places=currListItem.places;
             myListFirebase.$save(item);
         }
-
+        global.setCurrList({});
         $state.go('tab.myList');  
     };
 

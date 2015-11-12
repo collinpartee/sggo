@@ -1,5 +1,5 @@
 
-<ion-view view-title="Create New List">
+<ion-view view-title="Create New List"  cache-view="false">
         
     <ion-content>
       <h3>List edit</h3>
@@ -16,7 +16,7 @@
             
                 <ion-item class="item" ng-repeat="item in placeList">
                     {{item.name}}
-                    <ion-option-button class="button-assertive" ng-click="">
+                    <ion-option-button class="button-assertive" ng-click="deletePlace(item)">
             <i class="icon ion-close"></i>
           </ion-option-button>
             </ion-item>
