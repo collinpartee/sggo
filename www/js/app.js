@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.services','firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services','firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -125,6 +125,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
       'tab-decisionTableList': {
         templateUrl: 'templates/tab-decisionTableDetail.html',
         controller: 'decisionTableDetailCtrl'
+      }
+        
+    }
+  })
+  
+  .state('tab.friendList', {
+    url: '/friendList',
+    views: {
+      'tab-friendList': {
+        templateUrl: 'templates/tab-friendList.html',
+        controller: 'friendListCtrl'
       }
         
     }

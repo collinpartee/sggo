@@ -72,21 +72,7 @@ angular.module('starter.decisionTable', ['google.places'])
         
     };
 
-    //add this to slider menu
-    $scope.searchFriend=function(email){
-        ref.child('users').orderByChild('email')
-        .startAt(email)
-        .endAt(email)
-        .once('value', function(snap) {
-            snap.forEach(function(s) {
-                console.log(JSON.stringify(s.val()));
-               var newFriend={name:s.val().name,email:s.val().email,key:s.key()};
-               console.log(JSON.stringify(newFriend));
-               friendList.$add(newFriend);
-          });
 
-        });
-    }
 
     
 });
