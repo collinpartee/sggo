@@ -39,6 +39,7 @@ angular.module('starter.services', [])
 .factory('global', function(){
   var currList = {};
   var prevList = null;
+  var myLoc={};
   return {
     // helper method to login with multiple providers
     setCurrList: function setCurrList(mylist) {
@@ -55,10 +56,28 @@ angular.module('starter.services', [])
     // convenience method for logging in with Google
     getPrevList: function getPrevList() {
       return angular.copy(prevList);
+    },
+    setMyLoc: function setMyLoc(myloc){
+      myLoc=myloc;
+    },
+    getMyLoc: function getMyLoc(){
+      return myLoc;
     }
   };
 })
 
+.factory('geoFire', function() {
+  var firebaseRef = new Firebase("https://sggo.firebaseio.com/geoData/");
+  var geoFire = new GeoFire(firebaseRef);
+  return geoFire;
+})
+.factory('myNearByList', ['$firebaseArray', function($firebaseArray) {
+  var ref = new Firebase('https://sggo.firebaseio.com');
+  var authData = ref.getAuth();
+  console.log(authData.uid);
+  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
+  return $firebaseArray(myListsRef);
+}])
 //global item list base on user
 .factory('myListFirebase', ['$firebaseArray', function($firebaseArray) {
   var ref = new Firebase('https://sggo.firebaseio.com');

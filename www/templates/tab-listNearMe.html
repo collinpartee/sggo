@@ -1,5 +1,11 @@
 <ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content>
     <h3>Lists Near Mwe</h3>
+    <ion-list>
+        <ion-item ng-repeat="list in lists track by $index" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
+          {{list.key}}
+          <img src="img/steak.jpg" />
+        </ion-item>
+      </ion-list>
   </ion-content>
 </ion-view>

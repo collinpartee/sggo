@@ -37,7 +37,7 @@ angular.module('starter.myList', ['google.places'])
     
 })
 
-.controller('addListCtrl', function($scope, $state,global,myListFirebase){
+.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase){
 
     var currListItem=global.getCurrList();
 
@@ -45,14 +45,25 @@ angular.module('starter.myList', ['google.places'])
 
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
-    var bruceHouse = new google.maps.LatLng(34.029, -84.203);
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
-    $scope.autocompleteOptions = {
-        componentRestrictions: { country: 'us' },
-        types: ['establishment'],
-        location: bruceHouse,
-        radius: '1000'
-    }
+
+
+            var lat=global.getMyLoc().lat
+            var lon=global.getMyLoc().lon
+          console.log(lat);
+          var bruceHouse = new google.maps.LatLng(lat, lon);
+
+            $scope.autocompleteOptions = {
+                componentRestrictions: { country: 'us' },
+                types: ['establishment'],
+                location: bruceHouse,
+                radius: '1000'
+            };
+
+    console.log(lat);
+    
+
     
     $scope.placeList = currListItem.places;
     if($scope.placeList==null)
@@ -115,7 +126,7 @@ angular.module('starter.myList', ['google.places'])
 
 
 })
-.controller('saveListCtrl', function($scope, $state,global,myListFirebase){
+.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire){
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
     var currListItem=global.getCurrList();
@@ -131,12 +142,26 @@ angular.module('starter.myList', ['google.places'])
     console.log(currListItem.ListName+" tf "+newList);
     $scope.saveListWithName = function(name){
         //save list to lists
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
         if(newList)
         {
-           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':currListItem.places};
+           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':currListItem.places,'share':true};
            //add to my list
-           myListFirebase.$add(finalList);
-               
+           myListFirebase.$add(finalList)
+           .then(function(ref) {
+              var id = ref.key();
+              var key =authData.uid+':'+id;
+
+              var lat=global.getMyLoc().lat
+              var lon=global.getMyLoc().lon
+                  console.log(key,lat,lon);
+                    geoFire.set(key, [lat, lon]).then(function() {
+                      console.log("Provided key has been added to GeoFire");
+                    }, function(error) {
+                      console.log("Error: " + error);
+                     });
+            });
+
         }
         else
         {

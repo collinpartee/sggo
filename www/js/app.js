@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services','firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services','firebase','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaGeolocation,global) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function (position) {
+            var lat  = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            global.setMyLoc({'lat':lat,'lon':lon});
+            console.log("myloc ",global.getMyLoc());
+        }, function(err) {
+          // error
+        });
   });
 })
 
