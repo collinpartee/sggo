@@ -150,55 +150,7 @@ angular.module('starter.myList', ['google.places'])
     
      //new new 
 
-$scope.numberOfListItems = [];
-    $scope.numberOfListItems.push({});
-    $scope.addListItem = function(place){
-            console.log('place' + place);
-            $scope.numberOfListItems[$scope.numberOfListItems.length-1]=place;
-            $scope.numberOfListItems.push({});
-    };
 
- // Define $scope.place as an array
-    $scope.place = [];
-    // Create a counter to keep track of the additional place inputs
-    $scope.inputCounter = 0;
-
-    // This is just so you can see the array values changing and working! Check your console as you're typing in the inputs :)
-    $scope.$watch('place', function (place) {
-        //console.log(value);
-        console.log(place);
-        var _place={};
-        if(place!=null)
-        {
-            if(typeof place =='object')
-            {
-                _place['name']=place.name;
-                if(place.opening_hours)
-                    _place['weekday_text']=place.opening_hours.weekday_text;
-                if(place.price_level)
-                    _place['price_level']=place.price_level;
-                if(place.rating)
-                    _place['rating']=place.rating;
-                if(place.vicinity)
-                    _place['vicinity']=place.vicinity;
-            }
-            else
-            {
-                _place['name']=place;
-                
-            }
-            
-            $scope.placeList.push(_place);
-    //        $scope.myList[place.id] = place.name;
-            console.log("place list "+JSON.stringify($scope.placeList));
-        }
-        else
-        {
-            //alert
-        }
-        this.place=null;
-    }, true);
-    // new new
 
 
 })

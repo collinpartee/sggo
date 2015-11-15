@@ -33,29 +33,33 @@
       <h1 class="title">Create New List</h1>
       <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
-    <ion-content>
+    <ion-content style="background-color: whitesmoke;">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">List Name</span>
           <input type="text" ng-model="listName">
         </label>
-        <div class="list row">
+        <div class="list">
 
-          <ion-scroll>
-            <div class="item item-button-right" ng-repeat="item in numberOfListItems track by $index">
-                <input type="text" class="form-control" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place" placeholder="Enter list item" style="width: 100vw;" ng-click=""/><p ng-show="numberOfListItems.editing">{{place.name}}</p>
-                <button class="button button-assertive" ng-show="place" ng-click="deletePlace(place);">
-                    <i class="icon ion-close"></i>
-                </button>
-          
-                <button class="button button-clear" ng-click="addListItem(place)" style="color: rgb(127, 197, 195); position:fixed;left: 40%; margin-top: 6vh;">
-                    <i class="icon ion-plus"></i> List Item
-                </button>
+          <ion-scroll style="margin-top: 3vh; height: 50vh; width: 100%; background-color: white;">
+             <div class="">
+
+                <input type="text" class="form-control row" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place" autofocus/><hr/>
+            <button class="button button-clear row" ng-click="addToList(place)" style="color: rgb(127, 197, 195);"><i class="icon ion-plus-round"></i> List Item</button>
+        </div>
+        <div class="list">
+            
+          <div class="item item-button-right" ng-repeat="item in placeList">
+                    {{item.name}}
+                    <button class="button button-clear" ng-click="">
+            <i class="icon ion-close" style="color: red;"></i>
+          <button>
             </div>
-
+            
+        </ion-list>
           </ion-scroll>
             </div>
-          <ion-scroll  direction="x">
+          <ion-scroll direction="x" style="color: white;">
             <table>
               <tr ng-repeat="category in categoryPics"  class="row table-cell">
                 <td class="col col-25"><img class="thumbnail" ng-src="{{category}}"></td>
@@ -66,7 +70,7 @@
        
       </div>
 
-      <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+      <button class="button button-full button-energized" ng-click="saveList();">Done</button>
     </ion-content>
   </div>
 </script>
