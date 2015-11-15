@@ -95,7 +95,6 @@ angular.module('starter.myList', ['google.places'])
           var bruceHouse = new google.maps.LatLng(lat, lon);
 
             $scope.autocompleteOptions = {
-                componentRestrictions: { country: 'us' },
                 types: ['establishment'],
                 location: bruceHouse,
                 radius: '1000'
