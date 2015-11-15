@@ -1,6 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, global,myListFirebase) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, global,myListFirebase,myNearByList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
 
@@ -27,9 +27,23 @@ angular.module('starter.myList', ['google.places'])
         //var itemRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myLists' + listItem.$id);
         //might need callback later
         $scope.myLists.$remove(listItem).then(function(ref){
-            var removeRef = new Firebase('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.$id);
-            console.log('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.$id);
+            var removeRef = new Firebase('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
+            console.log('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
             removeRef.remove();
+            var removeRefNarByList = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
+            removeRefNarByList.orderByChild('key')
+            .startAt(authData.uid+":"+ref.key())
+            .endAt(authData.uid+":"+ref.key())
+            .once('value', function(snap) {
+                if(snap.exists())
+                {
+                    snap.forEach(function(s) {
+                            console.log("remove",myNearByList.$indexFor(s.key()));
+                            myNearByList.$remove(myNearByList.$indexFor(s.key()));
+                      });
+
+                }
+            });
             
         });
     };
@@ -134,11 +148,12 @@ angular.module('starter.myList', ['google.places'])
     
     $scope.saveList = function(){
         
-        currListItem['places']=$scope.placeList;
-        console.log("place list "+JSON.stringify($scope.placeList));
+        currListItem['places']=$scope.numberOfListItems;
+        console.log("place list "+JSON.stringify($scope.numberOfListItems));
         console.log("save button pressed "+JSON.stringify(currListItem));
         
         global.setCurrList(currListItem);
+        $scope.closeModal();
         $state.go('tab.listDetails');
         
     };
@@ -150,11 +165,11 @@ angular.module('starter.myList', ['google.places'])
     
      //new new 
 
-$scope.numberOfListItems = [];
+    $scope.numberOfListItems = [];
     $scope.numberOfListItems.push({});
     $scope.addListItem = function(place){
             console.log('place' + place);
-            $scope.numberOfListItems[$scope.numberOfListItems.length-1]=place;
+            $scope.numberOfListItems[$scope.numberOfListItems.length-1]={'name':place};
             $scope.numberOfListItems.push({});
     };
 
