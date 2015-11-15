@@ -1,3 +1,9 @@
+.main-color{
+  background-color: rgb(237, 111, 112) !important;
+  border-color: rgb(237, 111, 112);
+  color: white;
+
+}
 /* Empty. Add your own CSS if you like */
 .addToListButton{
     margin-top: -10px;
@@ -8,6 +14,88 @@ position: absolute;
     top: 0px;
 }
 
+/*** Login Page ***/
 .centerRow{
-    margin-top: 20vh;
+    margin-top: 5vh;
+}
+
+.app-title {
+	display: table;
+    margin: 15vh auto 0 auto;
+}
+
+.facebook-sign-in {
+	background-color: #3B5998;
+    color: white;
+    border: none;
+}
+
+.google-sign-in {
+	background-color: #DC4E41;
+    color: white;
+    border: none;
+}
+
+/*** TAB-MYlIST ***/
+
+.non-white-bg{
+    background-color: whitesmoke;
+}
+
+
+/*** TAB-listAdd ***/
+.main {
+  display: flex;
+/*  justify-content: space-between;
+*/ 
+width: 100%;
+}
+
+.main .middle {
+  flex-grow: 4;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-between;*/
+}
+
+.main .middle .middle-top-container {
+  flex-grow: 1;
+  display: flex;
+  /*justify-content: space-between;*/
+}
+
+.main .middle .middle-top-container .middle-top-column {
+  
+  flex-grow: 4;
+}
+
+.main .middle .middle-bottom-container {
+  
+  text-align: center;
+}
+
+.outline-button{
+    color: green; !important
+    border: 1px solid green;
+}
+
+.list-item{
+  border: none;
+  padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+/*** TAB-listAdd ***/
+.list-category-item{
+
+  max-height: 100px;
+}
+
+.table-cell{
+
+  display: table-cell;
+}
+
+.thumbnail{
+      max-width: 75px;
 }

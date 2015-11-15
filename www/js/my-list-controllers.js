@@ -1,6 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, global,myListFirebase) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, global,myListFirebase) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
 
@@ -34,13 +34,36 @@ angular.module('starter.myList', ['google.places'])
         global.setCurrList(listItem);   
         $state.go('tab.decisionTable');
     };
+
+    //add new list modal window
+      $ionicModal.fromTemplateUrl('addList-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });  
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
     
 })
 
 .controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase){
 
-    var currListItem=global.getCurrList();
 
+    $scope.categoryPics = ['../img/chicken.png', '../img/coffee.png', '../img/cupcake.png', '../img/egg.png', '../img/hamburger.png', '../img/hotdog.png', '../img/pizza.png', '../img/steak.png', '../img/french_fry.png' ];
+
+
+    var currListItem=global.getCurrList();
     console.log('first call'+currListItem);
 
     var ref = new Firebase('https://sggo.firebaseio.com');
@@ -122,7 +145,48 @@ angular.module('starter.myList', ['google.places'])
        $scope.placeList.splice($scope.placeList.indexOf(place),1);
     };
     
-    
+     //new new 
+ // Define $scope.place as an array
+    $scope.place = [];
+    // Create a counter to keep track of the additional place inputs
+    $scope.inputCounter = 0;
+
+    // This is just so you can see the array values changing and working! Check your console as you're typing in the inputs :)
+    $scope.$watch('place', function (place) {
+        //console.log(value);
+        console.log(place);
+        var _place={};
+        if(place!=null)
+        {
+            if(typeof place =='object')
+            {
+                _place['name']=place.name;
+                if(place.opening_hours)
+                    _place['weekday_text']=place.opening_hours.weekday_text;
+                if(place.price_level)
+                    _place['price_level']=place.price_level;
+                if(place.rating)
+                    _place['rating']=place.rating;
+                if(place.vicinity)
+                    _place['vicinity']=place.vicinity;
+            }
+            else
+            {
+                _place['name']=place;
+                
+            }
+            
+            $scope.placeList.push(_place);
+    //        $scope.myList[place.id] = place.name;
+            console.log("place list "+JSON.stringify($scope.placeList));
+        }
+        else
+        {
+            //alert
+        }
+        this.place=null;
+    }, true);
+    // new new
 
 
 })

@@ -1,31 +1,33 @@
 
 <ion-view view-title="Create New List"  cache-view="false">
         
-    <ion-content>
-      <h3>List edit</h3>
-         
+    <ion-content>         
         <div class="row">
 
-            <form class="">
+            <!-- <form class="">
                 <input type="text" class="form-control" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place"/>
             </form>
-            <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(place)"></button>
+            <button class="button button-icon icon ion-ios-bolt-outline addToListButton" ng-click="addToList(place)"></button> -->
+           <!--  <button class="button button-clear col outline-button" ng-show="placeList.length > 2" ng-click="saveList()" style="color: green; border: 1px solid green;">Save</button> -->
+           <div class="list main">
+
+
+            <div add-input class="middle">
+                
+                <div class="middle-bottom-container">
+                    <button class="button button-clear col col-100" style="color: rgb(127, 197, 195);"><i class="icon ion-plus"></i> add place</button>
+                </div>
+            </div>
+
+
+        </div>
         </div>
 
-        <ion-list class="list">
-            
-                <ion-item class="item" ng-repeat="item in placeList">
-                    {{item.name}}
-                    <ion-option-button class="button-assertive" ng-click="deletePlace(item)">
-            <i class="icon ion-close"></i>
-          </ion-option-button>
-            </ion-item>
-            
-        </ion-list>
+       
         
         <div class="row" ng-show="placeList.length >= 2">
-        <button class="button button-balanced col col-30" ng-click="saveList()">Save</button>
-        <button class="button button-energized col col-30 col-offset-10" ng-click="clearList()">Clear</button>
+        <button class="button button-balanced col" ng-click="saveList()" style="margin-top: 15px;">Save</button>
+        
         </div>
         
 <!--

@@ -1,15 +1,17 @@
 
 <ion-view view-title="My Lists" cache-view="false">
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-plus-round" ng-click="addNewList()">
+      <button class="button button-icon icon ion-plus-round" style="color: white;" ng-click="openModal()">
         
       </button>
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
         <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
+        <img src="img/steak.jpg" />
           {{list.ListName}}
-          <img src="img/steak.jpg" />
+          <p>#bakery #yum #gottaHaveIt</p>
+          
             <ion-option-button class="button-positive" ng-click="shareList(list)">
             Share
           </ion-option-button>
@@ -24,3 +26,42 @@
     </ion-content>
 
 </ion-view>
+
+<script id="addList-modal.html" type="text/ng-template">
+  <div class="modal" ng-controller="addListCtrl">
+    <ion-header-bar>
+      <h1 class="title">Create New List</h1>
+      <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">List Name</span>
+          <input type="text" ng-model="listName">
+        </label>
+        <div class="list row">
+
+          <ion-scroll>
+            <div add-input style="width: 100vw;">
+                
+                <div class="">
+                    <button class="button button-clear col col-100" style="color: rgb(127, 197, 195);"><i class="icon ion-plus"></i> add place</button>
+                </div>
+            </div>
+          </ion-scroll>
+            </div>
+          <ion-scroll  direction="x">
+            <table>
+              <tr ng-repeat="category in categoryPics"  class="row table-cell">
+                <td class="col col-25"><img class="thumbnail" ng-src="{{category}}"></td>
+              </tr>
+            </table>
+          </ion-scroll>
+
+       
+      </div>
+
+      <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+    </ion-content>
+  </div>
+</script>

@@ -6,9 +6,11 @@
       </button>
     </ion-nav-buttons>
     <ion-content>
-      <ion-list>
-        <ion-item ng-repeat="friend in friendList">
+      <ion-list class="list">
+        <ion-item ng-repeat="friend in friendList" class="item item-avatar">
+          <img src="../img/adam.jpg" />
             {{friend.name}}
+            <p>Macy's Systems and Technology</p>
           <ion-option-button class="button button-assertive" ng-click="deleteFriend(friend)">
                 delete
             </ion-option-button>
@@ -22,6 +24,7 @@
   <div class="modal">
     <ion-header-bar>
       <h1 class="title">Add Friend</h1>
+      <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
     <ion-content>
       <div class="list">

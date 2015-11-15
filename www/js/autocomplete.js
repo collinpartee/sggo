@@ -9,23 +9,23 @@
  'use strict';
 
 angular.module('google.places', [])
-	/**
-	 * DI wrapper around global google places library.
-	 *
-	 * Note: requires the Google Places API to already be loaded on the page.
-	 */
-	.factory('googlePlacesApi', ['$window', function ($window) {
+    /**
+     * DI wrapper around global google places library.
+     *
+     * Note: requires the Google Places API to already be loaded on the page.
+     */
+    .factory('googlePlacesApi', ['$window', function ($window) {
         if (!$window.google) throw 'Global `google` var missing. Did you forget to include the places API script?';
 
-		return $window.google;
-	}])
+        return $window.google;
+    }])
 
-	/**
-	 * Autocomplete directive. Use like this:
-	 *
-	 * <input type="text" g-places-autocomplete ng-model="myScopeVar" />
-	 */
-	.directive('gPlacesAutocomplete',
+    /**
+     * Autocomplete directive. Use like this:
+     *
+     * <input type="text" g-places-autocomplete ng-model="myScopeVar" />
+     */
+    .directive('gPlacesAutocomplete',
         [ '$parse', '$compile', '$timeout', '$document', 'googlePlacesApi',
         function ($parse, $compile, $timeout, $document, google) {
 
@@ -218,7 +218,7 @@ angular.module('google.places', [])
                         if (isString(modelValue)) {
                             viewValue = modelValue;
                         } else if (isObject(modelValue)) {
-                            viewValue = modelValue.formatted_address;
+                            viewValue = modelValue.name;
                         }
 
                         return viewValue;
