@@ -27,7 +27,10 @@ angular.module('starter.myList', ['google.places'])
         //var itemRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myLists' + listItem.$id);
         //might need callback later
         $scope.myLists.$remove(listItem).then(function(ref){
-            ref.key()==listItem.$id;
+            var removeRef = new Firebase('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.$id);
+            console.log('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.$id);
+            removeRef.remove();
+            
         });
     };
     $scope.goToDecisionTable=function(listItem){ 

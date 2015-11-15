@@ -11,10 +11,12 @@ angular.module('starter.directives', [])
                 // I'm using Angular syntax. Using jQuery will have the same effect
                 // Create input element
                 var input = angular.element('<div class="item item-button-right list-item"><input type="text" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place[' + scope.inputCounter + ']" autofocus><button class="button button-clear" ng-show="place[' + scope.inputCounter + ']" ng-click="deletePlace(place);"><i class="icon ion-close" style="color: red;"></i></button> <hr /></div>');
-                var buttonpress = element.find('button');
+
+                //var buttonpress = element.find('button');
                 // Compile the HTML and assign to scope
-                var compile = $compile(input)(scope);
                 
+                var compile = $compile(input)(scope);
+     
                 if(scope.inputCounter == 0 ){
                 	// Append input to div
                		element.append(input);
