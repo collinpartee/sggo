@@ -164,8 +164,6 @@ angular.module('starter.myList', ['google.places'])
     
      //new new 
 
-<<<<<<< HEAD
-=======
     $scope.numberOfListItems = [];
     $scope.numberOfListItems.push({});
     $scope.addListItem = function(place){
@@ -178,7 +176,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.place = [];
     // Create a counter to keep track of the additional place inputs
     $scope.inputCounter = 0;
->>>>>>> origin/master
+
 
 
 
