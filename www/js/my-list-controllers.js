@@ -30,26 +30,12 @@ angular.module('starter.myList', ['google.places'])
             var removeRef = new Firebase('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
             console.log('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
             removeRef.remove();
-            var removeRefNarByList = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
-            removeRefNarByList.orderByChild('key')
-            .startAt(authData.uid+":"+ref.key())
-            .endAt(authData.uid+":"+ref.key())
-            .once('value', function(snap) {
-                if(snap.exists())
-                {
-                    snap.forEach(function(s) {
-                            console.log("remove",myNearByList.$indexFor(s.key()));
-                            myNearByList.$remove(myNearByList.$indexFor(s.key()));
-                      });
-
-                }
-            });
             
         });
     };
-    $scope.goToDecisionTable=function(listItem){ 
+    $scope.shareList=function(listItem){ 
         global.setCurrList(listItem);   
-        $state.go('tab.decisionTable');
+        $state.go('tab.decisionTableDetail');
     };
 
     //add new list modal window
@@ -85,23 +71,30 @@ angular.module('starter.myList', ['google.places'])
 
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+    $scope.openModalIni = function(){
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
 
-
+            // while(global.getMyLoc()!="none")
+            // {
+            //     console.log('null');
+            // }
             var lat=global.getMyLoc().lat
             var lon=global.getMyLoc().lon
           console.log(lat);
           var bruceHouse = new google.maps.LatLng(lat, lon);
 
             $scope.autocompleteOptions = {
-                componentRestrictions: { country: 'us' },
                 types: ['establishment'],
                 location: bruceHouse,
                 radius: '1000'
             };
 
-    console.log(lat);
+        console.log(lat);
+        $scope.openModal();
+    }
+
     
 
     
@@ -165,8 +158,6 @@ angular.module('starter.myList', ['google.places'])
     
      //new new 
 
-<<<<<<< HEAD
-=======
     $scope.numberOfListItems = [];
     $scope.numberOfListItems.push({});
     $scope.addListItem = function(place){
@@ -179,7 +170,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.place = [];
     // Create a counter to keep track of the additional place inputs
     $scope.inputCounter = 0;
->>>>>>> origin/master
+
 
 
 

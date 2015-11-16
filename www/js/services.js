@@ -39,7 +39,7 @@ angular.module('starter.services', [])
 .factory('global', function(){
   var currList = {};
   var prevList = null;
-  var myLoc={};
+  var myLoc="none";
   return {
     // helper method to login with multiple providers
     setCurrList: function setCurrList(mylist) {
@@ -71,12 +71,12 @@ angular.module('starter.services', [])
   var geoFire = new GeoFire(firebaseRef);
   return geoFire;
 })
-.factory('myNearByList', ['$firebaseArray', function($firebaseArray) {
+.factory('myNearByList', ['$firebaseObject', function($firebaseObject) {
   var ref = new Firebase('https://sggo.firebaseio.com');
   var authData = ref.getAuth();
   console.log(authData.uid);
   var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
-  return $firebaseArray(myListsRef);
+  return $firebaseObject(myListsRef);
 }])
 //global item list base on user
 .factory('myListFirebase', ['$firebaseArray', function($firebaseArray) {
@@ -87,11 +87,11 @@ angular.module('starter.services', [])
   return $firebaseArray(myListsRef);
 }])
 //global item list base on tables
-.factory('myTables', ['$firebaseArray', function($firebaseArray) {
+.factory('tables', ['$firebaseArray', function($firebaseArray) {
   var ref = new Firebase('https://sggo.firebaseio.com/');
   var authData = ref.getAuth();
   console.log(authData.uid);
-  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myTables');
+  var myListsRef = new Firebase('https://sggo.firebaseio.com/tables');
   return $firebaseArray(myListsRef);
 }])
 //global item list base on friendlist

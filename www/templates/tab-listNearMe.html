@@ -1,12 +1,11 @@
 <ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content>
     <ion-list>
-        <ion-item ng-repeat="list in lists track by $index" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
-                  <i class="ion-ios-heart-outline" style="position: absolute;top: 65px;left: 325px; font-size:175%"></i>
-                  <i class="ion-arrow-down-a" style="position: absolute;top: 65px;left: 280px; font-size:175%"></i>
-
-          {{list.key}}
-          <img src="img/steak.jpg" />
+        <ion-item ng-repeat="(key,value) in lists" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
+                  <i class="ion-ios-heart-outline" ></i>
+                  <i class="ion-arrow-down-a" ></i>
+          {{key}}
+     <!--      <img src="img/steak.jpg" /> -->
         </ion-item>
       </ion-list>
   </ion-content>

@@ -1,8 +1,16 @@
 angular.module('starter.decisionTable', ['google.places'])
-.controller('decisionTableListCtrl', function($scope, $state, global,myTables) {
+.controller('decisionTableListCtrl', function($scope, $state,$firebaseObject, global) {
 
-    $scope.myTableLists =myTables;
-    console.log($scope.myTableLists);
+
+    //$scope.myTableLists =myTableLists;
+    var ref = new Firebase('https://sggo.firebaseio.com');
+    var authData = ref.getAuth();
+    var tableRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+authData.uid+"/myTables");
+    var tableRefObj=$firebaseObject(tableRef);
+    tableRefObj.$loaded().then(function(data){
+        tableRefObj.$bindTo($scope,'myTableLists');
+    });
+    //console.log($scope.myTableLists);
 
     
 })
@@ -19,7 +27,7 @@ angular.module('starter.decisionTable', ['google.places'])
 
     
 })
-.controller('decisionTableDetailCtrl', function($scope, $state, global,myListFirebase,myTables,friendList) {
+.controller('decisionTableDetailCtrl', function($scope, $state, $firebaseObject,global,myListFirebase,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
     $scope.currList =global.getCurrList();
@@ -30,6 +38,7 @@ angular.module('starter.decisionTable', ['google.places'])
         
         angular.forEach(friendList, function(friend) {
             //console.log(friend.name);
+            //use email later---------------------------------------------------------------------------
             if(friend.name==friendName)
             {
                  var f={email:friend.email,key:friend.key,name:friend.name};
@@ -52,19 +61,31 @@ angular.module('starter.decisionTable', ['google.places'])
                 var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid};
                 $scope.currTable.inviteFriendList.push(addSefl);
                 //add table to friend's table list
-                angular.forEach($scope.currTable.inviteFriendList, function(friend) {
-                    //console.log(friend.name);
+                delete $scope.currTable.$id;
+                delete $scope.currTable.$priority;
+                delete $scope.currTable.choices.$id;
+                delete $scope.currTable.choices.$priority;
+                tables.$add(angular.copy($scope.currTable)).then(function(refAdd){
+                    angular.forEach($scope.currTable.inviteFriendList, function(friend) {
+                        //console.log(friend.name);
+                        var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables"));
+                        var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:global.getCurrList().ListName}
+                        
+                        friendRefObj.$loaded().then(function(data){
+                            friendRefObj[refAdd.key()]=myTableEntry;
+                            friendRefObj.$save();
+                        });
+
+                        // console.log(friend);
+                        // tableEntryRef=ref.child("users/"+friend.key+"/myTables").push();
+
+                        // console.log(angular.copy($scope.currTable));
+                        // tableEntryRef.set(angular.copy($scope.currTable));
+
                     
-                    console.log(friend);
-                    tableEntryRef=ref.child("users/"+friend.key+"/myTables").push();
-                    delete $scope.currTable.$id;
-                    delete $scope.currTable.$priority;
-                    delete $scope.currTable.choices.$id;
-                    delete $scope.currTable.choices.$priority;
-                    console.log(angular.copy($scope.currTable));
-                    tableEntryRef.set(angular.copy($scope.currTable));
-                
+                    });                    
                 });
+
             });
             $state.go('tab.decisionTableList');
         }
