@@ -9,7 +9,13 @@ angular.module('starter.listNearMe', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 		var radius=30;
-		$scope.lists=myNearByList;
+        myNearByList.$loaded().then(function() {
+	        
+	        myNearByList.$bindTo($scope, "lists");
+        //$state.go($state.current, {}, {reload: true});
+
+
+      });
 		var lat=global.getMyLoc().lat;
 		var lon=global.getMyLoc().lon;
 		console.log(lat,lon);
@@ -17,31 +23,39 @@ angular.module('starter.listNearMe', [])
 	        center: [lat, lon],
 	        radius: radius
 	      });
+
 	      geoQuery.on("key_entered", function(key, location, distance) {
+				        
+				        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
+				        var listItem={loc:location,dis:distance.toFixed(2)};
+				        myNearByList[key] = listItem; 
+				        myNearByList.$save().then(function(ref) {
+						  console.log($scope.lists); // { foo: "bar" }
+						   // will be saved to the database
+						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
+						});						
+			        //$state.go($state.current, {}, {reload: true});
 
-	        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
-	        var listItem={'key':key,loc:location,dis:distance.toFixed(2)};
-	        var ref =new Firebase('https://sggo.firebaseio.com/users/');
-	        var authData = ref.getAuth();
-	        var reflist = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
-	        
-	        reflist.orderByChild('key')
-	        .startAt(key)
-	        .endAt(key)
-	        .once('value', function(snap) {
+	    });
 
-	        	if(snap.exists())
-	        	{
-	        		//do nothing
-	        		console.log("exist");
-	        	}
-	        	else
-	        	{
-	        		myNearByList.$add(listItem);
-	        	}
-	        });
-	        
-	        //$state.go($state.current, {}, {reload: true});
+
+	      geoQuery.on("key_exited", function(key, location, distance) {
+	        console.log(key, location, distance);
+        	if($scope.lists==null)
+        	{
+        		myNearByList.$bindTo($scope, "lists");
+
+        	}
+        	//console.log($scope.lists);
+        	delete myNearByList[key];
+	        //console.log($scope.lists);
+	        myNearByList.$save().then(function(ref) {
+
+
+			  console.log($scope.lists); // { foo: "bar" }
+			   // will be saved to the database
+			  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
+			});	
 	      });
 
 

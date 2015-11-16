@@ -30,20 +30,6 @@ angular.module('starter.myList', ['google.places'])
             var removeRef = new Firebase('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
             console.log('https://sggo.firebaseio.com/geoData/'+authData.uid+':'+ref.key());
             removeRef.remove();
-            var removeRefNarByList = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
-            removeRefNarByList.orderByChild('key')
-            .startAt(authData.uid+":"+ref.key())
-            .endAt(authData.uid+":"+ref.key())
-            .once('value', function(snap) {
-                if(snap.exists())
-                {
-                    snap.forEach(function(s) {
-                            console.log("remove",myNearByList.$indexFor(s.key()));
-                            myNearByList.$remove(myNearByList.$indexFor(s.key()));
-                      });
-
-                }
-            });
             
         });
     };
@@ -85,10 +71,15 @@ angular.module('starter.myList', ['google.places'])
 
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+    $scope.openModalIni = function(){
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
 
-
+            // while(global.getMyLoc()!="none")
+            // {
+            //     console.log('null');
+            // }
             var lat=global.getMyLoc().lat
             var lon=global.getMyLoc().lon
           console.log(lat);
@@ -100,7 +91,10 @@ angular.module('starter.myList', ['google.places'])
                 radius: '1000'
             };
 
-    console.log(lat);
+        console.log(lat);
+        $scope.openModal();
+    }
+
     
 
     

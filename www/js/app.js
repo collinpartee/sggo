@@ -32,7 +32,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
             console.log("myloc ",global.getMyLoc());
         }, function(err) {
           // error
+          console.log("myloc error");
+          geoLocation.setGeolocation(37.38, -122.09)
         });
+
+        var options = {
+                frequency: 1000,
+                timeout: 3000,
+                enableHighAccuracy: false
+            };
+        var watch = $cordovaGeolocation.watchPosition(options);
+            watch.promise.then(function () { /* Not  used */
+                },
+                function (err) {
+                    global.setMyLoc(37.38, -122.09)
+                    console.log("myloc error");
+                }, function (position) {
+                    global.setMyLoc(position.coords.latitude, position.coords.longitude)
+                    console.log("myloc watch",global.getMyLoc());
+                });
+
   });
 })
 
