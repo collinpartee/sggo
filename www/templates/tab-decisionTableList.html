@@ -10,6 +10,10 @@
         <ion-item ng-repeat="(k,v) in myTableLists" class="item item-thumbnail-left" >
           {{v.tableName}}
           <img src="img/steak.jpg" />
+          </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="deleteList(k)">
+            Delete
+          </ion-option-button>
         </ion-item>
       </ion-list>
     </ion-content>

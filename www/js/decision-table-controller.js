@@ -1,5 +1,5 @@
 angular.module('starter.decisionTable', ['google.places'])
-.controller('decisionTableListCtrl', function($scope, $state,$firebaseObject, global) {
+.controller('decisionTableListCtrl', function($scope, $state,$firebaseObject, global,tables) {
 
 
     //$scope.myTableLists =myTableLists;
@@ -11,6 +11,44 @@ angular.module('starter.decisionTable', ['google.places'])
         tableRefObj.$bindTo($scope,'myTableLists');
     });
     //console.log($scope.myTableLists);
+    $scope.deleteList=function(k)
+    {
+        console.log(k);
+
+        var rec=tables.$getRecord(k).inviteFriendList;
+        var index=0;
+        var keeGoing=true;
+        //remove myself from table invited friend list
+        angular.forEach(rec, function (friend){
+            console.log(friend);
+            if(keeGoing && friend.key==authData.uid)
+            {
+                console.log("found match ",index);
+
+                rec.splice(index);
+                keeGoing=false;
+
+                //remove table if friend list is 0
+                tables.$save(tables.$getRecord(k)).then(function(ref) {
+                  console.log('remove entry'); // true
+                });
+                tables.$save(tables.$getRecord(k)).then(function(ref) {
+                  console.log('saved'); // true
+                });
+
+            }
+            index++
+        });
+        //remove table from my list
+        delete tableRefObj[k];
+        tableRefObj.$save().then(function(ref) {
+            console.log('saved tableRefObj');
+        }); 
+
+
+        tableRefObj.inviteFriendList;
+        console.log("after",tables.$getRecord(k));
+    }
 
     
 })
