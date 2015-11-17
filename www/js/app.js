@@ -67,17 +67,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
         
     }
   })
-  
-  .state('tab.listAdd', {
-    url: '/listAdd',
-    views: {
-      'tab-myList': {
-        templateUrl: 'templates/tab-listAdd.html',
-        controller: 'addListCtrl'
-      }
-        
-    }
-  })
   .state('tab.decisionTable', {
     url: '/decisionTable',
     views: {

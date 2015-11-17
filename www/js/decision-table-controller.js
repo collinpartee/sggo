@@ -29,9 +29,14 @@ angular.module('starter.decisionTable', ['google.places'])
                 keeGoing=false;
 
                 //remove table if friend list is 0
-                tables.$save(tables.$getRecord(k)).then(function(ref) {
-                  console.log('remove entry'); // true
-                });
+                if(rec.length==0)
+                {
+                    //thi shit didnt work,, why...-------------------------------
+                    tables.$remove(tables.$getRecord(k)).then(function(ref) {
+                      console.log('remove entry'); // true
+                    });                    
+                }
+
                 tables.$save(tables.$getRecord(k)).then(function(ref) {
                   console.log('saved'); // true
                 });

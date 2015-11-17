@@ -1,6 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, global,myListFirebase,myNearByList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout, global,myListFirebase,myNearByList,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
 
@@ -33,6 +33,12 @@ angular.module('starter.myList', ['google.places'])
             
         });
     };
+
+$scope.goToDecisionTable=function(listItem){ 
+        global.setCurrList(listItem);   
+        $state.go('tab.decisionTable');
+    };
+
     $scope.shareList=function(listItem){ 
         global.setCurrList(listItem);   
         $state.go('tab.decisionTableDetail');
@@ -57,6 +63,22 @@ angular.module('starter.myList', ['google.places'])
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+  $scope.friends=friendList;
+  // Confirm popup code
+      $scope.shareListWithFriends = function() {
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Ionic Popup',
+          templateUrl: 'shareListWithFriends-Popup.html'
+        });
+        confirmPopup.then(function(res) {
+          if(res) {
+            console.log('You clicked on "OK" button');
+          } else {
+            console.log('You clicked on "Cancel" button');
+          }
+        });
+      };
+
     
 })
 

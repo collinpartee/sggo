@@ -12,12 +12,12 @@
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>
           
-            <ion-option-button class="button-positive" ng-click="shareList(list)">
+            <ion-option-button class="button-positive" ng-click="shareListWithFriends(list)">
             Share
           </ion-option-button>
-            <ion-option-button class="button-balanced" ng-click="editList(list)">
+            <!-- <ion-option-button class="button-balanced" ng-click="editList(list)">
             Edit
-          </ion-option-button>
+          </ion-option-button> -->
             <ion-option-button class="button-assertive" ng-click="deleteList(list)">
             Delete
           </ion-option-button>
@@ -29,49 +29,61 @@
 
 <script id="addList-modal.html" type="text/ng-template">
   <div class="modal" ng-controller="addListCtrl">
-    <ion-header-bar>
-      <h1 class="title">Create New List</h1>
-      <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
+    <ion-header-bar style="background-color: rgb(127, 197, 195);">
+      <h1 class="title" style="color: white;">Create New List</h1>
+      <button class="button button-clear button-positive" style="color: white;" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
-    <ion-content style="background-color: whitesmoke;">
-      <div class="list">
+    <ion-content style="background-color: whitesmoke;" scroll="false">
+      <div class="">
+          <div class="row">
+          <h4 class="list_header">Name Your List</h4>
+          </div>
         <label class="item item-input">
-          <span class="input-label">List Name</span>
           <input type="text" ng-model="listName">
         </label>
-        <div class="list">
-
-          <ion-scroll style="margin-top: 3vh; height: 50vh; width: 100%; background-color: white;">
-             <div class="">
-
-                <input type="text" class="form-control row" id="listInputField" g-places-autocomplete options="autocompleteOptions" ng-model="place" autofocus/><hr/>
-            <button class="button button-clear row" ng-click="addToList(place)" style="color: rgb(127, 197, 195);"><i class="icon ion-plus-round"></i> List Item</button>
+        <div class="list row">
+            <ion-scroll style="margin-top: auto; height: 300px; width: 100%; background-color: white;">
+                <div class="">
+                    <div class="item item-button-right" ng-repeat="item in placeList" style="border: none; padding-top: 10px; padding-bottom: 10px;">
+                        {{item.name}}
+                        <hr />
+                        <button class="button button-clear" ng-click="deletePlace($index)">
+                            <i class="icon ion-close" style="color: red;"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="width: 100vw; background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
+                    <button class="button button-clear row" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">                     <span style="display: block; margin: 0 auto;"><i class="icon ion-plus-round"></i> List item</span></button>
         </div>
-        <div class="list">
-            
-          <div class="item item-button-right" ng-repeat="item in placeList">
-                    {{item.name}}
-                    <button class="button button-clear" ng-click="">
-            <i class="icon ion-close" style="color: red;"></i>
-          <button>
-            </div>
-            
-        </ion-list>
+       
           </ion-scroll>
             </div>
-          <ion-scroll direction="x" style="color: white;">
+                <div class="row">
+        <h4 class="list_header">Choose Your Category</h4>
+                </div>
+            <div class="list row" style="padding: 5px 0 0 0;">
+          <ion-scroll direction="x" style="background-color: white;">
             <table>
               <tr ng-repeat="category in categoryPics"  class="row table-cell">
                 <td class="col col-25"><img class="thumbnail" ng-src="{{category}}"></td>
               </tr>
             </table>
           </ion-scroll>
-
+              </div>
        
       </div>
 
-      <button class="button button-full button-energized" ng-click="saveList()">Done</button>
-
+      <button class="button button-full button-energized" ng-click="saveList();">Done</button>
     </ion-content>
+  </div>
+</script>
+
+<script id="shareListWithFriends-Popup.html" type="text/ng-template">
+  <div>
+      <ion-list>
+        <ion-item ng-repeat="friend in friends" ng-click="goToDecisionTable(list)">
+        <img src="img/steak.jpg" />
+          {{list.ListName}}
+        </ion-item>
+      </ion-list>
   </div>
 </script>

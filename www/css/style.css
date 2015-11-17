@@ -20,18 +20,18 @@ position: absolute;
 }
 
 .app-title {
-	display: table;
+  display: table;
     margin: 15vh auto 0 auto;
 }
 
 .facebook-sign-in {
-	background-color: #3B5998;
+  background-color: #3B5998;
     color: white;
     border: none;
 }
 
 .google-sign-in {
-	background-color: #DC4E41;
+  background-color: #DC4E41;
     color: white;
     border: none;
 }
@@ -42,37 +42,22 @@ position: absolute;
     background-color: whitesmoke;
 }
 
+.list_description {
+  opacity: 0.9;
+    margin-top: 5px;
+    width: 55vw;
+    
+    word-wrap: break-word;
+}
+
+.list_tags {
+  position: absolute;
+    bottom: 2px;
+    opacity: 0.7;
+}
+
 
 /*** TAB-listAdd ***/
-.main {
-  display: flex;
-/*  justify-content: space-between;
-*/ 
-width: 100%;
-}
-
-.main .middle {
-  flex-grow: 4;
-  display: flex;
-  flex-direction: column;
-  /*justify-content: space-between;*/
-}
-
-.main .middle .middle-top-container {
-  flex-grow: 1;
-  display: flex;
-  /*justify-content: space-between;*/
-}
-
-.main .middle .middle-top-container .middle-top-column {
-  
-  flex-grow: 4;
-}
-
-.main .middle .middle-bottom-container {
-  
-  text-align: center;
-}
 
 .outline-button{
     color: green; !important
@@ -98,4 +83,14 @@ width: 100%;
 
 .thumbnail{
       max-width: 75px;
+}
+
+.list_header{
+    opacity: 0.5;
+    margin-bottom: 1px
+}
+
+/** IONIC **/
+.item{
+    position: relative;
 }
