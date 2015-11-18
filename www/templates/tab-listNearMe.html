@@ -10,3 +10,16 @@
       </ion-list>
   </ion-content>
 </ion-view>
+
+<script id="ListNearMe-Popup.html" type="text/ng-template">
+  <div>
+      <ul class="list">
+        <li class="item" ng-repeat="friend in friends_test | filter:search_bar">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
+          </label>
+            {{friend.name}}  
+          </li>
+      </ul>
+  </div>
+</script>

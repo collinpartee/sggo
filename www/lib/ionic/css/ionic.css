@@ -5664,7 +5664,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .popup-container .popup {
     width: 250px;
     max-width: 100%;
-    max-height: 90%;
+    max-height: 60%;
     border-radius: 0px;
     background-color: rgba(255, 255, 255, 0.9);
     display: -webkit-box;

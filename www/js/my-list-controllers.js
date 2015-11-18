@@ -68,6 +68,15 @@ $scope.goToDecisionTable=function(listItem){
     
     $scope.friends_test=[{email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
                     {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
+                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
+                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
+                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
+                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
+                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
+                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
+                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
+                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
+                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
                     {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'}
     ];
     
