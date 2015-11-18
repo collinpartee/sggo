@@ -64,15 +64,55 @@ $scope.goToDecisionTable=function(listItem){
     $scope.modal.remove();
   });
   $scope.friends=friendList;
+
+    
+    $scope.friends_test=[{email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
+                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
+                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'}
+    ];
+    
+    var friendlyList = [];
+    $scope.addFriendToList = function(friend, checked){
+       // console.log(checked);
+        
+        var lookup = {};
+        
+        if(friendlyList == null){
+            friendlyList.push(friend);
+        }else{            
+            if(checked == true){
+                friendlyList.push(friend);
+            }else{
+                for(var i = 0; i < friendlyList.length; i++) {
+                    var obj = friendlyList[i];
+
+                    if(friend.key == friendlyList[i].key) {
+                        friendlyList.splice(i, 1);
+                        i--;
+                    }
+                }
+            }
+           
+            
+            //console.log(lookup.key);
+        }
+        
+        //console.log(friendlyList);
+    };
+    
   // Confirm popup code
       $scope.shareListWithFriends = function() {
         var confirmPopup = $ionicPopup.confirm({
-          title: 'Ionic Popup',
-          templateUrl: 'shareListWithFriends-Popup.html'
+          title: 'Choose Your Friends',
+          templateUrl: 'shareListWithFriends-Popup.html',
+            scope: $scope
         });
         confirmPopup.then(function(res) {
           if(res) {
             console.log('You clicked on "OK" button');
+              console.log(friendlyList);
+              friendlyList = [];
+              
           } else {
             console.log('You clicked on "Cancel" button');
           }

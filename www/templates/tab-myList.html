@@ -79,11 +79,13 @@
 
 <script id="shareListWithFriends-Popup.html" type="text/ng-template">
   <div>
-      <ion-list>
-        <ion-item ng-repeat="friend in friends" ng-click="goToDecisionTable(list)">
-        <img src="img/steak.jpg" />
-          {{list.ListName}}
-        </ion-item>
-      </ion-list>
+      <ul class="list">
+        <li class="item item-checkbox" ng-repeat="friend in friends_test">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
+          </label>
+            {{friend.name}}  
+          </li>
+      </ul>
   </div>
 </script>
