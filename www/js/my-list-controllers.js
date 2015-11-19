@@ -1,6 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout, global,myListFirebase,myNearByList,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject, global,myListFirebase,myNearByList,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var authData = ref.getAuth();
 
@@ -34,7 +34,7 @@ angular.module('starter.myList', ['google.places'])
         });
     };
 
-$scope.goToDecisionTable=function(listItem){ 
+    $scope.goToDecisionTable=function(listItem){ 
         global.setCurrList(listItem);   
         $state.go('tab.decisionTable');
     };
@@ -66,29 +66,12 @@ $scope.goToDecisionTable=function(listItem){
   $scope.friends=friendList;
 
     
-    $scope.friends_test=[{email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
-                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
-                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
-                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
-                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
-                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
-                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
-                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
-                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'},
-                         {email:'collin.partee@gmail.com', key:'4', name: 'Collin Partee'},
-                    {email:'Bruce.banner@gmail.com', key:'4sfdf', name: 'The Hulk'},
-                    {email:'silver.surfer@gmail.com', key:'8899087', name: 'Silver Surfer'}
-    ];
     
     var friendlyList = [];
     $scope.addFriendToList = function(friend, checked){
        // console.log(checked);
         
-        var lookup = {};
-        
-        if(friendlyList == null){
-            friendlyList.push(friend);
-        }else{            
+        var lookup = {};           
             if(checked == true){
                 friendlyList.push(friend);
             }else{
@@ -104,13 +87,14 @@ $scope.goToDecisionTable=function(listItem){
            
             
             //console.log(lookup.key);
-        }
+        
         
         //console.log(friendlyList);
     };
     
   // Confirm popup code
-      $scope.shareListWithFriends = function() {
+      $scope.shareListWithFriends = function(list) {
+        $scope.currTable={inviteFriendList:[],choices:list.places};
         var confirmPopup = $ionicPopup.confirm({
           title: 'Choose Your Friends',
           templateUrl: 'shareListWithFriends-Popup.html',
@@ -118,9 +102,46 @@ $scope.goToDecisionTable=function(listItem){
         });
         confirmPopup.then(function(res) {
           if(res) {
-            console.log('You clicked on "OK" button');
-              console.log(friendlyList);
-              friendlyList = [];
+                $scope.currTable.inviteFriendList=friendlyList;
+                console.log($scope.currTable);
+                $scope.currTable.tableName=list.ListName;
+                $scope.currTable.creator=list.creater_name;
+                 if($scope.currTable.tableName!=null)
+                {
+                    var userRef=ref.child('users/'+authData.uid);
+                    userRef.once('value',function(snap){
+                        console.log(snap.val());
+                        var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid};
+                        $scope.currTable.inviteFriendList.push(addSefl);
+                        //add table to friend's table list
+                        delete $scope.currTable.$id;
+                        delete $scope.currTable.$priority;
+                        delete $scope.currTable.choices.$id;
+                        delete $scope.currTable.choices.$priority;
+                        tables.$add(angular.copy($scope.currTable)).then(function(refAdd){
+                            angular.forEach($scope.currTable.inviteFriendList, function(friend) {
+                                //console.log(friend.name);
+                                var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables"));
+                                var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:list.ListName,creator:list.creater_name};
+                                
+                                friendRefObj.$loaded().then(function(data){
+                                    friendRefObj[refAdd.key()]=myTableEntry;
+                                    friendRefObj.$save();
+                                });
+
+                                // console.log(friend);
+                                // tableEntryRef=ref.child("users/"+friend.key+"/myTables").push();
+
+                                // console.log(angular.copy($scope.currTable));
+                                // tableEntryRef.set(angular.copy($scope.currTable));
+
+                            
+                            });                    
+                        });
+
+                    });
+                    $state.go('tab.decisionTableList');
+                }
               
           } else {
             console.log('You clicked on "Cancel" button');
@@ -212,8 +233,8 @@ $scope.goToDecisionTable=function(listItem){
     
     $scope.saveList = function(){
         
-        currListItem['places']=$scope.numberOfListItems;
-        console.log("place list "+JSON.stringify($scope.numberOfListItems));
+        currListItem['places']=$scope.placeList;
+        console.log("place list "+JSON.stringify($scope.placeList));
         console.log("save button pressed "+JSON.stringify(currListItem));
         
         global.setCurrList(currListItem);

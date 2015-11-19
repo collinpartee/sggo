@@ -17,16 +17,14 @@ angular.module('starter.decisionTable', ['google.places'])
 
         var rec=tables.$getRecord(k).inviteFriendList;
         var index=0;
-        var keeGoing=true;
         //remove myself from table invited friend list
         angular.forEach(rec, function (friend){
             console.log(friend);
-            if(keeGoing && friend.key==authData.uid)
+            if(friend.key==authData.uid)
             {
                 console.log("found match ",index);
 
                 rec.splice(index);
-                keeGoing=false;
 
                 //remove table if friend list is 0
                 if(rec.length==0)
@@ -42,14 +40,45 @@ angular.module('starter.decisionTable', ['google.places'])
                 });
 
             }
+            else
             index++
+            console.log(index); 
         });
+        //remove myself from friend's table's invite list
+        //console.log(rec);
+        angular.forEach(rec, function (friend){
+            var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables/"+k));
+            var idx=0;
+            var keepgoing=true;
+            friendRefObj.$loaded().then(function(data){
+                console.log(friendRefObj.inviteFriendList);
+                angular.forEach(friendRefObj.inviteFriendList, function (m){
+                    if(keepgoing && m.key==authData.uid)
+                    {
+                        friendRefObj.inviteFriendList.splice(idx);
+
+                        keepgoing=false;
+                        friendRefObj.$save().then(function(ref) {
+                          console.log("removed myself from friends table");
+                        }, function(error) {
+                          console.log("Error:", error);
+                        });
+                    }
+                    idx++;
+                    console.log("index",idx); 
+                });
+            });
+
+        });
+
+        
         //remove table from my list
         delete tableRefObj[k];
         tableRefObj.$save().then(function(ref) {
             console.log('saved tableRefObj');
         }); 
 
+        
 
         tableRefObj.inviteFriendList;
         console.log("after",tables.$getRecord(k));
