@@ -28,7 +28,7 @@
             Sign In With Facebook
           </a>
           <a class="dont-have-facebook button button-clear button-block"  ng-click="openModal()">
-            Log in as a guest
+            Sign in with email
           </a>
           <section ng-include="'views/partials/legal-notice.html'"></section>
         </div>
@@ -48,26 +48,40 @@
         <form style="margin-top: 20vh;" ng-hide="didSubmitLogin">
             <div class="list list-inset">
                 <label class="item item-input">
-                    <span class="input-label">Name</span>
-                        <input type="text">
+                    <span class="input-label" >Email</span>
+                    <input type="text" ng-model="lemail">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Email</span>
-                    <input type="text">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password">
+                    <span class="input-label" >Password</span>
+                    <input type="password" ng-model='lpassword'>
                 </label>
             </div>
-            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="showLoading()">Sign Up</button>
+            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="logIn(lemail,lpassword)">Log In</button>
+            <a class="dont-have-facebook button button-clear button-block"  ng-click="didSubmitLogin=true">
+              Sign up
+            </a>
         </form>
-        
+
         <div class="list list-inset" ng-show="didSubmitLogin" style="margin-top: 20vh;">
-            <h3 style="padding: 16px;">Are you ready to start Caboodling??!</h3>
+            <form style="margin-top: 20vh;" ng-show="didSubmitLogin">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                        <input type="text" ng-model="sname">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label" >Email</span>
+                    <input type="text" ng-model="semail">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label" >Password</span>
+                    <input type="password" ng-model='spassword'>
+                </label>
+            </div>
+            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="signUp(sname,semail,spassword)">Sign Up</button>
+          </form>
            
         </div>
-         <button class="button button-positive col col-75" style="margin: 0 auto;" ng-show="didSubmitLogin" ng-click="closeModal()">Lets Go</button>
         
     </ion-content>
   </div>

@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
   $scope.user = null;
   var itemRef = new Firebase('https://sggo.firebaseio.com/');
 
+
   //if user already aunthenticated
   Auth.onAuth(authDataCallback);
   function authDataCallback(authData) {
@@ -113,7 +114,69 @@ angular.module('starter.controllers', [])
     
     $scope.didSubmitLogin = false;
     //loading spinner
+
+
+    $scope.signUp=function(sname,semail,spassword){
+      console.log(semail,spassword);
+      itemRef.createUser({
+        email    : semail,
+        password : spassword
+      }, function(error, userData) {
+        if (error) {
+          console.log("Error creating user:", error);
+          //alert invalid or duplicated user email
+        } else {
+          console.log("Successfully created user account with uid:", userData.uid);
+          itemRef.authWithPassword({
+            email    : semail,
+            password : spassword
+          }, function(error, authData) { 
+            if(error)
+            {
+
+               console.log("user exists");
+            }
+            else
+            {
+                  itemRef.child("users").child(authData.uid).set({
+                      provider: authData.provider,
+                      name: sname,
+                      email: semail
+                  });
+                  $scope.closeModal(); 
+                  $state.go('tab.myList');
+            }
+
+          }, {
+          });
+        }
+      });
+    };
+
+    $scope.logIn=function(lemail,lpassword){
+      itemRef.authWithPassword({
+        email    : lemail,
+        password : lpassword
+      }, function(error, authData) { 
+        if(error)
+        {
+             console.log("wrong username");
+        }
+        else
+        {
+                  $scope.closeModal(); 
+                  $state.go('tab.myList');
+        }
+      }, {
+
+      });  
+    };
+
+
+
     $scope.showLoading = function(){
+
+
     $ionicLoading.show({
       templateUrl: 'loading.html',
       scope: $scope
