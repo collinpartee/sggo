@@ -143,6 +143,7 @@ angular.module('starter.controllers', [])
                       name: sname,
                       email: semail
                   });
+                  $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
                   $state.go('tab.myList');
             }
