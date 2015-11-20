@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $state,Auth) {
+.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading, Auth) {
 
     $scope.dontLogin = function(){
         $state.go('tab.myList');
@@ -90,40 +90,48 @@ angular.module('starter.controllers', [])
          return authData.facebook.email;
     }
   }
-})
+    //add new list modal window
+      $ionicModal.fromTemplateUrl('signUp-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });  
 
-//.controller('myListCtrl', function($scope, $state) {
-//
-//    $scope.lists = [
-//        {title: 'Steak', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']},
-//        {title: 'Sandwhich', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']},
-//        {title: 'Breakfast', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']}
-//    ];
-//
-//})
-//
-//.controller('nearMeCtrl', function($scope, $state) {
-//  // With the new view caching in Ionic, Controllers are only called
-//  // when they are recreated or on app start, instead of every page change.
-//  // To listen for when this page is active (for example, to refresh data),
-//  // listen for the $ionicView.enter event:
-//  //
-//  //$scope.$on('$ionicView.enter', function(e) {
-//  //});
-//        $scope.lists = [
-//        {title: 'Steak', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']},
-//        {title: 'Sandwhich', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']},
-//        {title: 'Breakfast', places: ['Burger King', 'MacDonalds', 'Honey Bits', 'Sweet Hut']}
-//    ];
-//
-//})
-//
-//.controller('listEditCtrl', function($scope) {
-//
-//})
-//
-//.controller('AccountCtrl', function($scope) {
-//  $scope.settings = {
-//    enableFriends: true
-//  };
-;
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+      $scope.didSubmitLogin = false;
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+    
+    $scope.didSubmitLogin = false;
+    //loading spinner
+    $scope.showLoading = function(){
+    $ionicLoading.show({
+      templateUrl: 'loading.html',
+      scope: $scope
+    });
+    $timeout(function(){
+        $ionicLoading.hide();
+        console.log("first timout");
+    },2000),
+    $timeout(function(){
+        $scope.didSubmitLogin = true;
+        console.log("decond timout");
+    },2500)
+  }
+  
+    
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  }
+    
+});
+
