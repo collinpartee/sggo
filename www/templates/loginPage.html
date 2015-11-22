@@ -57,9 +57,13 @@
                 </label>
             </div>
             <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="logIn(lemail,lpassword)">Log In</button>
+
             <a class="dont-have-facebook button button-clear button-block"  ng-click="didSubmitLogin=true">
               Sign up
             </a>
+            <button class="dont-have-facebook button button-clear button-block"  ng-click="resetPassword(lemail)">
+              reset password
+            </button>
         </form>
 
         <div class="list list-inset" ng-show="didSubmitLogin" style="margin-top: 20vh;">
@@ -78,7 +82,7 @@
                     <input type="password" ng-model='spassword'>
                 </label>
             </div>
-            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="signUp(sname,semail,spassword)">Sign Up</button>
+            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="didSubmitLogin=false;signUp(sname,semail,spassword)">Sign Up</button>
           </form>
            
         </div>
@@ -87,7 +91,3 @@
   </div>
 </script>
 
-<script id="loading.html" type="text/ng-template">
-      <ion-spinner></ion-spinner>
-      
-    </script>

@@ -8,7 +8,7 @@
     <ion-content>
       <ion-list class="list">
         <ion-item ng-repeat="friend in friendList" class="item item-avatar">
-          <img src="../img/adam.jpg" />
+          <img src="{{friend.avatar}}" />
             {{friend.name}}
             <p>Macy's Systems and Technology</p>
           <ion-option-button class="button button-assertive" ng-click="deleteFriend(friend)">

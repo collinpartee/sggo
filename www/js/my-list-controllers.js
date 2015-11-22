@@ -1,8 +1,8 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject, global,myListFirebase,myNearByList,tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,authData, global,myListFirebase,myNearByList,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
+    
 
     $scope.myLists =myListFirebase;
     console.log($scope.myLists);
@@ -61,6 +61,7 @@ angular.module('starter.myList', ['google.places'])
                     if(friend.key == friendlyList[i].key) {
                         friendlyList.splice(i, 1);
                         i--;
+                        console.log('removed ');
                     }
                 }
             }
@@ -132,7 +133,7 @@ angular.module('starter.myList', ['google.places'])
     
 })
 
-.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire){
+.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
 
 
     $scope.categoryPics = ['../img/chicken.png', '../img/coffee.png', '../img/cupcake.png', '../img/egg.png', '../img/hamburger.png', '../img/hotdog.png', '../img/pizza.png', '../img/steak.png', '../img/french_fry.png' ];
@@ -142,8 +143,8 @@ angular.module('starter.myList', ['google.places'])
     console.log('first call'+currListItem);
 
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
-    var myName=getName(authData);
+    var myName;
+    getName(authData);
 
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
@@ -294,16 +295,15 @@ angular.module('starter.myList', ['google.places'])
 
             ref.child('users/'+authData.uid+'/name').once('value', function(dataSnapshot) {
                 console.log(dataSnapshot.val());
-              return dataSnapshot.val();
+              myName= dataSnapshot.val();
             });
 
       };
 
 
 })
-.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire){
+.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
     var currListItem=global.getCurrList();
     var newList=true;
     console.log(currListItem.ListName+" tf "+newList);

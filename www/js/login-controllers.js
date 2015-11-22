@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading, Auth) {
+.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, Auth) {
 
     $scope.dontLogin = function(){
         $state.go('tab.myList');
@@ -54,7 +54,8 @@ angular.module('starter.controllers', [])
         itemRef.child("users").child(authData.uid).set({
             provider: authData.provider,
             name: getName(authData),
-            email: getEmail(authData)
+            email: getEmail(authData),
+            avatar: getImage(authData)
         });
 
         $state.go('tab.myList');
@@ -91,8 +92,20 @@ angular.module('starter.controllers', [])
          return authData.facebook.email;
     }
   }
+
+  function getImage(authData) {
+      console.log(authData.google.email);
+    switch(authData.provider) {
+       case 'google':
+         return authData.google.profileImageURL;
+       case 'twitter':
+         return authData.twitter.email;
+       case 'facebook':
+         return authData.facebook.profileImageURL;
+    }
+  }
     //add new list modal window
-      $ionicModal.fromTemplateUrl('signUp-modal.html', {
+  $ionicModal.fromTemplateUrl('signUp-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -141,7 +154,8 @@ angular.module('starter.controllers', [])
                   itemRef.child("users").child(authData.uid).set({
                       provider: authData.provider,
                       name: sname,
-                      email: semail
+                      email: semail,
+                      avatar: '../img/adam.jpg'
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
@@ -174,28 +188,31 @@ angular.module('starter.controllers', [])
     };
 
 
-
-    $scope.showLoading = function(){
-
-
-    $ionicLoading.show({
-      templateUrl: 'loading.html',
-      scope: $scope
-    });
-    $timeout(function(){
-        $ionicLoading.hide();
-        console.log("first timout");
-    },2000),
-    $timeout(function(){
-        $scope.didSubmitLogin = true;
-        console.log("decond timout");
-    },2500)
-  }
-  
-    
-  $scope.hide = function(){
-    $ionicLoading.hide();
-  }
+    $scope.resetPassword=function(lemail){
+      console.log(lemail);
+      itemRef.resetPassword({
+        email : lemail
+      }, function(error) {
+        if (error === null) {
+          var options={title: 'Pass word reset Successfully', template:'Please check your email'};
+          $scope.showAlert(options);
+          console.log("Password reset email sent successfully");
+        } else {
+          var options={title: 'Error sending password reset email', template:error};
+          console.log("Error sending password reset email:", error);
+          $scope.showAlert(options);
+        }
+      });
+    }
+    $scope.showAlert = function(options) {
+     var alertPopup = $ionicPopup.alert({
+         title: options.title,
+         template: options.template
+       });
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
     
 });
 
