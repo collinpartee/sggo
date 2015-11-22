@@ -291,21 +291,12 @@ angular.module('starter.myList', ['google.places'])
     $scope.inputCounter = 0;
 
     function getName(authData) {
-        switch(authData.provider) {
-           case 'google':
-             return authData.google.displayName;
-           case 'twitter':
-             return authData.twitter.displayName;
-           case 'facebook':
-             return authData.facebook.displayName;
-            case 'password':
-            {
-                ref.child('users/'+authData.uid+'/name').once('value', function(dataSnapshot) {
-                    console.log(dataSnapshot.val());
-                  return dataSnapshot.val();
-                });
-            }
-        }
+
+            ref.child('users/'+authData.uid+'/name').once('value', function(dataSnapshot) {
+                console.log(dataSnapshot.val());
+              return dataSnapshot.val();
+            });
+
       };
 
 
