@@ -1,16 +1,13 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject, global,myListFirebase,myNearByList,tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,authData, global,myListFirebase,myNearByList,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
+    
 
     $scope.myLists =myListFirebase;
     console.log($scope.myLists);
 
-    $scope.addNewList = function(){
-    global.setCurrList({});
-    $state.go('tab.listAdd');
-    };
+
 
     $scope.editList = function(listItem){
          console.log('edit '+JSON.stringify(listItem));
@@ -39,33 +36,16 @@ angular.module('starter.myList', ['google.places'])
         $state.go('tab.decisionTable');
     };
 
-    $scope.shareList=function(listItem){ 
-        global.setCurrList(listItem);   
-        $state.go('tab.decisionTableDetail');
-    };
 
-    //add new list modal window
-      $ionicModal.fromTemplateUrl('addList-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });  
 
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
 
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
   $scope.friends=friendList;
 
-    
+    $scope.openListDetail= function()
+    {
+        global.setCurrList({});
+        $state.go('tab.listDetails');
+    };
     
     var friendlyList = [];
     $scope.addFriendToList = function(friend, checked){
@@ -81,6 +61,7 @@ angular.module('starter.myList', ['google.places'])
                     if(friend.key == friendlyList[i].key) {
                         friendlyList.splice(i, 1);
                         i--;
+                        console.log('removed ');
                     }
                 }
             }
@@ -175,7 +156,7 @@ angular.module('starter.myList', ['google.places'])
     
 })
 
-.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase){
+.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
 
 
     $scope.categoryPics = ['../img/chicken.png', '../img/coffee.png', '../img/cupcake.png', '../img/egg.png', '../img/hamburger.png', '../img/hotdog.png', '../img/pizza.png', '../img/steak.png', '../img/french_fry.png' ];
@@ -185,30 +166,29 @@ angular.module('starter.myList', ['google.places'])
     console.log('first call'+currListItem);
 
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
+    var myName;
+    getName(authData);
 
-    $scope.openModalIni = function(){
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
 
-            // while(global.getMyLoc()!="none")
-            // {
-            //     console.log('null');
-            // }
-            var lat=global.getMyLoc().lat
-            var lon=global.getMyLoc().lon
-          console.log(lat);
-          var bruceHouse = new google.maps.LatLng(lat, lon);
+        // while(global.getMyLoc()!="none")
+        // {
+        //     console.log('null');
+        // }
+        var lat=global.getMyLoc().lat
+        var lon=global.getMyLoc().lon
+      console.log(lat);
+      var bruceHouse = new google.maps.LatLng(lat, lon);
 
-            $scope.autocompleteOptions = {
-                types: ['establishment'],
-                location: bruceHouse,
-                radius: '1000'
-            };
+        $scope.autocompleteOptions = {
+            types: ['establishment'],
+            location: bruceHouse,
+            radius: '1000'
+        };
 
-        console.log(lat);
-        $scope.openModal();
-    }
+    console.log(lat);
+
 
     
 
@@ -255,61 +235,29 @@ angular.module('starter.myList', ['google.places'])
     };
     
     $scope.saveList = function(){
-        
+        var currListItem=global.getCurrList();
         currListItem['places']=$scope.placeList;
         console.log("place list "+JSON.stringify($scope.placeList));
         console.log("save button pressed "+JSON.stringify(currListItem));
         
-        global.setCurrList(currListItem);
-        $scope.closeModal();
-        $state.go('tab.listDetails');
-        
-    };
-    
-    $scope.deletePlace = function(place){
-        console.log($scope.placeList.indexOf(place));
-       $scope.placeList.splice($scope.placeList.indexOf(place),1);
-    };
-    
-     //new new 
 
-    $scope.numberOfListItems = [];
-    $scope.numberOfListItems.push({});
-    $scope.addListItem = function(place){
-            console.log('place' + place);
-            $scope.numberOfListItems[$scope.numberOfListItems.length-1]={'name':place};
-            $scope.numberOfListItems.push({});
-    };
+        var newList=true;
+        console.log(currListItem.ListName+" tf "+newList);
+        if(currListItem.ListName!=null)
+        {
+            
+            $scope.ListName = currListItem.ListName;
+            
+            newList=false;
+        }
 
- // Define $scope.place as an array
-    $scope.place = [];
-    // Create a counter to keep track of the additional place inputs
-    $scope.inputCounter = 0;
-
-
-
-
-})
-.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire){
-    var ref = new Firebase('https://sggo.firebaseio.com');
-    var authData = ref.getAuth();
-    var currListItem=global.getCurrList();
-    var newList=true;
-    console.log(currListItem.ListName+" tf "+newList);
-    if(currListItem.ListName!=null)
-    {
-        
-        $scope.ListName = currListItem.ListName;
-        
-        newList=false;
-    }
-    console.log(currListItem.ListName+" tf "+newList);
-    $scope.saveListWithName = function(name){
-        //save list to lists
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
         if(newList)
         {
-           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':getName(authData),'places':currListItem.places,'share':true};
+            if(myName==null)
+            {
+                myName='oops not fast enough';
+            }
+           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'share':true};
            //add to my list
            myListFirebase.$add(finalList)
            .then(function(ref) {
@@ -338,17 +286,62 @@ angular.module('starter.myList', ['google.places'])
             myListFirebase.$save(item);
         }
         global.setCurrList({});
-        $state.go('tab.myList');  
+
+
+
+
+        $state.go('tab.myList');
+        
+    };
+    
+    $scope.deletePlace = function(place){
+        console.log($scope.placeList.indexOf(place));
+       $scope.placeList.splice($scope.placeList.indexOf(place),1);
+    };
+    
+     //new new 
+
+    $scope.numberOfListItems = [];
+    $scope.numberOfListItems.push({});
+    $scope.addListItem = function(place){
+            console.log('place' + place);
+            $scope.numberOfListItems[$scope.numberOfListItems.length-1]={'name':place};
+            $scope.numberOfListItems.push({});
     };
 
+ // Define $scope.place as an array
+    $scope.place = [];
+    // Create a counter to keep track of the additional place inputs
+    $scope.inputCounter = 0;
+
     function getName(authData) {
-        switch(authData.provider) {
-           case 'google':
-             return authData.google.displayName;
-           case 'twitter':
-             return authData.twitter.displayName;
-           case 'facebook':
-             return authData.facebook.displayName;
-        }
+
+            ref.child('users/'+authData.uid+'/name').once('value', function(dataSnapshot) {
+                console.log(dataSnapshot.val());
+              myName= dataSnapshot.val();
+            });
+
       };
+
+
+})
+.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
+    var ref = new Firebase('https://sggo.firebaseio.com');
+    var currListItem=global.getCurrList();
+    var newList=true;
+    console.log(currListItem.ListName+" tf "+newList);
+    if(currListItem.ListName!=null)
+    {
+        
+        $scope.ListName = currListItem.ListName;
+        
+        newList=false;
+    }
+    console.log(currListItem.ListName+" tf "+newList);
+    $scope.saveListWithName = function(name){
+        //save list to lists
+ 
+    };
+
+
 });

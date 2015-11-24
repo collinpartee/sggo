@@ -38,7 +38,7 @@ angular.module('starter.friendList', [])
             console.log(JSON.stringify(snap.val()));
             snap.forEach(function(s) {
                 console.log(JSON.stringify(s.val()));
-               var newFriend={name:s.val().name,email:s.val().email,key:s.key()};
+               var newFriend={name:s.val().name,email:s.val().email,key:s.key(),avatar:s.val().avatar};
                console.log(JSON.stringify(newFriend));
                friendList.$add(newFriend);
                $scope.searchResult=newFriend.name;

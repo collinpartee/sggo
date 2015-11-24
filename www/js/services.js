@@ -65,6 +65,11 @@ angular.module('starter.services', [])
     }
   };
 })
+.factory('authData', function() {
+  var ref = new Firebase("https://sggo.firebaseio.com");
+  var authData = ref.getAuth();
+  return authData;
+})
 
 .factory('geoFire', function() {
   var firebaseRef = new Firebase("https://sggo.firebaseio.com/geoData/");
