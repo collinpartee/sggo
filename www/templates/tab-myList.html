@@ -23,6 +23,20 @@
           </ion-option-button>
         </ion-item>
       </ion-list>
+        <ion-list>
+        <ion-item ng-repeat="(k,v) in myTableLists" class="item item-thumbnail-left" ng-click="showPopup(list);">
+        <img src="img/steak.jpg" />
+          {{list.ListName}}
+          <p>#bakery #yum #gottaHaveIt</p>
+          
+            <!-- <ion-option-button class="button-balanced" ng-click="editList(list)">
+            Edit
+          </ion-option-button> -->
+            <ion-option-button class="button-assertive" ng-click="deleteTable(k)">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
     </ion-content>
 
 </ion-view>

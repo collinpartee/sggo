@@ -2,7 +2,11 @@ angular.module('starter.myList', ['google.places'])
 
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,authData, global,myListFirebase,myNearByList,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
-    
+    var tableRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+authData.uid+"/myTables");
+    var tableRefObj=$firebaseObject(tableRef);
+    tableRefObj.$loaded().then(function(data){
+        tableRefObj.$bindTo($scope,'myTableLists');
+    });
 
     $scope.myLists =myListFirebase;
     console.log($scope.myLists);
@@ -121,7 +125,7 @@ angular.module('starter.myList', ['google.places'])
                         });
 
                     });
-                    $state.go('tab.decisionTableList');
+                    //$state.go('tab.decisionTableList');
                 }
               
           } else {
@@ -130,6 +134,81 @@ angular.module('starter.myList', ['google.places'])
         });
       };
 
+    //delete table
+    $scope.deleteTable=function(k)
+    {
+        console.log(k);
+
+        var rec=tables.$getRecord(k).inviteFriendList;
+        var index=0;
+        //remove myself from table invited friend list
+        angular.forEach(rec, function (friend){
+            console.log(friend);
+            if(friend.key==authData.uid)
+            {
+                console.log("found match ",index);
+
+                rec.splice(index);
+
+                //remove table if friend list is 0
+                if(rec.length==0)
+                {
+                    //thi shit didnt work,, why...-------------------------------
+                    tables.$remove(tables.$getRecord(k)).then(function(ref) {
+                      console.log('remove entry'); // true
+                    });                    
+                }
+
+                tables.$save(tables.$getRecord(k)).then(function(ref) {
+                  console.log('saved'); // true
+                });
+
+            }
+            else
+            index++
+            console.log(index); 
+        });
+        //remove myself from friend's table's invite list
+        //console.log(rec);
+        angular.forEach(rec, function (friend){
+            var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables/"+k));
+            var idx=0;
+            var keepgoing=true;
+            friendRefObj.$loaded().then(function(data){
+                console.log(friendRefObj.inviteFriendList);
+                angular.forEach(friendRefObj.inviteFriendList, function (m){
+                    if(keepgoing && m.key==authData.uid)
+                    {
+                        friendRefObj.inviteFriendList.splice(idx);
+
+                        keepgoing=false;
+                        friendRefObj.$save().then(function(ref) {
+                          console.log("removed myself from friends table");
+                        }, function(error) {
+                          console.log("Error:", error);
+                        });
+                    }
+                    idx++;
+                    console.log("index",idx); 
+                });
+            });
+
+        });
+
+        
+        //remove table from my list
+        delete tableRefObj[k];
+        tableRefObj.$save().then(function(ref) {
+            console.log('saved tableRefObj');
+        }); 
+
+        
+
+        tableRefObj.inviteFriendList;
+        console.log("after",tables.$getRecord(k));
+    }
+
+    
      $scope.showPopup = function(list) {
          
     // An elaborate, custom popup
