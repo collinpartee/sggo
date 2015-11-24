@@ -1,7 +1,7 @@
 angular.module('starter.spin', [])
-.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, global) {
-
-    var words = ["LOADING", "MOM", "FRIENDS", "HUNT", "INSANITY", "DAD", "LICK", "BROTHER", "WAKE", "GIRLFRIEND", "TATAU", "MAN", "HOME"];
+.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams, global) {
+console.log($stateParams);
+    var words = $stateParams.places;
 
     $scope.spun = false;
     
@@ -32,7 +32,7 @@ angular.module('starter.spin', [])
     
     function changeWord(a,idx,interval1,interval2) {
 		a.style.opacity = '0.1';
-		a.innerHTML = words[getRandomInt(0, words.length - 1)];
+		a.innerHTML = words[getRandomInt(0, words.length - 1)].name;
         var randomNumber = getRandomInt(500, 800);
 
 

@@ -148,11 +148,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
   .state('tab.spin', {
     url: '/spin',
     views: {
-      'tab-spin': {
+      'tab-myList': {
         templateUrl: 'templates/tab-spin.html',
-        controller: 'spinCtrl'
+        controller: 'spinCtrl',
+
       }
         
+    },
+    params:{
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true
     }
   })
   ;

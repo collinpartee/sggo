@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="showPopup();s">
+        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="showPopup(list);">
         <img src="img/steak.jpg" />
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>

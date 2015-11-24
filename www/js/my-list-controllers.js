@@ -130,7 +130,7 @@ angular.module('starter.myList', ['google.places'])
         });
       };
 
-     $scope.showPopup = function() {
+     $scope.showPopup = function(list) {
          
     // An elaborate, custom popup
    var myPopup = $ionicPopup.show({
@@ -144,7 +144,8 @@ angular.module('starter.myList', ['google.places'])
          text: '<b>Save</b>',
          type: 'button-positive',
          onTap: function(e) {
-           $state.go('tab.spin');
+             console.log('clicked');
+           $state.go('tab.spin',list);
          }
        },
      ]
