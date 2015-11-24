@@ -1,10 +1,23 @@
 <ion-view view-title="Account" cache-view="false">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+      <div class="row" style="background-color: whitesmoke; height: 30vh;">
+        <div class="col col-center" style=""><img src="../img/ben.png" style="width: 130px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
+<!--          <div class="col">1<br>2<br>3<br> 4<br>1<br>2<br>3<br> 4<br></div>-->
+      </div>
+      <div class="row" style="background-color: whitesmoke;">
+            <div class="col col-33" style="text-align: center;"><span># of Lists</span><br/> 3</div>
+              <div class="col col-33" style="text-align: center;"># of Shared Lists<br /> 5</div>
+              <div class="col col-33" style="text-align: center;"># of Likes<br /> 0</div>
+    </div>
+    <div class="list">
+        <a class="item" href="#">
+            Change Password
+        </a>
+        <a class="item item-icon-right" href="#">
+            Change Avatar
+            <i class="icon ion-ios-arrow-right"></i>
+        </a>
+    </div>
       <a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">
           Log Out
         </a>

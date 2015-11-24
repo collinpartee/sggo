@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
+        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="showPopup();s">
         <img src="img/steak.jpg" />
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>
@@ -85,6 +85,19 @@
             <input type="search" placeholder="Search" ng-model="search_bar">
         </label>
       </div>
+      <ul class="list">
+        <li class="item item-checkbox" ng-repeat="friend in friends | filter:search_bar">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
+          </label>
+            {{friend.name}}  
+          </li>
+      </ul>
+  </div>
+</script>
+
+<script id="viewList-Popup.html" type="text/ng-template">
+  <div>
       <ul class="list">
         <li class="item item-checkbox" ng-repeat="friend in friends | filter:search_bar">
           <label class="checkbox">

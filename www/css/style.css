@@ -36,6 +36,53 @@ position: absolute;
     border: none;
 }
 
+.login-bkgd{
+    background-image: url(/img/dark-blue-gradient.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-color: cadetblue;
+}
+
+.blurred-bkgd {
+	background-image: url(/img/151011_Riposte_Nova__006_F2_670.jpg); 
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+}
+
+.blurry-img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+}
+
+/** Sign Up Modal **/
+
+.list-inset-cp{
+    overflow: hidden;
+    margin: 20px 10px;
+    border-radius: 2px;
+    /* background-color: #fff; */
+}
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+
 /*** TAB-MYlIST ***/
 
 .non-white-bg{

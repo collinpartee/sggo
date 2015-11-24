@@ -149,6 +149,29 @@ angular.module('starter.myList', ['google.places'])
         });
       };
 
+     $scope.showPopup = function() {
+         
+    // An elaborate, custom popup
+   var myPopup = $ionicPopup.show({
+     template: '<input type="password" ng-model="data.wifi">',
+     title: 'Enter Wi-Fi Password',
+     subTitle: 'Please use normal things',
+     scope: $scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Save</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           $state.go('tab.spin');
+         }
+       },
+     ]
+   });
+   myPopup.then(function(res) {
+     console.log('Tapped!', res);
+   });
+     }
     
 })
 

@@ -1,24 +1,21 @@
 <ion-view class="welcome-view" cache-view="false" hide-nav-bar="true">
-    
-  <ion-content scroll="false" style="background-color: #2C3E50;">
-    <div multi-bg="['img/bg-img2.jpeg']" helper-class="facebook-welcome-bg">
+    <img class="blurry-img" src="/img/151011_Riposte_Nova__006_F2_670.jpg" />
+  <ion-content scroll="false" class="" style="background-color: transparent;">
       <div class="top-content row">
         <div class="app-copy col col-center">
 
-          <h1 class="app-title" style="margin-top: 15vh; color: white;">Caboodle</h1>
+          <h1 class="app-title" style="margin-top: 15vh; color: white; font-family: 'Julius Sans One', sans-serif;">Caboodle</h1>
+            
+             <div class="row centerRow" style="margin-top: 10vh;">
 <!--
-          <p class="app-tagline">
-            Your tag line
-          </p>
+                <img src="img/chicken.png" class="col col-30"/>
+                <img src="img/hamburger.png" class="col col-30"/>
+                <img src="img/hotdog.png" class="col col-30"/>
 -->
-
-             <div class="row centerRow">
-      <img src="../img/chicken.png" class="col col-30"/>
-         <img src="../img/hamburger.png" class="col col-30"/>
-         <img src="../img/hotdog.png" class="col col-30"/>
-    </div>
+            </div>
         </div>
       </div>
+      
       <div class="bottom-content row">
         <div class="col col-bottom">
           <a class="google-sign-in button-large button button-block" ng-click="googleLogin()">
@@ -27,61 +24,66 @@
             <a class="facebook-sign-in button-large button button-block" ng-click="googleLogin()">
             Sign In With Facebook
           </a>
-          <a class="dont-have-facebook button button-clear button-block"  ng-click="openModal()">
+          <a class="dont-have-facebook button button-clear button-block"  ng-click="openModal()" style="opacity: 0.5;">
             Sign in with email
           </a>
           <section ng-include="'views/partials/legal-notice.html'"></section>
         </div>
       </div>
-    </div>
   </ion-content>
 </ion-view>
 
 
 <script id="signUp-modal.html" type="text/ng-template">
   <div class="modal">
-    <ion-header-bar style="background-color: rgb(127, 197, 195);">
+<!--
+    <ion-header-bar style="background-color: rgb(237, 111, 112);">
       <h1 class="title" style="color: white;">Create New List</h1>
-      <button class="button button-clear button-positive" style="color: white;" ng-click="modal.hide()">Cancel</button>
+      <button class="button button-clear button-positive" style="color: white;" ng-click="modal.hide(); didSubmitLogin = !didSubmitLogin">Cancel</button>
     </ion-header-bar>
-    <ion-content style="background-color: whitesmoke;" scroll="false">
+-->
+      <img class="blurry-img" src="/img/151011_Riposte_Nova__006_F2_670.jpg" />
+    <ion-content scroll="false" class="" style="background-color: transparent;">
+        <div class="row">
+            <button class="button button-clear col col-33 col-offset-67" ng-click="modal.hide();" style="opacity: 0.6;">Cancel</button>
+        </div>
         <form style="margin-top: 20vh;" ng-hide="didSubmitLogin">
-            <div class="list list-inset">
-                <label class="item item-input">
-                    <span class="input-label" >Email</span>
-                    <input type="text" ng-model="lemail">
+            <div class="list list-inset-cp">
+                <label class="item item-input" style="background-color: transparent; border: 0;">
+<!--                    <span class="input-label" >Email</span>-->
+                    <input placeholder="Email" type="text" ng-model="lemail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
                 </label>
-                <label class="item item-input">
-                    <span class="input-label" >Password</span>
-                    <input type="password" ng-model='lpassword'>
+                <label class="item item-input" style="background-color: transparent; border: 0;">
+<!--                    <span class="input-label" >Password</span>-->
+                    <input placeholder="Password" type="password" ng-model='lpassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
                 </label>
             </div>
             <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="logIn(lemail,lpassword)">Log In</button>
-            <a class="dont-have-facebook button button-clear button-block"  ng-click="didSubmitLogin=true">
+            <a class="dont-have-facebook button button-clear button-block"  ng-click="didSubmitLogin=true" style="color:black;">
               Sign up
             </a>
         </form>
 
-        <div class="list list-inset" ng-show="didSubmitLogin" style="margin-top: 20vh;">
+        
             <form style="margin-top: 20vh;" ng-show="didSubmitLogin">
-            <div class="list list-inset">
-                <label class="item item-input">
-                    <span class="input-label">Name</span>
-                        <input type="text" ng-model="sname">
+            <div class="list list-inset-cp">
+                <label class="item item-input" style="background-color: transparent; border: 0;">
+<!--                    <span class="input-label">Name</span>-->
+                        <input placeholder="Name" type="text" ng-model="sname" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
                 </label>
-                <label class="item item-input">
-                    <span class="input-label" >Email</span>
-                    <input type="text" ng-model="semail">
+                <label class="item item-input" style="background-color: transparent; border: 0;">
+<!--                    <span class="input-label" >Email</span>-->
+                    <input placeholder="Email" type="text" ng-model="semail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
                 </label>
-                <label class="item item-input">
-                    <span class="input-label" >Password</span>
-                    <input type="password" ng-model='spassword'>
+                <label class="item item-input"style="background-color: transparent; border: 0;">
+<!--                    <span class="input-label" >Password</span>-->
+                    <input placeholder="Password" type="password" ng-model='spassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
                 </label>
             </div>
             <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="signUp(sname,semail,spassword)">Sign Up</button>
+                <a class="button button-clear button-block" ng-click="didSubmitLogin = !didSubmitLogin" style="color: black;">Cancel</a>
           </form>
            
-        </div>
         
     </ion-content>
   </div>
