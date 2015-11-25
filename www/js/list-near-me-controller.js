@@ -9,11 +9,21 @@ angular.module('starter.listNearMe', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 		var radius=30;
+		$scope.listDetail=[];
         myNearByList.$loaded().then(function() {
 	        
 	        myNearByList.$bindTo($scope, "lists");
-        //$state.go($state.current, {}, {reload: true});
-
+        	
+	        angular.forEach(myNearByList, function(value, key) {
+	        	console.log(key);
+	        	var uid=key.substring(0,key.lastIndexOf(':'));
+	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+	        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+	        	nearbyListRef.once('value',function(snap){
+	        		$scope.listDetail.push(snap.val());
+	        		console.log(snap.val());
+	        	});
+	        });
 
       });
 		var lat=global.getMyLoc().lat;
@@ -30,9 +40,21 @@ angular.module('starter.listNearMe', [])
 				        var listItem={loc:location,dis:distance.toFixed(2)};
 				        myNearByList[key] = listItem; 
 				        myNearByList.$save().then(function(ref) {
-						  console.log($scope.lists); // { foo: "bar" }
+						   // { foo: "bar" }
 						   // will be saved to the database
 						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
+						  $scope.listDetail=[];
+						  	angular.forEach(myNearByList, function(value, key) {
+					        	console.log(key);
+					        	var uid=key.substring(0,key.lastIndexOf(':'));
+					        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+					        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+					        	nearbyListRef.once('value',function(snap){
+					        		$scope.listDetail.push(snap.val());
+					        		console.log(snap.val());
+					        	});
+					        });
+
 						});						
 			        //$state.go($state.current, {}, {reload: true});
 
@@ -51,13 +73,26 @@ angular.module('starter.listNearMe', [])
 	        //console.log($scope.lists);
 	        myNearByList.$save().then(function(ref) {
 
-
+		  $scope.listDetail=[];
+		  	angular.forEach(myNearByList, function(value, key) {
+	        	console.log(key);
+	        	var uid=key.substring(0,key.lastIndexOf(':'));
+	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+	        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+	        	nearbyListRef.once('value',function(snap){
+	        		$scope.listDetail.push(snap.val());
+	        		console.log(snap.val());
+	        	});
+	        });
 			  console.log($scope.lists); // { foo: "bar" }
 			   // will be saved to the database
 			  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
 			});	
 	      });
 
+	      $scope.goToSpin=function(list){
+	      	$state.go('tab.spinNearby',list);
+	      }
 
 })
 ;

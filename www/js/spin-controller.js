@@ -67,7 +67,7 @@ console.log($stateParams);
            console.log(chosen.innerHTML);
 //            $interval.cancel(interval1);
 //            $interval.cancel(interval2);
-       }, 5000);
+       }, 3000);
         
 //        $timeout(function(){
 //             document.getElementById("ignored1").style.color = "white";
@@ -88,7 +88,7 @@ console.log($stateParams);
         }
         var ninterval1 = $interval(function() {
 				a.style.opacity = '1';
-		}, 425);
+		}, 500);
         var ninterval2  = $interval(function() {
                     idx=idx+1;
         changeWord(a,idx,ninterval1,ninterval2); 

@@ -114,26 +114,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     }
   })
   
-  .state('tab.decisionTableList', {
-    url: '/decisionTableList',
-    views: {
-      'tab-decisionTableList': {
-        templateUrl: 'templates/tab-decisionTableList.html',
-        controller: 'decisionTableListCtrl'
-      }
-        
-    }
-  })
-  .state('tab.decisionTableDetail', {
-    url: '/decisionTableDetail',
-    views: {
-      'tab-decisionTableList': {
-        templateUrl: 'templates/tab-decisionTableDetail.html',
-        controller: 'decisionTableDetailCtrl'
-      }
-        
-    }
-  })
   
   .state('tab.friendList', {
     url: '/friendList',
@@ -149,6 +129,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     url: '/spin',
     views: {
       'tab-myList': {
+        templateUrl: 'templates/tab-spin.html',
+        controller: 'spinCtrl',
+
+      }
+        
+    },
+    params:{
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true
+    }
+  })
+  .state('tab.spinNearby', {
+    url: '/spin',
+    views: {
+      'tab-listNearMe': {
         templateUrl: 'templates/tab-spin.html',
         controller: 'spinCtrl',
 

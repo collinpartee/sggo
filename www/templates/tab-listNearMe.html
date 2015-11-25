@@ -1,10 +1,10 @@
 <ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content>
     <ion-list>
-        <ion-item ng-repeat="(key,value) in lists" class="item item-thumbnail-left" ng-click="goToDecisionTable(list)">
+        <ion-item ng-repeat="list in listDetail" class="item item-thumbnail-left" ng-click="goToSpin(list)">
                   <i class="ion-ios-heart-outline" ></i>
                   <i class="ion-arrow-down-a" ></i>
-          {{key}}
+          {{list.ListName}}
      <!--      <img src="img/steak.jpg" /> -->
         </ion-item>
       </ion-list>

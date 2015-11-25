@@ -1,6 +1,6 @@
 angular.module('starter.friendList', [])
 
-.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, global,friendList) {
+.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,global,friendList) {
     $scope.friendList = friendList;
        //add this to slider menu
     
@@ -14,13 +14,31 @@ angular.module('starter.friendList', [])
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
+    $scope.searchResult={};
   });  
 
   $scope.openModal = function() {
+    $scope.email="";
+    $scope.friendName="";
     $scope.modal.show();
   };
 
   $scope.closeModal = function() {
+    var exist=false;
+    angular.forEach(friendList, function(f) {
+            console.log(f.email);
+            if(f.email==$scope.searchResult.email)
+            {
+              console.log('ext ',f.email);
+              exist= true;
+            }
+        });
+    if(!exist)
+    {
+      friendList.$add($scope.searchResult);
+    }
+
+
     $scope.modal.hide();
   };
 
@@ -35,16 +53,17 @@ angular.module('starter.friendList', [])
         .startAt(email)
         .endAt(email)
         .once('value', function(snap) {
-            console.log(JSON.stringify(snap.val()));
+          var newFriend=  {};
             snap.forEach(function(s) {
-                console.log(JSON.stringify(s.val()));
-               var newFriend={name:s.val().name,email:s.val().email,key:s.key(),avatar:s.val().avatar};
-               console.log(JSON.stringify(newFriend));
-               friendList.$add(newFriend);
-               $scope.searchResult=newFriend.name;
+               newFriend={name:s.val().name,email:s.val().email,key:s.key(),avatar:s.val().avatar};
+               var friendName=$firebaseObject(s.ref().child('name'));
+               friendName.$bindTo($scope, "friendname");
+               console.log(friendName);   
           });
+          $scope.searchResult=newFriend;
+          console.log($scope.searchResult.name);    
 
-        });
+          });
   };
     
 });

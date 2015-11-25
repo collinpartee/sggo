@@ -1,6 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,authData, global,myListFirebase,myNearByList,tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation,authData, global,myListFirebase,myNearByList,tables,friendList) {
     var ref = new Firebase('https://sggo.firebaseio.com');
     var tableRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+authData.uid+"/myTables");
     var tableRefObj=$firebaseObject(tableRef);
@@ -47,6 +47,21 @@ angular.module('starter.myList', ['google.places'])
 
     $scope.openListDetail= function()
     {
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+         $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function (position) {
+            var lat  = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            global.setMyLoc({'lat':lat,'lon':lon});
+            console.log("myloc ",global.getMyLoc());
+        }, function(err) {
+          // error
+          console.log("myloc error");
+          global.setMyLoc(37.38, -122.09)
+        });
+        //ADD  list Modal
         global.setCurrList({});
         $state.go('tab.listDetails');
     };
@@ -314,12 +329,12 @@ angular.module('starter.myList', ['google.places'])
         this.place=null;
     };
     
-    $scope.saveList = function(){
+    $scope.saveList = function(name){
         var currListItem=global.getCurrList();
         currListItem['places']=$scope.placeList;
         console.log("place list "+JSON.stringify($scope.placeList));
         console.log("save button pressed "+JSON.stringify(currListItem));
-        
+        console.log("listname",name);
 
         var newList=true;
         console.log(currListItem.ListName+" tf "+newList);
@@ -402,26 +417,6 @@ angular.module('starter.myList', ['google.places'])
             });
 
       };
-
-
-})
-.controller('saveListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
-    var ref = new Firebase('https://sggo.firebaseio.com');
-    var currListItem=global.getCurrList();
-    var newList=true;
-    console.log(currListItem.ListName+" tf "+newList);
-    if(currListItem.ListName!=null)
-    {
-        
-        $scope.ListName = currListItem.ListName;
-        
-        newList=false;
-    }
-    console.log(currListItem.ListName+" tf "+newList);
-    $scope.saveListWithName = function(name){
-        //save list to lists
- 
-    };
 
 
 });
