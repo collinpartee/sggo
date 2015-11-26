@@ -223,19 +223,21 @@ angular.module('starter.myList', ['google.places'])
         console.log("after",tables.$getRecord(k));
     }
 
+    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf'];
     
      $scope.showPopup = function(list) {
          
     // An elaborate, custom popup
    var myPopup = $ionicPopup.show({
-     template: '<input type="password" ng-model="data.wifi">',
-     title: 'Enter Wi-Fi Password',
-     subTitle: 'Please use normal things',
+     templateUrl: 'viewList-popup.html',
+     title: 'List Title',
      scope: $scope,
      buttons: [
-       { text: 'Cancel' },
+       { text: 'Cancel',
+            type: 'button-assertive'},
+         { text: 'Edit'},
        {
-         text: '<b>Save</b>',
+         text: '<b>Spin</b>',
          type: 'button-positive',
          onTap: function(e) {
              console.log('clicked');
