@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in myLists" class="item item-thumbnail-left" ng-click="showPopup(list);">
+        <ion-item ng-repeat="list in myLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(list);">
         <img src="img/steak.jpg" />
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>
@@ -24,7 +24,7 @@
         </ion-item>
       </ion-list>
         <ion-list>
-        <ion-item ng-repeat="(k,v) in myTableLists" class="item item-thumbnail-left" ng-click="showPopup(list);">
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(list);">
         <img src="img/steak.jpg" />
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>
@@ -114,11 +114,20 @@
 <script id="viewList-Popup.html" type="text/ng-template">
   <div>
       <ul class="list">
-        <li class="item item-checkbox" ng-repeat="friend in friends | filter:search_bar">
-          <label class="checkbox">
-            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
-          </label>
-            {{friend.name}}  
+        <li class="item">
+            Chikfila
+          </li>
+          <li class="item">
+            McDonalds
+          </li>
+          <li class="item">
+            Zaxby
+          </li>
+          <li class="item">
+            Burger King
+          </li>
+          <li class="item">
+            Wendy's
           </li>
       </ul>
   </div>

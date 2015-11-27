@@ -1,5 +1,5 @@
 
-<ion-view view-title="List Details" cache-view="false">
+<ion-view view-title="Add List" cache-view="false">
     <ion-content style="background-color: whitesmoke;" scroll="false">
       <div class="">
           <div class="row">
@@ -8,34 +8,36 @@
         <label class="item item-input">
           <input type="text" ng-model="listName">
         </label>
-        <div class="list row">
+        <div class="list row" style="padding-right: 0; padding-left:0;">
             <ion-scroll style="margin-top: auto; height: 300px; width: 100%; background-color: white;">
                 <div class="">
-                    <div class="item item-button-right" ng-repeat="item in placeList" style="border: none; padding-top: 10px; padding-bottom: 10px;">
+                    
+                    <div class="row" style="background-color: rgba(237, 111, 112, 0.1);">
+                    <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
+                        <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
+                            <span><i class="icon ion-plus-round"></i></span>
+                        </button>
+                    </div>
+                    <div class="item item-button-right" ng-repeat="item in placeList track by $index" style="border: none; padding-top: 10px; padding-bottom: 10px;">
                         {{item.name}}
                         <hr />
                         <button class="button button-clear" ng-click="deletePlace($index)">
                             <i class="icon ion-close" style="color: red;"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="width: 100vw; background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
-                    <button class="button button-clear row" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">                     <span style="display: block; margin: 0 auto;"><i class="icon ion-plus-round"></i> List item</span></button>
         </div>
        
           </ion-scroll>
             </div>
-                <div class="row">
-        <h4 class="list_header">Choose Your Category</h4>
-                </div>
-            <div class="list row" style="padding: 5px 0 0 0;">
-          <ion-scroll direction="x" style="background-color: white;">
-            <table>
-              <tr ng-repeat="category in categoryPics"  class="row table-cell">
-                <td class="col col-25"><img class="thumbnail" ng-src="{{category}}"></td>
-              </tr>
-            </table>
-          </ion-scroll>
-              </div>
+          
+           <div class="row">
+          <h4 class="list_header">Tag Your List</h4>
+          </div>
+          <div class="list row" style="padding: 0;">
+              <div class="item">
+            <input type="text" id="" placeholder="type your tags here!" style="width: 100vw;"/>
+                  </div>
+          </div>
        
       </div>
 

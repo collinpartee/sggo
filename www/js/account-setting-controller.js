@@ -1,6 +1,6 @@
 angular.module('starter.accountSetting', [])
 
-.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, Auth,authData) {
+.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state, Auth,authData) {
 	var myEmail;
 	var ref = new Firebase("https://sggo.firebaseio.com");
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {
@@ -91,4 +91,8 @@ angular.module('starter.accountSetting', [])
 		     console.log('Thank you for not eating my delicious ice cream cone');
 		   });
 		 };
+    
+    $scope.linkToPassword = function(){
+        $state.go('tab.changePassword');
+    };
 });

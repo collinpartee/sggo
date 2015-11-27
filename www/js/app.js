@@ -98,6 +98,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     }
   })
   
+  .state('tab.changePassword', {
+    url: '/changePassword',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-changePassword.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+  
   .state('loginPage', {
     url: "/loginPage",
     templateUrl: "templates/loginPage.html",

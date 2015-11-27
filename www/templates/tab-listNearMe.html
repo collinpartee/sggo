@@ -1,5 +1,13 @@
 <ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content>
+      <div class="list" style="margin-bottom: 0;">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Search">
+            </label>
+        </div>
+      </div>
+      
     <ion-list>
         <ion-item ng-repeat="list in listDetail" class="item item-thumbnail-left" ng-click="goToSpin(list)">
                   <i class="ion-ios-heart-outline" ></i>

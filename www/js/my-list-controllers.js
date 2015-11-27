@@ -229,7 +229,7 @@ angular.module('starter.myList', ['google.places'])
          
     // An elaborate, custom popup
    var myPopup = $ionicPopup.show({
-     templateUrl: 'viewList-popup.html',
+     templateUrl: 'viewList-Popup.html',
      title: 'List Title',
      scope: $scope,
      buttons: [
