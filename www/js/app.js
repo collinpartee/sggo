@@ -87,6 +87,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
         
     }
   })
+  .state('tab.nameList', {
+    url: '/nameList',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-nameList.html',
+        controller: 'addListCtrl'
+      }
+        
+    }
+  })
 // END OF MY LIST STATES ------>
   .state('tab.account', {
     url: '/account',

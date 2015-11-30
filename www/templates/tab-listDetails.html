@@ -17,12 +17,17 @@
 
     <label class="item-input-wrapper" ng-show="showInputBar">
 <!--    <i class="icon ion-ios-search placeholder-icon"></i>-->
-    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" ng-click=" didStartEditing = !didStartEditing"/>
+    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" />
+        
+
   </label>
-  <button class="button button-clear" ng-show="showInputBar && !didStartEditing" ng-click="showInputBar = !showInputBar;">
+  <button class="button button-clear" ng-show="showInputBar && place==null " ng-click="showInputBar = !showInputBar;">
     Cancel
   </button>
-
+        <button class="button button-clear" ng-hide="place==null" style="color:black;" ng-click="addToList(place)">
+    AddList
+  </button>
+    
 
     </ion-header-bar>
     
@@ -38,12 +43,14 @@
         </div>
 -->
         
+<!--
           <div class="row" style="background-color: rgba(237, 111, 112, 0.1);">
                     <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
                         <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
                             <span><i class="icon ion-plus-round"></i></span>
                         </button>
                     </div>
+-->
           <!-- -->
 <!--          <div class="middle-row">-->
 <!--

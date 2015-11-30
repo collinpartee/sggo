@@ -64,7 +64,7 @@ angular.module('starter.myList', ['google.places'])
         });
         //ADD  list Modal
         global.setCurrList({});
-        $state.go('tab.listDetails');
+        $state.go('tab.nameList');
     };
     
     var friendlyList = [];
@@ -258,8 +258,9 @@ angular.module('starter.myList', ['google.places'])
 
 .controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
         
-    $scope.categoryPics = ['../img/chicken.png', '../img/coffee.png', '../img/cupcake.png', '../img/egg.png', '../img/hamburger.png', '../img/hotdog.png', '../img/pizza.png', '../img/steak.png', '../img/french_fry.png' ];
-
+    $scope.goToListDetail = function(){
+        $state.go('tab.listDetails');
+    };
 
     var currListItem=global.getCurrList();
     console.log('first call'+currListItem);
