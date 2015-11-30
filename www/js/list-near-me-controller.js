@@ -1,6 +1,6 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global,myNearByList) {
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -58,7 +58,6 @@ angular.module('starter.listNearMe', [])
 				        
 				        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
 				        var listItem={loc:location,dis:distance.toFixed(2)};
-				        myNearByList[key] = listItem; 
 
 				        	
 						   // { foo: "bar" }
@@ -96,7 +95,7 @@ angular.module('starter.listNearMe', [])
 	        //console.log($scope.lists);
 
 		  $scope.listDetail=[];
-		  	angular.forEach(myNearByList, function(value, key) {
+
 	        	console.log(key);
 	        	var uid=key.substring(0,key.lastIndexOf(':'));
 	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
@@ -116,7 +115,6 @@ angular.module('starter.listNearMe', [])
 	        			$scope.$digest();
 	        		}
 	        	});
-	        });
 			  console.log($scope.lists); // { foo: "bar" }
 
 	      });

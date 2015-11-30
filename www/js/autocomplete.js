@@ -328,11 +328,11 @@ angular.module('google.places', [])
             }
         }
     ])
-
+// width: position.width+\'px\'
 
     .directive('gPlacesAutocompleteDrawer', ['$window', '$document', function ($window, $document) {
         var TEMPLATE = [
-            '<div class="pac-container" ng-if="isOpen()" ng-style="{top: position.top+\'px\', left: position.left+\'px\', width: position.width+\'px\'}" style="display: block;" role="listbox" aria-hidden="{{!isOpen()}}">',
+            '<div class="pac-container" ng-if="isOpen()" ng-style="{top: position.top+\'px\', left: position.left+\'px\', width: 90+\'vw\'}" style="display: block;" role="listbox" aria-hidden="{{!isOpen()}}">',
             '  <div class="pac-item" g-places-autocomplete-prediction index="$index" prediction="prediction" query="query"',
             '       ng-repeat="prediction in predictions track by $index" ng-class="{\'pac-item-selected\': isActive($index) }"',
             '       ng-mouseenter="selectActive($index)" ng-click="selectPrediction($index)" role="option" id="{{prediction.id}}">',

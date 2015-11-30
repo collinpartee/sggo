@@ -45,17 +45,17 @@
       <img class="blurry-img" src="img/151011_Riposte_Nova__006_F2_670.jpg" />
     <ion-content scroll="false" class="" style="background-color: transparent;">
         <div class="row">
-            <button class="button button-clear col col-33 col-offset-67" ng-click="modal.hide();" style="opacity: 0.6;">Cancel</button>
+            <button class="button button-clear col col-33 col-offset-67" ng-click="closeModal();" style="opacity: 0.6;">Cancel</button>
         </div>
         <form style="margin-top: 20vh;" ng-hide="didSubmitLogin">
             <div class="list list-inset-cp">
                 <label class="item item-input" style="background-color: transparent; border: 0;">
 <!--                    <span class="input-label" >Email</span>-->
-                    <input placeholder="Email" type="text" ng-model="lemail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
+                    <input placeholder="Email" type="text" ng-model="lemail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" ng-click="keyboardScroll();">
                 </label>
                 <label class="item item-input" style="background-color: transparent; border: 0;">
 <!--                    <span class="input-label" >Password</span>-->
-                    <input placeholder="Password" type="password" ng-model='lpassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
+                    <input placeholder="Password" type="password" ng-model='lpassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" ng-click="keyboardScroll();">
                 </label>
             </div>
             <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="logIn(lemail,lpassword)">Log In</button>

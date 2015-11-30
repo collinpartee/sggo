@@ -76,13 +76,6 @@ angular.module('starter.services', [])
   var geoFire = new GeoFire(firebaseRef);
   return geoFire;
 })
-.factory('myNearByList', ['$firebaseObject', function($firebaseObject) {
-  var ref = new Firebase('https://sggo.firebaseio.com');
-  var authData = ref.getAuth();
-  console.log(authData.uid);
-  var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/myNearByList');
-  return $firebaseObject(myListsRef);
-}])
 //global item list base on user
 .factory('myListFirebase', ['$firebaseArray', function($firebaseArray) {
   var ref = new Firebase('https://sggo.firebaseio.com');
