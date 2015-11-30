@@ -1,6 +1,7 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation,authData, global,myListFirebase,myNearByList,tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation, $cordovaKeyboard, authData, global, myListFirebase, myNearByList, tables,friendList) {
+        
     var ref = new Firebase('https://sggo.firebaseio.com');
     var tableRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+authData.uid+"/myTables");
     var tableRefObj=$firebaseObject(tableRef);
@@ -41,7 +42,7 @@ angular.module('starter.myList', ['google.places'])
     };
 
 
-
+ //$cordovaKeyboard.disableScroll(true);
 
   $scope.friends=friendList;
 
@@ -223,14 +224,15 @@ angular.module('starter.myList', ['google.places'])
         console.log("after",tables.$getRecord(k));
     }
 
-    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf'];
+    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
     
      $scope.showPopup = function(list) {
-         
+         console.log(list.places);
     // An elaborate, custom popup
+         //<ul class="list"><li class="item">'+list.places+'</li></ul>
    var myPopup = $ionicPopup.show({
-     templateUrl: 'viewList-Popup.html',
-     title: 'List Title',
+     template: '<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>',
+     title: list.ListName,
      scope: $scope,
      buttons: [
        { text: 'Cancel',
@@ -254,8 +256,7 @@ angular.module('starter.myList', ['google.places'])
 })
 
 .controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
-
-
+        
     $scope.categoryPics = ['../img/chicken.png', '../img/coffee.png', '../img/cupcake.png', '../img/egg.png', '../img/hamburger.png', '../img/hotdog.png', '../img/pizza.png', '../img/steak.png', '../img/french_fry.png' ];
 
 
@@ -329,6 +330,7 @@ angular.module('starter.myList', ['google.places'])
             //alert
         }
         this.place=null;
+        $cordovaKeyboard.close()
     };
     
     $scope.saveList = function(name){
@@ -393,7 +395,7 @@ angular.module('starter.myList', ['google.places'])
     
     $scope.deletePlace = function(place){
         console.log($scope.placeList.indexOf(place));
-       $scope.placeList.splice($scope.placeList.indexOf(place),1);
+       $scope.placeList.splice(place,1);
     };
     
      //new new 
@@ -419,6 +421,10 @@ angular.module('starter.myList', ['google.places'])
             });
 
       };
+    
+    $scope.goBackToMyList = function(){
+        $state.go('tab.myList');
+    };
 
 
 });

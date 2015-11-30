@@ -1,9 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, Auth) {
-
+.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard, Auth) {
+    
     $scope.dontLogin = function(){
         $state.go('tab.myList');
+    };
+    
+    $scope.keyboardScroll = function(){
+         $cordovaKeyboard.disableScroll(true);
     };
     
   $scope.user = null;
@@ -119,6 +123,7 @@ angular.module('starter.controllers', [])
   $scope.closeModal = function() {
     $scope.modal.hide();
       $scope.didSubmitLogin = false;
+      $scope.lemail= null;
   };
 
   $scope.$on('$destroy', function() {
@@ -176,6 +181,7 @@ angular.module('starter.controllers', [])
         if(error)
         {
              console.log("wrong username");
+            alert('Wrong username or password');
         }
         else
         {

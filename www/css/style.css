@@ -4,6 +4,15 @@
   color: white;
 
 }
+
+.tabs-hide .tabs {
+    display: none;
+}
+
+.tabs-show .tabs {
+    display: flex;
+}
+
 /* Empty. Add your own CSS if you like */
 .addToListButton{
     margin-top: -10px;
@@ -52,8 +61,8 @@ position: absolute;
 
 .blurry-img{
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: -30px;
+    left: -30px;
     -webkit-filter: blur(20px);
     filter: blur(20px);
 }
@@ -104,6 +113,7 @@ position: absolute;
 }
 
 
+
 /*** TAB-listAdd ***/
 
 .outline-button{
@@ -115,6 +125,19 @@ position: absolute;
   border: none;
   padding-top: 7px;
     padding-bottom: 7px;
+}
+
+.top-row{
+    height: 15vh;
+    margin-bottom: 5px;
+}
+
+.middle-row{
+    height: 40vh;
+}
+
+.bottom-row{
+    height: 10vh;
 }
 
 /*** TAB-listAdd ***/
