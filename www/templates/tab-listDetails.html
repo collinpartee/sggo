@@ -1,5 +1,6 @@
 
-<ion-view hide-tab-bar hide-nav-bar="true" view-title="Add List" cache-view="false">
+<ion-view hide-nav-bar="false" view-title="Add List" cache-view="false">
+<!--
     <ion-header-bar class="bar-positive item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
 
       <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();" ng-hide="showInputBar">
@@ -16,7 +17,7 @@
 </div>
 
     <label class="item-input-wrapper" ng-show="showInputBar">
-<!--    <i class="icon ion-ios-search placeholder-icon"></i>-->
+    <i class="icon ion-ios-search placeholder-icon"></i>
     <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" />
         
 
@@ -30,8 +31,9 @@
     
 
     </ion-header-bar>
+-->
     
-    <ion-content style="background-color: whitesmoke;" scroll="false">
+    <ion-content style="background-color: whitesmoke; height: 100vh;" scroll="false">
 <!--
           <div class="top-row">
           <div class="row">
@@ -43,14 +45,14 @@
         </div>
 -->
         
-<!--
+
           <div class="row" style="background-color: rgba(237, 111, 112, 0.1);">
                     <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
                         <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
                             <span><i class="icon ion-plus-round"></i></span>
                         </button>
                     </div>
--->
+
           <!-- -->
 <!--          <div class="middle-row">-->
 <!--
@@ -81,9 +83,21 @@
 <!--          </div>-->
           
           <!-- -->
-        
+<!--
+        <div class="list" style="margin-bottom: 0;">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
+                        <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
+                            <span><i class="icon ion-plus-round"></i></span>
+                        </button>
+                
+            </label>
+        </div>
+      </div>
+-->
         <div class="">
-            <ion-scroll style="height: 45vh;">
+            <ion-scroll style="height: 60vh;">
                 <div class="list">
                     <div class="item" ng-repeat="item in placeList track by $index">
                     {{item.name}}
@@ -99,3 +113,5 @@
     </ion-content>
 
 </ion-view>
+
+

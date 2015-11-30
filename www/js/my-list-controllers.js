@@ -65,6 +65,7 @@ angular.module('starter.myList', ['google.places'])
         //ADD  list Modal
         global.setCurrList({});
         $state.go('tab.nameList');
+        $scope.$root.tabsHidden = "tabs-hide";
     };
     
     var friendlyList = [];
@@ -230,9 +231,9 @@ angular.module('starter.myList', ['google.places'])
          $scope.list=list;
 
     // An elaborate, custom popup
-         //<ul class="list"><li class="item">'+list.places+'</li></ul>
+         //<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>
    var myPopup = $ionicPopup.show({
-     template: '<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>',
+     templateUrl: 'viewList-Popup.html',
      title: list.ListName,
      scope: $scope,
      buttons: [
@@ -256,7 +257,7 @@ angular.module('starter.myList', ['google.places'])
     
 })
 
-.controller('addListCtrl', function($scope, $state,$cordovaGeolocation,global,myListFirebase,geoFire,authData){
+.controller('addListCtrl', function($scope, $state,$cordovaGeolocation, $http, global,myListFirebase,geoFire,authData){
         
     $scope.goToListDetail = function(){
         $state.go('tab.listDetails');
@@ -428,5 +429,20 @@ angular.module('starter.myList', ['google.places'])
         $state.go('tab.myList');
     };
 
+    $scope.tags = [
+            { text: 'just' },
+            { text: 'some' },
+            { text: 'cool' },
+            { text: 'tags' }
+          ];
+          $scope.loadTags = function(query) {
+            var taglists=[{'text':'abcd'},{'text':'bcde'}];
+              return taglists;
+          };
+    
+    $scope.goBackAndShowTabBar = function(){
+        $scope.$root.tabsHidden = "tabs-show";
+        //$ionicGoBack();
+    };
 
 });

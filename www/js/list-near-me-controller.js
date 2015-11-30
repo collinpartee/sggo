@@ -35,13 +35,6 @@ angular.module('starter.listNearMe', [])
 
 
 
-        $scope.$watchCollection('listDetail', function(newValue, oldValue) {
-
-		  if(!$scope.$$phase) {
-			  //$digest or $apply
-			  
-			}
-		});
 		var radius=30;
 		var listexist={};
 		$scope.listDetail=[];
