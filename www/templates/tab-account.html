@@ -1,7 +1,7 @@
 <ion-view view-title="Account" cache-view="false">
   <ion-content>
       <div class="row" style="background-color: whitesmoke; height: 30vh;">
-        <div class="col col-center" style=""><img src="../img/ben.png" style="width: 130px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
+        <div class="col col-center" style=""><img src="{{avatar.$value}}" style="width: 130px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
 <!--          <div class="col">1<br>2<br>3<br> 4<br>1<br>2<br>3<br> 4<br></div>-->
       </div>
       <div class="row" style="background-color: whitesmoke;">
@@ -22,29 +22,7 @@
       <a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">
           Log Out
         </a>
-<a class="button button-assertive button-block button-outline" ng-click="changePassWord()">
-          change password
-        </a>
+
 
   </ion-content>
 </ion-view>
-<script id="changepassword-Popup.html" type="text/ng-template">
-  <div ng-controller="AccountCtrl">
-      <form style="margin-top: 20vh;">
-      <div class="list list-inset">
-          <label class="item item-input">
-              <span class="input-label">Old password</span>
-                  <input type="password" ng-model="newitem.oldp">
-          </label>
-          <label class="item item-input">
-              <span class="input-label" >New password</span>
-              <input type="password" ng-model="newitem.newp">
-          </label>
-          <label class="item item-input">
-              <span class="input-label" >re-enter new password</span>
-              <input type="password" ng-model='newitem.reenter'>
-          </label>
-      </div>
-    </form>
-</div>
-</script>

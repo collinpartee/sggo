@@ -11,7 +11,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.myLists =myListFirebase;
     console.log($scope.myLists);
 
-
+    
 
     $scope.editList = function(listItem){
          console.log('edit '+JSON.stringify(listItem));
@@ -226,7 +226,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf'];
     
      $scope.showPopup = function(list) {
-         
+         $scope.list=list;
     // An elaborate, custom popup
    var myPopup = $ionicPopup.show({
      templateUrl: 'viewList-Popup.html',
@@ -234,8 +234,8 @@ angular.module('starter.myList', ['google.places'])
      scope: $scope,
      buttons: [
        { text: 'Cancel',
-            type: 'button-assertive'},
-         { text: 'Edit'},
+          type: 'button-assertive'},
+       { text: 'Edit'},
        {
          text: '<b>Spin</b>',
          type: 'button-positive',

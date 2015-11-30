@@ -1,12 +1,19 @@
 angular.module('starter.accountSetting', [])
 
-.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state, Auth,authData) {
+.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject, Auth,authData) {
 	var myEmail;
 	var ref = new Firebase("https://sggo.firebaseio.com");
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {
             console.log(dataSnapshot.val());
           myEmail= dataSnapshot.val();
         });
+
+
+      var myAvatar=$firebaseObject(ref.child('users/'+authData.uid+'/avatar'));
+      myAvatar.$loaded().then(function() {
+      	myAvatar.$bindTo($scope, "avatar");
+      });
+
     $scope.showLogOutMenu = function() {
 		// Show the action sheet
 		var hideSheet = $ionicActionSheet.show({
@@ -37,21 +44,22 @@ angular.module('starter.accountSetting', [])
 
 	};
 
-	$scope.changePassWord= function(){
+    
+    $scope.linkToPassword = function(){
+    	console.log(myEmail);
+        $state.go('tab.changePassword',{'myEmail':myEmail});
+    };
+})
+.controller('PasswordCtrl', function($scope, $ionicPopup,$stateParams) {
+	$scope.newitem={};
+	var ref = new Firebase("https://sggo.firebaseio.com");
+	console.log($stateParams.myEmail);
+	$scope.changePassWord= function(newitem){
 
-		$scope.newitem = {}
-		var confirmPopup = $ionicPopup.confirm({
-          title: 'Change your password',
-          templateUrl: 'changepassword-Popup.html',
-            scope: $scope
-        });
 
-        confirmPopup.then(function(res) {
-          if(res) {
-          	console.log(res);
-          	 console.log($scope.newitem.oldp,$scope.newitem.newp,$scope.newitem.reenter);
+          	 console.log(newitem);
           	 var options={title:'Password change failed'};
-          	 if($scope.newitem.newp!=$scope.newitem.reenter)
+          	 if(newitem.newp!=newitem.reenter)
           	 {
           	 	
           	 	options.template='re-entered password does not match';
@@ -62,9 +70,9 @@ angular.module('starter.accountSetting', [])
 
 
 				ref.changePassword({
-				  email       : myEmail,
-				  oldPassword : $scope.newitem.oldp,
-				  newPassword : $scope.newitem.newp
+				  email       : $stateParams.myEmail,
+				  oldPassword : newitem.oldp,
+				  newPassword : newitem.newp
 				}, function(error) {
 				  if (error === null) {
 				  	options.title='Password changed successfully';
@@ -79,8 +87,7 @@ angular.module('starter.accountSetting', [])
 				});
           	 	
           	 }          	 
-          }
-      });
+          
 	}
     $scope.showAlert = function(options) {
 	   var alertPopup = $ionicPopup.alert({
@@ -91,8 +98,6 @@ angular.module('starter.accountSetting', [])
 		     console.log('Thank you for not eating my delicious ice cream cone');
 		   });
 		 };
-    
-    $scope.linkToPassword = function(){
-        $state.go('tab.changePassword');
-    };
-});
+
+})
+;

@@ -3,31 +3,20 @@
       <div class="list" style="margin-bottom: 0;">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" ng-model="search_bar">
             </label>
         </div>
       </div>
       
     <ion-list>
-        <ion-item ng-repeat="list in listDetail" class="item item-thumbnail-left" ng-click="goToSpin(list)">
+        <ion-item ng-repeat="list in listDetail | filter:search_bar" class="item item-thumbnail-left" ng-click="goToSpin(list)">
                   <i class="ion-ios-heart-outline" ></i>
                   <i class="ion-arrow-down-a" ></i>
           {{list.ListName}}
      <!--      <img src="img/steak.jpg" /> -->
         </ion-item>
       </ion-list>
+
+      {{myplace}}
   </ion-content>
 </ion-view>
-
-<script id="ListNearMe-Popup.html" type="text/ng-template">
-  <div>
-      <ul class="list">
-        <li class="item" ng-repeat="friend in friends_test | filter:search_bar">
-          <label class="checkbox">
-            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
-          </label>
-            {{friend.name}}  
-          </li>
-      </ul>
-  </div>
-</script>

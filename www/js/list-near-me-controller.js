@@ -8,24 +8,44 @@ angular.module('starter.listNearMe', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-		var radius=30;
-		$scope.listDetail=[];
-        myNearByList.$loaded().then(function() {
-	        
-	        myNearByList.$bindTo($scope, "lists");
-        	
-	        angular.forEach(myNearByList, function(value, key) {
-	        	console.log(key);
-	        	var uid=key.substring(0,key.lastIndexOf(':'));
-	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-	        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
-	        	nearbyListRef.once('value',function(snap){
-	        		$scope.listDetail.push(snap.val());
-	        		console.log(snap.val());
-	        	});
-	        });
+		// var radius=30;
+		
+  //   	if($scope.lists==null)
+  //   	{
+  //   		var listexist={};
+  //   		$scope.listDetail=[];
+  //   		myNearByList.$loaded().then(function() {
+	       
+		//         myNearByList.$bindTo($scope, "lists");
+	        	
+		//         angular.forEach(myNearByList, function(value, key) {
+		//         	console.log(key);
+		//         	var uid=key.substring(0,key.lastIndexOf(':'));
+		//         	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+		//         	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+		//         	nearbyListRef.once('value',function(snap){
+		//         		$scope.listDetail.push(snap.val());
+		//         		console.log(snap.val());
+		//         	});
+		//         });
 
-      });
+		//     });
+
+  //   	}
+
+
+
+        $scope.$watchCollection('listDetail', function(newValue, oldValue) {
+
+		  if(!$scope.$$phase) {
+			  //$digest or $apply
+			  
+			}
+		});
+		var radius=30;
+		var listexist={};
+		$scope.listDetail=[];
+        $scope.myplace=global.getMyLoc();
 		var lat=global.getMyLoc().lat;
 		var lon=global.getMyLoc().lon;
 		console.log(lat,lon);
@@ -39,23 +59,30 @@ angular.module('starter.listNearMe', [])
 				        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
 				        var listItem={loc:location,dis:distance.toFixed(2)};
 				        myNearByList[key] = listItem; 
-				        myNearByList.$save().then(function(ref) {
+
+				        	
 						   // { foo: "bar" }
 						   // will be saved to the database
 						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
-						  $scope.listDetail=[];
-						  	angular.forEach(myNearByList, function(value, key) {
-					        	console.log(key);
-					        	var uid=key.substring(0,key.lastIndexOf(':'));
-					        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-					        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
-					        	nearbyListRef.once('value',function(snap){
-					        		$scope.listDetail.push(snap.val());
-					        		console.log(snap.val());
-					        	});
-					        });
+						  
 
-						});						
+				        	console.log(key);
+				        	var uid=key.substring(0,key.lastIndexOf(':'));
+				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+				        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+				        	nearbyListRef.once('value',function(snap){
+				        		if(listexist.key!=null)
+				        		{
+				        			console.log('eixst',$scope.listDetail);
+				        		}
+				        		else
+				        		{
+				        			$scope.listDetail.push(snap.val());
+				        			console.log(snap.val());
+				        			listexist[key]='1';
+				        			$scope.$digest();
+				        		}
+						});
 			        //$state.go($state.current, {}, {reload: true});
 
 	    });
@@ -63,15 +90,10 @@ angular.module('starter.listNearMe', [])
 
 	      geoQuery.on("key_exited", function(key, location, distance) {
 	        console.log(key, location, distance);
-        	if($scope.lists==null)
-        	{
-        		myNearByList.$bindTo($scope, "lists");
 
-        	}
         	//console.log($scope.lists);
-        	delete myNearByList[key];
+
 	        //console.log($scope.lists);
-	        myNearByList.$save().then(function(ref) {
 
 		  $scope.listDetail=[];
 		  	angular.forEach(myNearByList, function(value, key) {
@@ -79,15 +101,24 @@ angular.module('starter.listNearMe', [])
 	        	var uid=key.substring(0,key.lastIndexOf(':'));
 	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
 	        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+
 	        	nearbyListRef.once('value',function(snap){
-	        		$scope.listDetail.push(snap.val());
-	        		console.log(snap.val());
+
+	        		if(listexist.key!=null)
+	        		{
+	        			console.log('eixst',$scope.listDetail);
+	        		}
+	        		else
+	        		{
+	        			$scope.listDetail.push(snap.val());
+	        			console.log(snap.val());
+	        			listexist[key]='1';
+	        			$scope.$digest();
+	        		}
 	        	});
 	        });
 			  console.log($scope.lists); // { foo: "bar" }
-			   // will be saved to the database
-			  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
-			});	
+
 	      });
 
 	      $scope.goToSpin=function(list){

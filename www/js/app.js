@@ -103,9 +103,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.myList', 'st
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-changePassword.html',
-        controller: 'AccountCtrl'
+        controller: 'PasswordCtrl'
       }
-    }
+    },
+      params:{
+        'myEmail':''
+      }
   })
   
   .state('loginPage', {

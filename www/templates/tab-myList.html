@@ -113,22 +113,8 @@
 
 <script id="viewList-Popup.html" type="text/ng-template">
   <div>
-      <ul class="list">
-        <li class="item">
-            Chikfila
-          </li>
-          <li class="item">
-            McDonalds
-          </li>
-          <li class="item">
-            Zaxby
-          </li>
-          <li class="item">
-            Burger King
-          </li>
-          <li class="item">
-            Wendy's
-          </li>
-      </ul>
+    <li class="item item-checkbox" ng-repeat="l in list.places">
+            {{l.name}}  
+        </li>
   </div>
 </script>
