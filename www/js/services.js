@@ -39,7 +39,7 @@ angular.module('starter.services', [])
 .factory('global', function(){
   var currList = {};
   var prevList = null;
-  var myLoc="none";
+  var myLoc={'lat':37.38, 'lon':-122.09};
   return {
     // helper method to login with multiple providers
     setCurrList: function setCurrList(mylist) {

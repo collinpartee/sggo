@@ -33,7 +33,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         }, function(err) {
           // error
           console.log("myloc error");
-          global.setMyLoc(37.38, -122.09)
+          global.setMyLoc({'lat':37.38, 'lon':-122.09})
         });
 
   });
@@ -85,6 +85,15 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         controller: 'addListCtrl'
       }
         
+    },
+    params:{
+        '$id':'none',
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true,
+        'tags':[]
     }
   })
   .state('tab.nameList', {
@@ -95,7 +104,17 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         controller: 'addListCtrl'
       }
         
+    },
+    params:{
+        '$id':'none',
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true,
+        'tags':[]
     }
+
   })
 // END OF MY LIST STATES ------>
   .state('tab.account', {
@@ -163,7 +182,8 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'creater_id':'',
         'creater_name':'',
         'places':[],
-        'share':true
+        'share':true,
+        'tags':[]
     }
   })
   .state('tab.spinNearby', {
@@ -181,7 +201,8 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'creater_id':'',
         'creater_name':'',
         'places':[],
-        'share':true
+        'share':true,
+        'tags':[]
     }
   })
   ;

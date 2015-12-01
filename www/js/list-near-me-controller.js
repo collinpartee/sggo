@@ -35,7 +35,7 @@ angular.module('starter.listNearMe', [])
 
 
 
-		var radius=30;
+		var radius=100;
 		var listexist={};
 		$scope.listDetail=[];
         $scope.myplace=global.getMyLoc();
@@ -105,7 +105,10 @@ angular.module('starter.listNearMe', [])
 	        			$scope.listDetail.push(snap.val());
 	        			console.log(snap.val());
 	        			listexist[key]='1';
-	        			$scope.$digest();
+	        			if(!$scope.$$phase) {
+						  $scope.$digest();
+						}
+	        			
 	        		}
 	        	});
 			  console.log($scope.lists); // { foo: "bar" }

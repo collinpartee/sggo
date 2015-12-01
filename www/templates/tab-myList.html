@@ -24,9 +24,9 @@
         </ion-item>
       </ion-list>
         <ion-list>
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(list);">
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(k);">
         <img src="img/steak.jpg" />
-          {{list.ListName}}
+          {{v.tableName}}
           <p>#bakery #yum #gottaHaveIt</p>
           
             <!-- <ion-option-button class="button-balanced" ng-click="editList(list)">

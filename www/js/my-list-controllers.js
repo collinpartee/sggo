@@ -14,13 +14,6 @@ angular.module('starter.myList', ['google.places'])
 
     
 
-    $scope.editList = function(listItem){
-         console.log('edit '+JSON.stringify(listItem));
-        global.setCurrList(listItem);
-        global.setPrevList(listItem.$id);
-        $state.go('tab.listAdd');
-        $ionicListDelegate.closeOptionButtons();
-    };
     
     $scope.deleteList=function(listItem){ 
          
@@ -34,11 +27,6 @@ angular.module('starter.myList', ['google.places'])
             removeRef.remove();
             
         });
-    };
-
-    $scope.goToDecisionTable=function(listItem){ 
-        global.setCurrList(listItem);   
-        $state.go('tab.decisionTable');
     };
 
 
@@ -64,7 +52,7 @@ angular.module('starter.myList', ['google.places'])
         });
         //ADD  list Modal
         global.setCurrList({});
-        $state.go('tab.nameList');
+        $state.go('tab.listDetails');
         $scope.$root.tabsHidden = "tabs-hide";
     };
     
@@ -96,6 +84,7 @@ angular.module('starter.myList', ['google.places'])
     
   // Confirm popup code
       $scope.shareListWithFriends = function(list) {
+        $ionicListDelegate.closeOptionButtons();
         $scope.currTable={inviteFriendList:[],choices:list.places};
         var confirmPopup = $ionicPopup.confirm({
           title: 'Choose Your Friends',
@@ -106,7 +95,7 @@ angular.module('starter.myList', ['google.places'])
           if(res) {
                 $scope.currTable.inviteFriendList=friendlyList;
                 console.log($scope.currTable);
-                $scope.currTable.tableName=list.ListName;
+                $scope.currTable.tableName=list.ListName+' table';
                 $scope.currTable.creator=list.creater_name;
                  if($scope.currTable.tableName!=null)
                 {
@@ -115,6 +104,7 @@ angular.module('starter.myList', ['google.places'])
                         console.log(snap.val());
                         var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid};
                         $scope.currTable.inviteFriendList.push(addSefl);
+                        $scope.currTable.tags=list.tags;
                         //add table to friend's table list
                         delete $scope.currTable.$id;
                         delete $scope.currTable.$priority;
@@ -124,7 +114,7 @@ angular.module('starter.myList', ['google.places'])
                             angular.forEach($scope.currTable.inviteFriendList, function(friend) {
                                 //console.log(friend.name);
                                 var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables"));
-                                var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:list.ListName,creator:list.creater_name};
+                                var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:$scope.currTable.tableName,creator:list.creater_name,tags:$scope.currTable.tags};
                                 
                                 friendRefObj.$loaded().then(function(data){
                                     friendRefObj[refAdd.key()]=myTableEntry;
@@ -228,43 +218,59 @@ angular.module('starter.myList', ['google.places'])
     $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
     
      $scope.showPopup = function(list) {
-         $scope.list=list;
+        if(typeof list == 'string')
+        {
+            
+        }
+        else
+        {
+            $scope.list=list;
+        }
 
-    // An elaborate, custom popup
-         //<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>
-   var myPopup = $ionicPopup.show({
-     templateUrl: 'viewList-Popup.html',
-     title: list.ListName,
-     scope: $scope,
-     buttons: [
-       { text: 'Cancel',
-          type: 'button-assertive'},
-       { text: 'Edit'},
-       {
-         text: '<b>Spin</b>',
-         type: 'button-positive',
-         onTap: function(e) {
-             console.log('clicked');
-           $state.go('tab.spin',list);
-         }
-       },
-     ]
-   });
-   myPopup.then(function(res) {
-     console.log('Tapped!', res);
-   });
+        // An elaborate, custom popup
+             //<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>
+       var myPopup = $ionicPopup.show({
+         templateUrl: 'viewList-Popup.html',
+         title: list.ListName,
+         scope: $scope,
+         buttons: [
+           { text: 'Cancel',
+              type: 'button-assertive'},
+           { text: 'Edit',
+             type: 'button-positive',
+                 onTap: function(e) {     
+                    console.log(list);
+                    $state.go('tab.listDetails',list)
+            }
+
+           },
+           {
+             text: '<b>Spin</b>',
+             type: 'button-positive',
+             onTap: function(e) {
+            console.log('clicked');
+               $state.go('tab.spin',list);
+             }
+           },
+         ]
+       });
+       myPopup.then(function(res) {
+         console.log('Tapped!', res);
+       });
      }
     
 })
 
-.controller('addListCtrl', function($scope, $state,$cordovaGeolocation, $http, global,myListFirebase,geoFire,authData){
+.controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation, $http, global,myListFirebase,geoFire,authData){
         
-    $scope.goToListDetail = function(){
-        $state.go('tab.listDetails');
+    $scope.goNameList = function(){
+        currListItem.places=$scope.placeList;
+        console.log('befre',currListItem);
+        $state.go('tab.nameList',currListItem);
     };
 
-    var currListItem=global.getCurrList();
-    console.log('first call'+currListItem);
+    var currListItem=$stateParams;
+    console.log('first call'+JSON.stringify($stateParams));
 
     var ref = new Firebase('https://sggo.firebaseio.com');
     var myName;
@@ -295,6 +301,8 @@ angular.module('starter.myList', ['google.places'])
 
     
     $scope.placeList = currListItem.places;
+    $scope.listName= currListItem.ListName;
+    $scope.tags=currListItem.tags;
     if($scope.placeList==null)
     {
         $scope.placeList=[];
@@ -333,16 +341,17 @@ angular.module('starter.myList', ['google.places'])
             //alert
         }
         this.place=null;
-        $cordovaKeyboard.close()
+        //$cordovaKeyboard.close()
     };
     
-    $scope.saveList = function(name){
+    $scope.saveList = function(name,tags){
         var currListItem=global.getCurrList();
-        currListItem['places']=$scope.placeList;
-        console.log("place list "+JSON.stringify($scope.placeList));
+        currListItem['places']=$stateParams.places;
+        currListItem['tags']=tags;
+        console.log("place list "+currListItem['places']);
         console.log("save button pressed "+JSON.stringify(currListItem));
         console.log("listname",name);
-
+        console.log("tags",tags);
         var newList=true;
         console.log(currListItem.ListName+" tf "+newList);
         if(currListItem.ListName!=null)
@@ -353,14 +362,19 @@ angular.module('starter.myList', ['google.places'])
             newList=false;
         }
 
-        if(newList)
+        if($stateParams.$id=='none')
         {
             if(myName==null)
             {
                 myName='oops not fast enough';
             }
-           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'share':true};
+            if(name==null)
+            {
+                name='Not Named';
+            }
+           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':true};
            //add to my list
+           console.log("final list",finalList);
            myListFirebase.$add(finalList)
            .then(function(ref) {
               var id = ref.key();
@@ -380,20 +394,20 @@ angular.module('starter.myList', ['google.places'])
         else
         {
 
-            var item= myListFirebase.$getRecord(global.getPrevList());
+            var item= myListFirebase.$getRecord($stateParams.$id);
             console.log("getPrevList "+JSON.stringify(global.getPrevList()));
             console.log('scope'+$scope.ListName);
             item.ListName=name;
             item.places=currListItem.places;
+            item.tags=currListItem.tags;
+            item.share=true;
+
             myListFirebase.$save(item);
         }
-        global.setCurrList({});
-
-
 
 
         $state.go('tab.myList');
-        
+        $scope.$root.tabsHidden = "tabs-show";
     };
     
     $scope.deletePlace = function(place){
@@ -402,19 +416,6 @@ angular.module('starter.myList', ['google.places'])
     };
     
      //new new 
-
-    $scope.numberOfListItems = [];
-    $scope.numberOfListItems.push({});
-    $scope.addListItem = function(place){
-            console.log('place' + place);
-            $scope.numberOfListItems[$scope.numberOfListItems.length-1]={'name':place};
-            $scope.numberOfListItems.push({});
-    };
-
- // Define $scope.place as an array
-    $scope.place = [];
-    // Create a counter to keep track of the additional place inputs
-    $scope.inputCounter = 0;
 
     function getName(authData) {
 
@@ -429,16 +430,11 @@ angular.module('starter.myList', ['google.places'])
         $state.go('tab.myList');
     };
 
-    $scope.tags = [
-            { text: 'just' },
-            { text: 'some' },
-            { text: 'cool' },
-            { text: 'tags' }
-          ];
-          $scope.loadTags = function(query) {
-            var taglists=[{'text':'abcd'},{'text':'bcde'}];
-              return taglists;
-          };
+
+      $scope.loadTags = function(query) {
+        var taglists=[{'text':'abcd'},{'text':'bcde'}];
+          return taglists;
+      };
     
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
