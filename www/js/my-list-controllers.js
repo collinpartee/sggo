@@ -248,7 +248,7 @@ angular.module('starter.myList', ['google.places'])
              text: '<b>Spin</b>',
              type: 'button-positive',
              onTap: function(e) {
-            console.log('clicked');
+            console.log('clicked',list);
                $state.go('tab.spin',list);
              }
            },
