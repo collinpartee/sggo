@@ -10,17 +10,14 @@
         </div>
 
     </ion-header-bar>
-  <ion-content>
+  <ion-content scroll="false" style="height: 100%">
       <div class="hover" style="border-bottom: 2px solid black;">
       <div class="row row-center" style="background-color: whitesmoke;">
         <div class="" style="margin: 0 auto;" >
             <h4>List of Lists</h4>
             <h5>Boobs McGee</h5>
           </div>
-
-        
-        
-        
+  
       </div>
       <div class="row" style="background-color: whitesmoke;">
           <div class="" style="margin: 10px auto;">
@@ -32,6 +29,8 @@
             </div>
         </div>
       </div>
+      
+      <ion-scroll style="height: 70%">
       <div class="list">
         <div class="item item-thumbnail-left" ng-repeat="items in randomNumbersForLists track by $index">
             <img src="../img/steak.JPG" />
@@ -43,6 +42,7 @@
             <i class="ion-ios-star-outline"></i>
         </div>
       </div>
+          </ion-scroll>
       
       
   </ion-content>

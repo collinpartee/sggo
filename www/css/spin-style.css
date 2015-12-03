@@ -1,5 +1,5 @@
 .container {
-      height: 35vh;
+/*      height: 35vh;*/
 /*
 		position: absolute;
 		top: 50%;
@@ -8,6 +8,15 @@
 		transform: translateY(-50%);
 		width: 100%;
 */
+        color: #555;
+    font-size: 58px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100vw;
+    position: relative;
+    min-height: 90px;
+    font-family: 'Open Sans Condensed',sans-serif;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
 }
 
 .right {
