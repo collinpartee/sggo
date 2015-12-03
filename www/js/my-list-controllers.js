@@ -58,7 +58,7 @@ angular.module('starter.myList', ['google.places'])
           global.setMyLoc(37.38, -122.09)
         });
         //ADD  list Modal
-        global.setCurrList({});
+        
         $state.go('tab.listDetails');
         $scope.$root.tabsHidden = "tabs-hide";
     };
@@ -291,8 +291,8 @@ angular.module('starter.myList', ['google.places'])
     console.log('first call'+JSON.stringify($stateParams));
 
     var ref = new Firebase('https://sggo.firebaseio.com');
-    var myName;
-    getName(authData);
+    var myName=global.getMyName();
+    
 
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
@@ -363,7 +363,7 @@ angular.module('starter.myList', ['google.places'])
     };
     
     $scope.saveList = function(name,tags){
-        var currListItem=global.getCurrList();
+        var currListItem={};
         currListItem['places']=$stateParams.places;
         currListItem['tags']=tags;
         console.log("place list "+currListItem['places']);

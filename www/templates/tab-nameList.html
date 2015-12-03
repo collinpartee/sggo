@@ -23,6 +23,10 @@
                     <input placeholder="Name Your List" type="text" ng-model="listName">
                 </label>
           <ion-toggle ng-model="publicList" toggle-class="toggle-calm" ng-checked="true">Make Your List Public?</ion-toggle>
+          <label class="item item-input">
+                    <input placeholder="Name Your List" type="text" ng-model="listName">
+                </label>
+          <ion-toggle ng-model="anon" toggle-class="toggle-calm" ng-checked="false" ng-show="publicList">Post Anon?</ion-toggle>
 <!--
           <label class="item item-input">
                     <input placeholder="Tags (optional)" type="text">
