@@ -116,6 +116,8 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
     }
 
   })
+  
+  
 // END OF MY LIST STATES ------>
   .state('tab.account', {
     url: '/account',
@@ -155,7 +157,25 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
       }
     }
   })
-  
+  .state('tab.editListNearMe', {
+    url: '/editListNearMe',
+    views: {
+      'tab-listNearMe': {
+        templateUrl: 'templates/tab-editListNearMe.html',
+        controller: 'addListCtrl'
+      },
+    params:{
+        '$id':'none',
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true,
+        'tags':[]
+    }
+        
+    }
+  })
   
   .state('tab.friendList', {
     url: '/friendList',

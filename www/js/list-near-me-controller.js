@@ -118,6 +118,11 @@ angular.module('starter.listNearMe', [])
 	      $scope.goToSpin=function(list){
 	      	$state.go('tab.spinNearby',list);
 	      }
+          
+          $scope.goToEditListNearMe=function(list){
+	      	$state.go('tab.editListNearMe',list);
+              $scope.$root.tabsHidden = "tabs-hide";
+	      }
 
 })
 ;

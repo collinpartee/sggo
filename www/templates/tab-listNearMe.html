@@ -9,7 +9,7 @@
       </div>
       
     <ion-list>
-        <ion-item ng-repeat="list in listDetail | filter:search_bar track by $index" class="item item-thumbnail-left" ng-click="goToSpin(list)">
+        <ion-item ng-repeat="list in listDetail | filter:search_bar track by $index" class="item item-thumbnail-left" ng-click="goToEditListNearMe(list)">
                   <i class="ion-ios-heart-outline" ></i>
                   <i class="ion-arrow-down-a" ></i>
           {{list.ListName}}

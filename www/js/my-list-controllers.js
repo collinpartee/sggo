@@ -215,7 +215,7 @@ angular.module('starter.myList', ['google.places'])
         console.log("after",tables.$getRecord(k));
     }
 
-    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
+    
     
      $scope.showPopup = function(list) {
         if(typeof list == 'string')
@@ -440,5 +440,7 @@ angular.module('starter.myList', ['google.places'])
         $scope.$root.tabsHidden = "tabs-show";
         //$ionicGoBack();
     };
+    
+    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
 
 });
