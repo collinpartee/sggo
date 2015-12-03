@@ -20,7 +20,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
+    
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation
         .getCurrentPosition(posOptions)
@@ -204,6 +204,20 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'places':[],
         'share':true,
         'tags':[]
+    }
+  })
+  .state('tab.spinTable', {
+    url: '/spin',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-spin.html',
+        controller: 'spinCtrl',
+
+      }
+        
+    },
+    params:{
+        'listId':"k"
     }
   })
   .state('tab.spinNearby', {

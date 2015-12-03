@@ -37,32 +37,32 @@ angular.module('starter.services', [])
 })
 // globle varibale usage
 .factory('global', function(){
-  var currList = {};
-  var prevList = null;
+
   var myLoc={'lat':37.38, 'lon':-122.09};
+  var myName='unKnow';
+  var myAvatar='';
   return {
     // helper method to login with multiple providers
-    setCurrList: function setCurrList(mylist) {
-      currList=mylist;
-    },
-    // convenience method for logging in with Google
-    getCurrList: function getCurrList() {
-       console.log(currList);
-      return angular.copy(currList);
-    },
-    setPrevList: function setPrevList(mylistItem) {
-      prevList=mylistItem;
-    },
-    // convenience method for logging in with Google
-    getPrevList: function getPrevList() {
-      return angular.copy(prevList);
-    },
+
     setMyLoc: function setMyLoc(myloc){
       myLoc=myloc;
     },
     getMyLoc: function getMyLoc(){
       return myLoc;
+    },
+    setMyName: function setMyName(myN){
+      myName=myN;
+    },
+    getMyName: function getMyName(){
+      return myName;
+    },
+    setMyAvatar: function setMyAvatar(myN){
+      myAvatar=myN;
+    },
+    getMyAvatar: function getMyAvatar(){
+      return myAvatar;
     }
+
   };
 })
 .factory('authData', function() {
@@ -86,9 +86,7 @@ angular.module('starter.services', [])
 }])
 //global item list base on tables
 .factory('tables', ['$firebaseArray', function($firebaseArray) {
-  var ref = new Firebase('https://sggo.firebaseio.com/');
-  var authData = ref.getAuth();
-  console.log(authData.uid);
+
   var myListsRef = new Firebase('https://sggo.firebaseio.com/tables');
   return $firebaseArray(myListsRef);
 }])
