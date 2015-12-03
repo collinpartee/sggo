@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard, Auth) {
+.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard, Auth,global) {
     
     $scope.dontLogin = function(){
         $state.go('tab.myList');
@@ -52,6 +52,7 @@ angular.module('starter.controllers', [])
   }
   function userExistsCallback(exists,authData) {
     if (exists) {
+      $scope.setInfo(authData);
     } else {
         
         console.log("user doesnt exist");
@@ -185,6 +186,7 @@ angular.module('starter.controllers', [])
         }
         else
         {
+            $scope.setInfo(authData);
                   $scope.closeModal(); 
                   $state.go('tab.myList');
         }
@@ -193,7 +195,14 @@ angular.module('starter.controllers', [])
       });  
     };
 
-
+    $scope.setInfo = function(authData){
+            itemRef.child("users").child(authData.uid).child('name').once('value', function(dataSnapshot) {
+              global.setMyName(dataSnapshot.val());
+            });
+            itemRef.child("users").child(authData.uid).child('avatar').once('value', function(dataSnapshot) {
+              global.setMyAvatar(dataSnapshot.val());
+            });
+    };
     $scope.resetPassword=function(lemail){
       console.log(lemail);
       itemRef.resetPassword({

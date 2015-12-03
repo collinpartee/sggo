@@ -14,31 +14,6 @@
 --------------------------*/
 
 
-html{
-	/* CSS3 Multiple backgrounds with a fallback */
-	
-	background-color:#e4e4e4;
-	background:url('../img/bg_gradient.jpg') no-repeat center center,url('../img/bg_tile.jpg');
-}
-
-body{
-	color:#fff;
-	padding:10px;
-	min-height:600px;
-	font:14px/1.3 'Segoe UI',Arial, sans-serif;
-}
-
-a, a:visited {
-	text-decoration:none;
-	outline:none;
-	color:#54a6de;
-}
-
-a:hover{
-	text-decoration:underline;
-}
-
-
 
 /*----------------------------
 	Container & textbox
@@ -47,17 +22,17 @@ a:hover{
 
 #container{
 	color: #555;
-	font-size: 58px;
+	font-size: 38px;
 	margin: 0 auto;
-	padding: 200px 0 100px;
-	width: 650px;
+	padding: 10px;
+	width: 100vw;
 	position:relative;
 	min-height: 90px;
-	
 	font-family:'Open Sans Condensed',sans-serif;
 	text-shadow:1px 1px 0 rgba(255,255,255,0.5);
 }
 
+/*
 #container:before{
 	content: ">";
 	font-size: 50px;
@@ -67,7 +42,9 @@ a:hover{
 	text-shadow: 1px 1px 0 white;
 	top: 210px;
 }
+*/
 
+/*
 #userText{
 	background:none;
 	border:none;
@@ -83,6 +60,7 @@ a:hover{
     width: 300px;
     outline: none;
 }
+*/
 
 
 
@@ -90,6 +68,7 @@ a:hover{
 	The Footer
 -----------------------------*/
 
+/*
 
 footer{
 	display:block;
@@ -128,3 +107,4 @@ footer a.tzine,a.tzine:visited{
 	top:0;
 	width:290px;
 }
+*/

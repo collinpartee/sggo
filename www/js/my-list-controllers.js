@@ -13,8 +13,15 @@ angular.module('starter.myList', ['google.places'])
     console.log($scope.myLists);
 
     
-
-    
+    $scope.setInfo = function(authData){
+            ref.child("users").child(authData.uid).child('name').once('value', function(dataSnapshot) {
+              global.setMyName(dataSnapshot.val());
+            });
+            ref.child("users").child(authData.uid).child('avatar').once('value', function(dataSnapshot) {
+              global.setMyAvatar(dataSnapshot.val());
+            });
+    };
+    $scope.setInfo(authData);
     $scope.deleteList=function(listItem){ 
          
         //$scope.myLists.splice(listItem); 
@@ -249,7 +256,15 @@ angular.module('starter.myList', ['google.places'])
              type: 'button-positive',
              onTap: function(e) {
             console.log('clicked',list);
-               $state.go('tab.spin',list);
+            if(typeof list == 'string')
+            {
+                $state.go('tab.spinTable',{'listId':list});
+            }
+            else
+            {
+                $state.go('tab.spin',list);
+            }
+               
              }
            },
          ]
@@ -257,7 +272,10 @@ angular.module('starter.myList', ['google.places'])
        myPopup.then(function(res) {
          console.log('Tapped!', res);
        });
-     }
+     };
+
+
+    
     
 })
 
@@ -417,15 +435,6 @@ angular.module('starter.myList', ['google.places'])
     
      //new new 
 
-    function getName(authData) {
-
-            ref.child('users/'+authData.uid+'/name').once('value', function(dataSnapshot) {
-                console.log(dataSnapshot.val());
-              myName= dataSnapshot.val();
-            });
-
-      };
-    
     $scope.goBackToMyList = function(){
         $state.go('tab.myList');
     };

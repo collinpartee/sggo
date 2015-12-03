@@ -42,6 +42,10 @@ angular.module('starter.listNearMe', [])
 		var lat=global.getMyLoc().lat;
 		var lon=global.getMyLoc().lon;
 		console.log(lat,lon);
+		if(lat==null)
+		{
+			
+		}
 	      var geoQuery = geoFire.query({
 	        center: [lat, lon],
 	        radius: radius

@@ -1,29 +1,36 @@
 
-<link href="../css/shuffle-letter-styles.css" rel="stylesheet" />
+<!--<link href="/css/shuffle-letter-styles.css" rel="stylesheet" />-->
 
 <!--<link href="css/spin-style.css" rel="stylesheet">-->
 <ion-view view-title="Spin" cache-view="false">
   <ion-content>
     <h3>Spin Page</h3>
-      <div id="container">This is a Tutorialzine Demo!</div>
-<!--
-      <div class="container">
-	<div class="right">
-			<h4 class="randoms" id="ignored1"></h4>
-			<h1 class="randoms" id="chosen"></h1>
-			<h4 class="randoms" id="ignored2"></h4>
-	</div>
-	<div class="left">
-			<h4 class="randoms" id="ignored3"></h4>
-			<h1 class="randoms" id="ignored4"></h1>
-			<h4 class="randoms" id="ignored5"></h4>
-	</div>
-</div>
--->
-      <input type="text" id="userText" />
-<!--
-      <button class="button" ng-click="spinWheel()">click me</button>
-      <h4 class="button">{{spun}}</h4>
--->
+      <div class="top-of-page">
+        <div id="container"></div>
+          <button class="button button-stable" ng-click='shuffleButton()'>Shuffle!</button>
+        </div>
+
+	 <ion-list>
+	    <ion-item class="item item-input-inset">
+	        <label class="item-input-wrapper">
+	            <input type="text" ng-model="message" placeholder="Type in your message...">
+	        </label>
+	        <button ng-click="sendMessage(message)" class="button button-small button-balanced">
+	            Send
+	        </button>
+	    </ion-item>
+	    <ion-item ng-hide="chats" class="textCenter">
+	        <i class="icon ion-loading-c"></i> Loading Chats
+	    </ion-item>
+	    <ion-item ng-if="chats.length == 0" class="textCenter">
+	        <h4>No messages in this table. Send message to start.</h4>
+	    </ion-item>
+	    <ion-item class="" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+	        <h4>{{chat.user}} :</h4>
+	        <span am-time-ago="chat.createdAt" class="item-note">
+	        </span>
+	        <p>{{chat.message}}</p>
+	    </ion-item>
+	</ion-list>
   </ion-content>
 </ion-view>
