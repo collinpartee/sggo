@@ -1,11 +1,12 @@
 
 <link href="css/ng-tags-input.bootstrap.css" rel="stylesheet">
       <link href="css/ng-tags-input.css" rel="stylesheet">
-<ion-view hide-nav-bar="true" view-title="My Lists" cache-view="false">
+<ion-view hide-nav-bar="false" view-title="My Lists" cache-view="false">
 
-    <ion-header-bar class="bar-positive item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
+<!--
+    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
 
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();" ng-hide="showInputBar">
         Back
       </button>
         
@@ -14,6 +15,7 @@
         </div>
 
     </ion-header-bar>
+-->
 
     <ion-content>
       <div class="list">
