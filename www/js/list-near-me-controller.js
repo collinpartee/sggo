@@ -104,10 +104,13 @@ angular.module('starter.listNearMe', [])
 
 })
 
-.controller('nearMeCtrlEdit', function($scope, $state,$stateParams) {
+.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject) {
 	console.log($stateParams);
 	$scope.nearbyListPlaces=$stateParams.places;
-
+    var key=$stateParams.$id;
+    var uid=key.substring(0,key.lastIndexOf(':'));
+    var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+    var listLikeRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey+"/likes");
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
         //$ionicGoBack();
@@ -116,5 +119,19 @@ angular.module('starter.listNearMe', [])
     $scope.goToSpin=function(){
 	      $state.go('tab.spinListNearMe',$stateParams);
 	}
+    var myLikes=$firebaseObject(listLikeRef);
+    myLikes.$loaded().then(function() {
+      	myLikes.$bindTo($scope, "likes");
+        console.log($scope.likes);
+        if($scope.likes==null)
+        {
+            $scope.likes=0;
+        }
+        console.log($scope.likes);
+      });
+    $scope.likeThisList=function(){
+        console.log($scope.likes);
+        $scope.likes.$value=1+$scope.likes.$value;
+    }
 })
 ;
