@@ -67,6 +67,26 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         
     }
   })
+  .state('tab.editMyList', {
+    url: '/editMyList',
+    views: {
+      'tab-listNearMe': {
+        templateUrl: 'templates/tab-editMyList.html',
+        controller: 'addListCtrl'
+      },
+    params:{
+        '$id':'none',
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true,
+        'tags':[]
+    }
+        
+    }
+  })
+  
   .state('tab.decisionTable', {
     url: '/decisionTable',
     views: {

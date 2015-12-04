@@ -222,6 +222,9 @@ angular.module('starter.myList', ['google.places'])
         console.log("after",tables.$getRecord(k));
     }
 
+    $scope.showEditMyListPage = function(){
+        $state.go('tab.');
+    };
     
     
      $scope.showPopup = function(list) {
@@ -451,5 +454,17 @@ angular.module('starter.myList', ['google.places'])
     };
     
     $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
+    
+    $scope.heartClass = 'ion-ios-heart-outline';
+    
+    $scope.likeThisList = function(){
+        console.log('clicked');
+        if ($scope.heartClass== 'ion-ios-heart-outline'){
+            $scope.heartClass= 'ion-ios-heart'
+            console.log('heartClass activated');
+        }else{
+            $scope.heartClass= 'ion-ios-heart-outline'
+        }
+    };
 
 });
