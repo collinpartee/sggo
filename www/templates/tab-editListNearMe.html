@@ -25,16 +25,18 @@
             
                 <button class="button icon-left ion-arrow-down-a" style="">Download</button>
            
-                <button class="button" style="">Spin</button>
+
+                <button class="button" ng-click="goToSpin()">Spin</button>
             </div>
         </div>
       </div>
       
       <ion-scroll style="height: 70%; padding-bottom: 10px;">
       <div class="list">
-        <div class="item item-thumbnail-left" ng-repeat="items in randomNumbersForLists track by $index">
+        <div class="item item-thumbnail-left" ng-repeat="items in nearbyListPlaces track by $index">
             <img src="../img/steak.JPG" />
-            {{items}}<br>address goes here<br>maybe more address info<br>
+            {{items.name}}<br>
+            <span class="card item-text-wrap">{{items.vicinity}}</span>
             <i class="ion-ios-star"></i>
             <i class="ion-ios-star"></i>
             <i class="ion-ios-star-half"></i>

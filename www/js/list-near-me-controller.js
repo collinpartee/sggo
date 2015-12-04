@@ -1,37 +1,6 @@
 angular.module('starter.listNearMe', [])
 
 .controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-		// var radius=30;
-		
-  //   	if($scope.lists==null)
-  //   	{
-  //   		var listexist={};
-  //   		$scope.listDetail=[];
-  //   		myNearByList.$loaded().then(function() {
-	       
-		//         myNearByList.$bindTo($scope, "lists");
-	        	
-		//         angular.forEach(myNearByList, function(value, key) {
-		//         	console.log(key);
-		//         	var uid=key.substring(0,key.lastIndexOf(':'));
-		//         	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-		//         	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
-		//         	nearbyListRef.once('value',function(snap){
-		//         		$scope.listDetail.push(snap.val());
-		//         		console.log(snap.val());
-		//         	});
-		//         });
-
-		//     });
-
-  //   	}
 
 
 
@@ -73,10 +42,14 @@ angular.module('starter.listNearMe', [])
 				        		}
 				        		else
 				        		{
-				        			$scope.listDetail.push(snap.val());
-				        			console.log(snap.val());
+				        			var listItem=snap.val();
+				        			listItem.$id=key;
+				        			$scope.listDetail.push(listItem);
+				        			console.log(listItem);
 				        			listexist[key]='1';
-				        			$scope.$digest();
+				        			if(!$scope.$$phase) {
+									  $scope.$digest();
+									}
 				        		}
 						});
 			        //$state.go($state.current, {}, {reload: true});
@@ -120,13 +93,28 @@ angular.module('starter.listNearMe', [])
 	      });
 
 	      $scope.goToSpin=function(list){
+	      	console.log(list);
 	      	$state.go('tab.spinNearby',list);
 	      }
           
-          $scope.goToEditListNearMe=function(list){
-	      	$state.go('tab.editListNearMe',list);
+          $scope.goToEditListNearMe=function(listItem){
+	      	$state.go('tab.editListNearMe',listItem);
               $scope.$root.tabsHidden = "tabs-hide";
 	      }
 
+})
+
+.controller('nearMeCtrlEdit', function($scope, $state,$stateParams) {
+	console.log($stateParams);
+	$scope.nearbyListPlaces=$stateParams.places;
+
+    $scope.goBackAndShowTabBar = function(){
+        $scope.$root.tabsHidden = "tabs-show";
+        //$ionicGoBack();
+    };
+
+    $scope.goToSpin=function(){
+	      $state.go('tab.spinListNearMe',$stateParams);
+	}
 })
 ;
