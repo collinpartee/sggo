@@ -106,6 +106,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         
     },
     params:{
+
         '$id':'none',
         'ListName':'',
         'creater_id':'',
@@ -162,9 +163,10 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
     views: {
       'tab-listNearMe': {
         templateUrl: 'templates/tab-editListNearMe.html',
-        controller: 'addListCtrl'
-      },
-    params:{
+        controller: 'nearMeCtrlEdit'
+      }      
+    },
+        params:{
         '$id':'none',
         'ListName':'',
         'creater_id':'',
@@ -172,8 +174,6 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'places':[],
         'share':true,
         'tags':[]
-    }
-        
     }
   })
   
@@ -198,6 +198,29 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         
     },
     params:{
+      'from':'myList',
+        '$id':'none',
+        'ListName':'',
+        'creater_id':'',
+        'creater_name':'',
+        'places':[],
+        'share':true,
+        'tags':[]
+    }
+  })
+  .state('tab.spinListNearMe', {
+    url: '/spin',
+    views: {
+      'tab-listNearMe': {
+        templateUrl: 'templates/tab-spin.html',
+        controller: 'spinCtrl',
+
+      }
+        
+    },
+    params:{
+      'from':'myListNearMe',
+        '$id':'none',
         'ListName':'',
         'creater_id':'',
         'creater_name':'',
@@ -217,6 +240,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         
     },
     params:{
+      'from':'myTable',
         'listId':"k"
     }
   })
