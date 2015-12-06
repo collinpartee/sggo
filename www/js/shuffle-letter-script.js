@@ -40,7 +40,7 @@ $(function(){
 		
 		userText.val("type anything and hit return..").fadeIn();
 		
-	},4000);
+	});
 	
 });
 

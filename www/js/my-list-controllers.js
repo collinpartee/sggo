@@ -2,6 +2,7 @@ angular.module('starter.myList', ['google.places'])
 
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation, $cordovaKeyboard, authData, global, myListFirebase, tables,friendList) {
         
+    $scope.$root.hideTabsOnThisPage = false;
     var ref = new Firebase('https://sggo.firebaseio.com');
     var tableRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+authData.uid+"/myTables");
     var tableRefObj=$firebaseObject(tableRef);
@@ -277,13 +278,16 @@ angular.module('starter.myList', ['google.places'])
        });
      };
 
-
+$scope.goToEditListPage = function(list){
+    $state.go('tab.editMyList');
+}
     
     
 })
 
 .controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation, $http, global,myListFirebase,geoFire,authData){
         
+    $scope.$root.hideTabsOnThisPage = true;
     $scope.goNameList = function(){
         currListItem.places=$scope.placeList;
         console.log('befre',currListItem);
@@ -450,6 +454,7 @@ angular.module('starter.myList', ['google.places'])
     
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
+        $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
     
@@ -467,4 +472,13 @@ angular.module('starter.myList', ['google.places'])
         }
     };
 
+    $scope.editButtonClicked = false;
+    $scope.editThisList = function(){
+        if($scope.editButtonClicked == false){
+            $scope.editButtonClicked = true;
+            console.log($scope.editButtonClicked);
+        }else{
+            $scope.editButtonClicked = false;
+        }
+    }
 });

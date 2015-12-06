@@ -37,6 +37,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         });
 
   });
+    
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -70,7 +71,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
   .state('tab.editMyList', {
     url: '/editMyList',
     views: {
-      'tab-listNearMe': {
+      'tab-myList': {
         templateUrl: 'templates/tab-editMyList.html',
         controller: 'addListCtrl'
       },

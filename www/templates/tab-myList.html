@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="list in myLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(list);" style="margin: 5px 0; border-top: 3px solid cadetblue; padding-bottom: 0;">
+        <ion-item ng-repeat="list in myLists track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(list);" style="margin: 5px 0; border-top: 3px solid cadetblue; padding-bottom: 0;">
         <img src="img/steak.jpg" />
           {{list.ListName}}
           <p>#bakery #yum #gottaHaveIt</p>
@@ -23,7 +23,7 @@
         
         
         <ion-list>
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="showPopup(k);" style="margin: 5px 0; border-top: 3px solid orange; padding-top: 0;">
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(k);" style="margin: 5px 0; border-top: 3px solid orange; padding-top: 0;">
         <img src="img/steak.jpg" />
           {{v.tableName}}
           <p>#bakery #yum #gottaHaveIt</p>
@@ -41,56 +41,7 @@
 
 </ion-view>
 
-<!-->
-<script id="addList-modal.html" type="text/ng-template">
-  <div class="modal" ng-controller="addListCtrl">
-    <ion-header-bar style="background-color: rgb(127, 197, 195);">
-      <h1 class="title" style="color: white;">Create New List</h1>
-      <button class="button button-clear button-positive" style="color: white;" ng-click="modal.hide()">Close</button>
-    </ion-header-bar>
-    <ion-content style="background-color: whitesmoke;" scroll="false">
-      <div class="">
-          <div class="row">
-          <h4 class="list_header">Name Your List</h4>
-          </div>
-        <label class="item item-input">
-          <input type="text" ng-model="listName">
-        </label>
-        <div class="list row">
-            <ion-scroll style="margin-top: auto; height: 300px; width: 100%; background-color: white;">
-                <div class="">
-                    <div class="item item-button-right" ng-repeat="item in placeList" style="border: none; padding-top: 10px; padding-bottom: 10px;">
-                        {{item.name}}
-                        <hr />
-                        <button class="button button-clear" ng-click="deletePlace($index)">
-                            <i class="icon ion-close" style="color: red;"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="width: 100vw; background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
-                    <button class="button button-clear row" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">                     <span style="display: block; margin: 0 auto;"><i class="icon ion-plus-round"></i> List item</span></button>
-        </div>
-       
-          </ion-scroll>
-            </div>
-                <div class="row">
-        <h4 class="list_header">Choose Your Category</h4>
-                </div>
-            <div class="list row" style="padding: 5px 0 0 0;">
-          <ion-scroll direction="x" style="background-color: white;">
-            <table>
-              <tr ng-repeat="category in categoryPics"  class="row table-cell">
-                <td class="col col-25"><img class="thumbnail" ng-src="{{category}}"></td>
-              </tr>
-            </table>
-          </ion-scroll>
-              </div>
-       
-      </div>
 
-      <button class="button button-full button-energized" ng-click="saveList(listName)">Done</button>
-    </ion-content>
-  </div>
-</script><-->
 
 <script id="shareListWithFriends-Popup.html" type="text/ng-template">
   <div>
@@ -111,6 +62,7 @@
   </div>
 </script>
 
+<!--
 <script id="viewList-Popup.html" type="text/ng-template">
   <div>
     <li class="item item-checkbox" ng-repeat="l in list.places">
@@ -118,4 +70,4 @@
         </li>
 
   </div>
-</script>
+</script>-->

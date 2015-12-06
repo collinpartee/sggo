@@ -2,12 +2,24 @@
 <!--<link href="/css/shuffle-letter-styles.css" rel="stylesheet" />-->
 
 <!--<link href="css/spin-style.css" rel="stylesheet">-->
-<ion-view view-title="Spin" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Spin" cache-view="false">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();">
+        Back
+      </button>
+    </ion-nav-buttons>
   <ion-content>
-    <h3>Spin Page</h3>
-      <div class="top-of-page">
-        <div id="container"></div>
-          <button class="button button-stable" ng-click='shuffleButton()'>Shuffle!</button>
+      <div class="top-of-page" style="height: 40vh;">
+        <div class="shuffle_container" style="width: 80%; height:30vh; margin: 0 auto; padding: 20px; position: relative;" >
+            <center>
+            <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);" ng-show="shuffleButtonPressed"></h3>  
+            </center>
+        </div>
+          <div class="row">
+          <div style="margin: 0 auto; width: 50%;">
+          <button class="button button-stable" style="width: 100%;" ng-click='shuffleButton();'>Shuffle!</button>
+              </div>
+              </div>
         </div>
 
 	 <ion-list>
@@ -29,7 +41,7 @@
 	        <h4>{{chat.user}} :</h4>
 	        <span am-time-ago="chat.createdAt" class="item-note">
 	        </span>
-	        <p>{{chat.message}}</p>
+	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">8:33</span>
 	    </ion-item>
 	</ion-list>
   </ion-content>

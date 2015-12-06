@@ -4,14 +4,16 @@
   color: white;
 
 }
+/*
 
 .tabs-hide .tabs {
-    display: none;
+    display: none;  
 }
 
 .tabs-show .tabs {
     display: flex;
 }
+*/
 
 /* Empty. Add your own CSS if you like */
 .addToListButton{
@@ -173,4 +175,28 @@ position: absolute;
 /** IONIC **/
 .item{
     position: relative;
+}
+
+/** EDIT LIST NEAR ME **/
+
+.likeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 80px;
+    max-height: 55px;
+    width: 100%;
+    height: 100%;
+    font-size: x-large;
+}
+
+.downloadButton{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 80px;
+    max-height: 55px;
+    width: 100%;
+    height: 100%;
+    font-size: x-large;
 }

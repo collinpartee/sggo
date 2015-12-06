@@ -99,13 +99,17 @@ angular.module('starter.listNearMe', [])
           
           $scope.goToEditListNearMe=function(listItem){
 	      	$state.go('tab.editListNearMe',listItem);
+              console.log(listItem);
               $scope.$root.tabsHidden = "tabs-hide";
 	      }
+          
 
 })
 
 .controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject) {
-	console.log($stateParams);
+	
+    $scope.$root.hideTabsOnThisPage = true;
+    console.log($stateParams);
 	$scope.nearbyListPlaces=$stateParams.places;
     var key=$stateParams.$id;
     var uid=key.substring(0,key.lastIndexOf(':'));
@@ -113,6 +117,7 @@ angular.module('starter.listNearMe', [])
     var listLikeRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey+"/likes");
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
+        $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
 
@@ -129,9 +134,22 @@ angular.module('starter.listNearMe', [])
         }
         console.log($scope.likes);
       });
+    
+    $scope.heartClass = 'ion-ios-heart-outline';
     $scope.likeThisList=function(){
-        console.log($scope.likes);
-        $scope.likes.$value=1+$scope.likes.$value;
+        
+        if ($scope.heartClass== 'ion-ios-heart-outline'){
+            $scope.heartClass= 'ion-ios-heart'
+            console.log('heartClass activated');
+            console.log($scope.likes);
+            $scope.likes.$value=1+$scope.likes.$value;
+        }else{
+            $scope.heartClass= 'ion-ios-heart-outline'
+            console.log($scope.likes);
+            $scope.likes.$value=-1+$scope.likes.$value;
+        }
+        
+        
     }
 })
 ;

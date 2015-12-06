@@ -43,8 +43,9 @@ var myName=global.getMyName();
               return Math.floor(Math.random() * (max - min + 1)) + min;
       }
      // SECOND SPIN STYLE 
-      
+      $scope.shuffleButtonPressed = false;
     $scope.shuffleButton =function(){
+        $scope.shuffleButtonPressed = true;
         listSpinRef.child('triggers').once('value',function(datasnapshot){
             var newSpins=1;
             if(datasnapshot.exists())
@@ -98,5 +99,10 @@ var myName=global.getMyName();
       this.message="";
     }
 
+    $scope.goBackAndShowTabBar = function(){
+        $scope.$root.tabsHidden = "tabs-show";
+        $scope.$root.hideTabsOnThisPage = false;
+        //$ionicGoBack();
+    };
 
 });
