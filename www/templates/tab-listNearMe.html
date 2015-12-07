@@ -11,10 +11,11 @@
       
 <!--
     <ion-list>
-        <ion-item ng-repeat="list in listDetail | filter:search_bar track by $index" class="item item-thumbnail-left" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);">
+        <ion-item ng-repeat="list in listDetail | filter:search_bar | orderBy:'dis' track by $index " class="item item-thumbnail-left" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);">
                   
           {{list.ListName}}
            <img src="img/steak.jpg" />
+           <span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{list.dis}} km</span>
         </ion-item>
       </ion-list>
 -->

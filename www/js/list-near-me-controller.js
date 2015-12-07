@@ -1,6 +1,6 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global) {
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global,FBURL) {
 
 
 
@@ -34,7 +34,7 @@ angular.module('starter.listNearMe', [])
 				        	console.log(key);
 				        	var uid=key.substring(0,key.lastIndexOf(':'));
 				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-				        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
 				        	nearbyListRef.once('value',function(snap){
 				        		if(listexist.key!=null)
 				        		{
@@ -44,6 +44,7 @@ angular.module('starter.listNearMe', [])
 				        		{
 				        			var listItem=snap.val();
 				        			listItem.$id=key;
+				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
 				        			$scope.listDetail.push(listItem);
 				        			console.log(listItem);
 				        			listexist[key]='1';
@@ -69,7 +70,7 @@ angular.module('starter.listNearMe', [])
 	        	console.log(key);
 	        	var uid=key.substring(0,key.lastIndexOf(':'));
 	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-	        	var nearbyListRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+	        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
 
 	        	nearbyListRef.once('value',function(snap){
 
@@ -106,15 +107,15 @@ angular.module('starter.listNearMe', [])
 
 })
 
-.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject) {
+.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,FBURL) {
 	
     $scope.$root.hideTabsOnThisPage = true;
     console.log($stateParams);
-	$scope.nearbyListPlaces=$stateParams.places;
+	$scope.nearByListItem=$stateParams;
     var key=$stateParams.$id;
     var uid=key.substring(0,key.lastIndexOf(':'));
     var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-    var listLikeRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey+"/likes");
+    var listLikeRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey+"/likes");
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
         $scope.$root.hideTabsOnThisPage = false;
@@ -127,12 +128,6 @@ angular.module('starter.listNearMe', [])
     var myLikes=$firebaseObject(listLikeRef);
     myLikes.$loaded().then(function() {
       	myLikes.$bindTo($scope, "likes");
-        console.log($scope.likes);
-        if($scope.likes==null)
-        {
-            $scope.likes=0;
-        }
-        console.log($scope.likes);
       });
     
     $scope.heartClass = 'ion-ios-heart-outline';

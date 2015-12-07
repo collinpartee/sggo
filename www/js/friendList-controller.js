@@ -1,6 +1,6 @@
 angular.module('starter.friendList', [])
 
-.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,global,friendList) {
+.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,FBURL,global,friendList) {
     $scope.friendList = friendList;
        //add this to slider menu
     
@@ -48,7 +48,7 @@ angular.module('starter.friendList', [])
     
   $scope.searchFriend= function(email) {
       console.log(email);
-        var ref = new Firebase('https://sggo.firebaseio.com');
+        var ref = new Firebase(FBURL);
         ref.child('users').orderByChild('email')
         .startAt(email)
         .endAt(email)

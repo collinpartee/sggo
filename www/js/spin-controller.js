@@ -1,11 +1,11 @@
 angular.module('starter.spin', [])
-.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray,tables, global) {
+.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray,FBURL,tables, global) {
 console.log($stateParams);
 var myName=global.getMyName();
     if($stateParams.from=='myList')
     {
       var words = $stateParams.places;
-      var listSpinRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+$stateParams.creater_id+"/myLists/"+$stateParams.$id);
+      var listSpinRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+"/myLists/"+$stateParams.$id);
       $scope.chats=$firebaseArray(listSpinRef.child('messages'));
     }
     else
@@ -16,13 +16,13 @@ var myName=global.getMyName();
          var key=$stateParams.$id;
          var uid=key.substring(0,key.lastIndexOf(':'));
           var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-          var listSpinRef=new Firebase('https://sggo.firebaseio.com'+"/users/"+uid+"/myLists/"+listkey);
+          var listSpinRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
            $scope.chats=$firebaseArray(listSpinRef.child('messages'));
 
       }
       else
       {
-        console.log('name',global.getMyName());
+        console.log('name',$stateParams.listId);
         var currTable=tables.$getRecord($stateParams.listId);
         //$scope.chats=$firebaseArray(currTable.messages);
         console.log(currTable);
