@@ -1,5 +1,5 @@
-
-<ion-view hide-nav-bar="true" view-title="Add List" cache-view="false">
+<link href="../css/tab-listDetail-css.css" rel="stylesheet" />
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Add List" cache-view="false">
 <!--
     <ion-header-bar class="bar-positive item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
 
@@ -32,6 +32,7 @@
 
     </ion-header-bar>
 -->
+<!--
     <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
 
       <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
@@ -43,6 +44,12 @@
         </div>
 
     </ion-header-bar>
+-->
+    <ion-nav-buttons side="left">
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackToMyList();">
+        Back
+      </button>
+    </ion-nav-buttons>
     <ion-content style="background-color: whitesmoke; height: 100vh;" scroll="true">
         
 
@@ -66,15 +73,47 @@
         
         </div>
 -->
+
         <ion-list>
-            <ion-item ng-repeat="item in placeList track by $index">
-                {{item.name}}
+        <ion-item ng-repeat="item in placeList track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(list);" style="padding: auto; height: auto;">
+        <img src="{{item.icon}}" />
+            <div style="padding: 8px 54px 16px 106px;">
+          
+                <span class="item-text-wrap">{{item.name}}</span><br>
+          <p>Address goes here</p>
+                <i class="ion-social-usd"></i>
+                <i class="ion-social-usd"></i>
+                <i class="ion-social-usd"></i>
+                <i class="ion-social-usd-outline"></i>
+                <span style="font-size: smaller; margin-left: 10px;">0.14 mi</span>
+          </div>
+            <ion-option-button class="button-assertive">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+
+        
+<!--
+        <ion-list>
+            <ion-item ng-repeat="item in placeList track by $index" class="item item-thumbnail-left">
+                <img src="img/steak.JPG" />
+                
+                <span class="item-text-wrap">{{item.name}}</span><br>
+            <span class="item-text-wrap">More address info here</span><br>
+            <i class="ion-ios-star"></i>
+            <i class="ion-ios-star"></i>
+            <i class="ion-ios-star-half"></i>
+            <i class="ion-ios-star-outline"></i>
+            <i class="ion-ios-star-outline"></i><br />
+            <span style="font-size: small;">0.14 mi</span>
                 <ion-option-button class="button-assertive">
                     Delete
                 </ion-option-button>
             </ion-item>
             
         </ion-list>
+-->
               
         <div style="height: 15vh;">
       <button class="button button-full button-energized" ng-show="placeList.length >=2" ng-click="goNameList(listName);">Next</button>

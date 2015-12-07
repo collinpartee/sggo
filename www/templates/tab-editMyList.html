@@ -1,3 +1,5 @@
+<link href="css/tab-editMyList-css.css" rel="stylesheet" />
+
 <ion-view hide-tab-bar hide-nav-bar="true" view-title="Viewing List" cache-view="false">
 
     <ion-header-bar class="bar-stable">
@@ -14,7 +16,7 @@
 
   <ion-content scroll="false" style="" >
       <div class="hover" style="border-bottom: 2px solid black;">
-      <div class="row row-center" style="background-color: whitesmoke;">
+      <div class="row row-center" style=";">
         <div class="" style="margin: 0 auto;" >
             <h4>List of Lists</h4>
             <h5>Boobs McGee</h5>
@@ -26,7 +28,7 @@
           <button class="button button-icon ion-share downloadButton">
           </button>
           
-      <div class="row" style="background-color: whitesmoke;">
+      <div class="row" style="">
           <div class="col col-80" style="margin: 0 auto;">
 <!--
                 <button class="button icon-left {{heartClass}}" ng-click="likeThisList();" style="">Like</button>
@@ -50,7 +52,7 @@
               </div>
           </div>
 -->
-          
+        <img src="img/tile2.jpg" class="headerImage"  /> 
       </div>
       
 <!--
@@ -69,15 +71,18 @@
       </div>
           </ion-scroll>
 -->
-      <div class="row" style="background-color: rgba(237, 111, 112, 0.1);" ng-show="editButtonClicked">
+      <div style="background-color: white;">
+          <div class="row" style="background-color: rgba(237, 111, 112, 0.1); z-index: 1;" ng-show="editButtonClicked">
                     <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
                         <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
                             <span><i class="icon ion-plus-round"></i></span>
                         </button>
                     </div>
+          </div>
+
       <ion-scroll style="height: 65%; padding-bottom: 10px;">
       <div class="list">
-        <div class="item item-thumbnail-left item-icon-right" ng-repeat="items in randomNumbersForLists track by $index">
+        <div class="item item-thumbnail-left item-icon-right" ng-repeat="items in randomNumbersForLists track by $index" ng-click="goToItemDetail();">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items}}</span><br>
             <span class="item-text-wrap">More address info here</span><br>
@@ -85,7 +90,8 @@
             <i class="ion-ios-star"></i>
             <i class="ion-ios-star-half"></i>
             <i class="ion-ios-star-outline"></i>
-            <i class="ion-ios-star-outline"></i>
+            <i class="ion-ios-star-outline"></i><br />
+            <span style="font-size: small;">0.14 mi</span>
             <i class="icon ion-close" ng-show="editButtonClicked" style="font-size: large; color: red;"></i>
         </div>
       </div>

@@ -200,3 +200,28 @@ position: absolute;
     height: 100%;
     font-size: x-large;
 }
+
+.item .item-content {
+	padding: 0;
+    height: 20vh;
+    
+}
+
+.biggerList{
+    padding: 0;
+    height: 20vh;
+}
+
+.tileImage{
+/*
+    width: 100vh; 
+    height: 20vh;
+*/
+    position: absolute;
+    top: -30;
+    left: -30
+    opacity: 0.5;
+    -webkit-filter: blur(7px);
+    filter: blur(7px);
+    z-index: -1;
+}

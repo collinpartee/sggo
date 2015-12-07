@@ -1,0 +1,16 @@
+.item .item-content {
+	padding: 0;
+    height: 20vh;
+    
+}
+
+.tileImage{
+    width: 100vh; 
+    height: 20vh;
+    position: absolute;
+    top: 0;
+    opacity: 0.3;
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    z-index: -1;
+}

@@ -1,3 +1,4 @@
+<!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
 <ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content>
       <div class="list" style="margin-bottom: 0;">
@@ -8,6 +9,7 @@
         </div>
       </div>
       
+<!--
     <ion-list>
         <ion-item ng-repeat="list in listDetail | filter:search_bar track by $index" class="item item-thumbnail-left" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);">
                   
@@ -15,7 +17,33 @@
            <img src="img/steak.jpg" />
         </ion-item>
       </ion-list>
+-->
 
+      <ion-list>
+        <ion-item ng-repeat="list in listDetail | filter:search_bar track by $index" class="item" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);" style="margin: 1px 0; padding: 0; position: relative; height: 20vh;">
+        
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+            <div class="row" style="padding-bottom: 15px;">
+                <div class="" style="margin: 0 auto;">
+                    <h2 style="overflow: visible;">{{list.ListName}}</h2>
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 15px;">
+                <div class="" style="margin: 0 auto;">
+                    <p>#bakery #yum #gottaHaveIt</p>
+                </div>
+            </div>
+                <div class="row">
+                <div class="" style="margin: 0 auto;">
+                    <p>Created By: Collin P</p>
+                </div>
+            </div>
+          </div>
+          
+            <img src="img/tile3.jpg" class="tileImage" style="" />
+        </ion-item>
+      </ion-list>
+      
       {{myplace}}
   </ion-content>
 </ion-view>
