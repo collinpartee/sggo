@@ -41,7 +41,7 @@
 	        <h4>{{chat.user}} :</h4>
 	        <span am-time-ago="chat.createdAt" class="item-note">
 	        </span>
-	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">8:33</span>
+	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
 	    </ion-item>
 	</ion-list>
   </ion-content>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard, Auth,global) {
+.controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard,FBURL, Auth,global) {
     
     $scope.dontLogin = function(){
         $state.go('tab.myList');

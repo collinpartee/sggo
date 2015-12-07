@@ -1,6 +1,6 @@
 angular.module('starter.accountSetting', [])
 
-.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject, Auth,authData) {
+.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject, Auth,authData,FBURL) {
 	var myEmail;
 	var ref = new Firebase("https://sggo.firebaseio.com");
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {

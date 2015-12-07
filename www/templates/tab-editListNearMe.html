@@ -21,12 +21,12 @@
       <div class="hover" style="border-bottom: 2px solid black;">
       <div class="row row-center" style="background-color: whitesmoke;">
         <div class="" style="margin: 0 auto;" >
-            <h4>List of Lists</h4>
-            <h5>Boobs McGee</h5>
+            <h4>{{nearByListItem.ListName}}</h4>
+            <h5>Created By : {{nearByListItem.creater_name}}</h5>
           </div>
   
       </div>
-          <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value}}</span></button>
+          <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
           <button class="button button-icon ion-arrow-down-a downloadButton">
             <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
           </button>
@@ -50,7 +50,7 @@
           </button>
               </div>
               <div class="col col-20">
-            <button class="button button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value}}</span></button>
+            <button class="button button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
               </div>
           </div>
           
@@ -58,7 +58,7 @@
       
       <ion-scroll style="height: 65%; padding-bottom: 10px;">
       <div class="list">
-        <div class="item item-thumbnail-left" ng-repeat="items in nearbyListPlaces track by $index">
+        <div class="item item-thumbnail-left" ng-repeat="items in nearByListItem.places track by $index">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items.name}}</span><br>
             <span class="item-text-wrap">{{items.vicinity}}</span><br>

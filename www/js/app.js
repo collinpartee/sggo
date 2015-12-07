@@ -73,9 +73,12 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
     views: {
       'tab-myList': {
         templateUrl: 'templates/tab-editMyList.html',
-        controller: 'addListCtrl'
-      },
+        controller: 'editListCtrl'
+      }
+        
+    },
     params:{
+      'from':'myList',
         '$id':'none',
         'ListName':'',
         'creater_id':'',
@@ -84,7 +87,27 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'share':true,
         'tags':[]
     }
+  })
+  .state('tab.editMyListTable', {
+    url: '/editMyList',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-editMyTable.html',
+        controller: 'editListCtrl'
+      }
         
+    },
+    params:{
+      'from':'myTable',
+      'listId':'',
+       'places': [],
+        'creater_name': "",
+        'inviteFriendList': [],
+        'ranNum': 0,
+        'ListName': "",
+        'tags': [],
+        'triggers': 0
+
     }
   })
   
@@ -108,6 +131,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         
     },
     params:{
+        'from':'',
         '$id':'none',
         'ListName':'',
         'creater_id':'',
