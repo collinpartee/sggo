@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'starter.itemDetails', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
+angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
 
 .run(function($ionicPlatform,$cordovaGeolocation,global) {
   $ionicPlatform.ready(function() {
@@ -162,25 +162,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
     }
 
   })
-  .state('tab.myItemDetail', {
-    url: '/myItemDetail',
-    views: {
-      'tab-myList': {
-        templateUrl: 'templates/tab-myItemDetails.html',
-        controller: 'myItemDetailsCtrl'
-      }
-        
-    },
-    params:{
-        '$id':'none',
-        'ListName':'',
-        'creater_id':'',
-        'creater_name':'',
-        'places':[],
-        'share':true,
-        'tags':[]
-    }
-  })
+  
   
 // END OF MY LIST STATES ------>
   .state('tab.account', {
@@ -335,4 +317,3 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
 
 // change this URL to your Firebase
 .constant('FBURL', 'https://sggo.firebaseio.com');
-

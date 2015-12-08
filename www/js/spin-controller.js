@@ -26,7 +26,7 @@ var myName=global.getMyName();
         var currTable=tables.$getRecord($stateParams.listId);
         //$scope.chats=$firebaseArray(currTable.messages);
         console.log(currTable);
-        var words = currTable.choices;
+        var words = currTable.places;
 
         //get chat list
         var listSpinRef = new Firebase('https://sggo.firebaseio.com/tables/'+$stateParams.listId);

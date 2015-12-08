@@ -505,7 +505,6 @@ $scope.goToEditListPage = function(list){
      //new new 
 
     $scope.goBackToMyList = function(){
-        $scope.$root.hideTabsOnThisPage = false;
         $state.go('tab.myList');
     };
 
@@ -516,41 +515,10 @@ $scope.goToEditListPage = function(list){
       };
     
     $scope.goBackAndShowTabBar = function(){
+        $scope.$root.tabsHidden = "tabs-show";
         $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
     
-
-    $scope.goBackToListDetails = function(){
-        $state.go('tab.listDetails');
-    }
-    
-    $scope.randomNumbersForLists = ['sfsdfsd', 'sdfsdfsd', 'sdfdsf', 'dsfdfsdffd', 'sdfdsfsdf', 'boo', 'bar', 'fuz', 'quark', 'booty'];
-    
-    $scope.heartClass = 'ion-ios-heart-outline';
-    
-    $scope.likeThisList = function(){
-        console.log('clicked');
-        if ($scope.heartClass== 'ion-ios-heart-outline'){
-            $scope.heartClass= 'ion-ios-heart'
-            console.log('heartClass activated');
-        }else{
-            $scope.heartClass= 'ion-ios-heart-outline'
-        }
-    };
-
-    $scope.editButtonClicked = false;
-    $scope.editThisList = function(){
-        if($scope.editButtonClicked == false){
-            $scope.editButtonClicked = true;
-            console.log($scope.editButtonClicked);
-        }else{
-            $scope.editButtonClicked = false;
-        }
-    }
-    
-    $scope.goToItemDetail = function(){
-        $state.go('tab.myItemDetail');
-    }
 
 });

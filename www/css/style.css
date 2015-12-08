@@ -203,7 +203,7 @@ position: absolute;
 
 .item .item-content {
 	padding: 0;
-    height: 20vh;
+    height: 100%;
     
 }
 
@@ -213,15 +213,19 @@ position: absolute;
 }
 
 .tileImage{
+
 /*
     width: 100vh; 
     height: 20vh;
 */
+
     position: absolute;
     top: -30;
     left: -30
     opacity: 0.5;
+/*
     -webkit-filter: blur(7px);
     filter: blur(7px);
+*/
     z-index: -1;
 }
