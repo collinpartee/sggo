@@ -7,12 +7,12 @@
     </ion-nav-buttons>
     <ion-content style="background-color: whitesmoke;">
         <ion-list>
-        <ion-item ng-repeat="list in myLists track by $index" class="item tileBackground" ng-click="goToEditListPage(list);" style="margin: 10px 5px; padding-bottom: 0; position: relative; height: 15vh; background: transparent; color: white;">
+        <ion-item ng-repeat="list in myLists track by $index" class="item tileBackground" ng-click="goToEditListPage(list);" style="margin: 3px auto; padding-bottom: 0; position: relative; height: 20vh;">
         
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
             <div class="row" style="padding-bottom: 15px;">
                 <div class="" style="margin: 0 auto;">
-                    <h2 style="overflow: visible; color: whitesmoke; font-size: larger;">{{list.ListName}}</h2>
+                    <h2 style="overflow: visible; font-size: larger;">{{list.ListName}}</h2>
                 </div>
             </div>
             <div class="row">
@@ -30,7 +30,7 @@
             Delete
           </ion-option-button>
 
-            <img src="img/tile4.jpg" class="tileImage" style="" />
+<!--            <img src="img/tile4.jpg" class="tileImage" style="" />-->
         </ion-item>
       </ion-list>
 <!--
@@ -69,13 +69,13 @@
       </ion-list>
 -->
         <ion-list class="shared-lists">
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item tileBackground" ng-click="goToEditListPage(k);" style="margin: 10px 5px; padding-bottom: 0; position: relative; height: 15vh; width: 97%;">
-            <i class="icon ion-ios-people right-side" style="color: #E1E1DF;"></i>
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item tileBackground" ng-click="goToEditListPage(k);" style="margin: 3px auto; padding-bottom: 0; position: relative; height: 20vh;">
+            <i class="icon ion-ios-people right-side" style="color: black;"></i>
             
              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
             <div class="row" style="padding-bottom: 15px;">
                 <div class="" style="margin: 0 auto;">
-                    <h2 style="color: whitesmoke; font-size: larger;">{{v.ListName}}</h2>
+                    <h2 style="font-size: larger;">{{v.ListName}}</h2>
                 </div>
             </div>
             <div class="row">
@@ -88,7 +88,7 @@
             <ion-option-button class="button-assertive" ng-click="deleteTable(k)">
             Delete
           </ion-option-button>
-             <img src="img/tile5.jpg" class="tileImage" />
+<!--             <img src="img/tile5.jpg" class="tileImage" />-->
         </ion-item>
       </ion-list>
     </ion-content>

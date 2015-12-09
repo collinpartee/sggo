@@ -114,7 +114,7 @@ angular.module('starter.myList', ['google.places'])
                     var userRef=ref.child('users/'+authData.uid);
                     userRef.once('value',function(snap){
                         console.log(snap.val());
-                        var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid};
+                        var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid,avatar:snap.val().avatar};
                         $scope.currTable.inviteFriendList.push(addSefl);
                         $scope.currTable.tags=list.tags;
                         //add table to friend's table list
@@ -346,7 +346,7 @@ $scope.goToEditListPage = function(list){
         $scope.goNameList = function(){
         currListItem.places=$scope.placeList;
         console.log('befre',currListItem);
-        if($stateParams.from=='myList')
+        if($stateParams.from=='myList' || $stateParams.from=='')
         {
             $state.go('tab.nameList',currListItem);
         }
@@ -507,7 +507,29 @@ $scope.goToEditListPage = function(list){
             item.tags=currListItem.tags;
             item.share=true;
 
-            myListFirebase.$save(item);
+            myListFirebase.$save(item)
+            .then(function(ref) {
+                var id = ref.key();
+                var key =authData.uid+':'+id;
+                if(publicList==true)
+                {
+                   
+                
+                  var lat=global.getMyLoc().lat
+                  var lon=global.getMyLoc().lon
+                  console.log(key,lat,lon);
+                    geoFire.set(key, [lat, lon]).then(function() {
+                      console.log("Provided key has been added to GeoFire");
+                    }, function(error) {
+                      console.log("Error: " + error);
+                     }); 
+                }else
+                {
+                    //remove from nearbylist
+                    geoFire.remove(key);
+                }
+              
+            });
         }
 
 

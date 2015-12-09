@@ -71,6 +71,7 @@ var myName=global.getMyName();
         
         listSpinRef.child('triggers').on('value', function(datasnapshot){
             listSpinRef.child('ranNum').once('value',function(snap){
+                $scope.shuffleButtonPressed = true;
                 container.shuffleLetters({
                     "text": words[snap.val()].name
                 });

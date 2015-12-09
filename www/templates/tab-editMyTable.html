@@ -21,7 +21,15 @@
                 <button class="button" ng-click="goSpin()" style="width: 100%;">Spin</button>
             </div>
         </div>
-
+          <ion-scroll direction="x" style="width: 150%">
+          <div class="row">
+            <div ng-repeat="friend in listItem.inviteFriendList">
+            <img src="{{friend.avatar}}" style="width: 35px; border-radius: 50%; border: 3px double rgb(127, 197, 195); margin: 0 15px;" />
+                <p class="avatarName">Name</p>
+                
+            </div>
+          </div>
+        </ion-scroll>
           
       </div>
     
