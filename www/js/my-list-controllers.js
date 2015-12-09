@@ -394,13 +394,20 @@ $scope.goToEditListPage = function(list){
             {
                 _place['name']=place.name;
                 if(place.opening_hours)
+                {
                     _place['weekday_text']=place.opening_hours.weekday_text;
+                    _place['periods']=place.opening_hours.periods;
+                }
                 if(place.price_level)
                     _place['price_level']=place.price_level;
                 if(place.rating)
                     _place['rating']=place.rating;
                 if(place.vicinity)
                     _place['vicinity']=place.vicinity;
+                if(place.price_level)
+                    _place['price_level']=place.price_level;
+                if(place.icon)
+                    _place['icon']=place.icon;
             }
             else
             {
