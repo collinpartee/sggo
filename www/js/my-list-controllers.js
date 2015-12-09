@@ -1,8 +1,12 @@
 angular.module('starter.myList', ['google.places'])
 
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
-        
-    $scope.$root.hideTabsOnThisPage = false;
+    
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
+    
     var ref = new Firebase(FBURL);
     var tableRef=new Firebase(FBURL+"/users/"+authData.uid+"/myTables");
     var tableRefObj=$firebaseObject(tableRef);
@@ -297,7 +301,10 @@ $scope.goToEditListPage = function(list){
 })
 .controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject){
 
-       
+       $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
         //$scope.chats=$firebaseArray(currTable.messages);
         console.log($stateParams);
 
@@ -331,8 +338,12 @@ $scope.goToEditListPage = function(list){
 })
 .controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation, $http, FBURL,global,myListFirebase,geoFire,authData){
         
-    $scope.$root.hideTabsOnThisPage = true;
-    $scope.goNameList = function(){
+        $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
+
+        $scope.goNameList = function(){
         currListItem.places=$scope.placeList;
         console.log('befre',currListItem);
         if($stateParams.from=='myList')

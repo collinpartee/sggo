@@ -1,20 +1,10 @@
-<ion-view hide-tab-bar hide-nav-bar="true" view-title="Viewing List" cache-view="false">
+<link href="css/tab-editMyTable-css.css" rel="stylesheet" />
 
-    <ion-header-bar class="bar-stable">
-
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();">
-        Back
-      </button>
-        
-        <div class="title" style="color:white;">
-            Add Item
-        </div>
-
-    </ion-header-bar>
+<ion-view hide-tab-bar hide-nav-bar="false" view-title="Viewing List" cache-view="false">
 
   <ion-content scroll="false" style="" >
-      <div class="hover" style="border-bottom: 2px solid black;">
-      <div class="row row-center" style="background-color: whitesmoke;">
+      <div class="hover2" style="border-bottom: 2px solid black; height: 35%;">
+      <div class="row row-center">
         <div class="" style="margin: 0 auto;" >
             <h4>{{listItem.ListName}}</h4>
             <h5>Creator : {{listItem.creater_name}}</h5>
@@ -25,56 +15,18 @@
           <button class="button button-icon ion-share downloadButton" ng-click="shareThisList();">
           </button>
           
-      <div class="row" style="background-color: whitesmoke;">
+      <div class="row">
           <div class="col col-80" style="margin: 0 auto;">
-<!--
-                <button class="button icon-left {{heartClass}}" ng-click="likeThisList();" style="">Like</button>
-            
-                <button class="button icon-left ion-arrow-down-a" style="">Download</button>
--->
-           
-
+  
                 <button class="button" ng-click="goSpin()" style="width: 100%;">Spin</button>
             </div>
         </div>
-<!--
-          <div class="row" style="background-color: whitesmoke;">
-              <div class="col col-20 col-offset-33">
-            <button class="button button-icon ion-arrow-down-a">
-            <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
-          </button>
-              </div>
-              <div class="col col-20">
-            <button class="button button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value}}</span></button>
-              </div>
-          </div>
--->
+
           
       </div>
+    
       
-<!--
-      <ion-scroll style="height: 65%; padding-bottom: 10px;">
-      <div class="list">
-        <div class="item item-thumbnail-left" ng-repeat="items in nearbyListPlaces track by $index">
-            <img src="../img/steak.JPG" />
-            <span class="item-text-wrap">{{items.name}}</span><br>
-            <span class="item-text-wrap">{{items.vicinity}}</span><br>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star-half"></i>
-            <i class="ion-ios-star-outline"></i>
-            <i class="ion-ios-star-outline"></i>
-        </div>
-      </div>
-          </ion-scroll>
--->
-      <div class="row" style="background-color: rgba(237, 111, 112, 0.1);" ng-show="editButtonClicked">
-                    <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
-                        <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
-                            <span><i class="icon ion-plus-round"></i></span>
-                        </button>
-                    </div>
-      <ion-scroll style="height: 65%; padding-bottom: 10px;">
+      <ion-scroll style="height: 65%; padding-bottom: 5px;">
       <div class="list">
         <div class="item item-thumbnail-left item-icon-right" ng-repeat="items in listItem.places track by $index">
             <img src="img/steak.JPG" />

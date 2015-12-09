@@ -2,15 +2,17 @@
 <!--<link href="/css/shuffle-letter-styles.css" rel="stylesheet" />-->
 
 <!--<link href="css/spin-style.css" rel="stylesheet">-->
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Spin" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" view-title="Spin" cache-view="false">
+<!--
     <ion-nav-buttons side="left">
       <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();">
         Back
       </button>
     </ion-nav-buttons>
-  <ion-content>
-      <div class="top-of-page" style="height: 40vh;">
-        <div class="shuffle_container" style="width: 80%; height:30vh; margin: 0 auto; padding: 20px; position: relative;" >
+-->
+  <ion-content scroll="false">
+      <div class="top-of-page" style="height: 50%;">
+        <div class="shuffle_container" style="width: 80%; height:65%; margin: 0 auto; padding: 20px; position: relative;" >
             <center>
             <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);" ng-show="shuffleButtonPressed"></h3>  
             </center>
@@ -20,29 +22,32 @@
           <button class="button button-stable" style="width: 100%;" ng-click='shuffleButton();'>Shuffle!</button>
               </div>
               </div>
-        </div>
-
-	 <ion-list>
-	    <ion-item class="item item-input-inset">
+          <div class="item item-input-inset">
 	        <label class="item-input-wrapper">
 	            <input type="text" ng-model="message" placeholder="Type in your message...">
 	        </label>
-	        <button ng-click="sendMessage(message)" class="button button-small button-balanced">
+	        <button ng-click="sendMessage(message)" class="button button-clear button-small button-balanced">
 	            Send
 	        </button>
-	    </ion-item>
-	    <ion-item ng-hide="chats" class="textCenter">
+	    </div>
+        </div>
+      
+      <ion-scroll direction="y" style="height: 50%;">
+	 <div class="list">
+	    <div class="item" ng-hide="chats" class="textCenter">
 	        <i class="icon ion-loading-c"></i> Loading Chats
-	    </ion-item>
-	    <ion-item ng-if="chats.length == 0" class="textCenter">
+	    </div>
+	    <div class="item" ng-if="chats.length == 0" class="textCenter">
 	        <h4>No messages in this table. Send message to start.</h4>
-	    </ion-item>
-	    <ion-item class="" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+	    </div>
+	    <div class="item" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
 	        <h4>{{chat.user}} :</h4>
 	        <span am-time-ago="chat.createdAt" class="item-note">
 	        </span>
 	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
-	    </ion-item>
-	</ion-list>
+	    </div>
+	</div>
+      </ion-scroll>
+      
   </ion-content>
 </ion-view>

@@ -2,6 +2,10 @@ angular.module('starter.listNearMe', [])
 
 .controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global,FBURL) {
 
+        $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
 
 
 		var radius=100;
@@ -109,7 +113,10 @@ angular.module('starter.listNearMe', [])
 
 .controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,FBURL) {
 	
-    $scope.$root.hideTabsOnThisPage = true;
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+    });
     console.log($stateParams);
 	$scope.nearByListItem=$stateParams;
     var key=$stateParams.$id;
