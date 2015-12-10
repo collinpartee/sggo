@@ -1,10 +1,25 @@
 <!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="My Lists" cache-view="false" style="background-color: whitesmoke;">
+<ion-view view-title="My Lists" hide-nav-bar="true" cache-view="false" style="background-color: whitesmoke;">
+<!--
     <ion-nav-buttons side="right">
       <button class="button button-icon icon ion-plus-round" style="color: white;" ng-click="openListDetail()">
         
       </button>
     </ion-nav-buttons>
+-->
+    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
+
+<!--
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
+        Back
+      </button>
+-->
+        
+        <div class="title" style="color:white;">
+            Add Item
+        </div>
+
+    </ion-header-bar>
 <!--
     <ion-content ng-class="{expanded:isExpanded}">
         <div class="content has-header">
@@ -20,6 +35,7 @@
     </ion-content>
 -->
     <ion-content style="background-color: whitesmoke;">
+<!--
             <div class="list animate-fade-slide-in-right">
                 <a href="#/app/profile" class="item item-avatar item-icon-right">
                     <img src="img/jon-snow.jpg">
@@ -28,16 +44,19 @@
                     <i class="icon ion-chatbubble muted"></i>
                 </a>
             </div>
+-->
 <!--        <ion-list>-->
 
 <!--            style="margin: 3px auto; padding-bottom: 0; position: relative; height: 20vh;-->
         
 <!--            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">-->
-            <div ng-repeat="list in myLists track by $index" class="list animate-fade-slide-in-right">
+            <div ng-repeat="list in myLists track by $index" class="list animate-fade-slide-in-right" my-post-repeat-directive='mylist' >
             
-                <img src="img/jon-snow.jpg">
-                    <h2>Jon Snow</h2>
-                    <p>Da illest illegitimate</p>
+                <div ng-click="goToEditListPage(list);" class="item item-avatar item-icon-right">
+                    <img src="img/steak.jpg">
+                    <h2>{{list.ListName}}</h2>
+                    <p ng-repeat='tag in list.tags' style="">#{{tag.text}}</p>
+                </div>
           </div>
             
 <!--

@@ -1,15 +1,34 @@
 angular.module('starter.myList', ['google.places'])
-
+.directive('myPostRepeatDirective', function($timeout) {
+    
+  return{ 
+      restrict: 'A',
+      link:function(scope, element, attr) {
+      
+    if (scope.$last){
+      // iteration is complete, do whatever post-processing
+      // is necessary
+            scope.$emit('applyEffect');
+    
+      
+    }
+  }
+};
+})
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+    $scope.$on('applyEffect',function(e){
+        // Set Motion
+        console.log('triggered');
     $timeout(function() {
         $scope.isExpanded = true;
-    }, 300);
-
-    // Set Motion
+    }, 100);
     ionicMaterialMotion.fadeSlideInRight();
 
     // Set Ink
     ionicMaterialInk.displayEffect();
+    });
+
+    
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;

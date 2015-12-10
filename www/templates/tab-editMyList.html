@@ -1,7 +1,19 @@
 <link href="css/tab-editMyList-css.css" rel="stylesheet" />
 
-<ion-view hide-tab-bar hide-nav-bar="false" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="true" view-title="Viewing List" cache-view="false">
 
+    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
+
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
+        Back
+      </button>
+        
+        <div class="title" style="color:white;">
+            Add Item
+        </div>
+
+    </ion-header-bar>
+    
   <ion-content scroll="false" style="background-color: whitesmoke;" >
       <div class="hover" style="height: 30%;">
       <div class="row row-center" style=";">

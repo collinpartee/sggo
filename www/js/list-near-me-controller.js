@@ -153,5 +153,16 @@ angular.module('starter.listNearMe', [])
         
         
     }
+}).controller('FriendsCtrl', function($scope,$timeout,ionicMaterialMotion,ionicMaterialInk) {
+$timeout(function() {
+        $scope.isExpanded = true;
+    }, 300);
+
+    // Set Motion
+    ionicMaterialMotion.fadeSlideInRight();
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
 })
+
 ;
