@@ -7,13 +7,13 @@
     </ion-nav-buttons>
     <ion-content>
       <ion-list class="list">
-        <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar">
-          <img src="{{v.avatar}}" />
+        <ion-item ng-repeat="friend in friendList" class="item item-avatar">
+          <img src="{{friend.avatar}}" />
             <div style="padding: 16px 49px 16px 72px;">
-            {{v.name}}
+            {{friend.name}}
             <p>Macy's Systems and Technology</p>
             </div>
-          <ion-option-button class="button button-assertive" ng-click="deleteFriend(v)">
+          <ion-option-button class="button button-assertive" ng-click="deleteFriend(friend)">
                 delete
             </ion-option-button>
         </ion-item>

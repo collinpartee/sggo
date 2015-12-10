@@ -398,8 +398,6 @@ $scope.goToEditListPage = function(list){
     $scope.placeList = currListItem.places;
     $scope.listName= currListItem.ListName;
     $scope.tags=currListItem.tags;
-    $scope.publicList=currListItem.share;
-    console.log($scope.publicList);
     if($scope.placeList==null)
     {
         $scope.placeList=[];
@@ -509,14 +507,14 @@ $scope.goToEditListPage = function(list){
         }
         else
         {
-            //this is edit
+
             var item= myListFirebase.$getRecord($stateParams.$id);
             console.log('scope'+$scope.ListName);
             item.ListName=name;
             item.places=currListItem.places;
             item.tags=currListItem.tags;
-            item.share=publicList;
-            item.creater_name=myName;
+            item.share=true;
+
             myListFirebase.$save(item)
             .then(function(ref) {
                 var id = ref.key();

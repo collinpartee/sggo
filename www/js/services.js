@@ -91,11 +91,11 @@ angular.module('starter.services', [])
   return $firebaseArray(myListsRef);
 }])
 //global item list base on friendlist
-.factory('friendList', ['$firebaseObject', function($firebaseObject) {
+.factory('friendList', ['$firebaseArray', function($firebaseArray) {
   var ref = new Firebase('https://sggo.firebaseio.com/');
   var authData = ref.getAuth();
   console.log(authData.uid);
   var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/friendList');
-  return $firebaseObject(myListsRef);
+  return $firebaseArray(myListsRef);
 }]);
 ;

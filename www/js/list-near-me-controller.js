@@ -111,7 +111,7 @@ angular.module('starter.listNearMe', [])
 
 })
 
-.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,FBURL,myListFirebase,authData) {
+.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,FBURL) {
 	
     $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -153,43 +153,5 @@ angular.module('starter.listNearMe', [])
         
         
     }
-
-    $scope.downLoad=function(){
-    	var ref = new Firebase(FBURL);
-        ref.child('users/'+authData.uid+'/myLists').orderByChild('ListDownloadId')
-        .startAt($stateParams.$id)
-        .endAt($stateParams.$id)
-        .once('value', function(snap) {
-        	
-            if(snap.hasChildren())
-            {
-            	console.log('exist ');
-            }
-            else
-            {
-            	var downloadItem = $stateParams;
-		    	downloadItem.share=false;
-		    	downloadItem.ListDownloadId=$stateParams.$id;
-		    	delete downloadItem.$id;
-		    	myListFirebase.$add(downloadItem);
-            }
-        });
-
-    }
-})
-.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Set Header
-
-
-    // Delay expansion
-    $timeout(function() {
-        $scope.isExpanded = true;
-    }, 300);
-
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
 })
 ;
