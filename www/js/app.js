@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
+angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
 
 .run(function($ionicPlatform,$cordovaGeolocation,global) {
   $ionicPlatform.ready(function() {
@@ -306,6 +306,24 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
         'places':[],
         'share':true,
         'tags':[]
+    }
+  }) 
+  .state('tab.friends', {
+    url: '/friends',
+    views: {
+      'tab-friends': {
+        templateUrl: 'templates/tab-friends.html',
+        controller: 'FriendsCtrl',
+
+      },
+      'fabContent': {
+          template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
+          controller: function ($timeout) {
+              $timeout(function () {
+                  document.getElementById('fab-friends').classList.toggle('on');
+              }, 900);
+          }
+      } 
     }
   })
   ;
