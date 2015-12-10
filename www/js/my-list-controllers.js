@@ -1,7 +1,15 @@
 angular.module('starter.myList', ['google.places'])
 
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
-    
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+    $timeout(function() {
+        $scope.isExpanded = true;
+    }, 300);
+
+    // Set Motion
+    ionicMaterialMotion.fadeSlideInRight();
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;
