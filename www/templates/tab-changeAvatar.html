@@ -1,0 +1,29 @@
+<!--<link href="" rel="stylesheet" />-->
+
+<ion-view hide-tab-bar hide-nav-bar="false" view-title="Viewing List" cache-view="false">
+
+  <ion-content scroll="false" style="" >
+      <table cellspacing="0" cellpadding="0">
+   <colgroup span="8"></colgroup>
+
+   <tbody>
+     <tr class="days">
+       <th scope="col" title="Monday">Mon</th>
+       <th scope="col" title="Tuesday">Tue</th>
+       <th scope="col" title="Wednesday">Wed</th>
+       <th scope="col" title="Thursday">Thu</th>
+       <th scope="col" title="Friday">Fri</th>
+       <th scope="col" title="Saturday">Sat</th>
+       <th scope="col" title="Sunday">Sun</th>
+     </tr>
+     <tr ng-repeat="days in dates">
+         <td ng-repeat="day in days">
+             {{ day }}
+             <!-- After seven iterations a new `<tr>` should be aded -->
+        </td>
+     </tr>
+ </tbody>
+ </table>
+      
+  </ion-content>
+</ion-view>

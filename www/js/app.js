@@ -187,6 +187,18 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', '
         'myEmail':''
       }
   })
+  .state('tab.changeAvatar', {
+    url: '/changeAvatar',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-changeAvatar.html',
+        controller: 'ChangeAvatarCtrl'
+      }
+    },
+      params:{
+        'myEmail':''
+      }
+  })
   
   .state('loginPage', {
     url: "/loginPage",

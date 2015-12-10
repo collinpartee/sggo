@@ -49,6 +49,13 @@ angular.module('starter.accountSetting', [])
     	console.log(myEmail);
         $state.go('tab.changePassword',{'myEmail':myEmail});
     };
+    
+    $scope.linkToChangeAvatar = function(){
+    	
+        $state.go('tab.changeAvatar');
+    };
+    
+    
 })
 .controller('PasswordCtrl', function($scope, $ionicPopup,$stateParams) {
 	$scope.newitem={};
@@ -99,5 +106,17 @@ angular.module('starter.accountSetting', [])
 		   });
 		 };
 
+})
+.controller('ChangeAvatarCtrl', function($scope,$stateParams) {
+	
+    var monthDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,       24, 25, 26, 27, 28, 29, 30, 31];
+    
+    var dates = [];
+    for (var i = 0; i < monthDays.length; i++ ) {
+        if (i % 7 == 0) dates.push([]);
+        dates[dates.length-1].push(monthDays[i]);
+    }
+  return $scope.dates = dates;
+    
 })
 ;
