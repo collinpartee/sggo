@@ -1,6 +1,6 @@
 
 <link href="css/ng-tags-input.bootstrap.css" rel="stylesheet">
-      <link href="css/ng-tags-input.css" rel="stylesheet">
+<link href="css/ng-tags-input.css" rel="stylesheet">
 <ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="My Lists" cache-view="false">
 
 <!--
@@ -16,11 +16,17 @@
 
     </ion-header-bar>
 -->
-<ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackToListDetails();">
-        Back
+<div class="bar bar-header bar-dark">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();">
       </button>
-    </ion-nav-buttons>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Boobs</div>
+    </div>
+    
+    
     <ion-content ng-init="publicList = true;">
       <div class="list">
          <label class="item item-input">

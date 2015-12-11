@@ -1,10 +1,23 @@
 <link href="../css/tab-listDetail-css.css" rel="stylesheet" />
 <ion-view view-title="Friend List" cache-view="false">
+    
+    <div class="bar bar-header bar-dark">
+        <div class="h1 title title-left light">Boobs</div>
+        <div class="buttons buttons-right header-item">
+            <span class="right-buttons">
+                <button class="button button-balanced button-fab" ng-click="openModal()"><i class="icon ion-plus"></i>
+                                                                        </button>
+            </span>
+        </div>
+    </div>
+    
+<!--
     <ion-nav-buttons side="right">
       <button class="button button-icon icon ion-person-add" ng-click="openModal()" style="color:white;">
         
       </button>
     </ion-nav-buttons>
+-->
     <ion-content>
       <ion-list class="list">
         <ion-item ng-repeat="friend in friendList" class="item item-avatar">

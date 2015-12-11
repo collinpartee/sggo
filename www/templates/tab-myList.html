@@ -1,5 +1,5 @@
 <!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="My Lists" hide-nav-bar="true" cache-view="false" style="background-color: whitesmoke;">
+<ion-view view-title="My Lists" hide-nav-bar="false" cache-view="false" style="background-color: whitesmoke;">
 <!--
     <ion-nav-buttons side="right">
       <button class="button button-icon icon ion-plus-round" style="color: white;" ng-click="openListDetail()">
@@ -7,19 +7,26 @@
       </button>
     </ion-nav-buttons>
 -->
-    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
-
 <!--
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
-        Back
-      </button>
--->
+    <ion-header-bar class="bar bar-dark"  ng-init="showInputBar = false; didStartEditing = false;">
         
         <div class="title" style="color:white;">
             Add Item
         </div>
 
     </ion-header-bar>
+-->
+    
+    <div class="bar bar-header bar-dark">
+        <div class="h1 title title-left light">My List</div>
+        <div class="buttons buttons-right header-item">
+            <span class="right-buttons">
+                <button class="button button-balanced button-fab"><i class="icon ion-plus"></i>
+                                                                        </button>
+            </span>
+        </div>
+    </div>
+    
 <!--
     <ion-content ng-class="{expanded:isExpanded}">
         <div class="content has-header">
@@ -52,7 +59,7 @@
 <!--            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">-->
             <div ng-repeat="list in myLists track by $index" class="list animate-fade-slide-in-right" my-post-repeat-directive='mylist' >
             
-                <div ng-click="goToEditListPage(list);" class="item item-avatar item-icon-right">
+                <div ng-click="goToEditListPage(list);" class="item item-avatar item-icon-right ink" style="height: 75px;">
                     <img src="img/steak.jpg">
                     <h2>{{list.ListName}}</h2>
                     <p ng-repeat='tag in list.tags' style="">#{{tag.text}}</p>
@@ -127,7 +134,7 @@
           </ion-option-button>
 <!--             <img src="img/tile5.jpg" class="tileImage" />-->
         </ion-item>
-      </ion-list>
+      </ion-list>        
     </ion-content>
 
 </ion-view>

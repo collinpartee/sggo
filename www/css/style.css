@@ -1,5 +1,5 @@
 body{
-    background-color: whitesmoke;
+/*    background-color: whitesmoke;*/
 }
 
 .main-color{
@@ -196,7 +196,7 @@ position: absolute;
 
 .downloadButton{
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 0;
     max-width: 80px;
     max-height: 55px;
@@ -240,4 +240,11 @@ position: absolute;
 .editListItems .item{
     margin: 5px 10px;
     width 97%;
+}
+
+.editButton{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    
 }
