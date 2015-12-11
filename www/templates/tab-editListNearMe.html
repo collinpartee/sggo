@@ -1,41 +1,65 @@
-<ion-view hide-tab-bar hide-nav-bar="false"  view-title="Viewing List" cache-view="false">
-<div class="bar bar-header bar-dark">
-        <div class="buttons buttons-left header-item">
-            <span class="left-buttons">
-                <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<!--
+    <ion-header-bar class="bar-stable">
+
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();">
+        Back
       </button>
-            </span>
+        
+        <div class="title" style="color:white;">
+            Add Item
         </div>
-        <div class="h1 title title-left light">Boobs</div>
-    </div>
-    
-    
-  <ion-content scroll="false" style="">
-      <div class="hover" style="border-bottom: 2px solid black;">
+
+    </ion-header-bar>
+-->
+
+
+    <ion-nav-buttons side="left">
+      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar();$ionicGoBack(); ">
+        Back
+      </button>
+    </ion-nav-buttons>
+  <ion-content ng-class="{expanded:$scope.isExpanded}">
+      <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}');"></div>
+                <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
+                <h4>Created By : {{nearByListItem.creater_name}}</h4>
+            </div>
+<!--             <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
+            <button class="button button-icon ion-arrow-down-a downloadButton" ng-click="downLoad()">
+              <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
+            </button>
+            <div class="row" style="background-color: whitesmoke;">
+              <div class="col col-80" style="margin: 0 auto;">
+
+
+                    <button class="button" ng-click="goToSpin()" style="width: 100%;">Spin</button>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ng-click="downLoad()" class="tab-item">
+                <i class="icon ion-arrow-graph-up-right"></i> Download
+            </a>
+            <a ng-click="likeThisList();" class="tab-item">
+                <i class="icon ion-android-people"></i> Like
+            </a>
+        </div>
+
+<!--       <div class="hover" style="border-bottom: 2px solid black;">
       <div class="row row-center" style="background-color: whitesmoke;">
         <div class="" style="margin: 0 auto;" >
             <h4>{{nearByListItem.ListName}}</h4>
             <h5>Created By : {{nearByListItem.creater_name}}</h5>
           </div>
   
-      </div>
-          <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
-          <button class="button button-icon ion-arrow-down-a downloadButton">
+      </div> -->
+<!--           <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
+          <button class="button button-icon ion-arrow-down-a downloadButton" ng-click="downLoad()">
             <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
-          </button>
-          
-      <div class="row" style="background-color: whitesmoke;">
-          <div class="col col-80" style="margin: 0 auto;">
-<!--
-                <button class="button icon-left {{heartClass}}" ng-click="likeThisList();" style="">Like</button>
-            
-                <button class="button icon-left ion-arrow-down-a" style="">Download</button>
--->
-           
-
-                <button class="button" ng-click="goToSpin()" style="width: 100%;">Spin</button>
-            </div>
-        </div>
+          </button> -->
 <!--
           <div class="row" style="background-color: whitesmoke;">
               <div class="col col-20 col-offset-33">
@@ -49,22 +73,21 @@
           </div>
 -->
           
-      </div>
       
-      <ion-scroll style="height: 65%; padding-bottom: 10px;">
       <div class="list">
-        <div class="item item-thumbnail-left" ng-repeat="items in nearByListItem.places track by $index">
-            <img src="img/steak.JPG" />
-            <span class="item-text-wrap">{{items.name}}</span><br>
-            <span class="item-text-wrap">{{items.vicinity}}</span><br>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star-half"></i>
-            <i class="ion-ios-star-outline"></i>
-            <i class="ion-ios-star-outline"></i>
+        <div class="list animate-fade-slide-in-right" ng-repeat="items in nearByListItem.places track by $index">
+            <a class="item item-avatar item-icon-right">
+                <img src="img/steak.JPG" />
+                <span class="item-text-wrap">{{items.name}}</span><br>
+                <span class="item-text-wrap">{{items.vicinity}}</span><br>
+                <i class="ion-ios-star"></i>
+                <i class="ion-ios-star"></i>
+                <i class="ion-ios-star-half"></i>
+                <i class="ion-ios-star-outline"></i>
+                <i class="ion-ios-star-outline"></i>
+            </a>      
+            
         </div>
-      </div>
-          </ion-scroll>
       
       
   </ion-content>

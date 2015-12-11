@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', 'starter.controllers', 'starter.myList', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
+angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','starter.controllers', 'starter.myList','starter.tabCtrl',  'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput'])
 
 .run(function($ionicPlatform,$cordovaGeolocation,global) {
   $ionicPlatform.ready(function() {
@@ -40,19 +40,22 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', '
     
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.views.maxCache(0);
   $stateProvider
 
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'tabCtrl'
   })
 
   // Each tab has its own nav history stack:
@@ -64,17 +67,17 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', '
       'tab-myList': {
         templateUrl: 'templates/tab-myList.html',
         controller: 'myListCtrl'
-      }
-        
-    },
+      },
       'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                template: '<button id="fab-add" class="button button-fab button-fab-top-right expanded button-energized-900 spin" ui-sref="tab.listDetails"><i class="icon ion-plus"></i></button>',
                 controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
+                    $timeout(function () {
+                        document.getElementById('fab-add').classList.toggle('on');
+                    }, 900);
                 }
             }
+        
+    }
   })
   .state('tab.editMyList', {
     url: '/editMyList',
@@ -238,7 +241,8 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', '
         'creater_name':'',
         'places':[],
         'share':true,
-        'tags':[]
+        'tags':[],
+        'avatar':''
     }
   })
   
@@ -248,7 +252,15 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput', '
       'tab-friendList': {
         templateUrl: 'templates/tab-friendList.html',
         controller: 'friendListCtrl'
-      }
+      },
+      'fabContent': {
+                template: '<button id="fab-add" class="button button-fab button-fab-top-right expanded button-energized-900 spin"><i class="icon ion-plus"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-add').classList.toggle('on');
+                    }, 900);
+                }
+            }
         
     }
   })
