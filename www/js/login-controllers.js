@@ -19,6 +19,7 @@ angular.module('starter.controllers', [])
   function authDataCallback(authData) {
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      $scope.setInfo(authData);
       $state.go('tab.myList');
     } else {
       console.log("User is logged out");
@@ -40,7 +41,18 @@ angular.module('starter.controllers', [])
       console.error(error);
     });
   };
-
+  $scope.facebookLogin = function scopeLogin() {
+    Auth.loginWithFacebook()
+    .then(function(authData){
+      console.log('We are logged in!', authData);
+      //add user to data base
+      afterLogIn(authData);
+        
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+  };
   //if user logs in
   function afterLogIn(authData)
   {
@@ -53,20 +65,35 @@ angular.module('starter.controllers', [])
   function userExistsCallback(exists,authData) {
     if (exists) {
       $scope.setInfo(authData);
+      $state.go('tab.myList');
     } else {
         
         console.log("user doesnt exist");
+console.log("wtf");
+        console.log('info',getName(authData),getEmail(authData),getImage(authData));
+
         itemRef.child("users").child(authData.uid).set({
             provider: authData.provider,
             name: getName(authData),
             email: getEmail(authData),
             avatar: getImage(authData)
-        });
-
-        $state.go('tab.myList');
+        },onComplete);
+        $scope.setInfo(authData);
+      var onComplete = function(error) {
+      if (error) {
+        console.log('Synchronization failed');
+      } else {
+        //$state.go('tab.myList');
+      }
+       
     }
+     
   }
   // Logs a user out
+
+};
+// Same as the previous example, except we will also log a message
+// when the data has finished synchronizing
   $scope.logout = Auth.logout;
 
   // detect changes in authentication state
@@ -76,6 +103,7 @@ angular.module('starter.controllers', [])
   // });
 
   function getName(authData) {
+    console.log('get name');
     switch(authData.provider) {
        case 'google':
          return authData.google.displayName;
@@ -87,7 +115,7 @@ angular.module('starter.controllers', [])
   }
 
     function getEmail(authData) {
-      console.log(authData.google.email);
+      
     switch(authData.provider) {
        case 'google':
          return authData.google.email;
@@ -99,7 +127,7 @@ angular.module('starter.controllers', [])
   }
 
   function getImage(authData) {
-      console.log(authData.google.email);
+      
     switch(authData.provider) {
        case 'google':
          return authData.google.profileImageURL;

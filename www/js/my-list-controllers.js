@@ -1,31 +1,19 @@
 angular.module('starter.myList', ['google.places'])
-.directive('myPostRepeatDirective', function($timeout) {
-    
-  return{ 
-      restrict: 'A',
-      link:function(scope, element, attr) {
-      
-    if (scope.$last){
-      // iteration is complete, do whatever post-processing
-      // is necessary
-            scope.$emit('applyEffect');
-    
-      
-    }
-  }
-};
-})
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $ionicPopup, $timeout,$firebaseObject,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate,$location,$ionicModal, $ionicPopup, $timeout,$firebaseObject,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+    //$scope.$parent.showHeader();
+    $scope.isExpanded = true;
+    $scope.$parent.clearFabs();
+    $scope.$parent.setHeaderFab('right');
     $scope.$on('applyEffect',function(e){
         // Set Motion
+      
+    
         console.log('triggered');
-    $timeout(function() {
-        $scope.isExpanded = true;
-    }, 100);
-    ionicMaterialMotion.fadeSlideInRight();
+      $timeout(function(){
 
-    // Set Ink
-    ionicMaterialInk.displayEffect();
+            ionicMaterialMotion.ripple();
+            ionicMaterialInk.displayEffect();
+          },0);
     });
 
     
@@ -417,6 +405,7 @@ $scope.goToEditListPage = function(list){
     $scope.placeList = currListItem.places;
     $scope.listName= currListItem.ListName;
     $scope.tags=currListItem.tags;
+    $scope.publicList=currListItem.share;
     if($scope.placeList==null)
     {
         $scope.placeList=[];
@@ -526,13 +515,14 @@ $scope.goToEditListPage = function(list){
         }
         else
         {
-
+          //this is edit
             var item= myListFirebase.$getRecord($stateParams.$id);
             console.log('scope'+$scope.ListName);
             item.ListName=name;
             item.places=currListItem.places;
             item.tags=currListItem.tags;
-            item.share=true;
+            item.share=publicList;
+            item.creater_name=myName;
 
             myListFirebase.$save(item)
             .then(function(ref) {

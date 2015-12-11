@@ -1,17 +1,31 @@
 <ion-view class="welcome-view" cache-view="false" hide-nav-bar="true">
-    <img class="blurry-img" src="img/151011_Riposte_Nova__006_F2_670.jpg" />
-  <ion-content scroll="false" class="" style="background-color: transparent;">
+     <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
+        <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <h1>Thronester</h1>
+            </div>
+        </div>
+        <div class="list">
+            <ion-md-input ng-model='lemail' placeholder="email" highlight-color="balanced" type="text"></ion-md-input>
+            <ion-md-input ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+        </div>
+        <div class="padding">
+            <button class="button button-full button-assertive ink" ng-click="logIn(lemail,lpassword)">Login</button>
+        </div>
+        <div class="button-bar social-login">
+            <button class="button button-small button-border icon-left ion-social-google button-assertive-900" ng-click="googleLogin()">Google+</button>
+            <button class="button button-small button-border icon-left ion-social-facebook button-positive-900" ng-click="facebookLogin()">Facebook</button>
+        </div>
+    </ion-content>
+<!--   <ion-content scroll="false" class="" style="background-color: transparent;">
       <div class="top-content row">
         <div class="app-copy col col-center">
 
           <h1 class="app-title" style="margin-top: 15vh; color: white; font-family: 'Julius Sans One', sans-serif;">Caboodle</h1>
             
              <div class="row centerRow" style="margin-top: 10vh;">
-<!--
-                <img src="img/chicken.png" class="col col-30"/>
-                <img src="img/hamburger.png" class="col col-30"/>
-                <img src="img/hotdog.png" class="col col-30"/>
--->
+
             </div>
         </div>
       </div>
@@ -30,7 +44,7 @@
           <section ng-include="'views/partials/legal-notice.html'"></section>
         </div>
       </div>
-  </ion-content>
+  </ion-content> -->
 </ion-view>
 
 

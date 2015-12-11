@@ -1,6 +1,20 @@
 angular.module('starter.accountSetting', [])
 
-.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject, Auth,authData,FBURL) {
+.controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk, Auth,authData,FBURL,global) {
+	$scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+    // Set Ink
+    ionicMaterialInk.displayEffect();
 	var myEmail;
 	var ref = new Firebase("https://sggo.firebaseio.com");
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {
@@ -8,7 +22,7 @@ angular.module('starter.accountSetting', [])
           myEmail= dataSnapshot.val();
         });
 
-
+     $scope.myName=global.getMyName();
       var myAvatar=$firebaseObject(ref.child('users/'+authData.uid+'/avatar'));
       myAvatar.$loaded().then(function() {
       	myAvatar.$bindTo($scope, "avatar");

@@ -1,7 +1,23 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,geoFire,global,FBURL) {
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL) {
 
+
+		$scope.$parent.showHeader();
+	    $scope.$parent.clearFabs();
+	    $scope.isExpanded = true;
+	    $scope.$parent.setExpanded(true);
+	    $scope.$parent.setHeaderFab('right');
+	    $scope.$on('applyEffect',function(e){
+		    $timeout(function() {
+		        ionicMaterialMotion.fadeSlideIn({
+		            selector: '.animate-fade-slide-in .item'
+		        });
+		    }, 200);
+
+		    // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
+	    });
         $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;
@@ -49,12 +65,18 @@ angular.module('starter.listNearMe', [])
 				        			var listItem=snap.val();
 				        			listItem.$id=key;
 				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
-				        			$scope.listDetail.push(listItem);
-				        			console.log(listItem);
-				        			listexist[key]='1';
-				        			if(!$scope.$$phase) {
-									  $scope.$digest();
-									}
+				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
+				        			nearbyListUserRef.once('value',function(snap){
+				        				console.log(snap.val());
+				        				listItem.avatar=snap.val();
+				        				$scope.listDetail.push(listItem);
+					        			
+					        			listexist[key]='1';
+					        			if(!$scope.$$phase) {
+										  $scope.$digest();
+										}
+				        			});
+				        			
 				        		}
 						});
 			        //$state.go($state.current, {}, {reload: true});
@@ -111,8 +133,29 @@ angular.module('starter.listNearMe', [])
 
 })
 
-.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,FBURL) {
-	
+.controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk,FBURL,myListFirebase,authData) {
+	$scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+            startVelocity: 3000
+        });
+    }, 700);
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
+
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
@@ -153,15 +196,34 @@ angular.module('starter.listNearMe', [])
         
         
     }
+    $scope.downLoad=function(){
+    	var ref = new Firebase(FBURL);
+        ref.child('users/'+authData.uid+'/myLists').orderByChild('ListDownloadId')
+        .startAt($stateParams.$id)
+        .endAt($stateParams.$id)
+        .once('value', function(snap) {
+        	
+            if(snap.hasChildren())
+            {
+            	console.log('exist ');
+            }
+            else
+            {
+            	var downloadItem = $stateParams;
+		    	downloadItem.share=false;
+		    	downloadItem.ListDownloadId=$stateParams.$id;
+		    	delete downloadItem.$id;
+		    	myListFirebase.$add(downloadItem);
+            }
+        });
+
+    }
 }).controller('FriendsCtrl', function($scope,$timeout,ionicMaterialMotion,ionicMaterialInk) {
-$timeout(function() {
-        $scope.isExpanded = true;
-    }, 300);
 
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
+    $scope.$parent.clearFabs();
+    $timeout(function() {
+        $scope.$parent.hideHeader();
+    }, 0);
     ionicMaterialInk.displayEffect();
 })
 

@@ -1,12 +1,19 @@
 angular.module('starter.friendList', [])
 
-.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,FBURL,global,friendList) {
-    $scope.friendList = friendList;
+.controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,authData,FBURL,global,friendList) {
+    friendList.$loaded()
+  .then(function(data) {
+    friendList.$bindTo($scope, "friendList")
+  })
+  .catch(function(error) {
+    console.error("Error:", error);
+  });
        //add this to slider menu
     
   $scope.deleteFriend= function(friend){
       console.log(JSON.stringify(friend));
-    friendList.$remove(friend);
+    delete friendList[friend.key];
+    friendList.$save();
   };
     
   $ionicModal.fromTemplateUrl('addFriend-modal.html', {
@@ -24,23 +31,20 @@ angular.module('starter.friendList', [])
   };
 
   $scope.closeModal = function() {
-    var exist=false;
-    angular.forEach(friendList, function(f) {
-            console.log(f.email);
-            if(f.email==$scope.searchResult.email)
-            {
-              console.log('ext ',f.email);
-              exist= true;
-            }
+    friendList[$scope.searchResult.key]=$scope.searchResult;
+      friendList.$save().then(function(ref) {
+        var friendRef=ref.parent().parent().child($scope.searchResult.key+'/friendList');
+        var friedListObj= $firebaseObject(friendRef);
+        ref.parent().once('value',function(snap){
+            var me={name:snap.val().name,email:snap.val().email,key:snap.key(),avatar:snap.val().avatar};
+            friedListObj[authData.uid]=me;
+            friedListObj.$save();
         });
-    if(!exist)
-    {
-      friendList.$add($scope.searchResult);
-    }
-
-
-    $scope.modal.hide();
-  };
+     }, function(error) {
+            console.log("Error:", error);
+          });
+        $scope.modal.hide();
+      };
 
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
