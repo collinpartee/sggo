@@ -1,25 +1,7 @@
 <!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="My Lists" hide-nav-bar="false" cache-view="false">
-<!--
-    <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-plus-round" style="color: white;" ng-click="openListDetail()">
-        
-      </button>
-    </ion-nav-buttons>
--->
-<!--     <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
+<ion-view view-title="My Lists" hide-nav-bar="false" hide-back-button="true" cache-view="false">
 
 
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
-        Back
-      </button>
-
-        
-        <div class="title" style="color:white;">
-            Add Item
-        </div>
-
-    </ion-header-bar> -->
 <!--
     <ion-content ng-class="{expanded:isExpanded}">
         <div class="content has-header">
@@ -46,14 +28,11 @@
             </div>
 -->
         <ion-list class="animate-ripple" >
-            
-<!--            style="margin: 3px auto; padding-bottom: 0; position: relative; height: 20vh;-->
-        <ion-item class="item-icon-right item-avatar" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
-<!--            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">-->
+            <ion-item class="item item-icon-right item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             <div class="item-avatar item-icon-right ">
                     <img src="img/steak.jpg">
                     <h2>{{list.ListName}}</h2>
-                    <p ng-repeat='tag in list.tags' style="">#{{tag.text}}</p>
+                    <p class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</p>
 
             </div>       
 
@@ -64,47 +43,11 @@
                       Delete
                     </ion-option-button>
              </ion-item>
+      </ion-list>
 
-<!--            <img src="img/tile4.jpg" class="tileImage" style="" />-->
-      </ion-list>
-<!--
-      <ion-list>
-        <ion-item ng-repeat="list in myLists track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(list);" style="margin: 5px 0; border-top: 3px solid cadetblue; padding-bottom: 0;">
-        <img src="img/steak.jpg" />
-          {{list.ListName}}
-          <p>#bakery #yum #gottaHaveIt</p>
-          
-            <ion-option-button class="button-positive" ng-click="shareListWithFriends(list)">
-            Share
-          </ion-option-button>
-            <ion-option-button class="button-assertive" ng-click="deleteList(list)">
-            Delete
-          </ion-option-button>
-        </ion-item>
-      </ion-list>
--->
-        
-        
-<!--
-        <ion-list>
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(k);" style="margin: 5px 0; border-top: 3px solid orange; padding-top: 0;">
-        <img src="img/steak.jpg" />
-          {{v.ListName}}
-          <p>#bakery #yum #gottaHaveIt</p>
-            <i class="icon ion-ios-people right-side"></i>
-          
-             <ion-option-button class="button-balanced" ng-click="editList(list)">
-            Edit
-          </ion-option-button> 
-            <ion-option-button class="button-assertive" ng-click="deleteTable(k)">
-            Delete
-          </ion-option-button>
-        </ion-item>
-      </ion-list>
--->
-        <ion-list class="shared-lists">
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item-icon-right item-avatar" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
-            <i class="icon ion-ios-people right-side" style="color: black;"></i>
+        <ion-list class="shared-lists animate-ripple">
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
+            <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
             <div class="item-avatar item-icon-right ">
                     <img src="img/steak.jpg">
@@ -116,7 +59,6 @@
             <ion-option-button class="button-assertive" ng-click="deleteTable(k)">
             Delete
           </ion-option-button>
-<!--             <img src="img/tile5.jpg" class="tileImage" />-->
         </ion-item>
       </ion-list>
     </ion-content>
@@ -143,13 +85,3 @@
       </ul>
   </div>
 </script>
-
-<!--
-<script id="viewList-Popup.html" type="text/ng-template">
-  <div>
-    <li class="item item-checkbox" ng-repeat="l in list.places">
-            {{l.name}}  
-        </li>
-
-  </div>
-</script>-->

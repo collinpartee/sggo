@@ -1,26 +1,15 @@
 
 <link href="css/ng-tags-input.bootstrap.css" rel="stylesheet">
-      <link href="css/ng-tags-input.css" rel="stylesheet">
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="My Lists" cache-view="false">
+<link href="css/ng-tags-input.css" rel="stylesheet">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="false" view-title="My Lists" cache-view="false">
 
 <!--
-    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
-
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();" ng-hide="showInputBar">
-        Back
-      </button>
-        
-        <div class="title">
-            Add Item
-        </div>
-
-    </ion-header-bar>
--->
 <ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackToListDetails();">
-        Back
+      <button class="button button-icon button-flat icon ion-ios-arrow-left" style="color: white;" ui-sref="tab.listDetails">
       </button>
     </ion-nav-buttons>
+-->
+    
     <ion-content ng-init="publicList = true;">
       <div class="list">
          <label class="item item-input">

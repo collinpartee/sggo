@@ -1,57 +1,22 @@
 <link href="css/tab-listDetail-css.css" rel="stylesheet" />
-<ion-view hide-tab-bar hide-nav-bar="false" view-title="Add List" cache-view="false">
-<!--
-    <ion-header-bar class="bar-positive item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Add List" cache-view="false">
 
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="$ionicGoBack();" ng-hide="showInputBar">
-        Back
-      </button>
-        
-        <div class="" ng-hide="showInputBar">
-            Add Item
-        </div>
-        
-<div class="buttons buttons-right">
-        <button class="button button-icon icon ion-plus-round" style="color: white;" ng-hide="showInputBar" ng-click="showInputBar = !showInputBar;">
-      </button>
-</div>
-
-    <label class="item-input-wrapper" ng-show="showInputBar">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="text" class="form-control" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" />
-        
-
-  </label>
-  <button class="button button-clear" ng-show="showInputBar && place==null " ng-click="showInputBar = !showInputBar;">
-    Cancel
-  </button>
-        <button class="button button-clear" ng-hide="place==null" style="color:black;" ng-click="addToList(place)">
-    AddList
-  </button>
-    
-
-    </ion-header-bar>
--->
-<!--
-    <ion-header-bar class="bar-stable item-input-inset"  ng-init="showInputBar = false; didStartEditing = false;">
-
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar(); $ionicGoBack();" ng-hide="showInputBar">
-        Back
-      </button>
-        
-        <div class="title" style="color:white;">
-            Add Item
-        </div>
-
-    </ion-header-bar>
--->
-<!--
     <ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackToMyList();">
-        Back
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ui-sref="tab.myList">
+          <i class="icon ion-ios-arrow-back"></i>
       </button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>    
+<!--
+    <div class="bar bar-header bar-assertive">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.myList"></button>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Normal Header</div>
+    </div>
 -->
+    
     <ion-content style="background-color: whitesmoke; height: 90vh; padding-bottom: 15px;" scroll="true">
         
 

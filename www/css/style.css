@@ -20,9 +20,7 @@ body{
 */
 
 /* Empty. Add your own CSS if you like */
-.addToListButton{
-    margin-top: -10px;
-}
+
 
 .stayHere{
 position: absolute;
@@ -320,4 +318,25 @@ p {
 .social-login {
     position: fixed;
     bottom: 0;
+}
+
+.myListTags{
+color: black;
+    display: inline;
+    margin-right: 5px;
+}
+
+.myListItem{
+    border-bottom: 1px solid rgba(152,152,152, .5) !important; 
+    height: 80px;
+    padding-top: 10px !important; 
+}
+
+.no-Shadow{
+    box-shadow: none !important;
+}
+
+.myListGroupIcon {
+	    top: -30px !important;
+    font-size: x-large !important;
 }
