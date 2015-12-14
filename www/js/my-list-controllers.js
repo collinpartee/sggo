@@ -24,6 +24,10 @@ angular.module('starter.myList', ['google.places'])
             
             $scope.$root.hideTabsOnThisPage = false;
         });
+    $scope.$on('$ionicView.enter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
     
     var ref = new Firebase(FBURL);
     var tableRef=new Firebase(FBURL+"/users/"+authData.uid+"/myTables");
@@ -365,6 +369,10 @@ $scope.goToEditListPage = function(list){
        $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
+        });
+    $scope.$on('$ionicView.beforeLeave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
         });
         //$scope.chats=$firebaseArray(currTable.messages);
         console.log($stateParams);
