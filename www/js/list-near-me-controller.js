@@ -22,10 +22,7 @@ angular.module('starter.listNearMe', [])
             
             $scope.$root.hideTabsOnThisPage = false;
         });
-        $scope.$on('$ionicView.enter', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-        });
+
 
 		var radius=100;
 		var listexist={};
@@ -163,10 +160,6 @@ angular.module('starter.listNearMe', [])
             
             $scope.$root.hideTabsOnThisPage = true;
     });
-    $scope.$on('$ionicView.beforeLeave', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-        });
     console.log($stateParams);
 	$scope.nearByListItem=$stateParams;
     var key=$stateParams.$id;
