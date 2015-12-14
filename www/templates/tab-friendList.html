@@ -1,13 +1,30 @@
 <link href="../css/tab-listDetail-css.css" rel="stylesheet" />
-<ion-view view-title="Friend List" cache-view="false">
+<ion-view view-title="Friend List" hide-nav-bar="true" cache-view="false">
+<!--
     <ion-nav-buttons side="right">
       <button class="button button-icon icon ion-person-add" ng-click="openModal()" style="color:white;">
         
       </button>
     </ion-nav-buttons>
+<<<<<<< HEAD
     <ion-content>
       <ion-list class="animate-ripple">
         <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar" my-post-repeat-directive='mylist'>
+=======
+-->
+    
+    <div class="bar bar-header bar-assertive-900">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.myList"></button>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Friend page</div>
+    </div>
+    
+    <ion-content class="has-header">
+      <ion-list class="list">
+        <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar">
           <img src="{{v.avatar}}" />
             <div style="padding: 16px 49px 16px 72px;">
             {{v.name}}

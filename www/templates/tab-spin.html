@@ -1,5 +1,15 @@
 <ion-view hide-tab-bar hide-nav-bar="false" view-title="Spin" cache-view="false">
-  <ion-content scroll="false">
+    
+    <div class="bar bar-header bar-assertive-900">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon button-clear ion-ios-arrow-left" ng-click="myGoBack();"></button>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Spin Page</div>
+    </div>
+    
+  <ion-content scroll="" class="has-header">
       <div class="top-of-page" style="height: 50%;">
         <div class="shuffle_container" style="width: 80%; height:65%; margin: 0 auto; padding: 20px; position: relative;" >
             <center>
@@ -21,7 +31,7 @@
 	    </div>
         </div>
       
-      <ion-scroll direction="y" style="height: 48%;">
+<!--      <ion-scroll direction="y" style="height: 48%;">-->
 	 <div class="list">
 	    <div class="item" ng-hide="chats" class="textCenter">
 	        <i class="icon ion-loading-c"></i> Loading Chats
@@ -36,7 +46,7 @@
 	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
 	    </div>
 	</div>
-      </ion-scroll>
+<!--      </ion-scroll>-->
       
   </ion-content>
 </ion-view>

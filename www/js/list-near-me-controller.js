@@ -3,6 +3,7 @@ angular.module('starter.listNearMe', [])
 .controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL) {
 
 
+
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
 	    $scope.$on('applyEffect',function(e){
@@ -15,6 +16,7 @@ angular.module('starter.listNearMe', [])
 	            ionicMaterialMotion.fadeSlideInRight();
 	            ionicMaterialInk.displayEffect();
 	          },0);
+
 	    });
         $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -132,7 +134,7 @@ angular.module('starter.listNearMe', [])
 })
 
 .controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk,FBURL,myListFirebase,authData) {
-	$scope.$parent.showHeader();
+//	$scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);

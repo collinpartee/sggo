@@ -1,6 +1,12 @@
-<!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="Lists Near Me" cache-view="false">
-  <ion-content style="background-color: whitesmoke;">
+
+<ion-view view-title="Lists Near Me" hide-nav-bar="true" cache-view="false" class="animate-ripple"><!-- class="animate-fade-slide-in" -->
+    
+    <div class="bar bar-header bar-assertive-900">
+        <div class="h1 title title-left light">Lists Near Me</div>
+    </div>
+    
+    
+  <ion-content style="background-color: whitesmoke;" class="has-header">
       <div class="list" style="margin-bottom: 0;">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
@@ -20,6 +26,7 @@
       </ion-list>
 -->
         <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);" my-post-repeat-directive='mylist'>
+
 
                 <div class="item item-avatar item-s-wrap">
                     <span class="avatar" style="background-image: url('{{list.avatar}}');"></span>

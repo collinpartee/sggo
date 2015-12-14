@@ -14,6 +14,9 @@ angular.module('starter.myList', ['google.places'])
             ionicMaterialMotion.ripple();
             ionicMaterialInk.displayEffect();
           },0);
+        
+        // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
     });
 
     
@@ -320,6 +323,7 @@ $scope.goToEditListPage = function(list){
     
     
 })
+
 .controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject,$filter,$ionicListDelegate,$ionicPopup,$timeout,tables,ionicMaterialMotion,FBURL,authData,ionicMaterialInk,friendList){
 
     $scope.$parent.showHeader();
@@ -342,9 +346,22 @@ $scope.goToEditListPage = function(list){
         });
     }, 700);
 
-    // Set Ink
-    ionicMaterialInk.displayEffect();
 
+    $scope.$on('applyEffect',function(e){
+        // Set Motion
+      
+    
+        console.log('triggered');
+      $timeout(function(){
+
+            ionicMaterialMotion.ripple();
+            ionicMaterialInk.displayEffect();
+          },0);
+        
+        // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
+    });
+    
        $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
@@ -399,7 +416,12 @@ $scope.goToEditListPage = function(list){
     console.log(friendList)
     $scope.friends={};
     var idx=0;
-    angular.forEach(friendList, function(value, key) {
+
+    console.log($scope.friends);
+    var friendlyList=[];
+    if($stateParams.from=='myTable')
+    {
+            angular.forEach(friendList, function(value, key) {
         var found = $filter('filter')($stateParams.inviteFriendList, {'key': key}, true);
           if(found.length>0)
           {
@@ -413,8 +435,7 @@ $scope.goToEditListPage = function(list){
           idx++;
           console.log(idx);
     });
-    console.log($scope.friends);
-    var friendlyList=[];
+    }
     $scope.addFriendToList = function(friend, checked){
        // console.log(checked);
         

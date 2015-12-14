@@ -1,7 +1,7 @@
 angular.module('starter.accountSetting', [])
 
 .controller('AccountCtrl', function($scope, $ionicActionSheet,$ionicPopup, $state,$firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk, Auth,authData,FBURL,global) {
-	$scope.$parent.showHeader();
+//	$scope.$parent.showHeader();
     $scope.$parent.clearAllFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
