@@ -89,6 +89,7 @@ angular.module('starter.myList', ['google.places'])
         
         var lookup = {};           
             if(checked == true){
+                console.log('friend',friend);
                 friendlyList.push(friend);
             }else{
                 for(var i = 0; i < friendlyList.length; i++) {
@@ -132,11 +133,16 @@ angular.module('starter.myList', ['google.places'])
                         var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid,avatar:snap.val().avatar};
                         $scope.currTable.inviteFriendList.push(addSefl);
                         $scope.currTable.tags=list.tags;
+                        if($scope.currTable.tags==null)
+                        {
+                            $scope.currTable.tags=[];
+                        }
                         //add table to friend's table list
                         delete $scope.currTable.$id;
                         delete $scope.currTable.$priority;
                         delete $scope.currTable.places.$id;
                         delete $scope.currTable.places.$priority;
+                        console.log($scope.currTable);
                         tables.$add(angular.copy($scope.currTable)).then(function(refAdd){
                             angular.forEach($scope.currTable.inviteFriendList, function(friend) {
                                 //console.log(friend.name);
@@ -314,7 +320,30 @@ $scope.goToEditListPage = function(list){
     
     
 })
-.controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject){
+.controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject,$filter,$ionicListDelegate,$ionicPopup,$timeout,tables,ionicMaterialMotion,FBURL,authData,ionicMaterialInk,friendList){
+
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+    var ref = new Firebase(FBURL);
+    //$scope.$parent.setHeaderFab('right');
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+            startVelocity: 3000
+        });
+    }, 700);
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
 
        $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -324,20 +353,28 @@ $scope.goToEditListPage = function(list){
         console.log($stateParams);
 
         $scope.listItem=$stateParams;
-    
 
-
-    $scope.editThisList = function(){
-        if($stateParams.from == 'myTable')
+    $scope.$on('editClicked',function(){
+        console.log('triggered edit clicked');
+        if($scope.option)
         {
-            $state.go('tab.listDetails',$stateParams);
+            if($stateParams.from == 'myTable')
+            {
+                $state.go('tab.listDetails',$stateParams);
+            }
+            else
+            {
+                $state.go('tab.listDetails',$stateParams)
+            } 
         }
         else
         {
-            $state.go('tab.listDetails',$stateParams)
+            console.log("invite more friend");
+            $scope.shareListWithFriends($stateParams);
         }
-        
-    }
+
+    });
+
 
     $scope.goSpin =  function(){
         if($stateParams.from == 'myTable')
@@ -349,6 +386,88 @@ $scope.goToEditListPage = function(list){
             $state.go('tab.spin',$stateParams);
         }
     }
+    $scope.option=true;
+    $scope.optionClicked=function(){
+        $scope.inviteFriend=false;
+        $scope.option=true;
+    }
+    $scope.inviteFriendClicked=function(){
+        $scope.option=false;
+        $scope.inviteFriend=true;
+
+    }
+    console.log(friendList)
+    $scope.friends={};
+    var idx=0;
+    angular.forEach(friendList, function(value, key) {
+        var found = $filter('filter')($stateParams.inviteFriendList, {'key': key}, true);
+          if(found.length>0)
+          {
+            console.log('found',found);
+          }
+          else
+          {
+
+            $scope.friends[key]=friendList[key];
+          }
+          idx++;
+          console.log(idx);
+    });
+    console.log($scope.friends);
+    var friendlyList=[];
+    $scope.addFriendToList = function(friend, checked){
+       // console.log(checked);
+        
+        var lookup = {};           
+            if(checked == true){
+                friendlyList.push(friend);
+            }else{
+                for(var i = 0; i < friendlyList.length; i++) {
+                    var obj = friendlyList[i];
+
+                    if(friend.key == friendlyList[i].key) {
+                        friendlyList.splice(i, 1);
+                        i--;
+                        console.log('removed ');
+                    }
+                }
+            }
+           
+            
+            //console.log(lookup.key);
+        
+        
+        //console.log(friendlyList);
+    };
+    
+  // Confirm popup code
+      $scope.shareListWithFriends = function(list) {
+        $ionicListDelegate.closeOptionButtons();
+        $scope.currTable={inviteFriendList:[],places:list.places};
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Choose Your Friends',
+          templateUrl: 'shareListWithFriends-Popup.html',
+            scope: $scope
+        });
+        confirmPopup.then(function(res) {
+          if(res) {
+                angular.forEach(friendlyList, function(friend) {
+                    tables.$getRecord($stateParams.listId).inviteFriendList.push(friend);
+                    $stateParams.inviteFriendList.push(friend);
+                    $scope.listItem.inviteFriendList.push(friend);
+                });
+                tables.$save(tables.$getRecord($stateParams.listId)).then(function(ref) {
+                  if(!$scope.$$phase) {
+                      $scope.$digest();
+                    }
+                });
+            
+              
+          } else {
+            console.log('You clicked on "Cancel" button');
+          }
+        });
+      };
 
 })
 .controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation, $http, FBURL,global,myListFirebase,geoFire,authData){

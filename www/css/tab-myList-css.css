@@ -1,39 +1,5 @@
-/*
 .item .item-content {
-	padding: 0;
-    height: 20vh;
-    
-}
-
-.biggerList{
-    padding: 0;
-    height: 20vh;
-}
-*/
-.tileImage{
-    width: 120%; 
-/*    height: 100%;*/
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    opacity: .8;
-    -webkit-filter: blur(30px);
-    filter: blur(30px);
-    background-color: black;
-    z-index: -1;
-}
-
-.item .item-content {
-/*	background-image: url(../img/1.png);*/
-    
-/*    background-color: rgba(255, 255, 255, 0.5);*/
-    background-size: 100% 100%;
-}
-
-.item{
-    border: none;
-}
-
-.shared-lists .list{
-    margin-top: -7px;
+    background-image: none;
+    background-color: white;
+    height: auto;
 }

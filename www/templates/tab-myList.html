@@ -1,4 +1,4 @@
-<!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
+<link href="css/tab-myList-css.css" rel="stylesheet" />
 <ion-view view-title="My Lists" hide-nav-bar="false" hide-back-button="true" cache-view="false">
 
 
@@ -28,13 +28,13 @@
             </div>
 -->
         <ion-list class="animate-ripple" >
-            <ion-item class="item item-icon-right item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
-            <div class="item-avatar item-icon-right ">
+            <ion-item class="item item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
                     <img src="img/steak.jpg">
-                    <h2>{{list.ListName}}</h2>
-                    <p class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</p>
-
-            </div>       
+                    <div style="padding: 16px 49px 16px 72px;">
+                      <h2>{{list.ListName}}</h2>
+                      <p class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</p>  
+                    </div>
+ 
 
             <ion-option-button class="button-positive" ng-click="shareListWithFriends(list)">
                       Share
@@ -76,11 +76,11 @@
         </label>
       </div>
       <ul class="list">
-        <li class="item item-checkbox" ng-repeat="friend in friends | filter:search_bar">
+        <li class="item item-checkbox" ng-repeat="(k,v) in friends | filter:search_bar">
           <label class="checkbox">
-            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(friend, checked);">
+            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(v, checked);">
           </label>
-            {{friend.name}}  
+            {{v.name}}  
           </li>
       </ul>
   </div>

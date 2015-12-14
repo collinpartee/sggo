@@ -1,5 +1,5 @@
 <!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="Lists Near Me" cache-view="false" class="animate-fade-slide-in">
+<ion-view view-title="Lists Near Me" cache-view="false">
   <ion-content style="background-color: whitesmoke;">
       <div class="list" style="margin-bottom: 0;">
         <div class="item item-input-inset">
@@ -19,8 +19,8 @@
         </ion-item>
       </ion-list>
 -->
-        <div class="item card-item" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);" my-post-repeat-directive='mylist'>
-            <div class="card stable-bg ink ink-dark">
+        <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);" my-post-repeat-directive='mylist'>
+
                 <div class="item item-avatar item-s-wrap">
                     <span class="avatar" style="background-image: url('{{list.avatar}}');"></span>
                     <strong>{{list.creater_name}} : </strong>{{list.ListName}}
@@ -32,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
 <!--       <ion-list style="background-color: whitesmoke;">

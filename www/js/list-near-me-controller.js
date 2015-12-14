@@ -3,19 +3,18 @@ angular.module('starter.listNearMe', [])
 .controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL) {
 
 
-		$scope.$parent.showHeader();
-	    $scope.$parent.clearAllFabs();
 	    $scope.isExpanded = true;
-	    $scope.$parent.setExpanded(true);
+	    $scope.$parent.clearAllFabs();
 	    $scope.$on('applyEffect',function(e){
-		    $timeout(function() {
-		        ionicMaterialMotion.fadeSlideIn({
-		            selector: '.animate-fade-slide-in .item'
-		        });
-		    }, 200);
+	        // Set Motion
+	      
+	    
+	        console.log('triggered');
+	      $timeout(function(){
 
-		    // Activate ink for controller
-		    ionicMaterialInk.displayEffect();
+	            ionicMaterialMotion.fadeSlideInRight();
+	            ionicMaterialInk.displayEffect();
+	          },0);
 	    });
         $scope.$on('$ionicView.beforeEnter', function() {
             

@@ -91,4 +91,16 @@ angular.module('starter.tabCtrl',[])
             fabs[0].remove();
         }
     }
+
+    $scope.editThisListP=function(){
+        console.log('parent Edit');
+        $scope.$broadcast('editClicked');
+
+    }
+
+    $scope.addFriendP=function(){
+        console.log('parent Edit');
+        $scope.$broadcast('addFriendClicked');
+
+    }
 })
