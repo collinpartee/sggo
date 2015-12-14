@@ -205,9 +205,7 @@ position: absolute;
 
 .item .item-content {
 	padding: 0;
-    height: 100%;
-/*    background-color: #F2F4F7;*/
-    
+/*    height: 100%;    */
 }
 
 .biggerList{
@@ -320,6 +318,10 @@ p {
     bottom: 0;
 }
 
+.myListTagsContainer{
+    width: 100%;
+}
+
 .myListTags{
 color: black;
     display: inline;
@@ -339,4 +341,23 @@ color: black;
 .myListGroupIcon {
 	    top: -30px !important;
     font-size: x-large !important;
+}
+
+.button back-button buttons no-text button-clear header-item hide{
+    display: block !important;
+}
+
+.editMyListItem{
+    border-bottom: 1px solid rgba(152,152,152, .5) !important;
+    height: 110px;
+}
+
+.center-div{
+    text-align: center;
+    text-align: -webkit-center;
+}
+
+.small-content{
+        position: relative !important;
+        padding-top: 20px;
 }

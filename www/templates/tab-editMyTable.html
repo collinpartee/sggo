@@ -1,32 +1,51 @@
 <link href="css/tab-editMyTable-css.css" rel="stylesheet" />
 
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="true" view-title="Viewing List" cache-view="false">
     
+<!--
     <ion-nav-buttons side="left">
       <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ui-sref="tab.myList">
           <i class="icon ion-ios-arrow-back"></i>
       </button>
     </ion-nav-buttons> 
+-->
 
-  <ion-content scroll="false" style="" >
-      <div class="hover2" style="border-bottom: 2px solid black; height: 35%;">
-      <div class="row row-center">
-        <div class="" style="margin: 0 auto;" >
-            <h4>{{listItem.ListName}}</h4>
-            <h5>Creator : {{listItem.creater_name}}</h5>
-          </div>
-  
-      </div>
-          <button class="button button-clear likeButton" ng-click="editThisList();" style="color:black; font-size:inherit;" >Edit</button>
-          <button class="button button-icon ion-share downloadButton" ng-click="shareThisList();">
-          </button>
+    <div class="bar bar-header bar-assertive-900">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.myList"></button>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Normal Header</div>
+    </div>
+    
+  <ion-content scroll="false" class="has-header" style="background-color: whitesmoke;" >
+      <div class="hover2" style="height: 35%;">
+          <div class="row">
+            <div class="col col-25">
+                <button class="button button-flat button-icon ion-share" ng-click="shareThisList();" style="font-size: x-large;">
+                </button>
+            </div>
+            <div class="col col-50">
+                <div class="center-div" >
+                    <h4>{{listItem.ListName}}</h4>
+                    <h5>{{listItem.creater_name}}</h5>
+                </div>
+            </div>
+            <div class="col col-25">
+                <button class="button button-flat">
+                    Edit
+                </button>
+            </div>
+        </div>
           
       <div class="row">
           <div class="col col-80" style="margin: 0 auto;">
   
-                <button class="button" ng-click="goSpin()" style="width: 100%;">Spin</button>
+                <button class="button button-energized-900" ng-click="goSpin()" style="width: 100%;">Spin</button>
             </div>
         </div>
+          <div class="row">
           <ion-scroll direction="x" style="width: 100vw">
           <div class="row">
             <div ng-repeat="friend in listItem.inviteFriendList" style="text-align: center;">
@@ -34,17 +53,16 @@
                 <p class="avatarName">Name</p>
                 
             </div>
-                
-            </div>
-          </div>
+                </div>
         </ion-scroll>
+          </div>
           
       </div>
     
       
       <ion-scroll style="height: 65%; padding-bottom: 5px;">
-      <div class="list">
-        <div class="item item-thumbnail-left item-icon-right" ng-repeat="items in listItem.places track by $index">
+      <div class="list editListItems">
+        <div class="item item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items.name}}</span><br>
             <span class="item-text-wrap">{{items.vicinity}}</span><br>
@@ -53,7 +71,6 @@
             <i class="ion-ios-star-half"></i>
             <i class="ion-ios-star-outline"></i>
             <i class="ion-ios-star-outline"></i>
-            <i class="icon ion-close" ng-show="editButtonClicked" style="font-size: large; color: red;"></i>
         </div>
       </div>
           </ion-scroll>

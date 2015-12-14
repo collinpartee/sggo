@@ -14,6 +14,9 @@ angular.module('starter.myList', ['google.places'])
             ionicMaterialMotion.ripple();
             ionicMaterialInk.displayEffect();
           },0);
+        
+        // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
     });
 
     
@@ -314,8 +317,23 @@ $scope.goToEditListPage = function(list){
     
     
 })
-.controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject){
+.controller('editListCtrl', function($scope, $state,$stateParams,$firebaseObject, ionicMaterialInk){
 
+    $scope.$on('applyEffect',function(e){
+        // Set Motion
+      
+    
+        console.log('triggered');
+      $timeout(function(){
+
+            ionicMaterialMotion.ripple();
+            ionicMaterialInk.displayEffect();
+          },0);
+        
+        // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
+    });
+    
        $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;

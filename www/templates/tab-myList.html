@@ -1,6 +1,14 @@
 <!--<link href="css/tab-myList-css.css" rel="stylesheet" />-->
-<ion-view view-title="My Lists" hide-nav-bar="false" hide-back-button="true" cache-view="false">
+<ion-view view-title="My Lists" hide-nav-bar="true" hide-back-button="true" cache-view="false">
 
+     <div class="bar bar-header bar-assertive-900">
+        <div class="h1 title title-left light">My List</div>
+        <div class="buttons buttons-right header-item">
+            <span class="right-buttons">
+                <button class="button button-energized-900 button-fab" ui-sref="tab.listDetails"><i class="icon ion-plus"></i></button>
+            </span> 
+        </div>
+    </div>
 
 <!--
     <ion-content ng-class="{expanded:isExpanded}">
@@ -16,7 +24,7 @@
         </div>
     </ion-content>
 -->
-    <ion-content ng-class="{expanded:isExpanded}">
+    <ion-content ng-class="{expanded:isExpanded}" class="has-header">
 <!--
             <div class="list animate-fade-slide-in-right">
                 <a href="#/app/profile" class="item item-avatar item-icon-right">
@@ -28,11 +36,11 @@
             </div>
 -->
         <ion-list class="animate-ripple" >
-            <ion-item class="item item-icon-right item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
+            <ion-item class="item item-icon-right item-avatar myListItem ink" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             <div class="item-avatar item-icon-right ">
-                    <img src="img/steak.jpg">
-                    <h2>{{list.ListName}}</h2>
-                    <p class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</p>
+                    <img src="img/tile6.jpg">
+                    <h2 class="item-text-wrap">{{list.ListName}}</h2>
+                    <p class="myListTagsContainer"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
 
             </div>       
 
@@ -45,6 +53,7 @@
              </ion-item>
       </ion-list>
 
+        
         <ion-list class="shared-lists animate-ripple">
         <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>

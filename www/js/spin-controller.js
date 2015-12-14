@@ -1,6 +1,11 @@
 angular.module('starter.spin', [])
-.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray,FBURL,tables, global) {
+.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global) {
 console.log($stateParams);
+    
+    $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+    
 var myName=global.getMyName();
     if($stateParams.from=='myList')
     {

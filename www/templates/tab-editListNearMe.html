@@ -1,4 +1,4 @@
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="false" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="false" view-title="Viewing List" cache-view="false">
 <!--
     <ion-header-bar class="bar-stable">
 
@@ -22,12 +22,40 @@
     </ion-nav-buttons>
 -->
     
-  <ion-content ng-class="{expanded:$scope.isExpanded}">
-      <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
-            <div class="content">
-                <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}');"></div>
+        <div class="bar bar-header bar-assertive-900">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+                <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.listNearMe"></button>
+            </span>
+        </div>
+        <div class="h1 title title-left light">Normal Header</div>
+    </div>
+
+    
+  <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">
+      <div class="hero" style="background-image: url('img/profile-bg.jpg');"><!-- class="hero slide-up" -->
+            <div class="content small-content">
+                <div class="row">
+            <div class="col col-25">
+                <button class="button button-flat button-icon ion-share" ng-click="shareThisList();" style="font-size: x-large;">
+                </button>
+            </div>
+            <div class="col col-50">
+                <div class="center-div" >
+                    <img src="'{{nearByListItem.avatar}}'" style="max-height: 70px; max-width: 70px;" />
+                </div>
+            </div>
+            <div class="col col-25">
+                <button class="button button-flat button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium; color: white;">{{likes.$value || 0}}</span></button>
+            </div>
+        </div>
+<!--
+                <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}'); max-height: 70px; max-width: 70px;"></div> -->
                 <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
                 <h4>Created By : {{nearByListItem.creater_name}}</h4>
+                
+<button class="button button-energized-900" ng-click="goToSpin()" style="width: 100%;">Spin</button>
+                
             </div>
 <!--             <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
             <button class="button button-icon ion-arrow-down-a downloadButton" ng-click="downLoad()">
@@ -42,6 +70,7 @@
             </div> -->
         </div>
 
+<!--
         <div class="tabs tabs-dark tabs-icon-top static">
             <a ng-click="downLoad()" class="tab-item">
                 <i class="icon ion-arrow-graph-up-right"></i> Download
@@ -50,6 +79,7 @@
                 <i class="icon ion-android-people"></i> Like
             </a>
         </div>
+-->
 
 <!--       <div class="hover" style="border-bottom: 2px solid black;">
       <div class="row row-center" style="background-color: whitesmoke;">
@@ -78,8 +108,8 @@
           
       
       <div class="list">
-        <div class="list animate-fade-slide-in-right" ng-repeat="items in nearByListItem.places track by $index">
-            <a class="item item-avatar item-icon-right">
+        <div class="list" ng-repeat="items in nearByListItem.places track by $index"><!-- class="list animate-fade-slide-in-right" -->
+            <div class="item item-thumbnail-left item-icon-right editMyListItem">
                 <img src="img/steak.JPG" />
                 <span class="item-text-wrap">{{items.name}}</span><br>
                 <span class="item-text-wrap">{{items.vicinity}}</span><br>
@@ -88,7 +118,7 @@
                 <i class="ion-ios-star-half"></i>
                 <i class="ion-ios-star-outline"></i>
                 <i class="ion-ios-star-outline"></i>
-            </a>      
+            </div>      
             
         </div>
       
