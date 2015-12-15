@@ -31,8 +31,8 @@
 
     
   <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">
-      <div class="hero" style="background-image: url('img/profile-bg.jpg');"><!-- class="hero slide-up" -->
-            <div class="content small-content">
+      <div class="hero" style="background-image: url('img/profile-bg.jpg'); height: 40%;"><!-- class="hero slide-up" -->
+            <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
                 <button class="button button-flat button-icon ion-share" ng-click="shareThisList();" style="font-size: x-large;">
@@ -52,7 +52,7 @@
                 <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
                 <h4>Created By : {{nearByListItem.creater_name}}</h4>
                 
-<button class="button button-energized-900" ng-click="goToSpin()" style="width: 100%;">Spin</button>
+<button class="button button-energized-900 col col-80" ng-click="goToSpin()" style="margin: 0 auto;">Spin</button>
                 
             </div>
         </div>
@@ -93,7 +93,7 @@
           </div>
 -->
           
-      
+      <ion-scroll style="height: 60%;">
       <div class="list">
         <div class="list" ng-repeat="items in nearByListItem.places track by $index"><!-- class="list animate-fade-slide-in-right" -->
             <div class="item item-thumbnail-left item-icon-right editMyListItem">
@@ -110,5 +110,6 @@
         </div>
       
       </div>
+          </ion-scroll>
   </ion-content>
 </ion-view>

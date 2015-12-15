@@ -220,3 +220,13 @@ color: black;
         position: relative !important;
         padding-top: 20px;
 }
+
+.hero-content{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
