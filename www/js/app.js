@@ -20,7 +20,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
+    window.screen.lockOrientation('portrait');
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation
         .getCurrentPosition(posOptions)
@@ -137,17 +137,6 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
 
     }
   })
-  
-  .state('tab.decisionTable', {
-    url: '/decisionTable',
-    views: {
-      'tab-myList': {
-        templateUrl: 'templates/tab-decisionTable.html',
-        controller: 'decisionTableCtrl'
-      }
-        
-    }
-  })
   .state('tab.listDetails', {
     url: '/listDetails',
     views: {
@@ -160,12 +149,15 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
     params:{
         'from':'',
         '$id':'none',
-        'ListName':'',
         'creater_id':'',
-        'creater_name':'',
-        'places':[],
-        'share':true,
-        'tags':[]
+        'listId':'',
+        'places': [],
+        'creater_name': "",
+        'inviteFriendList': [],
+        'ranNum': 0,
+        'ListName': "",
+        'tags': [],
+        'triggers': 0
     }
   })
   .state('tab.nameList', {

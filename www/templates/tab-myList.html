@@ -40,10 +40,10 @@
             </div>
 -->
         <ion-list class="animate-ripple" >
-            <ion-item class="item item-avatar myListItem ink" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
+            <ion-item class="item item-avatar myListItem item-remove-animate" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
                     <img src="img/tile6.jpg">
-           <div style="padding: 16px 49px 16px 72px;">
+           <div class='itemc' style="padding: 16px 49px 16px 72px;">
                     <h2 class="item-text-wrap">{{list.ListName}}</h2>
                     <p class="myListTagsContainer"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
 
@@ -61,7 +61,7 @@
 
         
         <ion-list class="shared-lists animate-ripple">
-        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
+        <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-remove-animate item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
             <div class="item-avatar item-icon-right" style="padding-top: 16px;">

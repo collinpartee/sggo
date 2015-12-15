@@ -1,4 +1,4 @@
-<link href="../css/tab-listDetail-css.css" rel="stylesheet" />
+<link href="css/tab-listDetail-css.css" rel="stylesheet" />
 <ion-view view-title="Friend List" hide-nav-bar="false" cache-view="false">
 <!--
     <ion-nav-buttons side="right">
@@ -14,8 +14,9 @@
     <ion-list class="animate-ripple">
         <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar" my-post-repeat-directive='mylist'>
           <img src="{{v.avatar}}" />
-            <div style="padding: 16px 49px 16px 72px;">
-            {{v.name}}
+            <div class='itemc' style="padding: 16px 49px 16px 72px;">
+            {{v.name}}<br>
+            {{v.email}}
             </div>
           <ion-option-button class="button button-assertive" ng-click="deleteFriend(v)">
                 delete

@@ -1,5 +1,6 @@
 angular.module('starter.spin', [])
 .controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global) {
+    $scope.$parent.clearAllFabs();
 console.log($stateParams);
     
     $scope.myGoBack = function() {

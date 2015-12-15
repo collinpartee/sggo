@@ -334,17 +334,6 @@ $scope.goToEditListPage = function(list){
     var ref = new Firebase(FBURL);
     //$scope.$parent.setHeaderFab('right');
     // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
 
 
     $scope.$on('applyEffect',function(e){
@@ -354,12 +343,9 @@ $scope.goToEditListPage = function(list){
         console.log('triggered');
       $timeout(function(){
 
-            ionicMaterialMotion.ripple();
+            ionicMaterialMotion.fadeSlideInRight();
             ionicMaterialInk.displayEffect();
           },0);
-        
-        // Activate ink for controller
-		    ionicMaterialInk.displayEffect();
     });
     
        $scope.$on('$ionicView.beforeEnter', function() {
@@ -381,7 +367,8 @@ $scope.goToEditListPage = function(list){
             }
             else
             {
-                $state.go('tab.listDetails',$stateParams)
+                $state.go('tab.listDetails',$stateParams);
+                
             } 
         }
         else
@@ -499,17 +486,19 @@ $scope.goToEditListPage = function(list){
         });
 
         $scope.goNameList = function(){
-        currListItem.places=$scope.placeList;
-        console.log('befre',currListItem);
-        if($stateParams.from=='myList' || $stateParams.from=='')
-        {
-            $state.go('tab.nameList',currListItem);
-        }
-        else{
-
-        }
+            currListItem.places=$scope.placeList;
+            console.log('befre',currListItem);
+            if($stateParams.from=='myList' || $stateParams.from=='')
+            {
+                $state.go('tab.nameList',currListItem);
+            }
+            else{
+                console.log($stateParams);
+                ref.child('tables/'+$stateParams.listId+'/places').set($stateParams.places);
+                $state.go('tab.editMyListTable',$stateParams);
+            }
         
-    };
+        };
 
     var currListItem=$stateParams;
     console.log('first call'+JSON.stringify($stateParams));
