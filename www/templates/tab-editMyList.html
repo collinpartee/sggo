@@ -1,6 +1,6 @@
 <link href="css/tab-editMyList-css.css" rel="stylesheet" />
 
-<ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
 
 <ion-nav-buttons side="left">
       <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ui-sref="tab.myList">
@@ -10,6 +10,7 @@
     
 
     
+<!--
     <div class="bar bar-header bar-assertive-900">
         <div class="buttons buttons-left header-item">
             <span class="left-buttons">
@@ -18,10 +19,11 @@
         </div>
         <div class="h1 title title-left light">Normal Header</div>
     </div>
+-->
 
     
   <ion-content scroll="false" style="background-color: whitesmoke;" class="has-header" >
-      <div class="hero"  style="height: 30%; background-image: url(../img/12.png);">
+      <div class="hero"  style="height: 30%; background-image: url(img/12.png);">
           
         <div class="row">
             <div class="col col-25">
@@ -50,7 +52,7 @@
 
 <!--        <img src="img/tile2.jpg" class="headerImage"  /> -->
       </div>
-
+<ion-scroll style="height: 70%;">
         <div class="item item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items.name}}</span><br>
@@ -62,6 +64,6 @@
             <i class="ion-ios-star-outline"></i>
 
         </div>
-      </div>
+    </ion-scroll>
   </ion-content>
 </ion-view>
