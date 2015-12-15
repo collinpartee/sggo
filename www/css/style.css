@@ -22,41 +22,6 @@ body{
 /* Empty. Add your own CSS if you like */
 
 
-.stayHere{
-position: absolute;
-    top: 0px;
-}
-
-/*** Login Page ***/
-.centerRow{
-    margin-top: 5vh;
-}
-
-.app-title {
-  display: table;
-    margin: 15vh auto 0 auto;
-}
-
-.facebook-sign-in {
-  background-color: #3B5998;
-    color: white;
-    border: none;
-}
-
-.google-sign-in {
-  background-color: #DC4E41;
-    color: white;
-    border: none;
-}
-
-.login-bkgd{
-    background-image: url(/img/dark-blue-gradient.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center; 
-    background-color: cadetblue;
-}
-
 .blurred-bkgd {
 	background-image: url(/img/151011_Riposte_Nova__006_F2_670.jpg); 
     -webkit-filter: blur(20px);
@@ -98,145 +63,33 @@ position: absolute;
 
 /*** TAB-MYlIST ***/
 
-.non-white-bg{
-    background-color: whitesmoke;
-}
-
-.list_description {
-  opacity: 0.9;
-    margin-top: 5px;
-    width: 55vw;
-    
-    word-wrap: break-word;
-}
-
-.list_tags {
-  position: absolute;
-    bottom: 2px;
-    opacity: 0.7;
-}
-
-.right-side {
-	    position: absolute;
-    top: 8px;
-    right: -15px;
-    max-width: 80px;
-    max-height: 80px;
-    width: 100%;
-    height: 100%;
-    font-size: x-large;
-}
-
 
 /*** TAB-listAdd ***/
 
-.outline-button{
-    color: green; !important
-    border: 1px solid green;
-}
-
-.list-item{
-  border: none;
-  padding-top: 7px;
-    padding-bottom: 7px;
-}
-
-.top-row{
-    height: 15vh;
-    margin-bottom: 5px;
-}
-
-.middle-row{
-    height: 40vh;
-}
-
-.bottom-row{
-    height: 10vh;
-}
-
 /*** TAB-listAdd ***/
-.list-category-item{
-
-  max-height: 100px;
-}
-
-.table-cell{
-
-  display: table-cell;
-}
 
 .thumbnail{
       max-width: 75px;
 }
 
-.list_header{
-    opacity: 0.5;
-    margin-bottom: 1px
-}
 
 /** IONIC **/
-.item{
+/*.item{
     position: relative;
-}
+}*/
 
 /** EDIT LIST NEAR ME **/
 
-.likeButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    max-width: 80px;
-    max-height: 55px;
-    width: 100%;
-    height: 100%;
-    font-size: x-large;
-}
-
-.downloadButton{
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 80px;
-    max-height: 55px;
-    width: 100%;
-    height: 100%;
-    font-size: x-large;
-}
 
 .item .item-content {
-	padding: 0;
-/*    height: 100%;    */
+	padding: 0 !important;
 }
 
-.biggerList{
-    padding: 0;
-    height: 20vh;
-}
 
-.tileImage{
-
-/*
-    width: 100vh; 
-    height: 20vh;
-*/
-
-/*
-    position: absolute;
-    top: -30;
-    left: -30
-    opacity: 1;
-*/
-/*
-    -webkit-filter: blur(7px);
-    filter: blur(7px);
-*/
-    z-index: -1;
-}
-
-.editListItems .item{
+/*.editListItems .item{
     margin: 5px 10px;
     width 97%;
-}
+}*/
 
 /* General
 ==================================*/
@@ -318,6 +171,8 @@ p {
     bottom: 0;
 }
 
+
+
 .myListTagsContainer{
     width: 100%;
 }
@@ -329,9 +184,9 @@ color: black;
 }
 
 .myListItem{
-    border-bottom: 1px solid rgba(152,152,152, .5) !important; 
+    border-bottom: 3px solid rgba(152,152,152, .5) !important; 
     height: 80px;
-    padding-top: 10px !important; 
+/*    padding-top: 10px !important; */
 }
 
 .no-Shadow{
@@ -344,7 +199,8 @@ color: black;
 }
 
 .button-fab{
-  z-index: 9999;
+  z-index: 9999 !important;
+  position: fixed !important;
 }
 .button back-button buttons no-text button-clear header-item hide{
     display: block !important;

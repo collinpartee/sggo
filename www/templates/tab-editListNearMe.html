@@ -1,4 +1,4 @@
-<ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="false" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
 <!--
     <ion-header-bar class="bar-stable">
 
@@ -13,23 +13,21 @@
     </ion-header-bar>
 -->
 
-
-<!--
     <ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackAndShowTabBar();$ionicGoBack(); ">
-        Back
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack(); ">
+          <i class="icon ion-ios-arrow-back"></i>
       </button>
-    </ion-nav-buttons>
--->
+    </ion-nav-buttons> 
+
     
-        <div class="bar bar-header bar-assertive-900">
+     <!--    <div class="bar bar-header bar-assertive-900">
         <div class="buttons buttons-left header-item">
             <span class="left-buttons">
                 <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.listNearMe"></button>
             </span>
         </div>
         <div class="h1 title title-left light">Normal Header</div>
-    </div>
+    </div> -->
 
     
   <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">

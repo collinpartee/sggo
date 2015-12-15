@@ -1,7 +1,7 @@
 
 <link href="css/ng-tags-input.bootstrap.css" rel="stylesheet">
 <link href="css/ng-tags-input.css" rel="stylesheet">
-<ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="false" view-title="My Lists" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="My Lists" cache-view="false">
 
 <!--
 <ion-nav-buttons side="left">
@@ -10,15 +10,22 @@
     </ion-nav-buttons>
 -->
     
-     <div class="bar bar-header bar-assertive-900">
+     <!-- <div class="bar bar-header bar-assertive-900">
         <div class="buttons buttons-left header-item">
             <span class="left-buttons">
                 <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.listDetails"></button>
             </span>
         </div>
         <div class="h1 title title-left light">Normal Header</div>
-    </div>
+    </div> -->
     
+    <ion-nav-buttons side="left">
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack(); ">
+          <i class="icon ion-ios-arrow-back"></i>
+      </button>
+    </ion-nav-buttons> 
+
+
     <ion-content ng-init="publicList = true;" class="has-header">
       <div class="list">
          <label class="item item-input">

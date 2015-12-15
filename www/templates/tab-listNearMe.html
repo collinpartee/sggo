@@ -1,12 +1,12 @@
 
-<ion-view view-title="Lists Near Me" hide-nav-bar="true" cache-view="false" class="animate-ripple"><!-- class="animate-fade-slide-in" -->
+<ion-view view-title="Lists Near Me" hide-nav-bar="false" cache-view="false" class="animate-ripple"><!-- class="animate-fade-slide-in" -->
     
-    <div class="bar bar-header bar-assertive-900">
+<!--     <div class="bar bar-header bar-assertive-900">
         <div class="h1 title title-left light">Lists Near Me</div>
-    </div>
+    </div> -->
     
     
-  <ion-content style="background-color: whitesmoke;" class="has-header">
+  <ion-content style="background-color: whitesmoke;">
       <div class="list" style="margin-bottom: 0;">
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
@@ -29,7 +29,7 @@
 
 
                 <div class="item item-avatar item-s-wrap">
-                    <span class="avatar" style="background-image: url('{{list.avatar}}');"></span>
+                    <span class="avatar"><img class="avatar" src="img/pic1.jpg"></span>
                     <strong>{{list.creater_name}} : </strong>{{list.ListName}}
                     <div class="card-footer text-right">
                         <i class="icon ion-chatbubbles positive"></i> 6

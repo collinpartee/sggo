@@ -2,21 +2,27 @@
 
 <ion-view hide-tab-bar hide-nav-bar="true" hide-back-button="true" view-title="Viewing List" cache-view="false">
     
-<!--
+
     <ion-nav-buttons side="left">
       <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ui-sref="tab.myList">
           <i class="icon ion-ios-arrow-back"></i>
       </button>
     </ion-nav-buttons> 
--->
+
 
   <ion-content scroll="false" style="" >
-      <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+      <div class="hero" style="background-image: url('img/profile-bg.jpg');">
           <div class="content">
-              <div class="avatar" style="background-image: url('{{listItem.avatar}}');"></div>
               <h4>{{listItem.ListName}}</h4>
               <h5>{{listItem.creater_name}}</h5>
+              <div class="col col-80" style="margin: 0 auto;">
+                  <button class="button button-energized-900" ng-click="goSpin()" style="width: 100%;">Spin</button>
+
+              </div>
+            
           </div>
+
+        </div>
       </div>
       <div class="tabs tabs-dark tabs-icon-top static">
             <a ng-click="optionClicked()" class="tab-item">
