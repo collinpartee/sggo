@@ -335,18 +335,6 @@ $scope.goToEditListPage = function(list){
     //$scope.$parent.setHeaderFab('right');
     // Set Motion
 
-
-    $scope.$on('applyEffect',function(e){
-        // Set Motion
-      
-    
-        console.log('triggered');
-      $timeout(function(){
-
-            ionicMaterialMotion.fadeSlideInRight();
-            ionicMaterialInk.displayEffect();
-          },0);
-    });
     
        $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -461,7 +449,6 @@ $scope.goToEditListPage = function(list){
           if(res) {
                 angular.forEach(friendlyList, function(friend) {
                     tables.$getRecord($stateParams.listId).inviteFriendList.push(friend);
-                    $stateParams.inviteFriendList.push(friend);
                     $scope.listItem.inviteFriendList.push(friend);
                 });
                 tables.$save(tables.$getRecord($stateParams.listId)).then(function(ref) {

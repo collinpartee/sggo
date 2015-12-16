@@ -3,6 +3,9 @@ angular.module('starter.controllers', [])
 .controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard,FBURL, Auth,global) {
     
     $scope.dontLogin = function(){
+      $ionicLoading.show({
+          template: 'Loading...'
+        });
         $state.go('tab.myList');
     };
     
@@ -21,8 +24,8 @@ angular.module('starter.controllers', [])
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
       $scope.setInfo(authData);
       $ionicLoading.show({
-      template: 'Loading...'
-    });
+        template: 'Loading...'
+      });
       $state.go('tab.listNearMe');
     } else {
       console.log("User is logged out");
@@ -68,6 +71,9 @@ angular.module('starter.controllers', [])
   function userExistsCallback(exists,authData) {
     if (exists) {
       $scope.setInfo(authData);
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
       $state.go('tab.listNearMe');
     } else {
         
@@ -196,6 +202,9 @@ console.log("wtf");
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
+                  $ionicLoading.show({
+                    template: 'Loading...'
+                  });
                   $state.go('tab.listNearMe');
             }
 
@@ -219,6 +228,9 @@ console.log("wtf");
         {
             $scope.setInfo(authData);
                   $scope.closeModal(); 
+                  $ionicLoading.show({
+                    template: 'Loading...'
+                  });
                   $state.go('tab.listNearMe');
         }
       }, {

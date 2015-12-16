@@ -14,7 +14,14 @@ angular.module('starter.listNearMe', [])
 	          },0);
 
 	    });
+
+
+
+	    $scope.$on('applyEffect',function(e){
+			$ionicLoading.hide();
+    	});
         $scope.$on('$ionicView.beforeEnter', function() {
+
             $scope.$root.hideTabsOnThisPage = false;
 
         });
