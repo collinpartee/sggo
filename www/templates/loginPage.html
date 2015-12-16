@@ -3,18 +3,19 @@
         <div class="hero no-header flat">
             <div class="content">
                 <div class="app-icon"></div>
-                <h1>Thronester</h1>
+                <h1>F.U.G.</h1>
+                <h4>Food User Group</h4>
             </div>
         </div>
         <div class="list">
             <ion-md-input ng-model='lemail' placeholder="email" highlight-color="balanced" type="text"></ion-md-input>
             <ion-md-input ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
         </div>
-        <div class="padding">
+        <div class="padding" style="padding-bottom: 0 !important;">
             <button class="button button-full button-assertive ink" ng-click="logIn(lemail,lpassword)">Login</button>
         </div>
-        <div class="padding">
-            <button class="button button-full button-assertive ink" ng-click="openModal()">Sign up</button>
+        <div class="center-textAlign">
+            <a class="ink" style="color: white;" ng-click="openModal()">Sign up</a>
         </div>
         <div class="button-bar social-login">
             <button class="button button-small button-border icon-left ion-social-google button-assertive-900" ng-click="googleLogin()">Google+</button>

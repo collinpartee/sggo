@@ -7,6 +7,11 @@
                 <h3><a class="light">{{myName}}</a></h3>
             </div>
         </div>
+        <div class="button-bar">
+            <a class="content">{{likes || 0}}<i class="ion-ios-list-outline" style="font-size: xx-large;"></i></a>
+            <a class="content">{{downloads || 0}}<i class="ion-android-download" style="font-size: xx-large;"></i></a>
+          </div>
+          
     <div class="list">
         <a class="item item-icon-right" href="#" ng-click="linkToPassword();">
             Change Password
@@ -17,9 +22,11 @@
             <i class="icon ion-ios-arrow-right"></i>
         </a>
     </div>
-      <a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">
+        <div class="row">
+      <a class="button button-assertive button-block col col-80 center-margin" style="" ng-click="showLogOutMenu()">
           Log Out
         </a>
+            </div>
     </ion-content>
 
 <!--   <ion-content>

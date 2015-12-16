@@ -230,3 +230,11 @@ color: black;
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+.center-margin {
+	margin: 0 auto;
+}
+
+.center-textAlign{
+    text-align: center;
+}
