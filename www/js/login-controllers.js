@@ -20,7 +20,10 @@ angular.module('starter.controllers', [])
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
       $scope.setInfo(authData);
-      $state.go('tab.myList');
+      $ionicLoading.show({
+      template: 'Loading...'
+    });
+      $state.go('tab.listNearMe');
     } else {
       console.log("User is logged out");
     }
@@ -65,7 +68,7 @@ angular.module('starter.controllers', [])
   function userExistsCallback(exists,authData) {
     if (exists) {
       $scope.setInfo(authData);
-      $state.go('tab.myList');
+      $state.go('tab.listNearMe');
     } else {
         
         console.log("user doesnt exist");
@@ -193,7 +196,7 @@ console.log("wtf");
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
-                  $state.go('tab.myList');
+                  $state.go('tab.listNearMe');
             }
 
           }, {
@@ -216,7 +219,7 @@ console.log("wtf");
         {
             $scope.setInfo(authData);
                   $scope.closeModal(); 
-                  $state.go('tab.myList');
+                  $state.go('tab.listNearMe');
         }
       }, {
 

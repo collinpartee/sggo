@@ -62,7 +62,7 @@ var myName=global.getMyName();
             
         })
         myName='System';
-        var message=global.getMyName()+' just did it!';
+        var message=global.getMyName()+' just fugged ';
         $scope.sendMessage(message);
         listSpinRef.update({'ranNum':getRandomInt(0,words.length-1)});
         myName=global.getMyName();

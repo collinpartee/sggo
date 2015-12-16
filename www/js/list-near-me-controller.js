@@ -1,7 +1,7 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
-
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,$ionicLoading,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
+		$ionicLoading.hide();
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
 	    $scope.$on('applyEffect',function(e){
@@ -23,6 +23,7 @@ angular.module('starter.listNearMe', [])
 		var lon=global.getMyLoc().lon;
 		var radius=100;
 		var listexist={};
+		var limit=30;
 		$scope.listDetail=[];
 
 		console.log(lat,lon);
@@ -64,7 +65,11 @@ angular.module('starter.listNearMe', [])
 				        			nearbyListUserRef.once('value',function(snap){
 				        				console.log(snap.val());
 				        				listItem.avatar=snap.val();
-				        				$scope.listDetail.push(listItem);
+				        				if($scope.listDetail.length<limit)
+				        				{
+				        					$scope.listDetail.push(listItem);
+				        				}
+				        				
 					        			
 					        			listexist[key]='1';
 					        			if(!$scope.$$phase) {
@@ -101,7 +106,10 @@ angular.module('starter.listNearMe', [])
 	        		}
 	        		else
 	        		{
-	        			$scope.listDetail.push(snap.val());
+	        			if($scope.listDetail.length<limit)
+        				{
+        					$scope.listDetail.push(listItem);
+        				}
 	        			console.log(snap.val());
 	        			listexist[key]='1';
 	        			if(!$scope.$$phase) {

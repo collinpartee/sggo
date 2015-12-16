@@ -13,6 +13,9 @@
         <div class="padding">
             <button class="button button-full button-assertive ink" ng-click="logIn(lemail,lpassword)">Login</button>
         </div>
+        <div class="padding">
+            <button class="button button-full button-assertive ink" ng-click="openModal()">Sign up</button>
+        </div>
         <div class="button-bar social-login">
             <button class="button button-small button-border icon-left ion-social-google button-assertive-900" ng-click="googleLogin()">Google+</button>
             <button class="button button-small button-border icon-left ion-social-facebook button-positive-900" ng-click="facebookLogin()">Facebook</button>
@@ -61,42 +64,21 @@
         <div class="row">
             <button class="button button-clear col col-33 col-offset-67" ng-click="closeModal();" style="opacity: 0.6;">Cancel</button>
         </div>
-        <form style="margin-top: 20vh;" ng-hide="didSubmitLogin">
-            <div class="list list-inset-cp">
-                <label class="item item-input" style="background-color: transparent; border: 0;">
-<!--                    <span class="input-label" >Email</span>-->
-                    <input placeholder="Email" type="text" ng-model="lemail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" ng-click="keyboardScroll();">
-                </label>
-                <label class="item item-input" style="background-color: transparent; border: 0;">
-<!--                    <span class="input-label" >Password</span>-->
-                    <input placeholder="Password" type="password" ng-model='lpassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" ng-click="keyboardScroll();">
-                </label>
-            </div>
-            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="logIn(lemail,lpassword)">Log In</button>
 
-            <a class="dont-have-facebook button button-clear button-block"  ng-click="didSubmitLogin=true">
-
-              Sign up
-            </a>
-            <button class="dont-have-facebook button button-clear button-block"  ng-click="resetPassword(lemail)">
-              reset password
-            </button>
-        </form>
-
-        
-            <form style="margin-top: 20vh;" ng-show="didSubmitLogin">
+    
+            <form style="margin-top: 20vh;">
             <div class="list list-inset-cp">
                 <label class="item item-input" style="background-color: transparent; border: 0;">
 <!--                    <span class="input-label">Name</span>-->
-                        <input placeholder="Name" type="text" ng-model="sname" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
+                        <input placeholder="Name" type="text" ng-model="sname" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
                 </label>
                 <label class="item item-input" style="background-color: transparent; border: 0;">
 <!--                    <span class="input-label" >Email</span>-->
-                    <input placeholder="Email" type="text" ng-model="semail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
+                    <input placeholder="Email" type="text" ng-model="semail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
                 </label>
                 <label class="item item-input"style="background-color: transparent; border: 0;">
 <!--                    <span class="input-label" >Password</span>-->
-                    <input placeholder="Password" type="password" ng-model='spassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;">
+                    <input placeholder="Password" type="password" ng-model='spassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
                 </label>
             </div>
 
