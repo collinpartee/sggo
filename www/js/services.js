@@ -2,6 +2,48 @@ angular.module('starter.services', [])
 
 // constructor injection for a Firebase reference
 .service('Root', ['FBURL', Firebase])
+.service('locationService', function($q,$cordovaGeolocation,global) {
+  return {
+    getLocation: function() {
+      console.log(global.getMyLoc());
+      var dfd = $q.defer()
+        if(global.getMyLoc().lat==null)
+        {
+           setTimeout(function() {
+           
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            $cordovaGeolocation
+                .getCurrentPosition(posOptions)
+                .then(function (position) {
+                    var lat  = position.coords.latitude;
+                    var lon = position.coords.longitude;
+
+                    global.setMyLoc({'lat':lat,'lon':lon});
+                    console.log("myloc ",global.getMyLoc());
+                    dfd.resolve({
+                      myloc:global.getMyLoc()
+                    });
+                }, function(err) {
+                  // error
+                  console.log("myloc error");
+                  global.setMyLoc({'lat':37.38, 'lon':-122.09})
+                });
+            
+          }, 2000)         
+        }
+        else
+        {
+          
+          dfd.resolve({
+            myloc:global.getMyLoc()
+          });          
+        }
+
+
+      return dfd.promise
+    }
+  }
+})
 
 // create a custom Auth factory to handle $firebaseAuth
 .factory('Auth', function($firebaseAuth, Root, $timeout,$state){
@@ -38,7 +80,7 @@ angular.module('starter.services', [])
 // globle varibale usage
 .factory('global', function(){
 
-  var myLoc={'lat':37.38, 'lon':-122.09};
+  var myLoc={};
   var myName='unKnow';
   var myAvatar='';
   return {

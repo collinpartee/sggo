@@ -35,7 +35,8 @@
             <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
-                <button class="button button-flat button-icon ion-share" ng-click="shareThisList();" style="font-size: x-large;">
+                <button class="button button-flat button-icon ion-android-download" ng-click="downLoad();" style="font-size: x-large;">
+                {{downloads.$value || 0}}
                 </button>
             </div>
             <div class="col col-50">

@@ -1,14 +1,10 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL) {
-
-
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
 
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
 	    $scope.$on('applyEffect',function(e){
-	        // Set Motion
-	      
 	    
 	        console.log('triggered');
 	      $timeout(function(){
@@ -19,17 +15,16 @@ angular.module('starter.listNearMe', [])
 
 	    });
         $scope.$on('$ionicView.beforeEnter', function() {
-            
             $scope.$root.hideTabsOnThisPage = false;
+
         });
-
-
+		//console.log('myloc',myLoc);
+		var lat=global.getMyLoc().lat;
+		var lon=global.getMyLoc().lon;
 		var radius=100;
 		var listexist={};
 		$scope.listDetail=[];
-        $scope.myplace=global.getMyLoc();
-		var lat=global.getMyLoc().lat;
-		var lon=global.getMyLoc().lon;
+
 		console.log(lat,lon);
 		if(lat==null)
 		{
@@ -115,7 +110,7 @@ angular.module('starter.listNearMe', [])
 	        			
 	        		}
 	        	});
-			  console.log($scope.lists); // { foo: "bar" }
+			  console.log($scope.listDetail); // { foo: "bar" }
 
 	      });
 
@@ -154,7 +149,7 @@ angular.module('starter.listNearMe', [])
     }, 700);
 
     // Set Ink
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 
     $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -198,6 +193,11 @@ angular.module('starter.listNearMe', [])
     }
     $scope.downLoad=function(){
     	var ref = new Firebase(FBURL);
+    	var listDownloadRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey+"/downloads");
+    	var myDownloads=$firebaseObject(listDownloadRef);
+    	myDownloads.$loaded().then(function() {
+	      	myDownloads.$bindTo($scope, "downloads");
+	      });
         ref.child('users/'+authData.uid+'/myLists').orderByChild('ListDownloadId')
         .startAt($stateParams.$id)
         .endAt($stateParams.$id)
@@ -213,7 +213,9 @@ angular.module('starter.listNearMe', [])
 		    	downloadItem.share=false;
 		    	downloadItem.ListDownloadId=$stateParams.$id;
 		    	delete downloadItem.$id;
-		    	myListFirebase.$add(downloadItem);
+		    	myListFirebase.$add(downloadItem).then(function(ref) {
+				  $scope.downloads.$value=1+$scope.downloads.$value;
+				});
             }
         });
 

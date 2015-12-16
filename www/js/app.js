@@ -20,7 +20,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    window.screen.lockOrientation('portrait');
+    // window.screen.lockOrientation('portrait');
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation
         .getCurrentPosition(posOptions)
@@ -231,6 +231,12 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
       'tab-listNearMe': {
         templateUrl: 'templates/tab-listNearMe.html',
         controller: 'nearMeCtrl'
+        ,
+        resolve: {
+            myLoc: function(locationService) {
+            return locationService.getLocation()
+          }
+        }
       }
     }
   })
