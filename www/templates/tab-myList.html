@@ -1,6 +1,6 @@
 
 <link href="css/tab-myList-css.css" rel="stylesheet" />
-<ion-view view-title="My Lists" hide-nav-bar="false" hide-back-button="true" cache-view="false">
+<ion-view view-title="My Lists" hide-nav-bar="false" cache-view="false">
 
 
 <!--
@@ -28,7 +28,7 @@
         </div>
     </ion-content>
 -->
-    <ion-content ng-class="{expanded:isExpanded}" class="has-header">
+    <ion-content ng-class="{expanded:isExpanded}" class="">
 <!--
             <div class="list animate-fade-slide-in-right">
                 <a href="#/app/profile" class="item item-avatar item-icon-right">
@@ -42,8 +42,8 @@
         <ion-list class="animate-ripple" >
             <ion-item class="item item-avatar myListItem item-remove-animate" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
-                    <img src="img/tile6.jpg">
-           <div class='itemc' style="padding: 16px 49px 16px 72px;">
+                <span class="avatar"><img class="avatar" src="img/tile6.jpg"></span>
+           <div class='itemc' style="padding: 0px 49px 16px 95px;">
                     <h2 class="item-text-wrap">{{list.ListName}}</h2>
                     <p class="myListTagsContainer"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
 
@@ -65,7 +65,7 @@
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
             <div class="item-avatar item-icon-right" style="padding-top: 16px;">
-                    <img src="img/tile2.jpg">
+                <span class="avatar"><img class="avatar" src="img/tile2.jpg"></span>
                     <h2 class="item-text-wrap">{{v.ListName}}</h2>
                      <p class="myListTagsContainer"><span class="myListTags" ng-repeat='tag in v.tags'>#{{tag.text}}</span></p>
 <!--                     <p ng-repeat='tag in v.tags' style="">#{{tag.text}}</p>

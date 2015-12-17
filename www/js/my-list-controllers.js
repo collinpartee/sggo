@@ -683,7 +683,38 @@ $scope.goToEditListPage = function(list){
 
 
       $scope.loadTags = function(query) {
-        var taglists=[{'text':'abcd'},{'text':'bcde'}];
+        var taglists=[
+                        {'text':'food'},
+                        {'text':'american'},
+                        {'text':'chinese'},
+                        {'text':'japanese'},
+                        {'text':'italian'},
+                        {'text':'mexican'},
+                        {'text':'noodles'},
+                        {'text':'drinks'},
+                        {'text':'new'},
+                        {'text':'old'},
+                        {'text':'gottaTry'},
+                        {'text':'gross'},
+                        {'text':'cheap'},
+                        {'text':'expensive'},
+                        {'text':'african'},
+                        {'text':'soulFood'},
+                        {'text':'chicken'},
+                        {'text':'desert'},
+                        {'text':'breakfast'},
+                        {'text':'lunch'},
+                        {'text':'dinner'},
+                        {'text':'snack'},
+                        {'text':'texMex'},
+                        {'text':'yummy'},
+                        {'text':'great'},
+                        {'text':'amazing'},
+                        {'text':'good'},
+                        {'text':'needInMyLife'},
+                        {'text':'life'},
+                        {'text':'fleek'}
+                    ];
           return taglists;
       };
     

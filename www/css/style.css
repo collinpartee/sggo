@@ -184,7 +184,7 @@ color: black;
 }
 
 .myListItem{
-    border-bottom: 3px solid rgba(152,152,152, .5) !important; 
+/*    border-bottom: 3px solid rgba(152,152,152, .5) !important; */
     height: 80px;
 /*    padding-top: 10px !important; */
 }
@@ -194,7 +194,7 @@ color: black;
 }
 
 .myListGroupIcon {
-	    top: -30px !important;
+	    top: -15px !important;
     font-size: x-large !important;
 }
 
@@ -207,7 +207,7 @@ color: black;
 }
 
 .editMyListItem{
-    border-bottom: 1px solid rgba(152,152,152, .5) !important;
+/*    border-bottom: 1px solid rgba(152,152,152, .5) !important;*/
     height: 110px;
 }
 

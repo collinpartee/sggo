@@ -42,7 +42,7 @@
         </div>
 -->
 
-        <ion-list>
+        <ion-list style="height: 80vh;">
         <ion-item ng-repeat="item in placeList track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(list);" style="padding: auto; height: auto;">
         <img src="{{item.icon}}" />
             <div style="padding: 8px 54px 16px 106px;">
@@ -81,7 +81,7 @@
         </ion-list>
 -->
               
-        <div style="height: 15vh;">
+        <div style="">
       <button class="button button-full button-energized" ng-show="placeList.length >=2" ng-click="goNameList(listName);">Next</button>
             </div>
     </ion-content>

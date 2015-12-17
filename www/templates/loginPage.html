@@ -63,7 +63,7 @@
       <img class="blurry-img" src="img/151011_Riposte_Nova__006_F2_670.jpg" />
     <ion-content scroll="false" class="" style="background-color: transparent;">
         <div class="row">
-            <button class="button button-clear col col-33 col-offset-67" ng-click="closeModal();" style="opacity: 0.6;">Cancel</button>
+            <button class="button button-clear" ng-click="closeModal();" style="opacity: 0.6;">Close</button>
         </div>
 
     
@@ -83,8 +83,10 @@
                 </label>
             </div>
 
-            <button class="button button-positive col col-75" style="margin: 0 auto;" ng-click="didSubmitLogin=false;signUp(sname,semail,spassword)">Sign Up</button>
-                <a class="button button-clear button-block" ng-click="didSubmitLogin = !didSubmitLogin" style="color: white;">Cancel</a>
+                <div class="padding" style="padding-bottom: 0 !important;">
+            <button class="button button-full button-assertive ink" ng-click="didSubmitLogin=false;signUp(sname,semail,spassword)">Sign Up</button>
+            </div>
+                
           </form>
            
         
