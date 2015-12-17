@@ -238,3 +238,28 @@ color: black;
 .center-textAlign{
     text-align: center;
 }
+
+.less-padding{
+        padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.itemc{
+    background-color: white;
+    height: 80px;
+}
+
+.wrap-word{
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.list-image{
+box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); 
+    max-width: 50px; 
+    max-height: 50px;
+}
+
+.custom-font1{
+font-family: 'Architects Daughter', cursive !important;
+}
