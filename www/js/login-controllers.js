@@ -198,7 +198,7 @@ console.log("wtf");
                       provider: authData.provider,
                       name: sname,
                       email: semail,
-                      avatar: '../img/adam.jpg'
+                      avatar: 'img/adam.jpg'
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 

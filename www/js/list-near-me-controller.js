@@ -100,32 +100,46 @@ angular.module('starter.listNearMe', [])
 
 		  $scope.listDetail=[];
 
-	        	console.log(key);
-	        	var uid=key.substring(0,key.lastIndexOf(':'));
-	        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-	        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
+				        var listItem={loc:location,dis:distance.toFixed(2)};
 
-	        	nearbyListRef.once('value',function(snap){
+				        	
+						   // { foo: "bar" }
+						   // will be saved to the database
+						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
+						  
 
-	        		if(listexist.key!=null)
-	        		{
-	        			console.log('eixst',$scope.listDetail);
-	        		}
-	        		else
-	        		{
-	        			if($scope.listDetail.length<limit)
-        				{
-        					$scope.listDetail.push(listItem);
-        				}
-	        			console.log(snap.val());
-	        			listexist[key]='1';
-	        			if(!$scope.$$phase) {
-						  $scope.$digest();
-						}
-	        			
-	        		}
-	        	});
-			  console.log($scope.listDetail); // { foo: "bar" }
+				        	console.log(key);
+				        	var uid=key.substring(0,key.lastIndexOf(':'));
+				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
+				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
+				        	nearbyListRef.once('value',function(snap){
+				        		if(listexist.key!=null)
+				        		{
+				        			console.log('eixst',$scope.listDetail);
+				        		}
+				        		else
+				        		{
+				        			var listItem=snap.val();
+				        			listItem.$id=key;
+				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
+				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
+				        			nearbyListUserRef.once('value',function(snap){
+				        				console.log(snap.val());
+				        				listItem.avatar=snap.val();
+				        				if($scope.listDetail.length<limit)
+				        				{
+				        					$scope.listDetail.push(listItem);
+				        				}
+				        				
+					        			
+					        			listexist[key]='1';
+					        			if(!$scope.$$phase) {
+										  $scope.$digest();
+										}
+				        			});
+				        			
+				        		}
+						});
 
 	      });
 
@@ -189,30 +203,58 @@ angular.module('starter.listNearMe', [])
     myLikes.$loaded().then(function() {
       	myLikes.$bindTo($scope, "likes");
       });
+
+
+	var listDownloadRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey+"/downloads");
+    var myDownloads=$firebaseObject(listDownloadRef);
+	myDownloads.$loaded().then(function() {
+	  	myDownloads.$bindTo($scope, "downloads");
+	  });
     
+
     $scope.heartClass = 'ion-ios-heart-outline';
     $scope.likeThisList=function(){
-        
+    var likeRef=new Firebase(FBURL+"/users/"+uid+"/likes");    
         if ($scope.heartClass== 'ion-ios-heart-outline'){
             $scope.heartClass= 'ion-ios-heart'
             console.log('heartClass activated');
             console.log($scope.likes);
             $scope.likes.$value=1+$scope.likes.$value;
+            
+            likeRef.once('value',function(snapshot){
+			  	if(snapshot.exists())
+			  	{
+					likeRef.set(snapshot.val()+1);
+			  	}
+			  	else
+			  	{
+			  		likeRef.set(1);
+			  	}
+				  	
+			});
         }else{
             $scope.heartClass= 'ion-ios-heart-outline'
             console.log($scope.likes);
             $scope.likes.$value=-1+$scope.likes.$value;
+            likeRef.once('value',function(snapshot){
+			  	if(snapshot.exists())
+			  	{
+					likeRef.set(snapshot.val()-1);
+			  	}
+			  	else
+			  	{
+			  		likeRef.set(0);
+			  	}
+				  	
+			});
         }
         
         
     }
     $scope.downLoad=function(){
     	var ref = new Firebase(FBURL);
-    	var listDownloadRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey+"/downloads");
-    	var myDownloads=$firebaseObject(listDownloadRef);
-    	myDownloads.$loaded().then(function() {
-	      	myDownloads.$bindTo($scope, "downloads");
-	      });
+    	
+
         ref.child('users/'+authData.uid+'/myLists').orderByChild('ListDownloadId')
         .startAt($stateParams.$id)
         .endAt($stateParams.$id)
@@ -230,6 +272,20 @@ angular.module('starter.listNearMe', [])
 		    	delete downloadItem.$id;
 		    	myListFirebase.$add(downloadItem).then(function(ref) {
 				  $scope.downloads.$value=1+$scope.downloads.$value;
+				  var DownloadRef=new Firebase(FBURL+"/users/"+uid+"/downloads");
+				  DownloadRef.once('value',function(snapshot){
+				  	console.log(snapshot.exists());
+				  	if(snapshot.exists())
+				  	{
+						DownloadRef.set(snapshot.val()+1);
+				  	}
+				  	else
+				  	{
+				  		DownloadRef.set(1);
+				  	}
+				  	
+				  });
+				  
 				});
             }
         });

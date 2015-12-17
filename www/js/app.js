@@ -251,6 +251,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         params:{
         '$id':'none',
         'ListName':'',
+        'listImg':'',
         'creater_id':'',
         'creater_name':'',
         'places':[],

@@ -602,8 +602,10 @@ $scope.goToEditListPage = function(list){
             if(anon==true)
             {
                 myName='Too Afraid to show name';
+
             }
-           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList};
+            var img='img/drawn_icons/'+getRandomInt(0,5)+'.jpg';
+           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
            //add to my list
            console.log("final list",finalList);
            myListFirebase.$add(finalList)
@@ -681,7 +683,9 @@ $scope.goToEditListPage = function(list){
         $state.go('tab.myList');
     };
 
-
+    function getRandomInt(min, max) {
+              return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
       $scope.loadTags = function(query) {
         var taglists=[
                         {'text':'food'},

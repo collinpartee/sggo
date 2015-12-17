@@ -28,6 +28,15 @@ angular.module('starter.accountSetting', [])
       	myAvatar.$bindTo($scope, "avatar");
       });
 
+      var myLikes=$firebaseObject(ref.child('users/'+authData.uid+'/likes'));
+      myLikes.$loaded().then(function() {
+      	myLikes.$bindTo($scope, "likes");
+      });   
+
+      var myDownloads=$firebaseObject(ref.child('users/'+authData.uid+'/downloads'));
+      myDownloads.$loaded().then(function() {
+      	myDownloads.$bindTo($scope, "downloads");
+      });         
     $scope.showLogOutMenu = function() {
 		// Show the action sheet
 		var hideSheet = $ionicActionSheet.show({
