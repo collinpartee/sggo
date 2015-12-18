@@ -4,6 +4,7 @@ angular.module('starter.listNearMe', [])
 		$ionicLoading.hide();
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
+        $scope.hideNavBar = true;
 	    $scope.$on('applyEffect',function(e){
 	    
 	        console.log('triggered');

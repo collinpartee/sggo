@@ -364,7 +364,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
 
       },
       'fabContent': {
-          template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin" ><i class="icon ion-add"></i></button>',
+          template: '<button id="fab-friends" class="button button-fab button-fab-top-right expanded button-energized-900 spin" ><i class="icon ion-add"></i></button>',
           controller: function ($timeout) {
               $timeout(function () {
                   document.getElementById('fab-friends').classList.toggle('on');

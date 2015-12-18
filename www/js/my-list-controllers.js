@@ -529,7 +529,7 @@ $scope.goToEditListPage = function(list){
         
     $scope.removePlace=function(index){
       console.log(index);
-      $scope.placeList.splice(index);
+      $scope.placeList.splice(index,1);
     }
     $scope.addToList = function(place){
         console.log(place);

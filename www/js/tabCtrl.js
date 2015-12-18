@@ -1,5 +1,5 @@
 angular.module('starter.tabCtrl',[])
-.controller('tabCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+.controller('tabCtrl', function($scope, $ionicModal,$state, $ionicPopover, $timeout) {
     // Form data for the login modal
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
@@ -102,5 +102,26 @@ angular.module('starter.tabCtrl',[])
         console.log('parent Edit');
         $scope.$broadcast('addFriendClicked');
 
+    }
+    
+    $scope.goTab=function(tab){
+      console.log(tab);
+        switch(tab) {
+           case 'mylist':
+             $state.go('tab.myList');
+             return true;
+           case 'listnearme':
+                $state.go('tab.listNearMe');
+             return true;
+           case 'friend':
+                console.log(tab);
+               $state.go('tab.friendList'); 
+             return true;
+            case 'account':
+                $state.go('tab.account');
+                return true;
+                
+        }
+  
     }
 })

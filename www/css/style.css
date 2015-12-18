@@ -127,6 +127,10 @@ p {
     background-color: #222;
 }
 
+.menu-open .bar.bar-header.hideNavBar {
+    display: none;
+}
+
 .menu h2 {
     bottom: 0;
     font-size: 18px;

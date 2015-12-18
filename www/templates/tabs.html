@@ -7,12 +7,12 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-active-positive tabs-teal-color">
 
   <!-- My Lists Tab -->
-  <ion-tab title="My List" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/myList"><!-- ui-sref="tab.myList" -->
+  <ion-tab title="My List" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" ng-click="goTab('mylist')"><!-- ui-sref="tab.myList" -->
     <ion-nav-view name="tab-myList"></ion-nav-view>
   </ion-tab>
 
     <!-- Lists Near Me Tab -->
-  <ion-tab title="Lists Near Me" icon-off="ion-ios-location-outline" icon-on="ion-ios-location" href="#/tab/listNearMe"><!--  ui-sref="tab.listNearMe" -->
+  <ion-tab title="Lists Near Me" icon-off="ion-ios-location-outline" icon-on="ion-ios-location" ng-click="goTab('listnearme')"><!--  ui-sref="tab.listNearMe" -->
     <ion-nav-view name="tab-listNearMe"></ion-nav-view>
   </ion-tab>
 
@@ -24,12 +24,12 @@ navigation history that also transitions its views in and out.
 
     
     <!-- Decision table Tab -->
-  <ion-tab title="Friend List" icon-off="ion-person-stalker" icon-on="ion-person-stalker" href="#/tab/friendList"> <!--  ui-sref="tab.friendList" -->
+  <ion-tab title="Friend List" icon-off="ion-person-stalker" icon-on="ion-person-stalker" ng-click="goTab('friend')"> <!--  ui-sref="tab.friendList" -->
     <ion-nav-view name="tab-friendList"></ion-nav-view>
   </ion-tab>
     
   <!-- User Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account" ><!-- ui-sref="tab.account" -->
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ng-click="goTab('account')" ><!-- ui-sref="tab.account" -->
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
     
