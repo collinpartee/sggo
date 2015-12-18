@@ -64,8 +64,15 @@
 
     
     <ion-scroll style="height: 60%;">
-        <ion-list class="list" >
-        <ion-item class="list item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index" ng-show="option">
+        <list class="list" >
+                <div class="list card" ng-repeat="item in listItem.places track by $index" ng-show="option">
+            <div class="item item-avatar">
+                <img src="{{item.icon}}">
+                <h2 class="wrap-word">{{item.name}}</h2>
+                <p class="wrap-word">{{item.vicinity}}</p>
+             </div>
+        </div>
+<!--         <ion-item class="list item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index" ng-show="option">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items.name}}</span><br>
             <span class="item-text-wrap">{{items.vicinity}}</span><br>
@@ -75,16 +82,16 @@
             <i class="ion-ios-star-outline"></i>
             <i class="ion-ios-star-outline"></i>
 
-        </ion-item>
+        </ion-item> -->
         
-          <ion-item class="list" ng-repeat="items in listItem.inviteFriendList track by $index" my-post-repeat-directive='mylist' ng-show="inviteFriend">
+          <div class="list" ng-repeat="items in listItem.inviteFriendList track by $index" my-post-repeat-directive='mylist' ng-show="inviteFriend">
               <a class="item item-avatar item-icon-right">
                   <img src="{{items.avatar}}" />
                   <span class="item-text-wrap">{{items.name}}</span><br>
                   <span class="item-text-wrap">{{items.email}}</span><br>
               </a>      
-          </ion-item>
-        </ion-list>
+          </div
+        </ist>
     </ion-scroll>
 <!--       <div class="row row-center">
         <div class="" style="margin: 0 auto;" >

@@ -95,22 +95,28 @@
 -->
           
       <ion-scroll style="height: 60%;">
-      <div class="list">
-        <div class="list" ng-repeat="items in nearByListItem.places track by $index"><!-- class="list animate-fade-slide-in-right" -->
-            <div class="item item-thumbnail-left item-icon-right editMyListItem">
-                <img src="img/steak.JPG" />
-                <span class="item-text-wrap">{{items.name}}</span><br>
-                <span class="item-text-wrap">{{items.vicinity}}</span><br>
-                <i class="ion-ios-star"></i>
-                <i class="ion-ios-star"></i>
-                <i class="ion-ios-star-half"></i>
-                <i class="ion-ios-star-outline"></i>
-                <i class="ion-ios-star-outline"></i>
-            </div>      
-            
+        <div class="list">
+<!--           <div class="list" ng-repeat="items in nearByListItem.places track by $index">
+              <div class="item item-thumbnail-left item-icon-right editMyListItem">
+                  <img src="img/steak.JPG" />
+                  <span class="item-text-wrap">{{items.name}}</span><br>
+                  <span class="item-text-wrap">{{items.vicinity}}</span><br>
+                  <i class="ion-ios-star"></i>
+                  <i class="ion-ios-star"></i>
+                  <i class="ion-ios-star-half"></i>
+                  <i class="ion-ios-star-outline"></i>
+                  <i class="ion-ios-star-outline"></i>
+              </div>      
+              
+          </div> -->
+              <div class="list card" ng-repeat="item in nearByListItem.places track by $index">
+                  <div class="item item-avatar">
+                      <img src="{{item.icon}}">
+                      <h2 class="wrap-word">{{item.name}}</h2>
+                      <p class="wrap-word">{{item.vicinity}}</p>
+                  </div>
+              </div>
         </div>
-      
-      </div>
-          </ion-scroll>
+      </ion-scroll>
   </ion-content>
 </ion-view>

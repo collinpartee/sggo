@@ -150,7 +150,7 @@ angular.module('starter.myList', ['google.places'])
                             angular.forEach($scope.currTable.inviteFriendList, function(friend) {
                                 //console.log(friend.name);
                                 var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables"));
-                                var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,'ListName':$scope.currTable.ListName,'creater_name':list.creater_name,tags:$scope.currTable.tags};
+                                var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,'ListName':$scope.currTable.ListName,'creater_name':list.creater_name,tags:$scope.currTable.tags,listImg:list.listImg};
                                 
                                 friendRefObj.$loaded().then(function(data){
                                     friendRefObj[refAdd.key()]=myTableEntry;
@@ -527,7 +527,10 @@ $scope.goToEditListPage = function(list){
         $scope.placeList=[];
     }
         
-    
+    $scope.removePlace=function(index){
+      console.log(index);
+      $scope.placeList.splice(index);
+    }
     $scope.addToList = function(place){
         console.log(place);
         var _place={};
