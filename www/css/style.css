@@ -263,3 +263,27 @@ box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 .custom-font1{
 font-family: 'Architects Daughter', cursive !important;
 }
+
+ .bar-teal-color { /* https://www.google.com/design/spec/style/color.html#color-color-palette */
+    border-color: #00695C; /* teal -800 */
+    background-color: #009688;/* teal -500 */
+    background-image: linear-gradient(0deg, #00695C, #00695C 50%, transparent 50%);
+    color: #fff; }
+
+.tabs-teal-color {
+  border-color: #009688 !important;
+  background-color: white !important;
+  background-image: linear-gradient(0deg, #009688, #009688 50%, transparent 50%) !important;
+  color: gray !important; }
+
+.tabs{
+background-color: white;
+    color: gray;
+    border-top: 1px solid #009688;
+}
+ion-tabs.tabs-color-active-positive .tab-item{
+    color: gray;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+    color: #009688; }
