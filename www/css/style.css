@@ -320,11 +320,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     background-color: #F9A825;
     border-color: #F9A825;
     color: white;
+        border-radius: 20px;
+    box-shadow: none;
 }
 
 .button-custom-color-outline {
         border-color: #F9A825 !important;
     color: #F9A825 !important;
+        border-radius: 20px;
+    box-shadow: none;
 }
 
 .item-close-button{
