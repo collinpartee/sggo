@@ -1,7 +1,7 @@
 <ion-view class="welcome-view" cache-view="false" hide-nav-bar="true">
      <ion-content style="background-color: #009688" scroll="false"><!-- style="background: url(img/login.jpg) center; background-size: cover;" -->
          <div class="vertical-center">
-        <div class="hero no-header flat" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="hero no-header flat">
             <div class="content">
                 <div class="app-icon"></div>
                 <h1>F.U.G.</h1>
@@ -91,7 +91,7 @@
             </div>
 
                 <div class="padding" style="padding-bottom: 0 !important;">
-            <button class="button button-full button-assertive ink" ng-click="didSubmitLogin=false;signUp(sname,semail,spassword)">Sign Up</button>
+            <button class="button button-full button-custom-color ink" ng-click="didSubmitLogin=false;signUp(sname,semail,spassword)">Sign Up</button>
             </div>
                 
           </form>
@@ -103,7 +103,8 @@
             </div>
 
                 <div class="padding" style="padding-bottom: 0 !important;">
-            <button class="button button-full button-assertive ink" ng-click="logIn(lemail,lpassword)">Login</button>
+            <button class="button button-full button-outline button-custom-color-outline ink" ng-click="logIn(lemail,lpassword)">Login</button>
+                    <!-- button-custom-color -->
             </div>
                 
           </form>

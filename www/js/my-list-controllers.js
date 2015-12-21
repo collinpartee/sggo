@@ -322,6 +322,10 @@ $scope.goToEditListPage = function(list){
             
             $scope.$root.hideTabsOnThisPage = true;
         });
+        $scope.$on('$ionicView.leave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
         //$scope.chats=$firebaseArray(currTable.messages);
         console.log($stateParams);
 

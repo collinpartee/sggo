@@ -315,3 +315,21 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
   transform: translate(-50%,-50%);
     width: 100vw;
 }
+
+.button-custom-color{
+    background-color: #F9A825;
+    border-color: #F9A825;
+    color: white;
+}
+
+.button-custom-color-outline {
+        border-color: #F9A825 !important;
+    color: #F9A825 !important;
+}
+
+.item-close-button{
+    position: absolute;
+    top: 0;
+    right: -20px;
+
+}

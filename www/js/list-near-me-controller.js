@@ -189,6 +189,10 @@ angular.module('starter.listNearMe', [])
             
             $scope.$root.hideTabsOnThisPage = true;
     });
+    $scope.$on('$ionicView.leave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
     console.log($stateParams);
 	$scope.nearByListItem=$stateParams;
     var key=$stateParams.$id;
@@ -296,7 +300,9 @@ angular.module('starter.listNearMe', [])
         });
 
     }
-}).controller('FriendsCtrl', function($scope,$timeout,ionicMaterialMotion,ionicMaterialInk) {
+})
+    
+.controller('FriendsCtrl', function($scope,$timeout,ionicMaterialMotion,ionicMaterialInk) {
 
     $scope.$parent.clearFabs();
     $timeout(function() {
