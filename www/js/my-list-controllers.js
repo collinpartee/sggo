@@ -24,6 +24,10 @@ angular.module('starter.myList', ['google.places'])
             
             $scope.$root.hideTabsOnThisPage = false;
         });
+    $scope.$on('$ionicView.enter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
     
     var ref = new Firebase(FBURL);
     var tableRef=new Firebase(FBURL+"/users/"+authData.uid+"/myTables");

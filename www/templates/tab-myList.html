@@ -28,28 +28,16 @@
         </div>
     </ion-content>
 -->
-    <ion-content ng-class="{expanded:isExpanded}" class="">
-<!--
-            <div class="list animate-fade-slide-in-right">
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/jon-snow.jpg">
-                    <h2>Jon Snow</h2>
-                    <p>Da illest illegitimate</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-            </div>
--->
+    <ion-content ng-class="{expanded:isExpanded}" class="" style="margin-top: 10px;">
         <ion-list class="animate-ripple" style="margin-top: 5px;">
             <ion-item class="item item-avatar myListItem item-remove-animate" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
                 <img src="{{list.listImg}}" class="list-image" style="">
-           <div class='itemc' style="padding: 16px 49px 16px 72px;">
+           <div class='itemc' style="padding: 16px 49px 16px 95px;">
                     <h2 class="custom-font1">{{list.ListName}}</h2>
-                    <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in list.tags' style="color: lightgrey;">#{{tag.text}}</span></p>
+                    <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
 
             </div>       
-
-
             <ion-option-button class="button-positive less-padding" ng-click="shareListWithFriends(list)">
                       Share
                     </ion-option-button>
@@ -64,12 +52,10 @@
         <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-remove-animate item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
-            <div class="item-avatar item-icon-right" style="padding-top: 16px;">
-                <span class="avatar"><img class="avatar" src="{{v.listImg}}"></span>
+            <div class="item-avatar item-icon-right itemc" style="padding-top: 16px;">
+                <img class="list-image" src="{{v.listImg}}">
                     <h2 class="item-text-wrap">{{v.ListName}}</h2>
-                     <p class="myListTagsContainer"><span class="myListTags" ng-repeat='tag in v.tags'>#{{tag.text}}</span></p>
-<!--                     <p ng-repeat='tag in v.tags' style="">#{{tag.text}}</p>
- -->
+                     <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in v.tags'>#{{tag.text}}</span></p>
             </div>  
             
             <ion-option-button class="button-assertive less-padding" ng-click="deleteTable(k)">

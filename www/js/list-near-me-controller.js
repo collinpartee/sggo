@@ -26,6 +26,10 @@ angular.module('starter.listNearMe', [])
             $scope.$root.hideTabsOnThisPage = false;
 
         });
+        $scope.$on('$ionicView.enter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
 		//console.log('myloc',myLoc);
 		var lat=global.getMyLoc().lat;
 		var lon=global.getMyLoc().lon;

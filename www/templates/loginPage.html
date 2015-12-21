@@ -1,12 +1,26 @@
 <ion-view class="welcome-view" cache-view="false" hide-nav-bar="true">
      <ion-content style="background-color: #009688" scroll="false"><!-- style="background: url(img/login.jpg) center; background-size: cover;" -->
-        <div class="hero no-header flat" style="margin-top: 10px;">
+        <div class="hero no-header flat" style="margin-top: 10px; margin-bottom: 10px;">
             <div class="content">
                 <div class="app-icon"></div>
                 <h1>F.U.G.</h1>
                 <h4>Food User Group</h4>
             </div>
         </div>
+         
+        <div class="row" style="padding-bottom: 20px;">
+            <div class="center-margin">
+            <button class="circle" ng-click="openModal(); changeSignUpPressed(false);"><i class="icon ion-ios-email center-margin" style="padding: 0;"></i></button>
+            <button class="circle" ng-click="googleLogin()"><i class="icon ion-social-google"></i></button>
+            <button class="circle" ng-click="facebookLogin()"><i class="icon ion-social-facebook"></i></button>
+                </div>
+        </div>
+         <div class="row">
+            <div class="center-margin">
+            <p ng-click="openModal(); changeSignUpPressed(true);">Sign Up</p>
+                </div>
+        </div>
+<!--
         <div class="list">
             <ion-md-input ng-model='lemail' placeholder="email" highlight-color="balanced" type="email"></ion-md-input>
             <ion-md-input ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
@@ -21,7 +35,10 @@
             <button class="button button-small button-border icon-left ion-social-google button-assertive-900" ng-click="googleLogin()">Google+</button>
             <button class="button button-small button-border icon-left ion-social-facebook button-positive-900" ng-click="facebookLogin()">Facebook</button>
         </div>
+-->
     </ion-content>
+    
+    
 <!--   <ion-content scroll="false" class="" style="background-color: transparent;">
       <div class="top-content row">
         <div class="app-copy col col-center">
@@ -53,34 +70,21 @@
 
 
 <script id="signUp-modal.html" type="text/ng-template">
-  <div class="modal">
-<!--
-    <ion-header-bar style="background-color: rgb(237, 111, 112);">
-      <h1 class="title" style="color: white;">Create New List</h1>
-      <button class="button button-clear button-positive" style="color: white;" ng-click="modal.hide(); didSubmitLogin = !didSubmitLogin">Cancel</button>
-    </ion-header-bar>
--->
-      <img class="blurry-img" src="img/151011_Riposte_Nova__006_F2_670.jpg" />
+  <div class="modal" style="background-color: #009688;">
+<!--      <img class="blurry-img" src="img/151011_Riposte_Nova__006_F2_670.jpg" />-->
     <ion-content scroll="false" class="" style="background-color: transparent;">
         <div class="row">
             <button class="button button-clear" ng-click="closeModal();" style="opacity: 0.6;">Close</button>
         </div>
 
     
-            <form style="margin-top: 20vh;">
+            <form style="margin-top: 10vh;" ng-show="signUpPressed">
             <div class="list list-inset-cp">
-                <label class="item item-input" style="background-color: transparent; border: 0;">
-<!--                    <span class="input-label">Name</span>-->
-                        <input placeholder="Name" type="text" ng-model="sname" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
-                </label>
-                <label class="item item-input" style="background-color: transparent; border: 0;">
-<!--                    <span class="input-label" >Email</span>-->
-                    <input placeholder="Email" type="text" ng-model="semail" style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
-                </label>
-                <label class="item item-input"style="background-color: transparent; border: 0;">
-<!--                    <span class="input-label" >Password</span>-->
-                    <input placeholder="Password" type="password" ng-model='spassword' style="border-bottom: 1px solid white; color: whitesmoke; font-size: large;" required>
-                </label>
+                <ion-md-input placeholder="Name" type="text" ng-model="sname" required></ion-md-input>
+
+                <ion-md-input placeholder="Email" type="text" ng-model="semail" required></ion-md-input>
+
+                <ion-md-input placeholder="Password" type="password" ng-model='spassword' required></ion-md-input>
             </div>
 
                 <div class="padding" style="padding-bottom: 0 !important;">
@@ -88,6 +92,20 @@
             </div>
                 
           </form>
+        
+        <form style="margin-top: 10vh;" ng-hide="signUpPressed">
+            <div class="list list-inset-cp">
+                <ion-md-input ng-model='lemail' placeholder="Email" highlight-color="balanced" type="email"></ion-md-input>
+            <ion-md-input ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+            </div>
+
+                <div class="padding" style="padding-bottom: 0 !important;">
+            <button class="button button-full button-assertive ink" ng-click="logIn(lemail,lpassword)">Login</button>
+            </div>
+                
+          </form>
+        
+        
            
         
     </ion-content>

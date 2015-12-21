@@ -2,6 +2,12 @@ angular.module('starter.controllers', [])
 
 .controller('WelcomeCtrl', function($scope, $state, $ionicModal, $timeout, $ionicLoading,$ionicPopup, $cordovaKeyboard,FBURL, Auth,global) {
     
+    $scope.signUpPressed = false;
+    
+    $scope.changeSignUpPressed = function(value){
+        $scope.signUpPressed = value;
+    };
+    
     $scope.dontLogin = function(){
       $ionicLoading.show({
           template: 'Loading...'

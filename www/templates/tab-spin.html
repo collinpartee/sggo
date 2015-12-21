@@ -32,13 +32,12 @@
           <button class="button button-stable" style="width: 100%;" ng-click='shuffleButton();'>Shuffle!</button>
               </div>
               </div>
-          <div class="item item-input-inset">
+          <div class="item item-input-inset" style="background-color: white;">
 	        <label class="item-input-wrapper">
 	            <input type="text" ng-model="message" placeholder="Type in your message...">
 	        </label>
-	        <button ng-click="sendMessage(message)" class="button button-clear button-small button-balanced">
-	            Send
-	        </button>
+	        <a ng-click="sendMessage(message)" class="button button-flat button-icon icon ion-paper-airplane" style="padding: 0; color: green;">
+	        </a>
 	    </div>
         </div>
       

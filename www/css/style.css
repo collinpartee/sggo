@@ -182,7 +182,7 @@ p {
 }
 
 .myListTags{
-color: black;
+    color: lightgray;
     display: inline;
     margin-right: 5px;
 }
@@ -236,6 +236,7 @@ color: black;
 }
 
 .center-margin {
+    display: block;
 	margin: 0 auto;
 }
 
@@ -260,8 +261,8 @@ color: black;
 
 .list-image{
 box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); 
-    max-width: 50px; 
-    max-height: 50px;
+    max-width: 50px !important; 
+    max-height: 50px !important;
 }
 
 .custom-font1{
@@ -291,3 +292,18 @@ ion-tabs.tabs-color-active-positive .tab-item{
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
     color: #009688; }
+
+.circle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    font-size: 2.5em;
+    color: #fff;
+    line-height: 65px;
+    text-align: center;
+     background: #009688; 
+    border: 3px solid white;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); 
+    padding: 0;
+}
