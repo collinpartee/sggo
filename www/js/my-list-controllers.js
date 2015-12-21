@@ -468,7 +468,7 @@ $scope.goToEditListPage = function(list){
            });
          };
 
-        if(myListFirebase.length>5)
+        if(myListFirebase.length>10 && $stateParams.$id=='none')
         {
           var options={title: 'Your list is full', template:'Sorry, you can only have 10 lists'};
           $scope.showAlert(options);
