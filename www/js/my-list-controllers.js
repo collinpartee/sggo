@@ -1,5 +1,5 @@
 angular.module('starter.myList', ['google.places'])
-.controller('myListCtrl', function($scope, $state,$ionicListDelegate,$location,$ionicModal, $ionicPopup, $timeout,$firebaseObject,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+.controller('myListCtrl', function($scope, $state,$ionicListDelegate,$location,$ionicModal, $ionicPopup, $timeout,$firebaseObject,$filter,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
     //$scope.$parent.showHeader();
     $scope.isExpanded = true;
     $scope.$parent.clearFabs();
@@ -116,9 +116,36 @@ angular.module('starter.myList', ['google.places'])
         
         //console.log(friendlyList);
     };
+
+      $scope.showAlert = function(options) {
+       var alertPopup = $ionicPopup.alert({
+           title: options.title,
+           template: options.template
+         });
+         alertPopup.then(function(res) {
+           $state.go('tab.myList');
+           console.log('Thank you for not eating my delicious ice cream cone');
+         });
+       };
     
   // Confirm popup code
-      $scope.shareListWithFriends = function(list) {
+      $scope.shareListWithFriends=function(list){
+        console.log(list.ListName);
+        if(tables.length>10)
+        {
+          
+          var options={title: 'Your group list is full', template:'Sorry, you can only have 10 groups'};
+          
+          $scope.showAlert(options);
+        }
+        else
+        {
+          shareListWithFriendsGo(list);
+        }
+      }
+      var shareListWithFriendsGo = function(list) {
+        console.log(tables.length);
+
         $ionicListDelegate.closeOptionButtons();
         $scope.currTable={inviteFriendList:[],places:list.places};
         var confirmPopup = $ionicPopup.confirm({
@@ -130,7 +157,7 @@ angular.module('starter.myList', ['google.places'])
           if(res) {
                 $scope.currTable.inviteFriendList=friendlyList;
                 console.log($scope.currTable);
-                $scope.currTable.ListName=list.ListName+' table';
+                $scope.currTable.ListName=list.ListName+' group';
                 $scope.currTable.creater_name=list.creater_name;
                  if($scope.currTable.ListName!=null)
                 {
@@ -254,56 +281,7 @@ angular.module('starter.myList', ['google.places'])
         $state.go('tab.');
     };
     
-    
-     // $scope.showPopup = function(list) {
-     //    if(typeof list == 'string')
-     //    {
-            
-     //    }
-     //    else
-     //    {
-     //        $scope.list=list;
-     //    }
 
-     //    // An elaborate, custom popup
-     //         //<ul class="list"><li class="item" ng-repeat="things in this.list">{{things}}</li></ul>
-     //   var myPopup = $ionicPopup.show({
-     //     templateUrl: 'viewList-Popup.html',
-     //     title: list.ListName,
-     //     scope: $scope,
-     //     buttons: [
-     //       { text: 'Cancel',
-     //          type: 'button-assertive'},
-     //       { text: 'Edit',
-     //         type: 'button-positive',
-     //             onTap: function(e) {     
-     //                console.log(list);
-     //                $state.go('tab.listDetails',list)
-     //        }
-
-     //       },
-     //       {
-     //         text: '<b>Spin</b>',
-     //         type: 'button-positive',
-     //         onTap: function(e) {
-     //        console.log('clicked',list);
-     //        if(typeof list == 'string')
-     //        {
-     //            $state.go('tab.spinTable',{'listId':list});
-     //        }
-     //        else
-     //        {
-     //            $state.go('tab.spin',list);
-     //        }
-               
-     //         }
-     //       },
-     //     ]
-     //   });
-     //   myPopup.then(function(res) {
-     //     console.log('Tapped!', res);
-     //   });
-     // };
 
 $scope.goToEditListPage = function(list){
 
@@ -386,10 +364,12 @@ $scope.goToEditListPage = function(list){
     $scope.optionClicked=function(){
         $scope.inviteFriend=false;
         $scope.option=true;
+        $scope.$emit('changeToEditList');
     }
     $scope.inviteFriendClicked=function(){
         $scope.option=false;
         $scope.inviteFriend=true;
+        $scope.$emit('changeToAddFriend');
 
     }
     console.log(friendList)
@@ -469,7 +449,26 @@ $scope.goToEditListPage = function(list){
       };
 
 })
-.controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation, $http, FBURL,global,myListFirebase,geoFire,authData){
+.controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation,$ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){
+        console.log('list size',myListFirebase.length);
+
+
+        $scope.showAlert = function(options) {
+         var alertPopup = $ionicPopup.alert({
+             title: options.title,
+             template: options.template
+           });
+           alertPopup.then(function(res) {
+             $state.go('tab.myList');
+             console.log('Thank you for not eating my delicious ice cream cone');
+           });
+         };
+
+        if(myListFirebase.length>5)
+        {
+          var options={title: 'Your list is full', template:'Sorry, you can only have 10 lists'};
+          $scope.showAlert(options);
+        }
         $scope.$parent.clearAllFabs();
         $scope.$on('$ionicView.beforeEnter', function() {
             
@@ -611,7 +610,7 @@ $scope.goToEditListPage = function(list){
                 myName='Too Afraid to show name';
 
             }
-            var img='img/drawn_icons/'+getRandomInt(0,5)+'.jpg';
+            var img='img/drawn_icons/'+getRandomInt(0,12)+'.jpg';
            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
            //add to my list
            console.log("final list",finalList);

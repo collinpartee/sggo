@@ -16,7 +16,7 @@ angular.module('starter.accountSetting', [])
     // Set Ink
     ionicMaterialInk.displayEffect();
 	var myEmail;
-	var ref = new Firebase("https://sggo.firebaseio.com");
+	var ref = new Firebase(FBURL);
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {
             console.log(dataSnapshot.val());
           myEmail= dataSnapshot.val();
@@ -77,7 +77,9 @@ angular.module('starter.accountSetting', [])
     	
         $state.go('tab.changeAvatar');
     };
-    
+    $scope.linkToChangeName = function(){
+      $state.go('tab.changeName',{'myName':$scope.myName});
+    }
     
 })
 .controller('PasswordCtrl', function($scope, $ionicPopup,$stateParams) {
@@ -130,7 +132,7 @@ angular.module('starter.accountSetting', [])
 		 };
 
 })
-.controller('ChangeAvatarCtrl', function($scope,$stateParams) {
+.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state) {
 	
     var monthDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,       24, 25, 26, 27, 28, 29, 30, 31];
     
@@ -141,5 +143,26 @@ angular.module('starter.accountSetting', [])
     }
   return $scope.dates = dates;
     
+})
+
+.controller('changeNameCtrl', function($scope,$stateParams,$state,FBURL,authData,global) {
+    var ref = new Firebase(FBURL);
+    console.log($stateParams.myName);
+    $scope.newitem={'newn':$stateParams.myName};
+    $scope.changeName=function(newitem){
+      var myNameRef=ref.child('users/'+authData.uid+'/name');
+      console.log(newitem.newn);
+      myNameRef.set($scope.newitem.newn,function(error){
+        if(error)
+        {
+          console.log(error);
+        }
+        else
+        {
+          global.setMyName($scope.newitem.newn);
+          $state.go('tab.account');
+        }
+      });
+    }
 })
 ;

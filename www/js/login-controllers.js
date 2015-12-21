@@ -228,7 +228,9 @@ console.log("wtf");
         if(error)
         {
              console.log("wrong username");
-            alert('Wrong username or password');
+            var options={title: 'Error logging in', template:error};
+            //console.log("Error sending password reset email:", error);
+            $scope.showAlert(options);
         }
         else
         {

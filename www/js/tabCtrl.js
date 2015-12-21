@@ -124,4 +124,15 @@ angular.module('starter.tabCtrl',[])
         }
   
     }
+    $scope.isEdit=true;
+    $scope.$on('changeToAddFriend',function(){
+
+        var fabs = document.getElementById('fab-edit');
+        $scope.isEdit=false;
+    });
+    $scope.$on('changeToEditList',function(){
+
+        var fabs = document.getElementById('fab-edit');
+        $scope.isEdit=true;
+    });    
 })

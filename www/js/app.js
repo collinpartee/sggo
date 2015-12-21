@@ -115,7 +115,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         controller: 'editListCtrl'
       },
       'fabContent': {
-          template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-energized-900 spin" ng-click="editThisListP()"><i class="icon ion-edit"></i></button>',
+          template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-energized-900 spin" ng-click="editThisListP()"><i ng-class="{&apos;icon ion-edit&apos;: isEdit, &apos;ion-ios-personadd&apos;: !isEdit}"></i></button>',
           controller: function ($timeout) {
               $timeout(function () {
                   document.getElementById('fab-edit').classList.toggle('on');
@@ -206,6 +206,18 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         'myEmail':''
       }
   })
+  .state('tab.changeName', {
+    url: '/changeName',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-changeName.html',
+        controller: 'changeNameCtrl'
+      }
+    },
+    params:{
+        'myName':''
+      }
+  })
   .state('tab.changeAvatar', {
     url: '/changeAvatar',
     views: {
@@ -269,7 +281,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         controller: 'friendListCtrl'
       },
       'fabContent': {
-                template: '<button id="fab-add" class="button button-fab button-fab-top-right expanded button-energized-900 spin " ng-click="addFriendP()"><i class="icon ion-ios-personadd"></i></button>',
+                template: '<button id="fab-add" class="button button-fab button-fab-top-right expanded button-energized-900 spin " ng-click="addFriendP()"><i class="ion-ios-personadd"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-add').classList.toggle('on');
