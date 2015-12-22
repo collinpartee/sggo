@@ -453,9 +453,8 @@ $scope.goToEditListPage = function(list){
         });
       };
     
-    $scope.didPressListButton = function(value){
-        $scope.pressed = value;
-        console.log($scope.pressed);
+    $scope.goToPlaceDetails = function(){
+        $state.go('tab.placeDetails');
     };
 
 })

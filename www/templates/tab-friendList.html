@@ -29,24 +29,34 @@
 
 <script id="addFriend-modal.html" type="text/ng-template">
   <div class="modal">
-    <ion-header-bar>
+<!--
+    <ion-header-bar class="bar-teal-color">
       <h1 class="title">Add Friend</h1>
       <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
-    <ion-content>
-      <div class="list">
+-->
+    <ion-content class="modal-background">
+        <button class="button button-clear close-modal" ng-click="closeModal()" style="position: absolute; top: 0; right: 0;">Close</button>
+        
+      <div class="list" style="margin-top: 15vh;">
         <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="text" ng-model="email">
         </label>
-        <button class="button button-full button-energized" ng-click="searchFriend(email)">Search</button>
-        <label class="item item-input">
-          <span class="input-label">Result</span>
-            {{friendname.$value}}
-        </label>
+          <div class="padding" style="padding-bottom: 0 !important;">
+        <button class="button button-full button-outline button-custom-color-outline" ng-click="searchFriend(email)">Search For Friend</button>
+          </div>
+          <div class="row center-textAlign">
+<!--        <label class="item item-input">-->
+<!--          <span class="input-label">Result</span>-->
+            <h4 style="color: white; margin-top: 8vh;" class="center-margin">{{friendname.$value}}</h4>
+<!--        </label>-->
+        </div>
       </div>
 
-      <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+        <div class="padding" style="padding-bottom: 0 !important;">
+      <button ng-show="friendname.$value.length > 0" class="button button-full button-outline button-custom-color-outline" ng-click="closeModal()">Add Friend</button>
+        </div>
     </ion-content>
   </div>
 </script>

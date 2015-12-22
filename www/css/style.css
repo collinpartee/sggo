@@ -349,7 +349,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     max-width: 70px !important;
     max-height: 70px !important;
     border-radius: 50%;
-    
+    border: 5px double #F9A825;
 }
 
 .avatar-padding-bottom{
@@ -409,4 +409,50 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
   padding: 20px;
 /*  border: 10px solid white;*/
   vertical-align: middle;
+}
+
+.badged_like:after{
+    content: attr(data-count);
+    position: absolute;
+    background: rgba(0,0,255,1);
+    height: 1rem;
+    top: .4rem;
+    width: 1rem;
+    text-align: center;
+    font-size: .8rem;
+    border-radius: 50%;
+    color: white;
+    border: 1px solid blue;
+    /* vertical-align: middle; */
+    right: -10px;
+    line-height: .8rem;
+}
+.badged_i{
+    font-size: 2rem;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badged_download:after{
+    content: attr(data-count);
+    position: absolute;
+    background: rgba(0,0,255,1);
+    height: 1rem;
+    top: .4rem;
+    width: 1rem;
+    text-align: center;
+    font-size: .8rem;
+    border-radius: 50%;
+    color: white;
+    border: 1px solid blue;
+    /* vertical-align: middle; */
+    right: -5px;
+    line-height: .8rem;
+}
+
+.modal-background{
+    background-color: #009688;/* teal -500 */
+/*    background-image: linear-gradient(0deg, #00695C, #00695C 50%, transparent 50%);*/
+    color: #fff;
 }

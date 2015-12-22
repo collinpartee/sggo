@@ -137,6 +137,14 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
 
     }
   })
+  .state('tab.placeDetails', {
+    url: '/placeDetails',
+    views: {
+      'tab-myList': {
+        templateUrl: 'templates/tab-placeDetails.html'
+      }
+    }
+  })
   .state('tab.listDetails', {
     url: '/listDetails',
     views: {

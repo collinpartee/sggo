@@ -56,7 +56,7 @@
 
         </div> -->
 
-        <div class="list card" ng-repeat="item in listItem.places track by $index">
+        <div class="list card" ng-repeat="item in listItem.places track by $index" ng-click="goToPlaceDetails()">
             <div class="item item-avatar">
                 <img src="{{item.icon}}">
                 <h2 class="wrap-word">{{item.name}}</h2>
