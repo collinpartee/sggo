@@ -132,8 +132,8 @@ angular.module('starter.accountSetting', [])
 		 };
 
 })
-.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state) {
-    
+.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,FBURL,authData,global) {
+    var ref = new Firebase(FBURL);
     var avatarURLs = [];
     
     for(var i = 0; i<28; i++){
@@ -141,17 +141,27 @@ angular.module('starter.accountSetting', [])
         avatarURLs.push(url);
     }
 	
-    var monthDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,       24, 25, 26, 27, 28, 29, 30, 31];
     
     var dates = [];
     for (var i = 0; i < avatarURLs.length; i++ ) {
         if (i % 4 == 0) dates.push([]);
         dates[dates.length-1].push(avatarURLs[i]);
     }
-  return $scope.dates = dates;
+    $scope.dates = dates;
     
-    $scope.selectAvatar = function(){
-        
+    $scope.selectAvatar = function(day){
+      console.log('day',day);
+        ref.child('users/'+authData.uid+'/avatar').set(day,function(error){
+        if(error)
+        {
+          console.log(error);
+        }
+        else
+        {
+          global.setMyAvatar(day);
+          $state.go('tab.account');
+        }
+      });
     }
     
 })

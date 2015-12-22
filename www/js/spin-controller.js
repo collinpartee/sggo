@@ -6,7 +6,7 @@ console.log($stateParams);
     $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
-    
+    $scope.listName=$stateParams.ListName;
 var myName=global.getMyName();
     if($stateParams.from=='myList')
     {
@@ -50,7 +50,15 @@ var myName=global.getMyName();
       }
      // SECOND SPIN STYLE 
       $scope.shuffleButtonPressed = false;
+
+      $scope.viewPlace=function(){
+        console.log($scope.currPlace);
+        
+      }
+
+
     $scope.shuffleButton =function(){
+        $scope.countDown=5;
         $scope.shuffleButtonPressed = true;
         listSpinRef.child('triggers').once('value',function(datasnapshot){
             var newSpins=1;
@@ -67,20 +75,33 @@ var myName=global.getMyName();
         listSpinRef.update({'ranNum':getRandomInt(0,words.length-1)});
         myName=global.getMyName();
     };
-
+    $scope.countDown=5;
+     var runCounter = function() {
+        if ( $scope.ccountDown==0 )
+        {
+          return;
+        } 
+            
+        $scope.countDown -= 1;            
+        if ( $scope.countDown > 0)        
+            $timeout(runCounter, 1000); 
+    }
     $(function(){
 	
 	// container is the DOM element;
 	// userText is the textbox
-	
+	     
         var container = $("#container")
         
         listSpinRef.child('triggers').on('value', function(datasnapshot){
             listSpinRef.child('ranNum').once('value',function(snap){
                 $scope.shuffleButtonPressed = true;
+                $scope.currPlace=words[snap.val()];
                 container.shuffleLetters({
                     "text": words[snap.val()].name
+                    
                 });
+                runCounter();
                 
             });
              
@@ -92,8 +113,8 @@ var myName=global.getMyName();
 
 	
     });
-
     
+
 
     $scope.sendMessage=function(message){
       console.log(message);

@@ -1,6 +1,6 @@
 <!--<link href="" rel="stylesheet" />-->
 
-<ion-view hide-tab-bar hide-nav-bar="false" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" view-title="Change Avatar" cache-view="false">
 
   <ion-content scroll="true" style="" >
       <div style="relative">
@@ -9,8 +9,8 @@
 
    <tbody>
      <tr ng-repeat="days in dates">
-         <td ng-repeat="day in days" class="center-textAlign avatar-padding-bottom" ng-click="selectAvatar();">
-             <img class="avatar-image" src={{day}} /><br><span>Name</span>
+         <td ng-repeat="day in days" class="center-textAlign avatar-padding-bottom" >
+             <div ng-click="selectAvatar(day);"><img class="avatar-image ink" ng-src='{{day}}' /><br><span>Name</span></div>
              <!-- After seven iterations a new `<tr>` should be aded -->
         </td>
      </tr>
