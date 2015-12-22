@@ -239,6 +239,7 @@ angular.module('starter.myList', ['google.places'])
             }
             index++
             console.log(index); 
+            $ionicListDelegate.closeOptionButtons();
         });
         //remove myself from friend's table's invite list
         //console.log(rec);

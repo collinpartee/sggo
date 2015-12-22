@@ -8,7 +8,10 @@
             </div>
         </div>
         <div class="button-bar">
-            <div class="col col-50 center-textAlign"><span style="font-size:medium;">Likes</span><br><i class="icon ion-heart assertive" style="font-size: x-large;"></i><br><span style="font-size: x-large;"> {{likes.$value || 0}} </span></div>
+            <div class="col col-50 center-textAlign">
+                <i data-count="{{likes.$value || 0}}" class="icon ion-heart assertive" style="font-size: x-large;"></i><br>
+                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>
+            </div>
             <div class="col col-50 center-textAlign"><span style="font-size:medium;">Downloads</span><br><i class="icon ion-android-download positive" style="font-size: x-large;"></i><br><span style="font-size: x-large;">{{downloads.$value || 0}}</span></div>
           </div>
           
