@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
       $scope.setInfo(authData);
       $ionicLoading.show({
-        template: 'Loading...'
+        template: 'Looking for location...'
       });
       $state.go('tab.listNearMe');
     } else {

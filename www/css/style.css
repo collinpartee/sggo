@@ -337,3 +337,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     right: -20px;
 
 }
+
+.avatar-image{
+    max-width: 70px !important;
+    max-height: 70px !important;
+    border-radius: 50%;
+}
