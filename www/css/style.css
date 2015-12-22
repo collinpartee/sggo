@@ -331,10 +331,17 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     box-shadow: none;
 }
 
+.spin-button-custom-color-outline {
+        border-color: #F9A825 !important;
+    color: #F9A825 !important;
+        border-radius: 20px;
+    box-shadow: none;
+}
+
 .item-close-button{
     position: absolute;
-    top: 0;
-    right: -20px;
+    top: -5px;
+    right: -25px;
 
 }
 
@@ -342,4 +349,64 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     max-width: 70px !important;
     max-height: 70px !important;
     border-radius: 50%;
+    
+}
+
+.avatar-padding-bottom{
+    padding-bottom: 10px;
+}
+
+.selected{
+    color: blue;
+}
+
+.unselected{
+    color: lightgray;
+}
+
+.padding-bottom-30{
+    padding-bottom: 30px;
+}
+
+.white-bg{
+    background-color: white;
+}
+
+.whiteSmoke-bg{
+    background-color: whitesmoke;
+}
+
+.close-modal {
+	    right: 0;
+    position: absolute
+}
+
+.editMyListTags{
+    display: inline;
+}
+
+.shuffle_container{
+    width: 80%; 
+    height:60%; 
+    margin: 0 auto; 
+    padding: 20px; 
+    position: relative; 
+    text-align:center;
+}
+
+.center-table {
+    display: table;
+    width: 80%; 
+    height:60%; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+.center-table h3 {
+  display: table-cell;
+  margin: 0;
+  background: black;
+  color: white;
+  padding: 20px;
+/*  border: 10px solid white;*/
+  vertical-align: middle;
 }

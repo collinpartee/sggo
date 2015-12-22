@@ -451,6 +451,11 @@ $scope.goToEditListPage = function(list){
           }
         });
       };
+    
+    $scope.didPressListButton = function(value){
+        $scope.pressed = value;
+        console.log($scope.pressed);
+    };
 
 })
 .controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation,$ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){

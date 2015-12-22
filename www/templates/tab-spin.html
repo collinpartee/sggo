@@ -21,11 +21,9 @@
     </ion-nav-buttons> 
 
   <ion-content scroll="false" class="has-header">
-      <div class="top-of-page" style="height: 55%;">
-        <div class="shuffle_container" style="width: 80%; height:65%; margin: 0 auto; padding: 20px; position: relative;" >
-            <center>
-            <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);" ng-show="shuffleButtonPressed"></h3>  
-            </center>
+      <div class="top-of-page" style="height: 50%;">
+        <div class="shuffle_container" style="width: 80%; height:60%; margin: 0 auto; padding: 20px; position: relative; text-align: center;" >
+            <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100%;" ng-show="shuffleButtonPressed"></h3>  
         </div>
           <div class="row">
           <div style="margin: 0 auto; width: 50%;">
@@ -36,12 +34,12 @@
 	        <label class="item-input-wrapper">
 	            <input type="text" ng-model="message" placeholder="Type in your message...">
 	        </label>
-	        <a ng-click="sendMessage(message)" class="button button-flat button-icon icon ion-paper-airplane" style="padding: 0; color: green;">
+	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="padding: 0; color: green;font-size: x-large;">
 	        </a>
 	    </div>
         </div>
       
-      <ion-scroll direction="y" style="height: 45%;">
+      <ion-scroll direction="y" style="height: 45%; margin-top: 10px;">
       	 <div class="list">
       	    <div class="item" ng-hide="chats" class="textCenter">
       	        <i class="icon ion-loading-c"></i> Loading Chats

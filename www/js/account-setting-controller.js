@@ -145,10 +145,14 @@ angular.module('starter.accountSetting', [])
     
     var dates = [];
     for (var i = 0; i < avatarURLs.length; i++ ) {
-        if (i % 5 == 0) dates.push([]);
+        if (i % 4 == 0) dates.push([]);
         dates[dates.length-1].push(avatarURLs[i]);
     }
   return $scope.dates = dates;
+    
+    $scope.selectAvatar = function(){
+        
+    }
     
 })
 

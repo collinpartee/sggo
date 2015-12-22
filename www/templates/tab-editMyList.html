@@ -25,27 +25,18 @@
   <ion-content scroll="false" style="background-color: whitesmoke;" class="has-header" >
       <div class="hero"  style="height: 30%; background-image: url(img/12.png);">
           <div class="hero-content">
-        <div class="row">
-            <div class="col col-25">
-                <button class="button button-flat button-icon ion-share" ng-click="shareThisList();" style="font-size: x-large;">
-                </button>
-            </div>
-            <div class="col col-50">
+        <div class="row padding-bottom-30">
+            <div class="col col-100">
                 <div class="center-div" >
                     <h4>{{listItem.ListName}}</h4>
-                    <h5>{{listItem.creater_name}}</h5>
+                    <span ng-repeat="tag in listItem.tags"><h5 class="editMyListTags">#{{tag.text}} </h5></span>
                 </div>
             </div>
-            <div class="col col-25">
-                <button class="button button-flat">
-                    Edit
-                </button>
-            </div>
-        </div>
+          </div>
           
       <div class="row" style="">
           <div class="col col-80" style="margin: 0 auto;">
-                <button class="button button-energized-900" ng-click="goSpin()" style="width: 100%;">Spin</button>
+                <button class="button button-outline spin-button-custom-color-outline" ng-click="goSpin()" style="width: 100%;">Spin</button>
 
             </div>
         </div>
