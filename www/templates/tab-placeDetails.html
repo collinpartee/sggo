@@ -14,22 +14,16 @@
       </div>
       <div class="row row-center" style="">
         <div class="" style="margin: 0 auto; text-align: center;" >
-            <h4>Stoney river SteakHouse</h4>
-            <h5>1234 Silverleaf Way, Alpharetta 30005</h5>
+            <h4>{{placeDetial.name}}</h4>
+            <h5>{{placeDetial.vicinity}}</h5>
         </div>
         </div>
-<div class="row" style="">
-        <div class="" style="margin: 0 auto;" >
-            <i class="ion-social-usd"></i>
-            <i class="ion-social-usd"></i>
-            <p style="display: -webkit-inline-box; margin-left: 10px; opacity: .8;">0.14mi</p>
-    </div>
+        <div class="row" style="">
+          <div class="" style="margin: 0 auto;" >
+              <i class="ion-social-usd"></i>
+              <i class="ion-social-usd"></i>
           </div>
-          <div class="row">
-          <div style="margin: 0 auto; width: 50%;">
-          <button class="button button-stable" style="width: 100%;">Call!</button>
-              </div>
-              </div>
+        </div>
       </div>
       
       <ion-scroll direction="x" style="width: 100%;">
@@ -46,34 +40,9 @@
       <div class="list">
         <div class="item" href="#">
             <table>
-            <tr>
-                <td class="tableDateCell" style="width: 50%;">Sunday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Monday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Tuesday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Wednesday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Thursday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Friday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
-            <tr>
-                <td>Saturday</td>
-                <td>8:00am - 10:00pm</td>
-            </tr>
+            <tr ng-repeat='day in placeDetial.weekday_text'>
+                <td class="tableDateCell" style="width: 50%;">{{day}}</td>            
+            </tr>  
             </table>            
         </div>
     </div>
