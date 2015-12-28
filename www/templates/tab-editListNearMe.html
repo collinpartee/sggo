@@ -32,7 +32,7 @@
     
   <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">
       
-      <div class="hero" style="background-image: url('img/food_bkgds/2.jpg'); height: 45%;"><!-- class="hero slide-up" -->
+      <div class="hero" style="overflow: hidden; height: 45%;"><!-- class="hero slide-up" -->
             <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
@@ -52,12 +52,13 @@
 <!--
                 <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}'); max-height: 70px; max-width: 70px;"></div> -->
                 
-                <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
-                <h4>Created By : {{nearByListItem.creater_name}}</h4>
+                <h3 class="black-color"><a>{{nearByListItem.ListName}}</a></h3>
+                <h4 class="black-color">Created By : {{nearByListItem.creater_name}}</h4>
                 
-<button class="button button-full button-outline spin-button-custom-color-outline col col-80" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
+<button class="button button-custom-color col col-80" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
                 
             </div>
+          <img src="img/food_bkgds/2.jpg" class="hero-bkgd-image blurry-img">
         </div>
 
 

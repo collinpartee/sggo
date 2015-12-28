@@ -23,25 +23,25 @@
 
     
   <ion-content scroll="false" style="background-color: whitesmoke;" class="has-header" >
-      <div class="hero"  style="height: 30%; background-image: url(img/food_bkgds/1.jpg);">
+      <div class="hero"  style="height: 30%; overflow: hidden;">
           <div class="hero-content">
         <div class="row padding-bottom-30">
             <div class="col col-100">
                 <div class="center-div" >
-                    <h4>{{listItem.ListName}}</h4>
-                    <span ng-repeat="tag in listItem.tags"><h5 class="editMyListTags">#{{tag.text}} </h5></span>
+                    <h4 class="black-color">{{listItem.ListName}}</h4>
+                    <span ng-repeat="tag in listItem.tags"><h5 class="editMyListTags black-color">#{{tag.text}} </h5></span>
                 </div>
             </div>
           </div>
           
       <div class="row" style="">
           <div class="col col-80" style="margin: 0 auto;">
-                <button class="button button-outline spin-button-custom-color-outline" ng-click="goSpin()" style="width: 100%;">FUG</button>
+                <button class="button button-custom-color" ng-click="goSpin()" style="width: 100%;">FUG</button>
 
             </div>
         </div>
 </div>
-<!--        <img src="img/tile2.jpg" class="headerImage"  /> -->
+        <img src="img/food_bkgds/1.jpg" class="hero-bkgd-image blurry-img"  /> 
       </div>
       <ion-scroll style="height: 70%; margin-bottom: 5px;">
 <!--         <div class="item item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index">

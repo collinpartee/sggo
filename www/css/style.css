@@ -29,11 +29,13 @@ body{
 }
 
 .blurry-img{
+/*
     position: absolute;
     top: -30px;
     left: -30px;
-    -webkit-filter: blur(20px);
-    filter: blur(20px);
+*/
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
 }
 
 /** Sign Up Modal **/
@@ -491,4 +493,16 @@ tags-input .tags .tag-item .remove-button{
     color: whitesmoke !important;
     border-radius: 20px !important;
     padding-left: 10px !important;
+}
+
+.hero-bkgd-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.4;
+}
+
+.black-color{
+    color: black !important;
 }
