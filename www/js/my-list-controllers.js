@@ -458,7 +458,7 @@ $scope.goToEditListPage = function(list){
     };
 
 })
-.controller('addListCtrl', function($scope, $state,$stateParams,$cordovaGeolocation,$ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){
+.controller('addListCtrl', function($scope, $state, $ionicHistory, $stateParams, $cordovaGeolocation, $ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){
         console.log('list size',myListFirebase.length);
 
 
@@ -484,6 +484,10 @@ $scope.goToEditListPage = function(list){
             $scope.$root.hideTabsOnThisPage = true;
         });
 
+        $scope.myGoBack = function() {
+            $ionicHistory.goBack();
+        };    
+    
         $scope.goNameList = function(){
             currListItem.places=$scope.placeList;
             console.log('befre',currListItem);
