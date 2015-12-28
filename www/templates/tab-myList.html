@@ -32,7 +32,8 @@
         <ion-list class="animate-ripple" style="margin-top: 5px;">
             <ion-item class="item item-avatar myListItem item-remove-animate" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
-                <img src="{{list.listImg}}" class="list-image" style="">
+<!--                <img src="{{list.listImg}}" class="list-image" style="">-->
+            <img data-name="{{list.ListName}}" class="list-image profile"/> 
            <div class='itemc' style="padding: 16px 49px 16px 95px;">
                     <h2 class="custom-font1">{{list.ListName}}</h2>
                     <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>

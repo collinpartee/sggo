@@ -261,7 +261,7 @@ p {
 }
 
 .list-image{
-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); 
+/*box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); */
     max-width: 50px !important; 
     max-height: 50px !important;
 }
@@ -418,7 +418,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     position: absolute;
     background: rgba(0,0,255,1);
     height: 1rem;
-    top: .4rem;
+    top: .2rem;
     width: 1rem;
     text-align: center;
     font-size: .8rem;
@@ -441,7 +441,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     position: absolute;
     background: rgba(0,0,255,1);
     height: 1rem;
-    top: .4rem;
+    top: .3rem;
     width: 1rem;
     text-align: center;
     font-size: .8rem;
@@ -469,4 +469,26 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 
 tags-input .tags .tag-item .remove-button{
     color: white !important;
+}
+
+.notDownloaded{
+    color: lightgray !important;
+}
+
+.vertical-align-middle{
+/* position: absolute;*/
+/*
+    text-align: center;
+    width: 100%;
+*/
+/*    z-index: 1;*/
+    top: 50% !important;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.friend-modal-input-box{
+    background-color: rgba(0,0,0,.1) !important;
+    color: whitesmoke !important;
+    border-radius: 20px !important;
+    padding-left: 10px !important;
 }

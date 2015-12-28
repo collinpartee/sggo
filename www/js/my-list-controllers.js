@@ -1,5 +1,6 @@
 angular.module('starter.myList', ['google.places'])
 .controller('myListCtrl', function($scope, $state,$ionicListDelegate,$location,$ionicModal, $ionicPopup, $timeout,$firebaseObject,$filter,ionicMaterialInk, ionicMaterialMotion,$cordovaGeolocation, $cordovaKeyboard, FBURL,authData, global, myListFirebase, tables,friendList) {
+//    $('.profile').initial({name:myLists.name});
     //$scope.$parent.showHeader();
     $scope.isExpanded = true;
     $scope.$parent.clearFabs();
@@ -23,10 +24,12 @@ angular.module('starter.myList', ['google.places'])
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;
+        $('.profile').initial({name:"steve"});
         });
     $scope.$on('$ionicView.enter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;
+        $('.profile').initial();
         });
     
     var ref = new Firebase(FBURL);
@@ -480,9 +483,14 @@ $scope.goToEditListPage = function(list){
           $scope.showAlert(options);
         }
         $scope.$parent.clearAllFabs();
+    
         $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
+        });
+    $scope.$on('$ionicView.leave', function() {
+            $('.profile').initial({name:"steve"});
+            
         });
 
         $scope.myGoBack = function() {
@@ -624,8 +632,12 @@ $scope.goToEditListPage = function(list){
                 myName='Too Afraid to show name';
 
             }
-            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
-           var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
+//            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
+            var img='img/food_bkgds/'+getRandomInt(0,8)+'.jpg';
+
+//            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
+            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList};
+            
            //add to my list
            console.log("final list",finalList);
            myListFirebase.$add(finalList)
@@ -747,6 +759,6 @@ $scope.goToEditListPage = function(list){
         $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
-    
+         
 
 });

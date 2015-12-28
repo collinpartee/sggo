@@ -7,7 +7,7 @@ angular.module('starter.listNearMe', [])
         $scope.hideNavBar = true;
 	    $scope.$on('applyEffect',function(e){
 	    
-	        console.log('triggered');
+//	        console.log('triggered');
 	      $timeout(function(){
 
 	            ionicMaterialMotion.fadeSlideInRight();
@@ -75,7 +75,7 @@ angular.module('starter.listNearMe', [])
 				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
 				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
 				        			nearbyListUserRef.once('value',function(snap){
-				        				console.log(snap.val());
+//				        				console.log(snap.val());
 				        				listItem.avatar=snap.val();
 				        				if($scope.listDetail.length<limit)
 				        				{

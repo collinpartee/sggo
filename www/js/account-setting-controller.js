@@ -15,6 +15,17 @@ angular.module('starter.accountSetting', [])
     }, 300);
     // Set Ink
     ionicMaterialInk.displayEffect();
+    
+    
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
+    $scope.$on('$ionicView.enter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
+    
 	var myEmail;
 	var ref = new Firebase(FBURL);
      ref.child('users/'+authData.uid+'/email').once('value', function(dataSnapshot) {
@@ -83,6 +94,14 @@ angular.module('starter.accountSetting', [])
     
 })
 .controller('PasswordCtrl', function($scope, $ionicPopup,$stateParams) {
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
+        $scope.$on('$ionicView.leave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
 	$scope.newitem={};
 	var ref = new Firebase("https://sggo.firebaseio.com");
 	console.log($stateParams.myEmail);
@@ -133,6 +152,14 @@ angular.module('starter.accountSetting', [])
 
 })
 .controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,FBURL,authData,global) {
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
+        $scope.$on('$ionicView.leave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
     var ref = new Firebase(FBURL);
     var avatarURLs = [];
     
@@ -167,6 +194,14 @@ angular.module('starter.accountSetting', [])
 })
 
 .controller('changeNameCtrl', function($scope,$stateParams,$state,FBURL,authData,global) {
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
+        $scope.$on('$ionicView.leave', function() {
+            
+            $scope.$root.hideTabsOnThisPage = false;
+        });
     var ref = new Firebase(FBURL);
     console.log($stateParams.myName);
     $scope.newitem={'newn':$stateParams.myName};

@@ -2,14 +2,14 @@
 
     <ion-content ng-class="{expanded:$scope.isExpanded}">
         <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
-            <div class="content">
+            <div class="content vertical-align-middle">
                 <div class="avatar" style="background-image: url('{{avatar.$value}}');"></div>
                 <h3><a class="light">{{myName}}</a></h3>
             </div>
         </div>
         <div class="button-bar">
             <div class="col col-50 center-textAlign">
-                <i data-count="{{likes.$value || 0}}" class="icon ion-heart assertive badged_i badged_like"></i><br>Likes
+                <i data-count="{{likes.$value || 0}}" class="icon ion-ios-heart assertive badged_i badged_like"></i><br>Likes
 <!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
             </div>
             <div class="col col-50 center-textAlign">

@@ -32,7 +32,9 @@
                     <img class="list-image" src="{{list.listImg}}">
                     <strong>{{list.creater_name}} : </strong>{{list.ListName}}
                     <div class="card-footer text-right">
-                        <i class="icon ion-android-download positive"></i> {{list.downloads || 0}}
+                        <i class="icon ion-android-download" ng-class="{'positive': list.downloads>0, 'notDownloaded': list.downloads==0 }"></i> 
+                        
+<!--                        {{list.downloads || 0}}-->
                         <i class="icon ion-heart assertive"></i> {{list.likes || 0}}
                         <div class="pull-left">
                             {{list.dis}} km
