@@ -35,39 +35,50 @@
             <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
-                <button class="button button-flat button-icon ion-android-download" ng-click="downLoad();" style="font-size: x-large;">
+<!--                 <button class="button button-flat button-icon ion-android-download" ng-click="downLoad();" style="font-size: x-large;">
                 {{downloads.$value || 0}}
-                </button>
+                </button> -->
             </div>
             <div class="col col-50">
                 <div class="center-div" >
                     <img src="{{nearByListItem.listImg}}" style="max-height: 70px; max-width: 70px; border-radius: 50%;" />
                 </div>
             </div>
-            <div class="col col-25">
+<!--             <div class="col col-25">
                 <button class="button button-flat button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium; color: white;">{{likes.$value || 0}}</span></button>
-            </div>
+            </div> -->
         </div>
 <!--
                 <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}'); max-height: 70px; max-width: 70px;"></div> -->
                 <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
                 <h4>Created By : {{nearByListItem.creater_name}}</h4>
                 
-<button class="button button-energized-900 col col-80" ng-click="goToSpin()" style="margin: 0 auto;">Spin</button>
+<button class="button button-outline spin-button-custom-color-outline" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
                 
             </div>
         </div>
 
-<!--
-        <div class="tabs tabs-dark tabs-icon-top static">
+
+
+        <div class="button-bar">
+            <div class="col col-50 center-textAlign" ng-click="likeThisList();">
+                <i data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i><br>Likes
+<!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
+            </div>
+            <div class="col col-50 center-textAlign" ng-click="downLoad();">
+                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download positive badged_i badged_download"></i><br>Downloads
+<!--                <span style="font-size: x-large;">{{downloads.$value || 0}}</span>-->
+            </div>
+          </div>
+<!--         <div class="tabs tabs-dark tabs-icon-top static">
             <a ng-click="downLoad()" class="tab-item">
-                <i class="icon ion-arrow-graph-up-right"></i> Download
+                <i class="button button-flat button-icon ion-android-download"></i><br> Download
             </a>
             <a ng-click="likeThisList();" class="tab-item">
-                <i class="icon ion-android-people"></i> Like
+                <i class="button button-flat button-icon {{heartClass}}"></i><br> Like
             </a>
-        </div>
--->
+        </div> -->
+
 
 <!--       <div class="hover" style="border-bottom: 2px solid black;">
       <div class="row row-center" style="background-color: whitesmoke;">

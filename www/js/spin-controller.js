@@ -7,6 +7,8 @@ console.log($stateParams);
     $ionicHistory.goBack();
   };
     $scope.listName=$stateParams.ListName;
+    $scope.listImg=$stateParams.listImg;
+    console.log($scope.listImg);
 var myName=global.getMyName();
     if($stateParams.from=='myList')
     {
@@ -31,6 +33,7 @@ var myName=global.getMyName();
         console.log('name',$stateParams.listId);
         var currTable=tables.$getRecord($stateParams.listId);
         //$scope.chats=$firebaseArray(currTable.messages);
+        $scope.listImg=currTable.listImg;
         console.log(currTable);
         var words = currTable.places;
 
@@ -53,7 +56,7 @@ var myName=global.getMyName();
 
       $scope.viewPlace=function(){
         console.log($scope.currPlace);
-        
+        $state.go('tab.placeDetailsListNearMe',$scope.currPlace);
       }
 
 
@@ -77,8 +80,9 @@ var myName=global.getMyName();
     };
     $scope.countDown=5;
      var runCounter = function() {
-        if ( $scope.ccountDown==0 )
+        if ( $scope.ccountDown<=0 )
         {
+          $scope.countDown=5;
           return;
         } 
             
@@ -96,13 +100,15 @@ var myName=global.getMyName();
         listSpinRef.child('triggers').on('value', function(datasnapshot){
             listSpinRef.child('ranNum').once('value',function(snap){
                 $scope.shuffleButtonPressed = true;
-                $scope.currPlace=words[snap.val()];
+                var currnum=snap.val()==null? 0:snap.val();
+                console.log('currnum',currnum);
+                $scope.currPlace=words[currnum];
                 container.shuffleLetters({
-                    "text": words[snap.val()].name
+                    "text": words[currnum].name
                     
                 });
                 runCounter();
-                
+                $scope.countDown=5;
             });
              
         });
@@ -133,4 +139,8 @@ var myName=global.getMyName();
         //$ionicGoBack();
     };
 
-});
+})
+.controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global){
+    $scope.placeDetial=$stateParams;
+})
+;

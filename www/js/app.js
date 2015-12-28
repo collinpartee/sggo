@@ -104,7 +104,8 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         'creater_name':'',
         'places':[],
         'share':true,
-        'tags':[]
+        'tags':[],
+        'listImg':''
     }
   })
   .state('tab.editMyListTable', {
@@ -137,7 +138,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
 
     }
   })
-  .state('tab.placeDetails', {
+  .state('tab.placeDetailsMyList', {
     url: '/placeDetails',
     views: {
       'tab-myList': {
@@ -317,7 +318,8 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         'creater_name':'',
         'places':[],
         'share':true,
-        'tags':[]
+        'tags':[],
+        'listImg':''
     }
   })
   .state('tab.spinListNearMe', {
@@ -338,7 +340,8 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         'creater_name':'',
         'places':[],
         'share':true,
-        'tags':[]
+        'tags':[],
+        'listImg':''
     }
   })
   .state('tab.spinTable', {
@@ -375,24 +378,25 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
         'tags':[]
     }
   }) 
-  .state('tab.friends', {
-    url: '/friends',
+   .state('tab.placeDetailsListNearMe', {
+    url: '/viewListDetail',
     views: {
-      'tab-friends': {
-        templateUrl: 'templates/tab-friends.html',
-        controller: 'FriendsCtrl',
+      'tab-listNearMe': {
+        templateUrl: 'templates/tab-placeDetails.html',
+        controller: 'viewListDetailCtrl',
 
-      },
-      'fabContent': {
-          template: '<button id="fab-friends" class="button button-fab button-fab-top-right expanded button-energized-900 spin" ><i class="icon ion-add"></i></button>',
-          controller: function ($timeout) {
-              $timeout(function () {
-                  document.getElementById('fab-friends').classList.toggle('on');
-              }, 900);
-          }
-      } 
+      }
+        
+    },
+    params:{
+      'icon': "",
+      'name': "North Point Mall",
+      'periods': [],
+      'rating': 0,
+      'vicinity': "",
+      'weekday_text': []
     }
-  })
+  })  
   ;
 
   // if none of the above states are matched, use this as the fallback

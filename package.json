@@ -25,5 +25,7 @@
     "cordova-plugin-geolocation",
     "net.yoik.cordova.plugins.screenorientation"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

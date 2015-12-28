@@ -164,6 +164,7 @@ angular.module('starter.listNearMe', [])
 
 .controller('nearMeCtrlEdit', function($scope, $state,$stateParams,$firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk,FBURL,myListFirebase,authData) {
 //	$scope.$parent.showHeader();
+	$scope.nearByListItem=$stateParams;
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
@@ -194,7 +195,7 @@ angular.module('starter.listNearMe', [])
             $scope.$root.hideTabsOnThisPage = false;
         });
     console.log($stateParams);
-	$scope.nearByListItem=$stateParams;
+	
     var key=$stateParams.$id;
     var uid=key.substring(0,key.lastIndexOf(':'));
     var listkey=key.substring(key.lastIndexOf(':')+1,key.length);

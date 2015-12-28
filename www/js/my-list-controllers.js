@@ -167,6 +167,7 @@ angular.module('starter.myList', ['google.places'])
                         var addSefl={name:snap.val().name,email:snap.val().email,key:authData.uid,avatar:snap.val().avatar};
                         $scope.currTable.inviteFriendList.push(addSefl);
                         $scope.currTable.tags=list.tags;
+                        $scope.currTable.listImg=list.listImg;
                         if($scope.currTable.tags==null)
                         {
                             $scope.currTable.tags=[];
@@ -623,7 +624,7 @@ $scope.goToEditListPage = function(list){
                 myName='Too Afraid to show name';
 
             }
-            var img='img/drawn_icons/'+getRandomInt(0,12)+'.jpg';
+            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
            //add to my list
            console.log("final list",finalList);
