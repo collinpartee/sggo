@@ -29,22 +29,22 @@
     <ion-content ng-init="publicList = true;" class="has-header" scroll="false">
       <div class="list">
          <label class="item item-input">
-                    <input placeholder="Name Your List" type="text" ng-model="listName">
+                    <input placeholder="Name Your List" type="text" ng-model="listName" maxlength="15">
                 </label>
-          <ion-toggle ng-model="publicList" ng-checked="true" toggle-class="toggle-calm">Make Your List Public?</ion-toggle>
-          <ion-toggle ng-model="anon" toggle-class="toggle-calm" ng-checked="false" ng-show="publicList">Post anonymously?</ion-toggle>
+          <ion-toggle ng-model="publicList" ng-checked="true" toggle-class="toggle-calm custom-toggle-color">Make Your List Public?</ion-toggle>
+          <ion-toggle ng-model="anon" toggle-class="toggle-calm custom-toggle-color" ng-checked="false" ng-show="publicList">Post anonymously?</ion-toggle>
 <!--
           <label class="item item-input">
                     <input placeholder="Tags (optional)" type="text">
             </label>
 -->
-          <tags-input ng-model="tags">
-            <auto-complete source="loadTags($query)"></auto-complete>
+          <tags-input max-tags="5" ng-model="tags">
+            <auto-complete source="loadTags($query)" max-results-to-show="5"></auto-complete>
           </tags-input>
         </div>
         
         <div class="padding center-textAlign">
-        <button class="button button-energized col col-80" ng-click="saveList(listName,tags,publicList,anon);" ng-disabled="listName.length == 0">Finish</button>
+        <button class="button button-full button-outline spin-button-custom-color-outline" ng-click="saveList(listName,tags,publicList,anon);" ng-disabled="listName.length == 0">Finish</button>
 </div>
         
     </ion-content>

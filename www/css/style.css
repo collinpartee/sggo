@@ -29,11 +29,13 @@ body{
 }
 
 .blurry-img{
+/*
     position: absolute;
     top: -30px;
     left: -30px;
-    -webkit-filter: blur(20px);
-    filter: blur(20px);
+*/
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
 }
 
 /** Sign Up Modal **/
@@ -261,13 +263,13 @@ p {
 }
 
 .list-image{
-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); 
+/*box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); */
     max-width: 50px !important; 
     max-height: 50px !important;
 }
 
 .custom-font1{
-font-family: 'Architects Daughter', cursive !important;
+/*font-family: 'Architects Daughter', cursive !important;*/
 }
 
  .bar-teal-color { /* https://www.google.com/design/spec/style/color.html#color-color-palette */
@@ -378,7 +380,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 
 .close-modal {
 	    right: 0;
-    position: absolute
+    position: absolute;
+        color: whitesmoke !important;
+    margin-top: 10px;
 }
 
 .editMyListTags{
@@ -416,7 +420,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     position: absolute;
     background: rgba(0,0,255,1);
     height: 1rem;
-    top: .4rem;
+    top: .2rem;
     width: 1rem;
     text-align: center;
     font-size: .8rem;
@@ -439,7 +443,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     position: absolute;
     background: rgba(0,0,255,1);
     height: 1rem;
-    top: .4rem;
+    top: .3rem;
     width: 1rem;
     text-align: center;
     font-size: .8rem;
@@ -455,4 +459,50 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     background-color: #009688;/* teal -500 */
 /*    background-image: linear-gradient(0deg, #00695C, #00695C 50%, transparent 50%);*/
     color: #fff;
+}
+
+.tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
+  border-color: #009688 !important; }
+
+.toggle input:checked + .track{
+        border-color: #F9A825;
+    background-color: #F9A825;
+}
+
+tags-input .tags .tag-item .remove-button{
+    color: white !important;
+}
+
+.notDownloaded{
+    color: lightgray !important;
+}
+
+.vertical-align-middle{
+/* position: absolute;*/
+/*
+    text-align: center;
+    width: 100%;
+*/
+/*    z-index: 1;*/
+    top: 50% !important;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.friend-modal-input-box{
+    background-color: rgba(0,0,0,.1) !important;
+    color: whitesmoke !important;
+    border-radius: 20px !important;
+    padding-left: 10px !important;
+}
+
+.hero-bkgd-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.4;
+}
+
+.black-color{
+    color: black !important;
 }

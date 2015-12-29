@@ -24,7 +24,7 @@ tags-input .tags {
   word-wrap: break-word;
   cursor: text;
   background-color: #fff;
-  border: 1px solid darkgray;
+/*  border: 1px solid darkgray;*/
   box-shadow: 1px 1px 1px 0 lightgray inset;
   height: 100%;
 }
@@ -49,8 +49,10 @@ tags-input .tags .tag-item {
   line-height: 25px;
   border: 1px solid #acacac;
   border-radius: 3px;
+/*
   background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
   background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+*/
 }
 tags-input .tags .tag-item.selected {
   background: -webkit-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);

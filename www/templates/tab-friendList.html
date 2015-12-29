@@ -35,13 +35,13 @@
       <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
 -->
-    <ion-content class="modal-background">
+    <ion-content scroll="false" class="modal-background">
         <button class="button button-clear close-modal" ng-click="closeModal()" style="position: absolute; top: 0; right: 0;">Close</button>
         
       <div class="list" style="margin-top: 15vh;">
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="email">
+        <label class="item item-input col col-90 center-margin">
+<!--          <span class="input-label">Email</span>-->
+          <input type="text" ng-model="email" placeholder="Friends email address" class="friend-modal-input-box">
         </label>
           <div class="padding" style="padding-bottom: 0 !important;">
         <button class="button button-full button-outline button-custom-color-outline" ng-click="searchFriend(email)">Search For Friend</button>

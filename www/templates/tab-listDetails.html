@@ -3,24 +3,12 @@
 
 
     <ion-nav-buttons side="left">
-      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack(); ">
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="myGoBack(); ">
           <i class="icon ion-ios-arrow-back"></i>
       </button>
     </ion-nav-buttons>    
-
-
-<!--     <div class="bar bar-header bar-assertive-900">
-        <div class="buttons buttons-left header-item">
-            <span class="left-buttons">
-                <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="tab.myList"></button>
-            </span>
-        </div>
-        <div class="h1 title title-left light">Normal Header</div>
-    </div>
-     -->
-    <ion-content class="has-header" scroll="true">
+    <ion-content class="has-header" scroll="false">
         
-
           <div class="row" style="background-color: rgba(237, 111, 112, 0.1);">
                     <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
                         <button class="button button-clear col col-20" ng-click="addToList(place)" style="color: rgb(127, 197, 195);">
@@ -28,19 +16,6 @@
                         </button>
                     </div>
 
-          
-<!--
-        <div class="">
-            <ion-scroll style="height: 70vh;">
-                <div class="list">
-                    <div class="item" ng-repeat="item in placeList track by $index">
-                    {{item.name}}
-                    </div>
-                </div>
-            </ion-scroll>
-        
-        </div>
--->
 
         <div class="list card" ng-repeat="item in placeList track by $index">
                 <div class="item item-avatar">
@@ -51,50 +26,13 @@
                 </div>
             </div>
         
-<!--
-        <ion-list>
-        <ion-item ng-repeat="item in placeList track by $index" class="item item-thumbnail-left" ng-click="goToEditListPage(list);" style="padding: auto; height: auto; background-color:white;">
-        <img src="{{item.icon}}" />
-            <div class="" style="padding: 8px 54px 16px 106px; background-color: white; height: 100%;">
-          
-               <span class="item-text-wrap">{{item.name}}</span><br>
-                <span class="item-text-wrap">{{item.vicinity}}</span><br>
-                <i class="ion-social-usd"></i>
-                <i class="ion-social-usd-outline"></i>
-                <span style="font-size: smaller; margin-left: 10px;">0.14 mi</span>
-          </div>
-            <ion-option-button class="button-assertive less-padding">
-            Delete
-          </ion-option-button>
-        </ion-item>
-      </ion-list>
--->
-
         
-<!--
-        <ion-list>
-            <ion-item ng-repeat="item in placeList track by $index" class="item item-thumbnail-left">
-                <img src="img/steak.JPG" />
-                
-                <span class="item-text-wrap">{{item.name}}</span><br>
-            <span class="item-text-wrap">More address info here</span><br>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star"></i>
-            <i class="ion-ios-star-half"></i>
-            <i class="ion-ios-star-outline"></i>
-            <i class="ion-ios-star-outline"></i><br />
-            <span style="font-size: small;">0.14 mi</span>
-                <ion-option-button class="button-assertive">
-                    Delete
-                </ion-option-button>
-            </ion-item>
-            
-        </ion-list>
--->
-              
-        <div style="">
-      <button class="button button-full button-energized" ng-show="placeList.length >=2" ng-click="goNameList(listName);">Next</button>
+        <div class="row" style="">
+          <div class="col col-80" style="margin: 0 auto;">
+                <button class="button button-full button-outline spin-button-custom-color-outline" ng-show="placeList.length >=2" ng-click="goNameList(listName);">Next</button>
+
             </div>
+        </div>
     </ion-content>
 
 </ion-view>

@@ -7,7 +7,7 @@ angular.module('starter.listNearMe', [])
         $scope.hideNavBar = true;
 	    $scope.$on('applyEffect',function(e){
 	    
-	        console.log('triggered');
+//	        console.log('triggered');
 	      $timeout(function(){
 
 	            ionicMaterialMotion.fadeSlideInRight();
@@ -50,7 +50,7 @@ angular.module('starter.listNearMe', [])
 
 	      geoQuery.on("key_entered", function(key, location, distance) {
 				        
-				        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
+//				        console.log(key + " is located at [" + location + "] which is within the query (" + distance.toFixed(2) + " km from center)");
 				        var listItem={loc:location,dis:distance.toFixed(2)};
 
 				        	
@@ -59,7 +59,8 @@ angular.module('starter.listNearMe', [])
 						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
 						  
 
-				        	console.log(key);
+//				        	console.log(key);
+                            console.log($scope.listDetail);
 				        	var uid=key.substring(0,key.lastIndexOf(':'));
 				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
 				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
@@ -75,7 +76,7 @@ angular.module('starter.listNearMe', [])
 				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
 				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
 				        			nearbyListUserRef.once('value',function(snap){
-				        				console.log(snap.val());
+//				        				console.log(snap.val());
 				        				listItem.avatar=snap.val();
 				        				if($scope.listDetail.length<limit)
 				        				{

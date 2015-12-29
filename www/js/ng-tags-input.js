@@ -24,7 +24,7 @@ var KEYS = {
     comma: 188
 };
 
-var MAX_SAFE_INTEGER = 9007199254740991;
+var MAX_SAFE_INTEGER = 10;
 var SUPPORTED_INPUT_TYPES = ['text', 'email', 'url'];
 
 var tagsInput = angular.module('ngTagsInput', []);

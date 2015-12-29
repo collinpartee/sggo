@@ -31,7 +31,8 @@
 
     
   <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">
-      <div class="hero" style="background-image: url('img/profile-bg.jpg'); height: 40%;"><!-- class="hero slide-up" -->
+      
+      <div class="hero" style="overflow: hidden; height: 45%;"><!-- class="hero slide-up" -->
             <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
@@ -50,23 +51,25 @@
         </div>
 <!--
                 <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}'); max-height: 70px; max-width: 70px;"></div> -->
-                <h3><a class="light">{{nearByListItem.ListName}}</a></h3>
-                <h4>Created By : {{nearByListItem.creater_name}}</h4>
                 
-<button class="button button-outline spin-button-custom-color-outline" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
+                <h3 class="black-color"><a>{{nearByListItem.ListName}}</a></h3>
+                <h4 class="black-color">Created By : {{nearByListItem.creater_name}}</h4>
+                
+<button class="button button-custom-color col col-80" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
                 
             </div>
+          <img src="img/food_bkgds/2.jpg" class="hero-bkgd-image blurry-img">
         </div>
 
 
 
-        <div class="button-bar">
+        <div class="button-bar" style="height: 65px;">
             <div class="col col-50 center-textAlign" ng-click="likeThisList();">
                 <i data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i><br>Likes
 <!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
             </div>
             <div class="col col-50 center-textAlign" ng-click="downLoad();">
-                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download positive badged_i badged_download"></i><br>Downloads
+                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download positive badged_i badged_download"></i><br>Download List
 <!--                <span style="font-size: x-large;">{{downloads.$value || 0}}</span>-->
             </div>
           </div>
@@ -105,7 +108,7 @@
           </div>
 -->
           
-      <ion-scroll style="height: 60%;">
+      <ion-scroll style="height: 45%;">
         <div class="list">
 <!--           <div class="list" ng-repeat="items in nearByListItem.places track by $index">
               <div class="item item-thumbnail-left item-icon-right editMyListItem">
