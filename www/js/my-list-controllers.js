@@ -14,6 +14,7 @@ angular.module('starter.myList', ['google.places'])
 
             ionicMaterialMotion.ripple();
             ionicMaterialInk.displayEffect();
+            $('.profile').initial();
           },0);
         
         // Activate ink for controller
@@ -21,16 +22,6 @@ angular.module('starter.myList', ['google.places'])
     });
 
     
-    $scope.$on('$ionicView.beforeEnter', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-       
-        });
-    $scope.$on('$ionicView.enter', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-        $('.profile').initial();
-        });
     
     var ref = new Firebase(FBURL);
     var tableRef=new Firebase(FBURL+"/users/"+authData.uid+"/myTables");
@@ -630,6 +621,7 @@ $scope.goToEditListPage = function(list){
 
             }
 //            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
+//image limit
             var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
 
 //            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core','ngCordova','ionic-material', 'ionMdInput','ionic.service.analytics','starter.controllers', 'starter.myList','starter.tabCtrl',  'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'hideTabBar', 'starter.spin','firebase', 'ngTagsInput', 'starter.useravatar'])
+angular.module('starter', ['ionic','ionic.service.core','ngCordova','ionic-material', 'ionMdInput','ionic.service.analytics','starter.controllers', 'starter.myList','starter.tabCtrl',  'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'starter.spin','firebase', 'ngTagsInput', 'starter.useravatar'])
 
 .run(function($ionicPlatform,$cordovaGeolocation,$ionicLoading, $ionicAnalytics,global) {
   $ionicPlatform.ready(function() {

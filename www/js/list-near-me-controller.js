@@ -12,6 +12,7 @@ angular.module('starter.listNearMe', [])
 
 	            ionicMaterialMotion.fadeSlideInRight();
 	            ionicMaterialInk.displayEffect();
+	            $('.profile').initial();
 	          },0);
 
 	    });
@@ -21,20 +22,8 @@ angular.module('starter.listNearMe', [])
 	    $scope.$on('applyEffect',function(e){
 			$ionicLoading.hide();
     	});
-        $scope.$on('$ionicView.beforeEnter', function() {
 
-            $scope.$root.hideTabsOnThisPage = false;
-            $('.profile').initial();
-        });
-        $scope.$on('$ionicView.enter', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-            $('.profile').initial();
-        });
-    $scope.$on('$ionicView.loaded', function() {
-            
-            $('.profile').initial();
-        });
+
 		//console.log('myloc',myLoc);
 		var lat=global.getMyLoc().lat;
 		var lon=global.getMyLoc().lon;

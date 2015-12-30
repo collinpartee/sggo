@@ -3,6 +3,11 @@ angular.module('starter.spin', [])
     $scope.$parent.clearAllFabs();
 console.log($stateParams);
     
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
+    
     $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
