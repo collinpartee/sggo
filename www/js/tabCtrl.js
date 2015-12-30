@@ -4,7 +4,11 @@ angular.module('starter.tabCtrl',[])
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
     $scope.hasHeaderFabRight = false;
+$scope.$on('$ionicView.beforeEnter', function() {
 
+            $scope.$root.hideTabsOnThisPage = false;
+            $('.profile').initial();
+        });
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
         navIcons.addEventListener('click', function() {

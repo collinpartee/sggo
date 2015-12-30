@@ -48,6 +48,7 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
   // Each state's controller can be found in controllers.js
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.views.maxCache(0);
+  $ionicConfigProvider.views.swipeBackEnabled(false);
   $stateProvider
 
   // setup an abstract state for the tabs directive
@@ -142,7 +143,8 @@ angular.module('starter', ['ionic','ngCordova','ionic-material', 'ionMdInput','s
     url: '/placeDetails',
     views: {
       'tab-myList': {
-        templateUrl: 'templates/tab-placeDetails.html'
+        templateUrl: 'templates/tab-placeDetails.html',
+          
       }
     }
   })

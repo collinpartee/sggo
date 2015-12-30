@@ -58,7 +58,7 @@
 <button class="button button-custom-color col col-80" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
                 
             </div>
-          <img src="img/food_bkgds/2.jpg" class="hero-bkgd-image blurry-img">
+          <img src="img/food_bkgds/2-dark-50.jpg" class="hero-bkgd-image blurry-img">
         </div>
 
 
@@ -69,7 +69,7 @@
 <!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
             </div>
             <div class="col col-50 center-textAlign" ng-click="downLoad();">
-                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download positive badged_i badged_download"></i><br>Download List
+                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download badged_i" ng-class="{ 'unselected':downloads.$value == 0, 'positive': downloads.$value > 0 }"></i><br>Download List
 <!--                <span style="font-size: x-large;">{{downloads.$value || 0}}</span>-->
             </div>
           </div>

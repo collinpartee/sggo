@@ -24,7 +24,7 @@ angular.module('starter.myList', ['google.places'])
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = false;
-        $('.profile').initial({name:"steve"});
+       
         });
     $scope.$on('$ionicView.enter', function() {
             
@@ -488,10 +488,7 @@ $scope.goToEditListPage = function(list){
             
             $scope.$root.hideTabsOnThisPage = true;
         });
-    $scope.$on('$ionicView.leave', function() {
-            $('.profile').initial({name:"steve"});
-            
-        });
+    
 
         $scope.myGoBack = function() {
             $ionicHistory.goBack();

@@ -501,8 +501,41 @@ tags-input .tags .tag-item .remove-button{
     left: 0;
     width: 100%;
     opacity: 0.4;
+    z-index: -1;
 }
 
 .black-color{
     color: black !important;
+}
+
+.spin-message-box{
+    padding: 2px !important;
+    padding-left: 10px !important;
+}
+
+.spin-message-box a{
+    padding: 0 !important;
+    color: green !important;
+    font-size: x-large !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.larger-hero{
+    height: 250px !important;
+}
+
+.login-input-box{
+    border-radius: 20px;
+    width: 90vw;
+}
+
+.login-input-box input{
+    border-radius: 20px;
+}
+
+.list-detail-input{
+    background-color: rgba(237, 111, 112, 0.1); 
+    padding: 25px 15px;
+    border-radius:   20px;
 }

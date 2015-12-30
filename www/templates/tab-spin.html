@@ -20,31 +20,32 @@
       </button>
     </ion-nav-buttons> 
 
-  <ion-content scroll="false" class="has-header">
-      <div class="top-of-page hero" style=" background-image: url({{listImg}});height: 50%;">
+  <ion-content scroll="false" class="has-header" ng-init="message = '' ">
+      <div class="top-of-page hero" style=" overflow: hidden; height: 50%;">
         <div class="shuffle_container" style="width: 80%; height:60%; margin: 0 auto; padding: 20px; position: relative; text-align: center;" >
             <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100%; color: black;" ng-show="shuffleButtonPressed"></h3>  
         </div>
 
           <div class="row">
-          <div style="margin: 0 auto; width: 50%;">
+          <div style="margin: 0 auto; width: 100%;">
 
-          <button class="button button-stable" style="width: 100%;" ng-click='shuffleButton();' ng-show='countDown<=0'>FUG!</button>
-          <button class="button button-stable" style="width: 100%;" ng-click='viewPlace();' ng-hide='countDown<=0'>View Place {{countDown}}</button>
+          <button class="button button-custom-color" style="width: 45%;" ng-click='shuffleButton();' ng-disabled='countDown!=0'>FUG!</button>
+          <button class="button button-custom-color" style="width: 45%;" ng-click='viewPlace();' >Details</button>
           </div>
           </div>
 
 
-          <div class="item item-input-inset" style="background-color: white;">
+          <div class="item item-input-inset spin-message-box" style="background-color: white;">
 	        <label class="item-input-wrapper">
 	            <input type="text" ng-model="message" placeholder="Type in your message...">
 	        </label>
-	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="padding: 0; color: green;font-size: x-large;">
+	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
 	        </a>
 	       </div>
+          <img src="{{listImg}}" class="hero-bkgd-image blurry-img">
         </div>
       
-      <ion-scroll direction="y" style="height: 45%; margin-top: 10px;">
+      <ion-scroll direction="y" style="height: 50%;">
       	 <div class="list">
       	    <div class="item" ng-hide="chats" class="textCenter">
       	        <i class="icon ion-loading-c"></i> Loading Chats
