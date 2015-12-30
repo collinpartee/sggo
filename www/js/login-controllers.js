@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     
     $scope.dontLogin = function(){
       $ionicLoading.show({
-          template: 'Loading...'
+          template: 'Looking for location...'
         });
         $state.go('tab.myList');
     };

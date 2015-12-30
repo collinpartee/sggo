@@ -633,10 +633,10 @@ $scope.goToEditListPage = function(list){
 
             }
 //            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
-            var img='img/food_bkgds/'+getRandomInt(0,8)+'.jpg';
+            var img='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
 
 //            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,'listImg':img};
-            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList};
+            var finalList={'ListName':name,'creater_id':authData.uid,'creater_name':myName,'places':currListItem.places,'tags':currListItem.tags,'share':publicList,listImg:img};
             
            //add to my list
            console.log("final list",finalList);

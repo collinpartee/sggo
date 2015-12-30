@@ -59,8 +59,6 @@ angular.module('starter.listNearMe', [])
 						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
 						  
 
-//				        	console.log(key);
-                            console.log($scope.listDetail);
 				        	var uid=key.substring(0,key.lastIndexOf(':'));
 				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
 				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
@@ -100,52 +98,10 @@ angular.module('starter.listNearMe', [])
 	      geoQuery.on("key_exited", function(key, location, distance) {
 	        console.log(key, location, distance);
 
-        	//console.log($scope.lists);
 
-	        //console.log($scope.lists);
-
-		  $scope.listDetail=[];
-
-				        var listItem={loc:location,dis:distance.toFixed(2)};
-
-				        	
-						   // { foo: "bar" }
-						   // will be saved to the database
-						  //ref.set({ foo: "baz" });  // this would update the database and $scope.data
-						  
-
-				        	console.log(key);
-				        	var uid=key.substring(0,key.lastIndexOf(':'));
-				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
-				        	nearbyListRef.once('value',function(snap){
-				        		if(listexist.key!=null)
-				        		{
-				        			console.log('eixst',$scope.listDetail);
-				        		}
-				        		else
-				        		{
-				        			var listItem=snap.val();
-				        			listItem.$id=key;
-				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
-				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
-				        			nearbyListUserRef.once('value',function(snap){
-				        				console.log(snap.val());
-				        				listItem.avatar=snap.val();
-				        				if($scope.listDetail.length<limit)
-				        				{
-				        					$scope.listDetail.push(listItem);
-				        				}
-				        				
-					        			
-					        			listexist[key]='1';
-					        			if(!$scope.$$phase) {
-										  $scope.$digest();
-										}
-				        			});
-				        			
-				        		}
-						});
+    			if(!$scope.$$phase) {
+				  $scope.$digest();
+				}
 
 	      });
 
