@@ -142,5 +142,10 @@ var myName=global.getMyName();
 })
 .controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global){
     $scope.placeDetial=$stateParams;
+    
+    $scope.$on('$ionicView.beforeEnter', function() {
+            
+            $scope.$root.hideTabsOnThisPage = true;
+        });
 })
 ;
