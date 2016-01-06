@@ -565,8 +565,16 @@ $scope.goToEditListPage = function(list){
                     _place['vicinity']=place.vicinity;
                 if(place.price_level)
                     _place['price_level']=place.price_level;
-                if(place.icon)
-                    _place['icon']=place.icon;
+
+                if(place.photos)
+                {
+                    _place['icon']=place.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
+                }
+                else
+                {
+                    if(place.icon)
+                        _place['icon']=place.icon;
+                }
             }
             else
             {
