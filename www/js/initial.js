@@ -22,7 +22,9 @@
                      "#795548",
                      "#9E9E9E",
                      "#607D8B"];
-
+        
+        //need to add more colors
+        
         return this.each(function () {
 
             var e = $(this);

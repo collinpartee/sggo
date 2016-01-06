@@ -1,15 +1,17 @@
-<ion-view hide-tab-bar view-title="Change Password" cache-view="false">
+<ion-view hide-tab-bar view-title="Change Password" cache-view="false" align-title="center">
   <ion-content>
       <form style="margin-top: 20vh;">
-      <div class="list list-inset">
+      <div class="list list-inset-cp">
           <label class="item item-input">
-              <span class="input-label" >New name</span>
-              <input type="text" ng-model="newitem.newn">
+<!--              <span class="input-label" >New name</span>-->
+              <input type="text" ng-model="newitem.newn" class="change-password-input-box">
           </label>
       </div>
     </form>
-    <a class="button button-assertive button-block button-outline" ng-click="changeName(newitem)">
+      <div class="padding" style="padding-bottom: 0 !important;">
+    <a class="button button-full button-outline button-custom-color-outline ink" ng-click="changeName(newitem)">
           change name
         </a>
+      </div>
   </ion-content>
 </ion-view>

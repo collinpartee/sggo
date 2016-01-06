@@ -1,5 +1,7 @@
 body{
     background-color: whitesmoke;
+    font-family: 'PT Sans', sans-serif !important;
+    
 }
 
 .main-color{
@@ -270,6 +272,17 @@ p {
 
 .custom-font1{
 /*font-family: 'Architects Daughter', cursive !important;*/
+/*    font-family: 'Raleway', sans-serif;*/
+    /*  Open Sans*
+        Roboto
+        Lato
+        !Roboto Condensed
+        !Source Sans Pro
+        Raleway
+        PT Sans
+        !Open Sans Condensed
+    */
+    font-family: 'PT Sans', sans-serif;
 }
 
  .bar-teal-color { /* https://www.google.com/design/spec/style/color.html#color-color-palette */
@@ -421,7 +434,8 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     background: rgba(0,0,255,1);
     height: 1rem;
     top: .2rem;
-    width: 1rem;
+/*    width: 1rem;*/
+    max-width: 1.3rem;
     text-align: center;
     font-size: .8rem;
     border-radius: 50%;
@@ -444,7 +458,8 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     background: rgba(0,0,255,1);
     height: 1rem;
     top: .3rem;
-    width: 1rem;
+/*    width: 1rem;*/
+    max-width: 1.3rem;
     text-align: center;
     font-size: .8rem;
     border-radius: 50%;
@@ -491,7 +506,7 @@ tags-input .tags .tag-item .remove-button{
 .friend-modal-input-box{
     background-color: rgba(0,0,0,.1) !important;
     color: whitesmoke !important;
-    border-radius: 20px !important;
+/*    border-radius: 20px !important;*/
     padding-left: 10px !important;
 }
 
@@ -538,4 +553,9 @@ tags-input .tags .tag-item .remove-button{
     background-color: rgba(237, 111, 112, 0.1); 
     padding: 25px 15px;
     border-radius:   20px;
+}
+
+.change-password-input-box{
+    background-color: rgba(0,0,0,.1) !important;
+    color: black !important;
 }
