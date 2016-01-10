@@ -32,7 +32,7 @@
                     </div>
                 <img src="img/food_bkgds/24.jpg" class="hero-bkgd-image blurry-img" style="position: absolute;">
             </div>
-<section id="btn" style="margin-top: 25px;">
+<section id="btn" style="margin-top: 25px;" ng-hide=true>
             <div class="coupoun" ng-click="showCouponCode()">25% off</div>
             <div id="facebook" style="">
                 <div class="logo">
@@ -49,12 +49,14 @@
             <div class="list">
                 <!-- COMPANY URL -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <span ng-click="copyText()">www.google.com</span>
+                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='{{placeDetial.website}}'>Go to {{placeDetial.name}} website</a></div>
+                    <div ng-show="placeDetial.website == ''">Not Available</div>
+
                 </div>
                 
                 <!-- COMPANY TELEPHONE # -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-ios-telephone"></i></div> <span>770-000-0000</span>
+                    <div class="place-list-key-icon"><i class="icon ion-ios-telephone"></i></div> <span>{{placeDetial.phone || "Not Available"}}</span>
                 </div>
                 <!-- COMPANY OPEN TIMES -->
                 <div class="item place-item-list" href="#">

@@ -146,6 +146,7 @@ var myName=global.getMyName();
 
 })
 .controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){
+    $scope.$parent.clearAllFabs();
     $scope.placeDetial=$stateParams;
     
     $scope.$on('$ionicView.beforeEnter', function() {

@@ -560,7 +560,6 @@ $scope.goToEditListPage = function(list){
                 if(place.opening_hours)
                 {
                     _place['weekday_text']=place.opening_hours.weekday_text;
-                    _place['periods']=place.opening_hours.periods;
                 }
                 if(place.price_level)
                     _place['price_level']=place.price_level;
@@ -570,21 +569,23 @@ $scope.goToEditListPage = function(list){
                     _place['vicinity']=place.vicinity;
                 if(place.price_level)
                     _place['price_level']=place.price_level;
-
+                if(place.formatted_phone_number)
+                    _place['phone']=place.formatted_phone_number;
+                if(place.website)
+                    _place['website']=place.website;
                 if(place.photos)
                 {
-                    _place['icon']=place.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
+                    _place['icon']=place.photos[0].getUrl({ 'maxWidth': 200, 'maxHeight': 200 });
                 }
                 else
                 {
-                    if(place.icon)
-                        _place['icon']=place.icon;
+                        _place['icon']='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
                 }
             }
             else
             {
                 _place['name']=place;
-                
+                _place['icon']='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
             }
             
             $scope.placeList.push(_place);

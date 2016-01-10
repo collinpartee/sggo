@@ -9,9 +9,7 @@ angular.module('starter.controllers', [])
     };
     
     $scope.dontLogin = function(){
-      $ionicLoading.show({
-          template: 'Looking for location...'
-        });
+
         $state.go('tab.myList');
     };
     
@@ -29,9 +27,7 @@ angular.module('starter.controllers', [])
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
       $scope.setInfo(authData);
-      $ionicLoading.show({
-        template: 'Looking for location...'
-      });
+
       $state.go('tab.listNearMe');
     } else {
       console.log("User is logged out");
@@ -77,9 +73,7 @@ angular.module('starter.controllers', [])
   function userExistsCallback(exists,authData) {
     if (exists) {
       $scope.setInfo(authData);
-      $ionicLoading.show({
-        template: 'Loading...'
-      });
+
       $state.go('tab.listNearMe');
     } else {
         
@@ -208,9 +202,7 @@ console.log("wtf");
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
-                  $ionicLoading.show({
-                    template: 'Loading...'
-                  });
+
                   $state.go('tab.listNearMe');
             }
 
@@ -236,9 +228,6 @@ console.log("wtf");
         {
             $scope.setInfo(authData);
                   $scope.closeModal(); 
-                  $ionicLoading.show({
-                    template: 'Loading...'
-                  });
                   $state.go('tab.listNearMe');
         }
       }, {

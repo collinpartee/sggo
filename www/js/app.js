@@ -188,6 +188,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 'periods': [],
                 'rating': 0,
                 'vicinity': "",
+                'phone':'',
+                'website':'',
                 'weekday_text': []
             }
         })
@@ -424,6 +426,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 'periods': [],
                 'rating': 0,
                 'vicinity': "",
+                'phone':'',
+                'website':'',
                 'weekday_text': []
             }
         })
