@@ -22,6 +22,7 @@
                     <img src="{{item.icon}}">
                     <h2 class="wrap-word">{{item.name}}</h2>
                     <p class="wrap-word">{{item.vicinity}}</p>
+                    <span ng-repeat="n in [] | range:item.price_level"><i class="ion-social-usd"></i></span>
                     <button class="button button-flat button-clear button-assertive item-close-button" ng-click="removePlace($index)"><i class="ion-ios-close-outline"></i></button>
                 </div>
             </div>

@@ -25,7 +25,7 @@
         </ion-item>
       </ion-list>
 -->
-        <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list); hideTabsOnNextPage(true);" my-post-repeat-directive='mylist'>
+        <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list);" my-post-repeat-directive='mylist'>
 
 
                 <div class="item item-avatar item-s-wrap">
