@@ -65,7 +65,7 @@
 
         <div class="button-bar" style="height: 65px;">
             <div class="col col-50 center-textAlign" ng-click="likeThisList();">
-                <i data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i><br>Likes
+                <i style="width: 200px;" data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i><br>Likes
 <!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
             </div>
             <div class="col col-50 center-textAlign" ng-click="downLoad();">
@@ -83,49 +83,15 @@
         </div> -->
 
 
-<!--       <div class="hover" style="border-bottom: 2px solid black;">
-      <div class="row row-center" style="background-color: whitesmoke;">
-        <div class="" style="margin: 0 auto;" >
-            <h4>{{nearByListItem.ListName}}</h4>
-            <h5>Created By : {{nearByListItem.creater_name}}</h5>
-          </div>
-  
-      </div> -->
-<!--           <button class="button button-icon {{heartClass}} likeButton" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
-          <button class="button button-icon ion-arrow-down-a downloadButton" ng-click="downLoad()">
-            <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
-          </button> -->
-<!--
-          <div class="row" style="background-color: whitesmoke;">
-              <div class="col col-20 col-offset-33">
-            <button class="button button-icon ion-arrow-down-a">
-            <span class="numDownLoads" style="padding: 5px; font-size: medium;">13</span>
-          </button>
-              </div>
-              <div class="col col-20">
-            <button class="button button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium;">{{likes.$value || 0}}</span></button>
-              </div>
-          </div>
--->
+    </div>
+
           
       <ion-scroll style="height: 45%;">
         <div class="list">
-<!--           <div class="list" ng-repeat="items in nearByListItem.places track by $index">
-              <div class="item item-thumbnail-left item-icon-right editMyListItem">
-                  <img src="img/steak.JPG" />
-                  <span class="item-text-wrap">{{items.name}}</span><br>
-                  <span class="item-text-wrap">{{items.vicinity}}</span><br>
-                  <i class="ion-ios-star"></i>
-                  <i class="ion-ios-star"></i>
-                  <i class="ion-ios-star-half"></i>
-                  <i class="ion-ios-star-outline"></i>
-                  <i class="ion-ios-star-outline"></i>
-              </div>      
-              
-          </div> -->
-              <div class="list card" ng-repeat="item in nearByListItem.places track by $index">
+
+              <div class="list card" ng-repeat="item in nearByListItem.places track by $index" ng-click="viewPlace(item)">
                   <div class="item item-avatar">
-                      <img src="{{item.icon}}">
+                      <div class="list-sidebar-image"><img src="{{item.icon}}"></div>
                       <h2 class="wrap-word">{{item.name}}</h2>
                       <p class="wrap-word">{{item.vicinity}}</p>
                       <span ng-repeat="n in [] | range:item.price_level"><i class="ion-social-usd"></i></span>

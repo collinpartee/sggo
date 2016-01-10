@@ -252,6 +252,12 @@ angular.module('starter.listNearMe', [])
         });
 
     }
+    
+    $scope.viewPlace=function(item){
+        console.log(item);
+        $state.go('tab.placeDetailsListNearMe',item);
+      }
+    
 })
     
 .controller('FriendsCtrl', function($scope,$timeout,ionicMaterialMotion,ionicMaterialInk) {

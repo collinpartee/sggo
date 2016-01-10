@@ -64,9 +64,9 @@
     
     <ion-scroll style="height: 60%;" ng-class="{'white-bg': pressed, 'whiteSmoke-bg': !pressed}">
         <list class="list" >
-                <div class="list card" ng-repeat="item in listItem.places track by $index" ng-show="option">
+                <div class="list card" ng-repeat="item in listItem.places track by $index" ng-show="option" ng-click="viewPlace(item)">
             <div class="item item-avatar">
-                <img src="{{item.icon}}">
+                <div class="list-sidebar-image"><img src="{{item.icon}}"></div>
                 <h2 class="wrap-word">{{item.name}}</h2>
                 <p class="wrap-word">{{item.vicinity}}</p>
                 <span ng-repeat="n in [] | range:item.price_level"><i class="ion-social-usd"></i></span>

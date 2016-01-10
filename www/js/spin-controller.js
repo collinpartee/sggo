@@ -60,7 +60,7 @@ var myName=global.getMyName();
       $scope.shuffleButtonPressed = false;
 
       $scope.viewPlace=function(){
-        console.log($scope.currPlace);
+        console.log('currplace: ' +$scope.currPlace);
         $state.go('tab.placeDetailsListNearMe',$scope.currPlace);
       }
 
@@ -145,12 +145,32 @@ var myName=global.getMyName();
     };
 
 })
-.controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global){
+.controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){
     $scope.placeDetial=$stateParams;
     
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
         });
+    
+    $scope.showCouponCode = function() {
+            $ionicPopup.confirm({
+              title: 'Success',
+              templateUrl: 'showCouponCode-popUp.html',
+                cancelText: 'close',
+                okText: 'use'
+            }).then(function(res) {
+//              console.log('Test Alert Box');
+            });
+          };
+    
+     $scope.copyText = function() {
+        $cordovaClipboard.copy('value').then(function() {
+            console.log("Copied text");
+        }, function() {
+            console.error("There was an error copying");
+        });
+    }
+    
 })
 ;

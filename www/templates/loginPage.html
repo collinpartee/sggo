@@ -80,14 +80,14 @@
             <button class="button button-clear close-modal" ng-click="closeModal();" style="">Close</button>
         </div>
 
-    
+    <!-- SIGN UP FORM -->
             <form style="margin-top: 10vh;" ng-show="signUpPressed">
             <div class="list list-inset-cp">
-                <ion-md-input class=" " placeholder="Name" type="text" ng-model="sname" required></ion-md-input>
+                <ion-md-input class="margin-left" placeholder="Name" type="text" ng-model="sname" required></ion-md-input>
 
-                <ion-md-input class=" " placeholder="Email" type="email" ng-model="semail" required></ion-md-input>
+                <ion-md-input class="margin-left" placeholder="Email" type="email" ng-model="semail" required></ion-md-input>
 
-                <ion-md-input class=" " placeholder="Password" type="password" ng-model='spassword' required></ion-md-input>
+                <ion-md-input class="margin-left" placeholder="Password" type="password" ng-model='spassword' required></ion-md-input>
             </div>
 
                 <div class="padding" style="padding-bottom: 0 !important;">
@@ -96,10 +96,12 @@
                 
           </form>
         
+        
+        <!-- SIGN IN FORM -->
         <form style="margin-top: 10vh;" ng-hide="signUpPressed">
             <div class="list list-inset-cp">
-                <ion-md-input class=" " ng-model='lemail' placeholder="Email" highlight-color="balanced" type="email"></ion-md-input>
-            <ion-md-input class=" " ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+                <ion-md-input class="margin-left" ng-model='lemail' placeholder="Email" highlight-color="balanced" type="email"></ion-md-input>
+            <ion-md-input class="margin-left" ng-model='lpassword' placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
             </div>
 
                 <div class="padding" style="padding-bottom: 0 !important;">
