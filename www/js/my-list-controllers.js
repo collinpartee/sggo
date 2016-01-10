@@ -579,7 +579,7 @@ $scope.goToEditListPage = function(list){
                 }
                 else
                 {
-                        _place['icon']='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
+                        _place['icon']='img/place_image/'+getRandomInt(0,17)+'.png';
                 }
             }
             else
