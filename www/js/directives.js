@@ -11,6 +11,7 @@ angular.module('starter.directives', [])
     if (scope.$last){
       // iteration is complete, do whatever post-processing
       // is necessary
+      
             scope.$emit('applyEffect');
     
       

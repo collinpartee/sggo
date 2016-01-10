@@ -6,22 +6,20 @@ angular.module('starter.listNearMe', [])
 	    $scope.$parent.clearAllFabs();
         $scope.hideNavBar = true;
 	    $scope.$on('applyEffect',function(e){
-	    
+	    	
 //	        console.log('triggered');
 	      $timeout(function(){
-
+				$('.profile').initial();
 	            ionicMaterialMotion.fadeSlideInRight();
 	            ionicMaterialInk.displayEffect();
-	            $('.profile').initial();
+	            
 	          },0);
-
+	      $ionicLoading.hide();
 	    });
 
 
 
-	    $scope.$on('applyEffect',function(e){
-			$ionicLoading.hide();
-    	});
+
 
 
 		//console.log('myloc',myLoc);
@@ -78,7 +76,9 @@ angular.module('starter.listNearMe', [])
 					        			
 					        			listexist[key]='1';
 					        			if(!$scope.$$phase) {
+					        				
 										  $scope.$digest();
+
 										}
 				        			});
 				        			

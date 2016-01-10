@@ -5,70 +5,98 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-material', 'ionMdInput', 'ionic.service.analytics', 'starter.controllers', 'starter.myList', 'starter.tabCtrl', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'starter.spin', 'firebase', 'ngTagsInput', 'starter.useravatar'])
+angular.module('starter', ['ionic','ionic.service.core','ngCordova','ionic-material', 'ionMdInput','ionic.service.analytics','ionic.service.deploy','starter.controllers', 'starter.myList','starter.tabCtrl',  'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'starter.spin','firebase', 'ngTagsInput', 'starter.useravatar'])
 
-.run(function ($ionicPlatform, $cordovaGeolocation, $ionicLoading, $ionicAnalytics, global) {
-    $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        $ionicAnalytics.register();
-        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.Keyboard.disableScroll(true);
+.run(function($ionicPlatform,$cordovaGeolocation,$ionicLoading, $ionicAnalytics,$ionicDeploy,$timeout,global) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    $ionicAnalytics.register();
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
 
-        }
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
-        var deploy = new Ionic.Deploy();
-        deploy.check().then(function (hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            var alertPopup = $ionicPopup.alert({
-                title: "Update detected",
-                template: "Please comfirm to perform automatic update"
-            });
-            alertPopup.then(function (res) {
-                deploy.update().then(function (res) {
-                    console.log('Ionic Deploy: Update Success! ', res);
-                    $ionicLoading.hide();
-                }, function (err) {
-                    console.log('Ionic Deploy: Update error! ', err);
-                }, function (prog) {
-                    $ionicLoading.show({
-                        template: 'Updating...'
-                    });
-                });
-            });
-        }, function (err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+
+    $ionicDeploy.check().then(function(response) {
+                        $ionicLoading.hide();
+                        console.log(response);
+                        // response will be true/false
+                        $ionicLoading.show('checking for updates');
+                        if (response) {
+                          show('Downloading update...');
+                            // Download the updates
+                            $ionicDeploy.download().then(function() {
+                               $ionicLoading.hide();
+                               show('Extracting update...');
+                                // Extract the updates
+                                $ionicDeploy.extract().then(function() {
+                                    $ionicLoading.hide();
+                                    // Load the updated version
+                                    $ionicDeploy.load();
+                                }, function(error) {
+                                  show('Error extracting new update...');
+                                  $timeout(function(){
+                                    $ionicLoading.hide();
+                                  }, 1500);
+                                    // Error extracting
+                                }, function(progress) {
+                                  $ionicLoading.show('Extract progress...' + progress);
+                                  // setTimeout(function(){
+                                  //   hide();
+                                  // }, 5000);
+                                    // Do something with the zip extraction progress
+                                    // $scope.extraction_progress = progress;
+                                });
+                            }, function(error) {
+                              $ionicLoading.show('Error downloading...');
+                              $timeout(function(){
+                                $ionicLoading.hide();
+                              }, 1500);
+                                // Error downloading the updates
+                            }, function(progress) {
+                              $ionicLoading.show('Download progress...' + progress);
+                              // setTimeout(function(){
+                              //   hide();
+                              // }, 5000);
+                                // Do something with the download progress
+                                // $scope.download_progress = progress;
+                            });
+                        }
+                        else
+                        {
+                          console.log('no update');
+                          $timeout(function(){
+                                $ionicLoading.hide();
+                              }, 1500);
+                        }
+                    },
+                    function(error) {
+                        // Error checking for updates
+                        $ionicLoading.show('Error checking for updates'+error);
+                        $timeout(function(){
+                          $ionicLoading.hide();
+                        }, 1500);
+                    });                                               
+    // window.screen.lockOrientation('portrait');
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function (position) {
+            var lat  = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            global.setMyLoc({'lat':lat,'lon':lon});
+            console.log("myloc ",global.getMyLoc());
+        }, function(err) {
+          // error
+          console.log("myloc error");
+          global.setMyLoc({'lat':37.38, 'lon':-122.09})
         });
-        // window.screen.lockOrientation('portrait');
-        var posOptions = {
-            timeout: 10000,
-            enableHighAccuracy: false
-        };
-        $cordovaGeolocation
-            .getCurrentPosition(posOptions)
-            .then(function (position) {
-                var lat = position.coords.latitude;
-                var lon = position.coords.longitude;
-
-                global.setMyLoc({
-                    'lat': lat,
-                    'lon': lon
-                });
-                console.log("myloc ", global.getMyLoc());
-            }, function (err) {
-                // error
-                console.log("myloc error");
-                global.setMyLoc({
-                    'lat': 37.38,
-                    'lon': -122.09
-                })
-            });
-
-    });
 
 })
 
