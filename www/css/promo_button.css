@@ -28,6 +28,8 @@ body {
 	font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
 	font-size: .8em;
 	font-weight: bold;
+    margin-bottom: 55px;
+    margin-top: 20px;
 	
 	-webkit-perspective: 200;
 	-webkit-perspective-origin: 50% 0;

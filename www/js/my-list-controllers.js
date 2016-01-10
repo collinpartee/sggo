@@ -451,6 +451,11 @@ $scope.goToEditListPage = function(list){
     $scope.goToPlaceDetails = function(){
         $state.go('tab.placeDetails');
     };
+    
+    $scope.viewPlace=function(item){
+        console.log(item);
+        $state.go('tab.placeDetailsMyList',item);
+      }
 
 })
 .controller('addListCtrl', function($scope, $state, $ionicHistory, $stateParams, $cordovaGeolocation, $ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){

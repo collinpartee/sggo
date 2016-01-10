@@ -7,7 +7,7 @@
           <i class="icon ion-ios-arrow-back"></i>
       </button>
     </ion-nav-buttons>    
-    <ion-content class="has-header" scroll="false">
+    <ion-content class="has-header" scroll="true">
         
           <div class="row" style="background-color: rgba(237, 111, 112, 0.1);">
                     <input type="text" class="form-control col col-80" id="listInputField" placeholder="type here!" g-places-autocomplete options="autocompleteOptions" ng-model="place" style="background-color: rgba(237, 111, 112, 0.1); padding: 25px 15px;"/>
@@ -19,7 +19,7 @@
 
         <div class="list card" ng-repeat="item in placeList track by $index">
                 <div class="item item-avatar">
-                    <img src="{{item.icon}}">
+                    <div class="list-sidebar-image"><img src="{{item.icon}}"></div>
                     <h2 class="wrap-word">{{item.name}}</h2>
                     <p class="wrap-word">{{item.vicinity}}</p>
                     <button class="button button-flat button-clear button-assertive item-close-button" ng-click="removePlace($index)"><i class="ion-ios-close-outline"></i></button>

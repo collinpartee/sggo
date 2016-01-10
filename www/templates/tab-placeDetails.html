@@ -3,60 +3,80 @@
 <ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
 
     <ion-nav-buttons side="left">
-      <button class="button back-button buttons no-text button-clear header-item" style="color: white;" ng-click="$ionicGoBack();">
-        <i class="icon ion-ios-arrow-back"></i>
-      </button>
+        <button class="button back-button buttons no-text button-clear header-item" style="color: white;" ng-click="$ionicGoBack();">
+            <i class="icon ion-ios-arrow-back"></i>
+        </button>
     </ion-nav-buttons>
-  <ion-content scroll="false" style="">
-      <div class="list card">
-      <div class="hero larger-hero" style="overflow: hidden;">
-          <div class="row" style="">
-        <div class="col col-center" style=""><img src="img/mapImg.png" style="width: 130px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
-<!--          <div class="col">1<br>2<br>3<br> 4<br>1<br>2<br>3<br> 4<br></div>-->
-      </div>
-      <div class="row row-center" style="">
-        <div class="" style="margin: 0 auto; text-align: center;" >
-            <h4 class="black-color">{{placeDetial.name}}</h4>
-            <h5 class="black-color">{{placeDetial.vicinity}}</h5>
-        </div>
-        </div>
-        <div class="row" style="">
-          <div class="" style="margin: 0 auto;" >
-              <i class="ion-social-usd"></i>
-              <i class="ion-social-usd"></i>
-          </div>
-        </div>
-          <img src="img/food_bkgds/24.jpg" class="hero-bkgd-image blurry-img" style="position: absolute;">
-      </div>
-      
-          
 
-      <div class="list">
-          
-         
-          
-        <div class="item" href="#">
-            <table>
-            <tr ng-repeat='day in placeDetial.weekday_text'>
-                <td class="tableDateCell" style="width: 50%;">{{day}}</td>            
-            </tr>  
-            </table>  
-            <table>
-            <tr >
-                <td class="tableDateCell" style="width: 100%;">Sorry No Hours of Operation For You! </td>
-            </tr>  
-            </table> 
+    <ion-content scroll="true" style="">
+        
+        <div class="list card">
+            <div class="hero larger-hero" style="overflow: hidden;">
+                <div class="vertical-align-middle" style="position: absolute;">
+                <div class="row" style="">
+                    <div class="col col-center" style=""><img src="{{placeDetial.icon}}" style="width: 100px; height: 100px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
+                    <!--<div class="col">1<br>2<br>3<br> 4<br>1<br>2<br>3<br> 4<br></div>-->
+                </div>
+                <div class="row row-center" style="">
+                    <div class="" style="margin: 0 auto; text-align: center;">
+                        <h4 class="black-color">{{placeDetial.name}}</h4>
+                        <h5 class="black-color">{{placeDetial.vicinity}}</h5>
+                    </div>
+                </div>
+                <div class="row" style="">
+                    <div class="blackColor" style="margin: 0 auto;">
+                        <i class="ion-social-usd"></i>
+                        <i class="ion-social-usd"></i>
+                    </div>
+                </div>
+                    </div>
+                <img src="img/food_bkgds/24.jpg" class="hero-bkgd-image blurry-img" style="position: absolute;">
+            </div>
+<section id="btn" style="margin-top: 25px;">
+            <div class="coupoun" ng-click="showCouponCode()">25% off</div>
+            <div id="facebook" style="">
+                <div class="logo">
+                    <div class="recto"></div>
+                </div>
+                <div class="buttonTop"></div>
+                <div class="logo verso"></div>
+            </div>
+            <div id="shadow" style="margin-top: 38px;"><img src="img/promo_bkgd.png" alt="shadow" />
+            </div>
+        </section>
+
+
+            <div class="list">
+                <!-- COMPANY URL -->
+                <div class="item place-item-list">
+                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <span ng-click="copyText()">www.google.com</span>
+                </div>
+                
+                <!-- COMPANY TELEPHONE # -->
+                <div class="item place-item-list">
+                    <div class="place-list-key-icon"><i class="icon ion-ios-telephone"></i></div> <span>770-000-0000</span>
+                </div>
+                <!-- COMPANY OPEN TIMES -->
+                <div class="item place-item-list" href="#">
+                    <div class="place-list-key-icon"><i class="icon ion-ios-clock-outline"></i></div>
+                    <table>
+                        <tr ng-repeat='day in placeDetial.weekday_text'>
+                            <td class="tableDateCell" style="width: 50%;">{{day}}</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="tableDateCell" ng-show="placeDetial.weekday_text == ''" style="width: 100%;">Sorry No Hours of Operation For You! </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-      </div>
-       <section id="btn" style="margin-top: 25px;">
-	<p>47k fans</p>
-	<div id="facebook" style="margin-top: 25px;">
-		<div class="logo"><div class="recto"></div></div>
-		<div class="buttonTop"></div>
-		<div class="logo verso"></div>
-	</div>
-	<div id="shadow" style="margin-top: 38px;"><img src="img/promo_bkgd.png" alt="shadow" /></div>
-</section>
-  </ion-content>
+    </ion-content>
 </ion-view>
+
+<script id="showCouponCode-popUp.html" type="text/ng-template">
+    <img class="qrCode" src="img/QRCode.png" />
+    <p style="margin-bottom: 0;">Terms and conditions</p>
+    <p style="margin-bottom: 0;">Must spend at least $30. Dine in only. No fat chicks allowed.</p>
+</script>
