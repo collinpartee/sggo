@@ -30,7 +30,7 @@
 -->
     <ion-content ng-class="{expanded:isExpanded}" class="" style="" scroll="true">
         <ion-list class="animate-ripple" style="margin-top: 5px;">
-            <ion-item class="item item-avatar myListItem item-remove-animate" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
+            <ion-item class="item item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
 <!--                <img src="{{list.listImg}}" class="list-image" style="">-->
 <!-- 
@@ -56,7 +56,7 @@
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
             <div class="item-avatar item-icon-right itemc" style="padding-top: 16px;">
-                <img class="list-image" src="{{v.listImg}}">
+                <img data-name="{{v.ListName}}" class="list-image profile">
                     <h2 class="item-text-wrap">{{v.ListName}}</h2>
                      <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in v.tags'>#{{tag.text}}</span></p>
             </div>  

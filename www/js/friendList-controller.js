@@ -42,21 +42,22 @@ angular.module('starter.friendList', [])
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.searchResult=null;
+    $scope.modal.searchResult=null;
   });  
 
 
   $scope.closeModal = function() {
-    console.log($scope.searchResult);
-    if($scope.searchResult==null)
+      
+    console.log($scope.modal.searchResult);
+    if($scope.modal.searchResult==null)
     {
       console.log("empty");
     }
     else
     {
-      friendList[$scope.searchResult.key]=$scope.searchResult;
+      friendList[$scope.modal.searchResult.key]=$scope.modal.searchResult;
         friendList.$save().then(function(ref) {
-          var friendRef=ref.parent().parent().child($scope.searchResult.key+'/friendList');
+          var friendRef=ref.parent().parent().child($scope.modal.searchResult.key+'/friendList');
           var friedListObj= $firebaseObject(friendRef);
           ref.parent().once('value',function(snap){
               var me={name:snap.val().name,email:snap.val().email,key:snap.key(),avatar:snap.val().avatar};
@@ -67,7 +68,7 @@ angular.module('starter.friendList', [])
               console.log("Error:", error);
             });  
     }
-
+      $scope.modal.searched=false;
     $scope.modal.hide();
     };
 
@@ -75,7 +76,13 @@ angular.module('starter.friendList', [])
     $scope.modal.remove();
   });
     
+  $scope.close=function(){
+        $scope.modal.searched=false;
+        $scope.modal.hide();
+  };
   $scope.searchFriend= function(email) {
+      $scope.modal.searched=true;
+
       console.log(email);
         var ref = new Firebase(FBURL);
         ref.child('users').orderByChild('email')
@@ -83,14 +90,34 @@ angular.module('starter.friendList', [])
         .endAt(email)
         .once('value', function(snap) {
           var newFriend=  {};
-            snap.forEach(function(s) {
-               newFriend={name:s.val().name,email:s.val().email,key:s.key(),avatar:s.val().avatar};
-               var friendName=$firebaseObject(s.ref().child('name'));
-               friendName.$bindTo($scope, "friendname");
-               console.log(friendName);   
-          });
-          $scope.searchResult=newFriend;
-          console.log($scope.searchResult.name);    
+            if(!snap.exists())
+            {
+                    console.log("dne");
+                    $scope.modal.searchResult=null;
+                    if(!$scope.$$phase) {
+				console.log('diggest');	        				
+                   $scope.$digest();
+
+               }
+            }
+            else
+            {
+                 snap.forEach(function(s) {
+                   newFriend={name:s.val().name,email:s.val().email,key:s.key(),avatar:s.val().avatar};
+                   var friendName=$firebaseObject(s.ref().child('name'));
+                    $scope.friendname=s.val().name;
+
+                   console.log(newFriend); 
+                    $scope.modal.searchResult=newFriend;
+                    if(!$scope.$$phase) {
+                    console.log('diggest');	        				
+                       $scope.$digest();
+
+                   }
+              });                   
+            }
+
+            
 
           });
   };

@@ -36,26 +36,26 @@
     </ion-header-bar>
 -->
     <ion-content scroll="false" class="modal-background">
-        <button class="button button-clear close-modal" ng-click="closeModal()" style="position: absolute; top: 0; right: 0;">Close</button>
+        <button class="button button-clear close-modal" ng-click="close()" style="position: absolute; top: 0; right: 0;">Close</button>
         
       <div class="list" style="margin-top: 15vh;">
         <label class="item item-input col col-90 center-margin">
 <!--          <span class="input-label">Email</span>-->
-          <input type="text" ng-model="email" placeholder="Friends email address" class="friend-modal-input-box">
+          <input type="email" ng-model="email" placeholder="Friends email address" class="friend-modal-input-box">
         </label>
           <div class="padding" style="padding-bottom: 0 !important;">
         <button class="button button-full button-outline button-custom-color-outline" ng-click="searchFriend(email)">Search For Friend</button>
           </div>
-          <div class="row center-textAlign">
+          <div class="row center-textAlign" ng-show='modal.searched'>
 <!--        <label class="item item-input">-->
 <!--          <span class="input-label">Result</span>-->
-            <h4 style="color: white; margin-top: 8vh;" class="center-margin">{{friendname.$value}}</h4>
+            <h4 style="color: white; margin-top: 8vh;" class="center-margin">{{modal.searchResult.name || "This email doesn't exist, please check your spellings and caps"}}</h4>
 <!--        </label>-->
         </div>
       </div>
 
-        <div class="padding" style="padding-bottom: 0 !important;">
-      <button ng-show="friendname.$value.length > 0" class="button button-full button-outline button-custom-color-outline" ng-click="closeModal()">Add Friend</button>
+        <div class="padding" style="padding-bottom: 0 !important;" ng-show='modal.searched && modal.searchResult.name.length > 0'>
+      <button class="button button-full button-outline button-custom-color-outline" ng-click="closeModal()">Add Friend</button>
         </div>
     </ion-content>
   </div>

@@ -151,15 +151,23 @@ angular.module('starter.accountSetting', [])
 		 };
 
 })
-.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,FBURL,authData,global) {
-    $scope.$on('$ionicView.beforeEnter', function() {
-            
-            $scope.$root.hideTabsOnThisPage = true;
-        });
-        $scope.$on('$ionicView.leave', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-        });
+.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,$timeout,ionicMaterialMotion,ionicMaterialInk,FBURL,authData,global) {
+    $scope.$on('applyEffect',function(e){
+        // Set Motion
+      
+    
+        console.log('triggered');
+      $timeout(function(){
+
+            ionicMaterialMotion.fadeSlideInRight({
+                selector: '.animated-fade-slide-in .avatar-image'
+            });
+            ionicMaterialInk.displayEffect();
+          },0);
+        
+        // Activate ink for controller
+		    ionicMaterialInk.displayEffect();
+    });
     var ref = new Firebase(FBURL);
     var avatarURLs = [];
     
