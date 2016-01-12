@@ -579,13 +579,14 @@ $scope.goToEditListPage = function(list){
                 }
                 else
                 {
-                        _place['icon']='img/place_image/'+getRandomInt(0,17)+'.png';
+                        _place['icon']='img/icons/'+getRandomInt(1,30)+'.png';
                 }
             }
             else
             {
                 _place['name']=place;
-                _place['icon']='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
+//                _place['icon']='img/drawn_icons/'+getRandomInt(0,11)+'.jpg';
+                _place['icon']='img/icons/'+getRandomInt(1,30)+'.png';
             }
             
             $scope.placeList.push(_place);
