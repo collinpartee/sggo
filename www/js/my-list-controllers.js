@@ -566,7 +566,7 @@ $scope.goToEditListPage = function(list){
                 if(place.rating)
                     _place['rating']=place.rating;
                 if(place.vicinity)
-                    _place['vicinity']=place.vicinity;
+                    _place['vicinity']=place.formatted_address;
                 if(place.price_level)
                     _place['price_level']=place.price_level;
                 if(place.formatted_phone_number)

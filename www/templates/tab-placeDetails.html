@@ -20,7 +20,7 @@
                 <div class="row row-center" style="">
                     <div class="" style="margin: 0 auto; text-align: center;">
                         <h4 class="black-color">{{placeDetial.name}}</h4>
-                        <h5 class="black-color">{{placeDetial.vicinity}}</h5>
+                        <h5 class="black-color"><a ng-click="gotoAddress(placeDetial.vicinity)" target="_system">{{placeDetial.vicinity}}</a></h5>
                     </div>
                 </div>
                 <div class="row" style="">
@@ -49,7 +49,7 @@
             <div class="list">
                 <!-- COMPANY URL -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='{{placeDetial.website}}'>Go to {{placeDetial.name}} website</a></div>
+                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='#' ng-click="gotoWebsite(placeDetial)">Go to {{placeDetial.name}} website</a></div>
                     <div ng-show="placeDetial.website == ''">Not Available</div>
 
                 </div>

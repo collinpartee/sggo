@@ -153,7 +153,14 @@ var myName=global.getMyName();
             
             $scope.$root.hideTabsOnThisPage = true;
         });
+    $scope.gotoWebsite=function(pd)
+    {
+        window.open(pd.website,'_system','location=yes');
+    }
     
+    $scope.gotoAddress=function(addr){
+        window.open('maps://maps.google.com/?daddr=' + addr, '_system');
+    }
     $scope.showCouponCode = function() {
             $ionicPopup.confirm({
               title: 'Success',
