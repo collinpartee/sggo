@@ -1,6 +1,6 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,$ionicLoading,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,$ionicLoading,$filter,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
 		$ionicLoading.hide();
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
@@ -55,9 +55,14 @@ angular.module('starter.listNearMe', [])
 				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
 				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
 				        	nearbyListRef.once('value',function(snap){
-				        		if(listexist.key!=null)
+				        		if(listexist[key]==1)
 				        		{
 				        			console.log('eixst',$scope.listDetail);
+				        			if(!$scope.$$phase) {
+					        				
+										$scope.$digest();
+
+									}	
 				        		}
 				        		else
 				        		{
@@ -92,7 +97,11 @@ angular.module('starter.listNearMe', [])
 	      geoQuery.on("key_exited", function(key, location, distance) {
 	        console.log(key, location, distance);
 
-
+	        	delete listexist[key];
+	        	var found = $filter('getById')($scope.listDetail, key);
+	        	var index = $scope.listDetail.indexOf(found);
+	        	console.log(found);
+  				$scope.listDetail.splice(index, 1);  
     			if(!$scope.$$phase) {
 				  $scope.$digest();
 				}

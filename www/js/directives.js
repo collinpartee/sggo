@@ -30,6 +30,17 @@ angular.module('starter.directives', [])
     return input;
   };
  })
+.filter('getById', function() {
+  return function(input, id) {
+    var i=0, len=input.length;
+    for (; i<len; i++) {
+      if (+input[i].$id == +id) {
+        return input[i];
+      }
+    }
+    return null;
+  }
+})
 .directive('hideTabBar', function($timeout,$state, global) {
   var style = angular.element('<style>').html(
     '.has-tabs.no-tabs:not(.has-tabs-top) { bottom: 0; }\n' +

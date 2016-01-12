@@ -13,11 +13,10 @@ angular.module('starter.useravatar', [])
 		scope: {
 			User: '=user'
 		},
-		template: '<div class="generic-avatar">'+
+		template: '<img class="generic-avatar">'+
 		'<a class="thumb spacer animated fadeIn color" style="background-color:{{GenericAvatar.Background}}"></a>'+
 		'<a class="name">{{GenericAvatar.Initials}}</a>' +
-		'<a class="img" data-ng-if="ImageAvailable" style="background-image:url({{User.Avatar}})"></a>' +
-		'</div>',
+		'</img>',
 		controller: controller
 	};
 }])
@@ -31,13 +30,14 @@ angular.module('starter.useravatar', [])
 				5: "#D7ADE0"
 			};
 			var i1 = "", i2 = "", nameArray = [];
-			if (angular.isDefined(user.creater_name)) {
-				i1 = angular.uppercase(user.creater_name.charAt(0));
-				nameArray = user.creater_name.split(" ");
-				if (nameArray.length > 2) {
+			if (angular.isDefined(user.ListName)) {
+				i1 = angular.uppercase(user.ListName.charAt(0));
+				nameArray = user.ListName.split(" ");
+				console.log(i1,nameArray);
+				if (nameArray.length > 1) {
 					i2 = angular.uppercase(nameArray[nameArray.length - 1].charAt(0));
 				} else {
-					i2 = angular.uppercase(nameArray[1].charAt(0));
+					i2 = '';
 				}
 			} else {
 				i1 = angular.uppercase(user.FirstName.charAt(0));
