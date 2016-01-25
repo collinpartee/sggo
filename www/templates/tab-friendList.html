@@ -1,5 +1,5 @@
 <link href="css/tab-listDetail-css.css" rel="stylesheet" />
-<ion-view view-title="Friends" hide-nav-bar="false" cache-view="false" hide-tab-bar>
+<ion-view view-title="Friends" hide-nav-bar="false" hide-back-button="true" cache-view="false" hide-tab-bar>
 <!--
     <ion-nav-buttons side="right">
       <button class="button button-icon icon ion-person-add" ng-click="openModal()" style="color:white;">
@@ -44,7 +44,7 @@
           <input type="email" ng-model="email" placeholder="Friends email address" class="friend-modal-input-box">
         </label>
           <div class="padding" style="padding-bottom: 0 !important;">
-        <button class="button button-full button-outline button-custom-color-outline" ng-click="searchFriend(email)">Search For Friend</button>
+        <button class="button button-full button-outline button-custom-color-outline-light" ng-click="searchFriend(email)">Search For Friend</button>
           </div>
           <div class="row center-textAlign" ng-show='modal.searched'>
 <!--        <label class="item item-input">-->
@@ -55,7 +55,7 @@
       </div>
 
         <div class="padding" style="padding-bottom: 0 !important;" ng-show='modal.searched && modal.searchResult.name.length > 0'>
-      <button class="button button-full button-outline button-custom-color-outline" ng-click="closeModal()">Add Friend</button>
+      <button class="button button-full button-outline button-custom-color-outline-light" ng-click="closeModal()">Add Friend</button>
         </div>
     </ion-content>
   </div>

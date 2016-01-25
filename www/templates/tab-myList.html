@@ -1,6 +1,6 @@
 
 <link href="css/tab-myList-css.css" rel="stylesheet" />
-<ion-view view-title="My Groups" hide-nav-bar="false" cache-view="false" hide-tab-bar>
+<ion-view view-title="My Groups" hide-nav-bar="false" hide-back-button="true" cache-view="false" hide-tab-bar>
 
 
 <!--
@@ -35,7 +35,8 @@
 <!--                <img src="{{list.listImg}}" class="list-image" style="">-->
 <!-- 
         list name initials as avatar -->
-                    <img data-name="{{list.ListName}}" class="list-image profile"/>
+<!--                    <img data-name="{{list.ListName}}" data-char-count=2 class="list-image profile"/>-->
+                <div class="useravatar" user="list"></div> 
            <div class='itemc' style="padding: 16px 49px 16px 95px;">
                     <h2 class="custom-font1">{{list.ListName}}</h2>
                     <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
@@ -56,7 +57,7 @@
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             
             <div class="item-avatar item-icon-right itemc" style="padding-top: 16px;">
-                <img data-name="{{v.ListName}}" class="list-image profile">
+                 <div class="useravatar" user="v"></div> 
                     <h2 class="item-text-wrap">{{v.ListName}}</h2>
                      <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in v.tags'>#{{tag.text}}</span></p>
             </div>  

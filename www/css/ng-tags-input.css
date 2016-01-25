@@ -17,15 +17,15 @@ tags-input .host:active {
 }
 
 tags-input .tags {
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
+/*  -moz-appearance: textfield;*/
+/*  -webkit-appearance: textfield;*/
   padding: 1px;
   overflow: hidden;
   word-wrap: break-word;
   cursor: text;
   background-color: #fff;
 /*  border: 1px solid darkgray;*/
-  box-shadow: 1px 1px 1px 0 lightgray inset;
+/*  box-shadow: 1px 1px 1px 0 lightgray inset;*/
   height: 100%;
 }
 tags-input .tags.focused {

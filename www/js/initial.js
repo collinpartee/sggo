@@ -30,7 +30,7 @@
             var e = $(this);
             var settings = $.extend({
                 // Default settings
-                name: 'Name',
+                name: '',
                 seed: 0,
                 charCount: 1,
                 textColor: '#ffffff',

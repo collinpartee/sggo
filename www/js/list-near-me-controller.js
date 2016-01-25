@@ -1,6 +1,6 @@
 angular.module('starter.listNearMe', [])
 
-.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,$ionicLoading,$filter,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService) {
+.controller('nearMeCtrl', function($scope, $state,$cordovaGeolocation,$timeout,$ionicLoading,$filter,ionicMaterialMotion,ionicMaterialInk,geoFire,global,FBURL,locationService,avatarService) {
 		$ionicLoading.hide();
 	    $scope.isExpanded = true;
 	    $scope.$parent.clearAllFabs();
@@ -73,6 +73,8 @@ angular.module('starter.listNearMe', [])
 				        			nearbyListUserRef.once('value',function(snap){
 //				        				console.log(snap.val());
 				        				listItem.avatar=snap.val();
+                                        listItem.avatarImg=avatarService.getAvatar(listItem);
+                                        console.log(listItem.avatarImg);
 				        				if($scope.listDetail.length<limit)
 				        				{
 				        					$scope.listDetail.push(listItem);
@@ -129,15 +131,18 @@ angular.module('starter.listNearMe', [])
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
-
+    $('.profile').initial({name:"steve"});
     // Set Motion
     $timeout(function() {
         ionicMaterialMotion.slideUp({
+//            $('.profile').initial();
             selector: '.slide-up'
         });
+        $('.profile').initial();
     }, 300);
 
     $timeout(function() {
+//        $('.profile').initial();
         ionicMaterialMotion.fadeSlideInRight({
             startVelocity: 3000
         });
@@ -146,14 +151,13 @@ angular.module('starter.listNearMe', [])
     // Set Ink
     //ionicMaterialInk.displayEffect();
 
-    $scope.$on('$ionicView.beforeEnter', function() {
-            
+    $scope.$on('$ionicView.enter', function() {
+            console.log("my page has arrived");
+        $('.profile').initial({name:"Steve"});
             $scope.$root.hideTabsOnThisPage = true;
     });
-    $scope.$on('$ionicView.leave', function() {
-            
-            $scope.$root.hideTabsOnThisPage = false;
-        });
+    
+    
     console.log($stateParams);
 	
     var key=$stateParams.$id;

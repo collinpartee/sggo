@@ -1,5 +1,5 @@
 
-<ion-view view-title="Groups Near Me" hide-nav-bar="false" cache-view="false" class="animate-ripple" hide-tab-bar><!-- class="animate-fade-slide-in" -->
+<ion-view view-title="Groups Near Me" hide-nav-bar="false" cache-view="false" class="animate-ripple" hide-tab-bar hide-back-button="true"><!-- class="animate-fade-slide-in" -->
     
 <!--     <div class="bar bar-header bar-assertive-900">
         <div class="h1 title title-left light">Lists Near Me</div>
@@ -25,14 +25,19 @@
         </ion-item>
       </ion-list>
 -->
-        <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by list.ListName" ng-click="goToEditListNearMe(list);" my-post-repeat-directive='mylist'>
+        <div class="list animate-fade-slide-in-right" ng-repeat="list in listDetail | filter:search_bar | orderBy: 'dis' track by $index" ng-click="goToEditListNearMe(list);" my-post-repeat-directive='mylist'>
 
 
                 <div class="item item-avatar item-s-wrap">
 <!--                    <div class="useravatar" user="list.creater_name"></div>-->
-                    <img data-name="{{list.ListName}}" class="list-image profile"/>
+<!--                    <img data-name="{{list.ListName}}" class="list-image profile"/>-->
 <!--                    <img class="list-image" src="{{list.listImg}}">-->
-                    <strong>{{list.creater_name}} : </strong>{{list.ListName}}
+                    <div class="generic-avatar avatar">
+		<a class="thumb spacer animated fadeIn color" style="background-color:{{list.avatarImg.Background}}"></a>
+		<a class="name">{{list.avatarImg.Initials}}</a>
+		</div>
+                    <h2>{{list.ListName}}</h2>
+                    Created by: <span>{{list.creater_name}}</span>
                     <p class="myListTagsContainer wrap-word custom-font1"><span class="myListTags" ng-repeat='tag in list.tags'>#{{tag.text}}</span></p>
                     <div class="card-footer text-right">
                         <i class="icon ion-android-download" ng-class="{'positive': list.downloads>0, 'notDownloaded': list.downloads==0 }"></i> 

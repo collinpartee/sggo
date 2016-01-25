@@ -1,7 +1,13 @@
 <!--<link href="" rel="stylesheet" />-->
 
-<ion-view hide-tab-bar hide-nav-bar="false" view-title="Change Avatar" cache-view="false">
-
+<ion-view hide-tab-bar hide-nav-bar="false" view-title="Change Avatar" cache-view="false" hide-back-button="true">
+    
+<ion-nav-buttons side="left">
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack(); ">
+          <i class="icon ion-ios-arrow-back"></i>
+      </button>
+    </ion-nav-buttons> 
+    
   <ion-content scroll="true" style="" class="animate-fade-slide-in">
       <div style="relative">
       <table cellspacing="0" cellpadding="0" align="center" style="width: 100%;">
