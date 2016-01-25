@@ -66,7 +66,7 @@
 -->
 
     
-    <ion-scroll style="height: 62%;" ng-class="{'white-bg': pressed, 'whiteSmoke-bg': !pressed}">
+    <ion-scroll style="height: 62%;" ng-class="{'white-bg': pressed, 'whiteSmoke-bg': !pressed}" has-bouncing="true">
         <list class="list" >
                 <div class="list card" ng-repeat="item in listItem.places track by $index" ng-show="option" ng-click="viewPlace(item)">
             <div class="item item-avatar">

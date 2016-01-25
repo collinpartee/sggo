@@ -1,6 +1,6 @@
 <ion-view view-title="My Account" cache-view="false" hide-back-button="true" hide-tab-bar>
 
-    <ion-content ng-class="{expanded:$scope.isExpanded}">
+    <ion-content ng-class="{expanded:$scope.isExpanded}" has-bouncing="true">
         <div class="hero slide-up" style="overflow: hidden;">
             <div class="content vertical-align-middle">
                 <div class="avatar" style="background-image: url('{{avatar.$value}}');"></div>
@@ -20,7 +20,7 @@
           </div>
           
     <div class="list">
-        <a class="item item-icon-right" ui-sref="tab.tutorialGroup">
+        <a class="item item-icon-right" ng-click="linkToPassword();">
             Change Password
             <i class="icon ion-ios-arrow-right"></i>
         </a>
