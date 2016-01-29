@@ -13,22 +13,39 @@ angular.module('starter.useravatar', [])
 		scope: {
 			User: '=user'
 		},
-		template: '<img class="generic-avatar">'+
+		template: '<div class="generic-avatar avatar">'+
 		'<a class="thumb spacer animated fadeIn color" style="background-color:{{GenericAvatar.Background}}"></a>'+
 		'<a class="name">{{GenericAvatar.Initials}}</a>' +
-		'</img>',
+		'</div>',
 		controller: controller
 	};
 }])
 .factory("avatarService", function(){
     var avatarService = function(user){
       var colorCodes = {
-				1: "#F29691",
-				2: "#92D6C2",
-				3: "#CFD696",
-				4: "#FACA82",
-				5: "#D7ADE0"
+//				1: "#F29691",
+//				2: "#92D6C2",
+//				3: "#CFD696",
+//				4: "#FACA82",
+//				5: "#D7ADE0"
+                     1:"#3F51B5",
+                     2:"#2196F3",
+                     3:"#03A9F4",
+                     4:"#00BCD4",
+                     5:"#009688",
+                     6:"#4CAF50",
+                     7:"#8BC34A",
+                     8:"#CDDC39",
+                     9:"#FFEB3B",
+                     10:"#FFC107",
+                     11:"#FF9800",
+                     12:"#FF5722",
+                     13:"#795548",
+                     14:"#9E9E9E",
+                     15:"#607D8B"
 			};
+            var initials='';
+            var charCode='';
 			var i1 = "", i2 = "", nameArray = [];
 			if (angular.isDefined(user.ListName)) {
 				i1 = angular.uppercase(user.ListName.charAt(0));
@@ -36,8 +53,12 @@ angular.module('starter.useravatar', [])
 				console.log(i1,nameArray);
 				if (nameArray.length > 1) {
 					i2 = angular.uppercase(nameArray[nameArray.length - 1].charAt(0));
+                    initials = i1 + i2;
+                    charCode = initials.charCodeAt(0) + initials.charCodeAt(1);
 				} else {
 					i2 = '';
+                    initials = i1 + i2;
+                    charCode = initials.charCodeAt(0);
 				}
 			} else {
 				i1 = angular.uppercase(user.FirstName.charAt(0));
@@ -48,10 +69,12 @@ angular.module('starter.useravatar', [])
 					i2 = angular.uppercase(nameArray[0].charAt(0));
 				}
 			}
-			var initials = i1 + i2;
-			var charCode = initials.charCodeAt(0) + initials.charCodeAt(1);
-			charCode = charCode >= 130 && charCode <= 144 ? 1 : charCode >= 145 && charCode <= 158 ? 2 : charCode > 158 && charCode <= 172 ? 3 : charCode >= 173 && charCode <= 186 ? 4 : 5;
+			
+			
+        console.log(charCode);
+			charCode = charCode%15+1;
 			var background = colorCodes[charCode];
+        
 			return ({ "Initials": initials, "Background": background });
     }
     return {

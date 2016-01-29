@@ -1,12 +1,12 @@
-<ion-view view-title="My Account" cache-view="false" hide-tab-bar>
+<ion-view view-title="My Account" cache-view="false" hide-back-button="true" hide-tab-bar>
 
-    <ion-content ng-class="{expanded:$scope.isExpanded}">
+    <ion-content ng-class="{expanded:$scope.isExpanded}" has-bouncing="true">
         <div class="hero slide-up" style="overflow: hidden;">
             <div class="content vertical-align-middle">
                 <div class="avatar" style="background-image: url('{{avatar.$value}}');"></div>
                 <h3><a class="dark">{{myName}}</a></h3>
             </div>
-            <img src="img/food_bkgds/23.jpg" class="hero-bkgd-image blurry-img"/>
+            <img src="img/food_bkgds/12.jpg" class="hero-bkgd-image blurry-img"/>
         </div>
         <div class="button-bar">
             <div class="col col-50 center-textAlign">
@@ -20,7 +20,7 @@
           </div>
           
     <div class="list">
-        <a class="item item-icon-right" href="#" ng-click="linkToPassword();">
+        <a class="item item-icon-right" ng-click="linkToPassword();">
             Change Password
             <i class="icon ion-ios-arrow-right"></i>
         </a>
@@ -32,11 +32,15 @@
             Change Avatar
             <i class="icon ion-ios-arrow-right"></i>
         </a>
+        <a class="item item-icon-right" href="#" ng-click="linkToTutorial();">
+            Tutorial
+            <i class="icon ion-ios-arrow-right"></i>
+        </a>
     </div>
         <div class="row">
-      <a class="button button-assertive button-block col col-80 center-margin" style="border-radius: 20px;" ng-click="showLogOutMenu()">
+      <button class="button button-assertive button-block col col-80 center-margin" style="border-radius: 20px;" ng-click="showLogOutMenu()">
           Log Out
-        </a>
+        </button>
             </div>
     </ion-content>
 

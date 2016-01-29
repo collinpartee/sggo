@@ -1,6 +1,6 @@
 <link href="../css/tab-myItemDetails-css.css" rel="stylesheet" />
 <link href="css/promo_button.css" rel="stylesheet" />
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Details" cache-view="false">
 
     <ion-nav-buttons side="left">
         <button class="button back-button buttons no-text button-clear header-item" style="color: white;" ng-click="$ionicGoBack();">
@@ -12,14 +12,13 @@
         
         <div class="list card">
             <div class="hero larger-hero" style="overflow: hidden;">
-                <div class="vertical-align-middle" style="position: absolute;">
+                <div class="vertical-align-middle" style="position: absolute; width: 90%;">
                 <div class="row" style="">
                     <div class="col col-center" style=""><img src="{{placeDetial.icon}}" style="width: 100px; height: 100px; display: block; margin: 0 auto; border-radius: 50%; border: 3px double rgb(127, 197, 195);"> </div>
-                    <!--<div class="col">1<br>2<br>3<br> 4<br>1<br>2<br>3<br> 4<br></div>-->
                 </div>
                 <div class="row row-center" style="">
                     <div class="" style="margin: 0 auto; text-align: center;">
-                        <h4 class="black-color">{{placeDetial.name}}</h4>
+                        <h4 class="black-color" style="margin: 3px 0;">{{placeDetial.name}}</h4>
                         <h5 class="black-color"><a ng-click="gotoAddress(placeDetial.vicinity)" target="_system">{{placeDetial.vicinity}}</a></h5>
                     </div>
                 </div>
@@ -29,7 +28,7 @@
                     </div>
                 </div>
                     </div>
-                <img src="img/food_bkgds/24.jpg" class="hero-bkgd-image blurry-img" style="position: absolute;">
+                <img src="img/food_bkgds/11.jpg" class="hero-bkgd-image blurry-img" style="position: absolute;">
             </div>
 <section id="btn" style="margin-top: 25px;" ng-hide=true>
             <div class="coupoun" ng-click="showCouponCode()">25% off</div>
@@ -48,7 +47,7 @@
             <div class="list">
                 <!-- COMPANY URL -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='#' ng-click="gotoWebsite(placeDetial)">Go to {{placeDetial.name}} website</a></div>
+                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='#' ng-click="gotoWebsite(placeDetial)">{{placeDetial.name}} website</a></div>
                     <div ng-show="placeDetial.website == ''">Not Available</div>
 
                 </div>
@@ -60,14 +59,21 @@
                 <!-- COMPANY OPEN TIMES -->
                 <div class="item place-item-list" href="#">
                     <div class="place-list-key-icon"><i class="icon ion-ios-clock-outline"></i></div>
+                    <div style="overflow: scroll; overflow-wap:break-word; word-wrap:break-word; width: 100%;" ng-hide="placeDetial.weekday_text == ''">
+<!--
                     <table>
                         <tr ng-repeat='day in placeDetial.weekday_text'>
-                            <td class="tableDateCell" style="width: 50%;">{{day}}</td>
+                            <td class="tableDateCell" style="width: 50%;"><p>{{day}}</p></td>
                         </tr>
                     </table>
+-->
+                        <ul style="width: 100%;">
+                            <li ng-repeat='day in placeDetial.weekday_text' style="white-space:pre-line;">{{day}}</li>
+                        </ul>
+                        </div>
                     <table>
                         <tr>
-                            <td class="tableDateCell" ng-show="placeDetial.weekday_text == ''" style="width: 100%;">Sorry No Hours of Operation For You! </td>
+                            <td class="tableDateCell" ng-show="placeDetial.weekday_text == '' " style="width: 100%;">Sorry No Hours of Operation For You! </td>
                         </tr>
                     </table>
                 </div>

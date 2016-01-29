@@ -1,4 +1,4 @@
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Food User Group" cache-view="false">
 <!--
     <ion-header-bar class="bar-stable">
 
@@ -30,9 +30,9 @@
     </div> -->
 
     
-  <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;">
+  <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header" style="background-color: whitesmoke;" scroll="false">
       
-      <div class="hero" style="overflow: hidden; height: 45%;"><!-- class="hero slide-up" -->
+      <div class="hero" style="overflow: hidden; height: 39%;"><!-- class="hero slide-up" -->
             <div class="hero-content">
                 <div class="row">
             <div class="col col-25">
@@ -42,34 +42,32 @@
             </div>
             <div class="col col-50">
                 <div class="center-div" >
-                    <img src="{{nearByListItem.listImg}}" style="max-height: 70px; max-width: 70px; border-radius: 50%;" />
+<!--                    <img src="{{nearByListItem.listImg}}" style="max-height: 50px; max-width: 50px; border-radius: 50%;" />-->
+<!--                    <img class="list-image profile"/>-->
+                    <div class="useravatar custom-useravatar" user="nearByListItem"></div>
                 </div>
             </div>
-<!--             <div class="col col-25">
-                <button class="button button-flat button-icon {{heartClass}}" ng-click="likeThisList();"><span class="numOfLikes" style="padding: 5px; font-size: medium; color: white;">{{likes.$value || 0}}</span></button>
-            </div> -->
-        </div>
-<!--
-                <div class="avatar" style="background-image: url('{{nearByListItem.avatar}}'); max-height: 70px; max-width: 70px;"></div> -->
+                </div>
                 
-                <h3 class="black-color"><a>{{nearByListItem.ListName}}</a></h3>
+                <h3 class="black-color" ng-model="nameOfList.name"><a>{{nearByListItem.ListName}}</a></h3>
                 <h4 class="black-color">Created By : {{nearByListItem.creater_name}}</h4>
                 
 <button class="button button-custom-color col col-80" ng-click="goToSpin()" style="margin: 0 auto;">FUG IT</button>
                 
             </div>
-          <img src="img/food_bkgds/2-dark-50.jpg" class="hero-bkgd-image blurry-img">
+          <img src="img/food_bkgds/2.jpg" class="hero-bkgd-image blurry-img">
         </div>
 
 
 
-        <div class="button-bar" style="height: 65px;">
+        <div class="button-bar" style="height: 8%;">
             <div class="col col-50 center-textAlign" ng-click="likeThisList();">
-                <i style="width: 200px;" data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i><br>Likes
-<!--                <span style="font-size: x-large;"> {{likes.$value || 0}} </span>-->
+                <span style="margin-right: 20px; display: inline-flex;">Likes</span>
+                <i style="width: 200px;" data-count="{{likes.$value || 0}}" class="icon {{heartClass}} assertive badged_i badged_like"></i>
             </div>
             <div class="col col-50 center-textAlign" ng-click="downLoad();">
-                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download badged_i" ng-class="{ 'unselected':downloads.$value == 0, 'positive': downloads.$value > 0 }"></i><br>Download List
+                <span style="margin-right: 20px; display: inline-flex;">Download</span>
+                <i data-count="{{downloads.$value || 0}}" class="icon ion-android-download badged_i" ng-class="{ 'unselected':downloads.$value == 0, 'positive': downloads.$value > 0 }"></i>
 <!--                <span style="font-size: x-large;">{{downloads.$value || 0}}</span>-->
             </div>
           </div>
@@ -86,7 +84,7 @@
     </div>
 
           
-      <ion-scroll style="height: 45%;">
+      <ion-scroll style="height: 53%;" has-bouncing="true">
         <div class="list">
 
               <div class="list card" ng-repeat="item in nearByListItem.places track by $index" ng-click="viewPlace(item)">

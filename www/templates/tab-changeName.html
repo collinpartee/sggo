@@ -1,11 +1,17 @@
-<ion-view hide-tab-bar view-title="Change Password" cache-view="false" align-title="center">
-  <ion-content>
+<ion-view hide-tab-bar view-title="Change Name" cache-view="false" align-title="center" hide-back-button="true">
+    <ion-nav-buttons side="left">
+      <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack(); ">
+          <i class="icon ion-ios-arrow-back"></i>
+      </button>
+    </ion-nav-buttons> 
+  <ion-content scroll="false">
       <form style="margin-top: 20vh;">
       <div class="list list-inset-cp">
-          <label class="item item-input">
+<!--          <label class="item item-input">-->
 <!--              <span class="input-label" >New name</span>-->
-              <input type="text" ng-model="newitem.newn" class="change-password-input-box">
-          </label>
+<!--              <input type="text" ng-model="newitem.newn" class="change-password-input-box">-->
+              <ion-md-input class="accountInput" placeholder="{{newitem.newn}}<-old name"ng-model='newitem.newn' highlight-color="balanced" type="text" style="color:black;"></ion-md-input>
+<!--          </label>-->
       </div>
     </form>
       <div class="padding" style="padding-bottom: 0 !important;">

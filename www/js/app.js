@@ -121,7 +121,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                     controller: 'editListCtrl'
                 },
                 'fabContent': {
-                    template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-energized-900 spin" ng-click="editThisListP()"><i class="icon ion-edit"></i></button>',
+                    template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-custom-200 spin" ng-click="editThisListP()"><i class="icon ion-edit"></i></button>',
                     controller: function ($timeout) {
                         $timeout(function () {
                             document.getElementById('fab-edit').classList.toggle('on');
@@ -150,7 +150,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                     controller: 'editListCtrl'
                 },
                 'fabContent': {
-                    template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-energized-900 spin" ng-click="editThisListP()"><i ng-class="{&apos;icon ion-edit&apos;: isEdit, &apos;ion-ios-personadd&apos;: !isEdit}"></i></button>',
+                    template: '<button id="fab-edit" class="button button-fab button-fab-bottom-right expanded button-custom-200 spin" ng-click="editThisListP()"><i ng-class="{&apos;icon ion-edit&apos;: isEdit, &apos;ion-ios-personadd&apos;: !isEdit}"></i></button>',
                     controller: function ($timeout) {
                         $timeout(function () {
                             document.getElementById('fab-edit').classList.toggle('on');
@@ -319,6 +319,66 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 'tab-account': {
                     templateUrl: 'templates/tab-changeAvatar.html',
                     controller: 'ChangeAvatarCtrl'
+                }
+            },
+            params: {
+                'myEmail': ''
+            }
+        })
+    .state('tab.tutorialQuestions', {
+            url: '/tutorialQuestions',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/tab-tutorialQuestions.html',
+                    controller: 'TutorialCtrl'
+                }
+            },
+            params: {
+                'myEmail': ''
+            }
+        })
+    .state('tab.tutorialGroup', {
+            url: '/tutorialGroup',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/tab-tutorialGroup.html',
+                    controller: 'TutorialCtrl'
+                }
+            },
+            params: {
+                'myEmail': ''
+            }
+        })
+    .state('tab.tutorialShare', {
+            url: '/tutorialShare',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/tab-tutorialShare.html',
+                    controller: 'TutorialCtrl'
+                }
+            },
+            params: {
+                'myEmail': ''
+            }
+        })
+    .state('tab.tutorialFriend', {
+            url: '/tutorialFriend',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/tab-tutorialFriend.html',
+                    controller: 'TutorialCtrl'
+                }
+            },
+            params: {
+                'myEmail': ''
+            }
+        })
+    .state('tab.tutorialFug', {
+            url: '/tutorialFug',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/tab-tutorialFug.html',
+                    controller: 'TutorialCtrl'
                 }
             },
             params: {

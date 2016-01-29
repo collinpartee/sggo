@@ -1,7 +1,7 @@
 
 <link href="css/ng-tags-input.bootstrap.css" rel="stylesheet">
 <link href="css/ng-tags-input.css" rel="stylesheet">
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="My Lists" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Name Your Group" cache-view="false">
 
 <!--
 <ion-nav-buttons side="left">
@@ -28,8 +28,8 @@
 
     <ion-content ng-init="publicList = true;" class="has-header" scroll="false">
       <div class="list">
-         <label class="item item-input">
-                    <input placeholder="Name Your List" type="text" ng-model="listName" maxlength="15">
+         <label class="item item-input" style="margin-bottom: 10px;margin-top: 10px;">
+                    <input placeholder="Name Your List" type="text" ng-model="listName" maxlength="15" style="text-align: left;font-size: 1.4em;">
                 </label>
           <ion-toggle ng-model="publicList" ng-checked="true" toggle-class="toggle-calm custom-toggle-color">Make Your List Public?</ion-toggle>
           <ion-toggle ng-model="anon" toggle-class="toggle-calm custom-toggle-color" ng-checked="false" ng-show="publicList">Post anonymously?</ion-toggle>

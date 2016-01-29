@@ -1,6 +1,6 @@
 <link href="css/tab-editMyTable-css.css" rel="stylesheet" />
 
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Food User Group" cache-view="false">
     
 
     <ion-nav-buttons side="left">
@@ -17,7 +17,7 @@
               <h5 class="black-color">{{listItem.creater_name}}</h5>
               <div class="col col-80" style="margin: 0 auto; padding-top: 30px;">
                   <button class="button button-custom-color" ng-click="goSpin()" style="width: 100%;">
-                      Spin
+                      FUG It
                   </button>
 
               </div>
@@ -36,9 +36,13 @@
       </div>
 -->
           
-          <div class="button-bar" style="height: 47px;">
-            <a class="button" ng-click="optionClicked(); pressed = false;"><i class="ion-ios-list-outline" ng-class="{'selected': !pressed, 'unselected': pressed}" style="font-size: xx-large;"></i></a>
-            <a class="button" ng-click="inviteFriendClicked(); pressed = true;"><i class="ion-person-stalker" style="font-size: xx-large;" ng-class="{'selected': pressed, 'unselected': !pressed}"></i></a>
+          <div class="button-bar" style="height: 8%;">
+            <a class="button" ng-click="optionClicked(); pressed = false;">
+                <span style="margin-right: 20px; display: inline-flex; text-transform:none;">Item</span>
+                <i class="ion-ios-list-outline badged_i" ng-class="{'selected': !pressed, 'unselected': pressed}" style="font-size: 2em;"></i></a>
+            <a class="button" ng-click="inviteFriendClicked(); pressed = true;">
+                <span style="margin-right: 20px; display: inline-flex; text-transform:none;">Friends</span>
+                <i class="ion-person-stalker badged_i" style="font-size: 2em;" ng-class="{'selected': pressed, 'unselected': !pressed}"></i></a>
           </div>
           
 
@@ -62,7 +66,7 @@
 -->
 
     
-    <ion-scroll style="height: 60%;" ng-class="{'white-bg': pressed, 'whiteSmoke-bg': !pressed}">
+    <ion-scroll style="height: 62%;" ng-class="{'white-bg': pressed, 'whiteSmoke-bg': !pressed}" has-bouncing="true">
         <list class="list" >
                 <div class="list card" ng-repeat="item in listItem.places track by $index" ng-show="option" ng-click="viewPlace(item)">
             <div class="item item-avatar">

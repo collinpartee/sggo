@@ -1,6 +1,6 @@
 <link href="css/tab-editMyList-css.css" rel="stylesheet" />
 
-<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Viewing List" cache-view="false">
+<ion-view hide-tab-bar hide-nav-bar="false" hide-back-button="true" view-title="Food User Group" cache-view="false">
 
 <ion-nav-buttons side="left">
       <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ui-sref="tab.myList">
@@ -22,7 +22,7 @@
 -->
 
     
-  <ion-content scroll="false" style="background-color: whitesmoke;" class="has-header" >
+  <ion-content scroll="false" style="background-color: whitesmoke;" class="has-header custom-font1" >
       <div class="hero"  style="height: 30%; overflow: hidden;">
           <div class="hero-content">
         <div class="row padding-bottom-30">
@@ -36,7 +36,7 @@
           
       <div class="row" style="">
           <div class="col col-80" style="margin: 0 auto;">
-                <button class="button button-custom-color" ng-click="goSpin()" style="width: 100%;">FUG</button>
+                <button class="button button-custom-color" ng-click="goSpin()" style="width: 100%;">FUG IT</button>
 
             </div>
         </div>
@@ -44,7 +44,7 @@
         <img src="img/food_bkgds/1.jpg" class="hero-bkgd-image blurry-img"  /> 
       </div>
       
-      <ion-scroll style="height: 70%; margin-bottom: 5px;">
+      <ion-scroll style="height: 70%; margin-bottom: 5px;" has-bouncing="true">
 <!--         <div class="item item-thumbnail-left item-icon-right editMyListItem" ng-repeat="items in listItem.places track by $index">
             <img src="img/steak.JPG" />
             <span class="item-text-wrap">{{items.name}}</span><br>
