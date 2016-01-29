@@ -712,7 +712,7 @@ tags-input .tags .tag-item .remove-button{
 .bar.bar-header .button+.title {
     text-align: center !important;
      left: 0px; 
-    line-height: 60px !important;
+    line-height: 46px !important;
 }
 
 .button-outline.button-outline.active,
