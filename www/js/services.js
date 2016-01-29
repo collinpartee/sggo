@@ -51,7 +51,7 @@ angular.module('starter.services', [])
   return {
     // helper method to login with multiple providers
     loginWithProvider: function loginWithProvider(provider,scope) {
-      return auth.$authWithOAuthPopup(provider,scope);
+      return auth.$authWithOAuthRedirect(provider,scope);
     },
     // convenience method for logging in with Google
     loginWithGoogle: function login() {

@@ -55,41 +55,45 @@ angular.module('starter.listNearMe', [])
 				        	var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
 				        	var nearbyListRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
 				        	nearbyListRef.once('value',function(snap){
-				        		if(listexist[key]==1)
+				        		if(snap.exists())
 				        		{
-				        			console.log('eixst',$scope.listDetail);
-				        			if(!$scope.$$phase) {
-					        				
-										$scope.$digest();
-
-									}	
-				        		}
-				        		else
-				        		{
-				        			var listItem=snap.val();
-				        			listItem.$id=key;
-				        			listItem.dis=parseFloat(distance.toFixed(2), 10);
-				        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
-				        			nearbyListUserRef.once('value',function(snap){
-//				        				console.log(snap.val());
-				        				listItem.avatar=snap.val();
-                                        listItem.avatarImg=avatarService.getAvatar(listItem);
-                                        console.log(listItem.avatarImg);
-				        				if($scope.listDetail.length<limit)
-				        				{
-				        					$scope.listDetail.push(listItem);
-				        				}
-				        				
-					        			
-					        			listexist[key]='1';
+					        		if(listexist[key]==1)
+					        		{
+					        			console.log('eixst',$scope.listDetail);
 					        			if(!$scope.$$phase) {
-					        				
-										  $scope.$digest();
+						        				
+											$scope.$digest();
 
-										}
-				        			});
-				        			
+										}	
+					        		}
+					        		else
+					        		{
+					        			var listItem=snap.val();
+					        			listItem.$id=key;
+					        			listItem.dis=parseFloat(distance.toFixed(2), 10);
+					        			var nearbyListUserRef=new Firebase(FBURL+"/users/"+uid+"/avatar");
+					        			nearbyListUserRef.once('value',function(snap){
+	//				        				console.log(snap.val());
+					        				listItem.avatar=snap.val();
+	                                        listItem.avatarImg=avatarService.getAvatar(listItem);
+	                                        console.log(listItem.avatarImg);
+					        				if($scope.listDetail.length<limit)
+					        				{
+					        					$scope.listDetail.push(listItem);
+					        				}
+					        				
+						        			
+						        			listexist[key]='1';
+						        			if(!$scope.$$phase) {
+						        				
+											  $scope.$digest();
+
+											}
+					        			});
+					        			
+					        		}				        			
 				        		}
+
 						});
 			        //$state.go($state.current, {}, {reload: true});
 
