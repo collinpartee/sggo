@@ -8,6 +8,10 @@ body{
     color: black;
 }
 
+.blueColor{
+    color: blue;
+}
+
 .main-color{
   background-color: rgb(237, 111, 112) !important;
   border-color: rgb(237, 111, 112);
