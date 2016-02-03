@@ -382,8 +382,20 @@ $scope.goToEditListPage = function(list){
     if($stateParams.from=='myTable')
     {
             angular.forEach(friendList, function(value, key) {
-        var found = $filter('filter')($stateParams.inviteFriendList, {'key': key}, true);
-          if(found.length>0)
+            var found=false;    
+        angular.forEach($stateParams.inviteFriendList, function (value, search) {
+             found =false;
+            if(key==search)
+                {
+                    console.log('found');
+                    found= true;
+                }
+            else{
+                console.log('notFoudn');
+            }
+        });
+       
+          if(found)
           {
             console.log('found',found);
           }

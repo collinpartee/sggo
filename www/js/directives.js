@@ -41,6 +41,24 @@ angular.module('starter.directives', [])
     return null;
   }
 })
+.filter('myFriendFilter', function () {
+    console.log('got in my firend filter');
+    return function (items, search) {
+        var result = [];
+        angular.forEach(items, function (value, key) {
+            if(key==search)
+                {
+                    console.log('found');
+                    return true;
+                }
+            else{
+                console.log('notFoudn');
+            }
+        });
+        return false;
+
+    }
+})
 .directive('hideTabBar', function($timeout,$state, global) {
   var style = angular.element('<style>').html(
     '.has-tabs.no-tabs:not(.has-tabs-top) { bottom: 0; }\n' +
