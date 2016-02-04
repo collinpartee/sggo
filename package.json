@@ -24,7 +24,8 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
     "net.yoik.cordova.plugins.screenorientation",
-    "ionic-plugin-deploy"
+    "ionic-plugin-deploy",
+    "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
     "ios"

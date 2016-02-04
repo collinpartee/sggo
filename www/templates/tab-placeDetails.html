@@ -47,19 +47,19 @@
             <div class="list">
                 <!-- COMPANY URL -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''"><a href='#' ng-click="gotoWebsite(placeDetial)">{{placeDetial.name}} website</a></div>
-                    <div ng-show="placeDetial.website == ''">Not Available</div>
+                    <div class="place-list-key-icon"><i class="icon ion-android-globe"></i></div> <div ng-hide="placeDetial.website == ''" style="display:inline; vertical-align:middle;"><a href='#' ng-click="gotoWebsite(placeDetial)">{{placeDetial.name}} website</a></div>
+                    <div ng-show="placeDetial.website == ''" style="display:inline; vertical-align:middle;">Not Available</div>
 
                 </div>
                 
                 <!-- COMPANY TELEPHONE # -->
                 <div class="item place-item-list">
-                    <div class="place-list-key-icon"><i class="icon ion-ios-telephone"></i></div> <span>{{placeDetial.phone || "Not Available"}}</span>
+                    <div class="place-list-key-icon"><i class="icon ion-ios-telephone"></i></div> <span style="vertical-align:middle;">{{placeDetial.phone || "Not Available"}}</span>
                 </div>
                 <!-- COMPANY OPEN TIMES -->
                 <div class="item place-item-list" href="#">
                     <div class="place-list-key-icon"><i class="icon ion-ios-clock-outline"></i></div>
-                    <div style="overflow: scroll; overflow-wap:break-word; word-wrap:break-word; width: 100%;" ng-hide="placeDetial.weekday_text == ''">
+                    <div style="overflow: scroll; overflow-wap:break-word; word-wrap:break-word; width: 100%; display:inline;" ng-hide="placeDetial.weekday_text == ''">
 <!--
                     <table>
                         <tr ng-repeat='day in placeDetial.weekday_text'>
@@ -67,8 +67,8 @@
                         </tr>
                     </table>
 -->
-                        <ul style="width: 100%;">
-                            <li ng-repeat='day in placeDetial.weekday_text' style="white-space:pre-line;">{{day}}</li>
+                        <ul style="width: 100%; display:inline;">
+                            <li ng-repeat='day in placeDetial.weekday_text' style="white-space:pre-line; display:inline;">{{day}}<br></li>
                         </ul>
                         </div>
                     <table>
