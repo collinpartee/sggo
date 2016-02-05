@@ -125,7 +125,7 @@ angular.module('starter.myList', ['google.places'])
   // Confirm popup code
       $scope.shareListWithFriends=function(list){
         console.log(list.ListName);
-        if(tables.length>10)
+        if(false)
         {
           
           var options={title: 'Your group list is full', template:'Sorry, you can only have 10 groups'};
@@ -207,63 +207,73 @@ angular.module('starter.myList', ['google.places'])
     //delete table
     $scope.deleteTable=function(k)
     {
-        console.log(k);
-        var rec=tables.$getRecord(k).inviteFriendList;
-        var index=0;
-        //remove myself from table invited friend list
-        angular.forEach(rec, function (friend){
-            console.log(friend);
-            if(friend.key==authData.uid)
-            {
-                console.log("found match ",index);
+        console.log("id",k);
 
-                rec.splice(index);
+        if(tables.$getRecord(k)==null)
+        {
 
-                //remove table if friend list is 0
-                if(rec.length==0)
+        }
+        else
+        {
+           var rec=tables.$getRecord(k).inviteFriendList;
+            var index=0;
+            //remove myself from table invited friend list
+            angular.forEach(rec, function (friend){
+                console.log(friend);
+                if(friend.key==authData.uid)
                 {
-                    tables.$ref().child(k).remove();                  
-                }
-                else
-                {
-                    tables.$save(tables.$getRecord(k)).then(function(ref) {
-                      console.log('saved'); // true
-                    });
-                }
+                    console.log("found match ",index);
 
+                    rec.splice(index);
 
-            }
-            index++
-            console.log(index); 
-            $ionicListDelegate.closeOptionButtons();
-        });
-        //remove myself from friend's table's invite list
-        //console.log(rec);
-        angular.forEach(rec, function (friend){
-            console.log("users/"+friend.key+"/myTables/"+k);
-            var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables/"+k));
-            var idx=0;
-            var keepgoing=true;
-            friendRefObj.$loaded().then(function(data){
-                console.log(friendRefObj.inviteFriendList);
-                angular.forEach(friendRefObj.inviteFriendList, function (m){
-                    if(keepgoing && m.key==authData.uid)
+                    //remove table if friend list is 0
+                    if(rec.length==0)
                     {
-                        friendRefObj.inviteFriendList.splice(idx);
-
-                        keepgoing=false;
-                        friendRefObj.$save().then(function(ref) {
-                          console.log("removed myself from friends table");
-                        }, function(error) {
-                          console.log("Error:", error);
+                        tables.$ref().child(k).remove();                  
+                    }
+                    else
+                    {
+                        tables.$save(tables.$getRecord(k)).then(function(ref) {
+                          console.log('saved'); // true
                         });
                     }
-                    idx++;
-                    console.log("index",idx); 
-                });
-            });
 
-        });
+
+                }
+                index++
+                console.log(index); 
+                $ionicListDelegate.closeOptionButtons();
+            });
+            //remove myself from friend's table's invite list
+            //console.log(rec);
+            angular.forEach(rec, function (friend){
+                console.log("users/"+friend.key+"/myTables/"+k);
+                var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables/"+k));
+                var idx=0;
+                var keepgoing=true;
+                friendRefObj.$loaded().then(function(data){
+                    console.log(friendRefObj.inviteFriendList);
+                    angular.forEach(friendRefObj.inviteFriendList, function (m){
+                        if(keepgoing && m.key==authData.uid)
+                        {
+                            friendRefObj.inviteFriendList.splice(idx);
+
+                            keepgoing=false;
+                            friendRefObj.$save().then(function(ref) {
+                              console.log("removed myself from friends table");
+                            }, function(error) {
+                              console.log("Error:", error);
+                            });
+                        }
+                        idx++;
+                        console.log("index",idx); 
+                    });
+                });
+
+            });           
+        }
+        
+
 
         
         //remove table from my list
