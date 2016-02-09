@@ -91,7 +91,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
         templateUrl: 'templates/tabs.html',
         controller: 'tabCtrl'
     })
-
+        .state('intro',{
+            url:'/intro',
+            templateUrl:'templates/intro.html',
+            controller: 'introCtrl'
+        })
     // Each tab has its own nav history stack:
 
     //MY LIST STATES -------->

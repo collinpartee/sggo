@@ -140,3 +140,19 @@ $scope.$on('$ionicView.beforeEnter', function() {
         $scope.isEdit=true;
     });    
 })
+.controller('introCtrl', function($scope, $state,$ionicSlideBoxDelegate) {
+    console.log('intro ctrl');
+    $scope.startApp = function() {
+        $state.go('tab.listNearMe');
+
+    };
+    $scope.next = function() {
+        $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function() {
+        $ionicSlideBoxDelegate.previous();
+    };
+    $scope.slideChanged = function(index) {
+        $scope.slideIndex = index;
+    };
+});
