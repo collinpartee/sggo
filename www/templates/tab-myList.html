@@ -1,19 +1,25 @@
 
 <link href="css/tab-myList-css.css" rel="stylesheet" />
-<ion-view view-title="My Groups" hide-nav-bar="false" hide-back-button="true" cache-view="false" hide-tab-bar>
+<ion-view view-title="My Lists" hide-nav-bar="false" hide-back-button="true" cache-view="false" hide-tab-bar>
 
 
 <!--
-     <div class="bar bar-header bar-assertive-900">
+     <div class="bar bar-header bar-assertive-900" style="display:block;">
         <div class="h1 title title-left light">My List Custom Bar</div>
         <div class="buttons buttons-right header-item">
              <span class="right-buttons">
                 <button class="button button-energized-900 button-fab" ui-sref="tab.listDetails"><i class="icon ion-plus"></i></button>
             </span>  
         </div>
-    </div>
--->
+         <div class="h1 title title-left light">
+             <div class="button-bar">
+                 <a class="button">First</a>
+                 <a class="button">Second</a>
+             </div>
+          </div>
+         </div>
 
+    -->
 <!--
     <ion-content ng-class="{expanded:isExpanded}">
         <div class="content has-header">
@@ -29,7 +35,13 @@
     </ion-content>
 -->
     <ion-content ng-class="{expanded:isExpanded}" class="" style="top:70px;" scroll="true" has-bouncing="true">
-        <ion-list class="animate-ripple" style="margin-top: 5px;">
+        
+            <div class="button-bar my-list-button-bar">
+                <a class="button my-list-button-bar-button"  ng-click="pressedShared = false;" ng-class="{'myListSelected': !pressedShared, 'myListUnselected': pressedShared}" style="margin-right: 15px;">My Lists</a>
+                <a class="button my-list-button-bar-button" ng-click="pressedShared = true;" ng-class="{'myListSelected': pressedShared, 'myListUnselected': !pressedShared}">My Groups</a>
+            </div>
+        
+        <ion-list class="animate-ripple" style="margin-top: 5px;" ng-show="!pressedShared">
             <ion-item class="item item-avatar myListItem" ng-repeat="list in myLists track by $index" my-post-repeat-directive='mylist' ng-click="goToEditListPage(list);">
             
 <!--                <img src="{{list.listImg}}" class="list-image" style="">-->
@@ -52,7 +64,7 @@
       </ion-list>
 
         
-        <ion-list class="shared-lists animate-ripple">
+        <ion-list class="shared-lists animate-ripple" ng-show="pressedShared">
         <ion-item ng-repeat="(k,v) in myTableLists track by $index" class="item item-icon-right item-remove-animate item-avatar myListItem" ng-click="goToEditListPage(k);" my-post-repeat-directive='mylist'>
             <i class="icon ion-ios-people myListGroupIcon" style="color: black;"></i>
             

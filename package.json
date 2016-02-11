@@ -25,7 +25,11 @@
     "cordova-plugin-geolocation",
     "net.yoik.cordova.plugins.screenorientation",
     "ionic-plugin-deploy",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    {
+      "locator": "https://github.com/phonegap-build/PushPlugin.git",
+      "id": "com.phonegap.plugins.PushPlugin"
+    }
   ],
   "cordovaPlatforms": [
     "ios"
