@@ -11,8 +11,8 @@
     <ion-content has-bouncing="true">
       
 
-    <ion-list class="animate-ripple">
-        <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar" my-post-repeat-directive='mylist'>
+    <ion-list class="animate-ripple ink">
+        <ion-item ng-repeat="(k,v) in friendList" class="item item-avatar" my-post-repeat-directive='mylist' ng-click='goToChatBox(v)'>
           <img src="{{v.avatar}}" />
             <div class='itemc' style="padding: 16px 49px 16px 72px;">
             {{v.name}}<br>

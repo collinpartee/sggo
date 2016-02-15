@@ -1,5 +1,5 @@
 angular.module('starter.spin', [])
-.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global) {
+.controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$ionicPopup,$firebaseArray, $ionicHistory, authData,friendList , FBURL,tables, global) {
     $scope.$parent.clearAllFabs();
 console.log($stateParams);
     
@@ -15,10 +15,11 @@ console.log($stateParams);
     $scope.listImg=$stateParams.listImg;
     console.log($scope.listImg);
 var myName=global.getMyName();
+var listSpinRef;
     if($stateParams.from=='myList')
     {
       var words = $stateParams.places;
-      var listSpinRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+"/myLists/"+$stateParams.$id);
+      listSpinRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+"/myLists/"+$stateParams.$id);
       $scope.chats=$firebaseArray(listSpinRef.child('messages'));
     }
     else
@@ -29,7 +30,7 @@ var myName=global.getMyName();
          var key=$stateParams.$id;
          var uid=key.substring(0,key.lastIndexOf(':'));
           var listkey=key.substring(key.lastIndexOf(':')+1,key.length);
-          var listSpinRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
+          listSpinRef=new Firebase(FBURL+"/users/"+uid+"/myLists/"+listkey);
            $scope.chats=$firebaseArray(listSpinRef.child('messages'));
 
       }
@@ -43,7 +44,7 @@ var myName=global.getMyName();
         var words = currTable.places;
 
         //get chat list
-        var listSpinRef = new Firebase('https://sggo.firebaseio.com/tables/'+$stateParams.listId);
+        listSpinRef = new Firebase('https://sggo.firebaseio.com/tables/'+$stateParams.listId);
         $scope.chats=$firebaseArray(listSpinRef.child('messages'));
           
       }
@@ -68,20 +69,23 @@ var myName=global.getMyName();
     $scope.shuffleButton =function(){
         $scope.countDown=5;
         $scope.shuffleButtonPressed = true;
-        listSpinRef.child('triggers').once('value',function(datasnapshot){
-            var newSpins=1;
-            if(datasnapshot.exists())
-            {
-                var newSpins=datasnapshot.val()+1;
-            }
-            listSpinRef.update({'triggers':newSpins});
-            
-        })
-        myName='System';
-        var message=global.getMyName()+' just fugged ';
-        $scope.sendMessage(message);
-        listSpinRef.update({'ranNum':getRandomInt(0,words.length-1)});
-        myName=global.getMyName();
+        listSpinRef.update({'ranNum':getRandomInt(0,words.length-1)}, function(error){
+           listSpinRef.child('triggers').once('value',function(datasnapshot){
+              var newSpins=1;
+              if(datasnapshot.exists())
+              {
+                  var newSpins=datasnapshot.val()+1;
+              }
+              listSpinRef.update({'triggers':newSpins});
+              
+          })
+          myName='System';
+          var message=global.getMyName()+' just fugged your list';
+          $scope.sendMessage(message);
+          
+          myName=global.getMyName();         
+        });
+
     };
     $scope.countDown=5;
      var runCounter = function() {
@@ -143,6 +147,82 @@ var myName=global.getMyName();
         $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
+
+
+    var invitationsRef=new Firebase(FBURL+"/users/"+authData.uid+'/invitations');
+    var invitationObject=$firebaseObject(invitationsRef);
+    var date = new Date();
+    
+    $scope.invite=function(){
+      var limit=2
+      if(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]==null || invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()].$value<limit)
+      {
+       var alertPopup = $ionicPopup.confirm({
+         title: "Invitatation",
+         template: 'Inviate '+$stateParams.creater_name+' to '+$scope.currPlace.name+" ?"
+       });
+       alertPopup.then(function(res) {
+         //add as friend
+         var friendEmailRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+'/email');
+          friendEmailRef.once('value',function(snap){
+            console.log('emali',snap.val());
+            var friend={name:$stateParams.creater_name,email:snap.val(),key:$stateParams.creater_id,avatar:$stateParams.avatar};
+            console.log(friend);
+            addFriend(friend,$scope.currPlace.name);
+            console.log('Thank you for not eating my delicious ice cream cone');
+          });
+         
+       });        
+      }
+      else
+      {
+        var alertPopup = $ionicPopup.alert({
+         title: "You've reached your daily limit",
+         template: 'You can only invite '+(limit-1)+" time(s) per day"
+       });
+      }
+        
+
+
+
+    }
+    var addFriend = function(friend,inivteplace){
+      friendList[friend.key]=friend;
+        friendList.$save().then(function(ref) {
+          var friendRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id);
+          var friedListObj= $firebaseObject(friendRef);
+          ref.parent().once('value',function(snap){
+            console.log('add me to friend');
+              var me={name:snap.val().name,email:snap.val().email,key:snap.key(),avatar:snap.val().avatar};
+              friedListObj[authData.uid]=me;
+              console.log('me',me);
+              friedListObj.$save().then(function(reff) {
+                //send invite
+                console.log('send invite');
+                  var index= authData.uid>$stateParams.$id ? authData.uid+$stateParams.creater_id : $stateParams.creater_id+authData.uid;
+                  var listSpinRef=new Firebase(FBURL+"/chats/"+index);
+                  var chats=$firebaseArray(listSpinRef.child('messages'));
+                  var meessageEntry={'user':authData.uid,'message':me.name+' would like to invate you to '+inivteplace,'createdAt':Firebase.ServerValue.TIMESTAMP};
+                  chats.$add(meessageEntry).then(function(ref) {
+                      var alertPopup = $ionicPopup.alert({
+                         title: "Message has been sent",
+                         template: 'You can check his/her response in Friend tab'
+                       });
+                  
+                      console.log(date.getFullYear(),date.getMonth(),date.getDate());
+                      invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]=1;
+                      invitationObject.$save();
+                  }, function(error) {
+                    console.log("Error:", error);
+                  });
+
+          });
+       }, function(error) {
+              console.log("Error:", error);
+        });
+      
+    });
+}
 
 })
 .controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){

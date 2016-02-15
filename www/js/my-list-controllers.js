@@ -196,6 +196,7 @@ angular.module('starter.myList', ['google.places'])
 
                     });
                     //$state.go('tab.decisionTableList');
+
                 }
               
           } else {

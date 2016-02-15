@@ -121,5 +121,40 @@ angular.module('starter.friendList', [])
 
           });
   };
+
+  $scope.goToChatBox = function(v){
+    console.log('go chat');
+    $state.go('tab.chat',v);
+  }
     
+})
+.controller('chatCtrl', function($scope, $state,$stateParams,$firebaseArray,FBURL,authData) {
+  console.log('reach chat');
+  $scope.$parent.clearAllFabs();
+  $scope.friendName=$stateParams.name;
+
+  var index= authData.uid>$stateParams.key ? authData.uid+$stateParams.key : $stateParams.key+authData.uid;
+  var listSpinRef=new Firebase(FBURL+"/chats/"+index);
+  $scope.chats=$firebaseArray(listSpinRef.child('messages'));
+  $scope.currUser=authData.uid;
+
+
+  $scope.sendMessage=function(message){
+    console.log(message);
+
+    if(message!="")
+    {
+      var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+      $scope.chats.$add(meessageEntry);
+      if($scope.chats.length>10)
+      {
+          $scope.chats.$remove(0);
+      }
+      this.message="";
+    }
+
+  }    
+
 });
+
+;

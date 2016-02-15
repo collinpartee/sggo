@@ -453,7 +453,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 'places': [],
                 'share': true,
                 'tags': [],
-                'listImg': ''
+                'listImg': '',
+                'email':'',
+                'avatar':''
             }
         })
         .state('tab.spinNearby', {
@@ -515,7 +517,23 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 }
 
             }
-        });
+        })
+        .state('tab.chat', {
+            url: '/chat',
+            views: {
+                'tab-friendList': {
+                    templateUrl: 'templates/tab-chat.html',
+                    controller: 'chatCtrl'
+                }
+            },
+            params: {
+                'avatar': "",
+                'email': "",
+                'key': "",
+                'name': ""
+            }
+        })
+        ;
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/loginPage');
