@@ -46,7 +46,7 @@ angular.module('starter.services', [])
 })
 
 // create a custom Auth factory to handle $firebaseAuth
-.factory('Auth', function($firebaseAuth, Root, $timeout,$state){
+.factory('Auth', function($firebaseAuth, Root, $timeout,$state,$ionicHistory){
   var auth = $firebaseAuth(Root);
   return {
     // helper method to login with multiple providers
@@ -64,7 +64,13 @@ angular.module('starter.services', [])
     logout: function logout() {
         
       auth.$unauth();
-        $state.go("loginPage");
+
+      $state.go("loginPage");
+      $timeout(function () {
+          $ionicHistory.clearCache();
+          $ionicHistory.clearHistory();
+      },300) 
+        
     },
     // wrap the $onAuth function with $timeout so it processes
     // in the digest loop.
@@ -83,6 +89,7 @@ angular.module('starter.services', [])
   var myLoc={};
   var myName='unKnow';
   var myAvatar='';
+  var myEmail='';
   return {
     // helper method to login with multiple providers
 
@@ -103,7 +110,13 @@ angular.module('starter.services', [])
     },
     getMyAvatar: function getMyAvatar(){
       return myAvatar;
-    }
+    },
+    setMyEmail: function setMyEmail(myN){
+      myEmail=myN;
+    },
+    getMyEmail: function getMyEmail(){
+      return myEmail;
+    }    
 
   };
 })

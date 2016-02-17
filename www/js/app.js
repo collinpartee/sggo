@@ -501,6 +501,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
         })
         //friend list state
         .state('tab.friendList', {
+            
             url: '/friendList',
             views: {
                 'tab-friendList': {

@@ -392,31 +392,33 @@ $scope.goToEditListPage = function(list){
     var friendlyList=[];
     if($stateParams.from=='myTable')
     {
-            angular.forEach(friendList, function(value, key) {
-            var found=false;    
-        angular.forEach($stateParams.inviteFriendList, function (value, search) {
-             found =false;
-            if(key==search)
-                {
-                    console.log('found');
-                    found= true;
+        console.log(friendList);
+        console.log($stateParams.inviteFriendList);
+        angular.forEach(friendList, function(value, key) {
+        var found=false;    
+            angular.forEach($stateParams.inviteFriendList, function (value, search) {
+                 found =false;
+                if(key==value.key)
+                    {
+                        console.log('found');
+                        found= true;
+                    }
+                else{
+                    console.log('notFoudn');
                 }
-            else{
-                console.log('notFoudn');
-            }
-        });
-       
-          if(found)
-          {
-            console.log('found',found);
-          }
-          else
-          {
+            });
 
-            $scope.friends[key]=friendList[key];
-          }
-          idx++;
-          console.log(idx);
+      if(found)
+      {
+        console.log('found',found);
+      }
+      else
+      {
+
+        $scope.friends[key]=friendList[key];
+      }
+      idx++;
+      console.log(idx);
     });
     }
     $scope.addFriendToList = function(friend, checked){

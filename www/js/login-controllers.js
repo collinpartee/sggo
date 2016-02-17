@@ -202,7 +202,7 @@ console.log("wtf");
                   });
                   $scope.didSubmitLogin=false;
                   $scope.closeModal(); 
-
+                  $scope.setInfo(authData);
                   $state.go('intro');
             }
 
@@ -236,12 +236,12 @@ console.log("wtf");
     };
 
     $scope.setInfo = function(authData){
-            itemRef.child("users").child(authData.uid).child('name').once('value', function(dataSnapshot) {
-              global.setMyName(dataSnapshot.val());
+            itemRef.child("users").child(authData.uid).once('value', function(dataSnapshot) {
+              global.setMyName(dataSnapshot.val().name);
+              global.setMyAvatar(dataSnapshot.val().avatar);
+              global.setMyEmail(dataSnapshot.val().email);
             });
-            itemRef.child("users").child(authData.uid).child('avatar').once('value', function(dataSnapshot) {
-              global.setMyAvatar(dataSnapshot.val());
-            });
+
     };
     $scope.resetPassword=function(lemail){
       console.log(lemail);

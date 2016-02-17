@@ -2,7 +2,7 @@ angular.module('starter.spin', [])
 .controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$ionicPopup,$firebaseArray, $ionicHistory, authData,friendList , FBURL,tables, global) {
     $scope.$parent.clearAllFabs();
 console.log($stateParams);
-    
+    $scope.friends=friendList;
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
@@ -147,32 +147,87 @@ var listSpinRef;
         $scope.$root.hideTabsOnThisPage = false;
         //$ionicGoBack();
     };
+    var friendlyList = [];
+    $scope.addFriendToList = function(friend, checked){
+       // console.log(checked);
+        
+        var lookup = {};           
+            if(checked == true){
+                console.log('friend',friend);
+                friendlyList.push(friend);
+            }else{
+                for(var i = 0; i < friendlyList.length; i++) {
+                    var obj = friendlyList[i];
 
+                    if(friend.key == friendlyList[i].key) {
+                        friendlyList.splice(i, 1);
+                        i--;
+                        console.log('removed ');
+                    }
+                }
+            }
+           
+            
+            //console.log(lookup.key);
+        
+        
+        //console.log(friendlyList);
+    };
 
     var invitationsRef=new Firebase(FBURL+"/users/"+authData.uid+'/invitations');
     var invitationObject=$firebaseObject(invitationsRef);
     var date = new Date();
     
     $scope.invite=function(){
-      var limit=2
-      if(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]==null || invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()].$value<limit)
+      var limit=3
+      console.log(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]);
+      if(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]==null || invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]<limit)
       {
-       var alertPopup = $ionicPopup.confirm({
-         title: "Invitatation",
-         template: 'Inviate '+$stateParams.creater_name+' to '+$scope.currPlace.name+" ?"
-       });
-       alertPopup.then(function(res) {
-         //add as friend
-         var friendEmailRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+'/email');
-          friendEmailRef.once('value',function(snap){
-            console.log('emali',snap.val());
-            var friend={name:$stateParams.creater_name,email:snap.val(),key:$stateParams.creater_id,avatar:$stateParams.avatar};
-            console.log(friend);
-            addFriend(friend,$scope.currPlace.name);
-            console.log('Thank you for not eating my delicious ice cream cone');
+        if($stateParams.from=='myListNearMe')
+        {
+           var alertPopup = $ionicPopup.confirm({
+             title: "Invitatation",
+             template: 'Inviate '+$stateParams.creater_name+' to '+$scope.currPlace.name+" ?"
+           });
+           alertPopup.then(function(res) {
+            if(res)
+            {
+             var friendEmailRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+'/email');
+              friendEmailRef.once('value',function(snap){
+                console.log('emali',snap.val());
+                var friend={name:$stateParams.creater_name,email:snap.val(),key:$stateParams.creater_id,avatar:$stateParams.avatar};
+                console.log(friend);
+                addFriend(friend,$scope.currPlace.name);
+
+              });          
+            }
+             //add as friend
+
+             
+           });          
+        }
+        else
+        {
+          var confirmPopup = $ionicPopup.confirm({
+            title: 'Choose Your Friends',
+            templateUrl: 'invitefriend-Popup.html',
+              scope: $scope,
+              cancelText: 'Done'
           });
-         
-       });        
+          confirmPopup.then(function(res) {
+            if(res) {
+              console.log(friendlyList);
+              angular.forEach(friendlyList, function(friend) {
+                var her={'$id':friend.key};
+                var me={name:global.getMyName(),email:global.getMyEmail(),key:authData.uid,avatar:global.getMyAvatar(),'invite':true};
+                sendInvite($scope.currPlace.name,me,her);
+
+              });
+
+            }
+          });
+        }
+        
       }
       else
       {
@@ -186,43 +241,46 @@ var listSpinRef;
 
 
     }
+
     var addFriend = function(friend,inivteplace){
       friendList[friend.key]=friend;
         friendList.$save().then(function(ref) {
-          var friendRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id);
+          var friendRef=new Firebase(FBURL+"/users/"+$stateParams.creater_id+"/friendList");
           var friedListObj= $firebaseObject(friendRef);
-          ref.parent().once('value',function(snap){
             console.log('add me to friend');
-              var me={name:snap.val().name,email:snap.val().email,key:snap.key(),avatar:snap.val().avatar};
+              var me={name:global.getMyName(),email:global.getMyEmail(),key:authData.uid,avatar:global.getMyAvatar(),'invite':true};
               friedListObj[authData.uid]=me;
               console.log('me',me);
               friedListObj.$save().then(function(reff) {
-                //send invite
-                console.log('send invite');
-                  var index= authData.uid>$stateParams.$id ? authData.uid+$stateParams.creater_id : $stateParams.creater_id+authData.uid;
-                  var listSpinRef=new Firebase(FBURL+"/chats/"+index);
-                  var chats=$firebaseArray(listSpinRef.child('messages'));
-                  var meessageEntry={'user':authData.uid,'message':me.name+' would like to invate you to '+inivteplace,'createdAt':Firebase.ServerValue.TIMESTAMP};
-                  chats.$add(meessageEntry).then(function(ref) {
-                      var alertPopup = $ionicPopup.alert({
-                         title: "Message has been sent",
-                         template: 'You can check his/her response in Friend tab'
-                       });
-                  
-                      console.log(date.getFullYear(),date.getMonth(),date.getDate());
-                      invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]=1;
-                      invitationObject.$save();
-                  }, function(error) {
-                    console.log("Error:", error);
-                  });
+                var her={'$id':$stateParams.creater_id};
+                sendInvite(inivteplace,me,her);
 
           });
-       }, function(error) {
-              console.log("Error:", error);
-        });
+
       
     });
-}
+  }
+
+  var sendInvite=function(inivteplace,me,her){
+                    //send invite
+      console.log('send invite');
+        var index= authData.uid>her.$id ? authData.uid+her.$id : her.$id+authData.uid;
+        var listSpinRef=new Firebase(FBURL+"/chats/"+index);
+        var chats=$firebaseArray(listSpinRef.child('messages'));
+        var meessageEntry={'user':authData.uid,'message':me.name+' would like to invate you to '+inivteplace,'createdAt':Firebase.ServerValue.TIMESTAMP};
+        chats.$add(meessageEntry).then(function(ref) {
+            var alertPopup = $ionicPopup.alert({
+               title: "Message has been sent",
+               template: 'You can check his/her response in Friend tab'
+             });
+        
+            console.log(date.getFullYear(),date.getMonth(),date.getDate());
+            invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]=1+(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]||0);
+            invitationObject.$save();
+        }, function(error) {
+          console.log("Error:", error);
+        });
+  }
 
 })
 .controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){

@@ -65,3 +65,16 @@
       
   </ion-content>
 </ion-view>
+
+<script id="invitefriend-Popup.html" type="text/ng-template">
+  <div>
+      <ul class="list">
+        <li class="item item-checkbox" ng-repeat="(k,v) in friends">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="checked" ng-click="addFriendToList(v, checked);">
+          </label>
+            {{v.name}}  
+          </li>
+      </ul>
+  </div>
+</script>
