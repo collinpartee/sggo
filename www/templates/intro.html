@@ -1,6 +1,6 @@
-<ion-view view-title="Intro">
-  <ion-nav-bar class="bar-positive"> 
-        <ion-nav-buttons side="left">
+<ion-view view-title="">
+  <!--<ion-nav-bar class="" style="background-color:transparent;">--> 
+        <!--<ion-nav-buttons side="left">
           <button class="button button-positive button-clear no-animation"
                   ng-click="startApp()" ng-show="!slideIndex">
             Skip Intro
@@ -9,9 +9,9 @@
                   ng-click="previous()" ng-show="slideIndex > 0">
             Previous Slide
           </button>
-        </ion-nav-buttons>
-        <ion-nav-buttons side="right"> 
-          <button class="button button-positive button-clear no-animation"
+        </ion-nav-buttons>-->
+        <!--<ion-nav-buttons> 
+          <button class="button button-positive no-animation"
                   ng-click="next()" ng-show="slideIndex != 2">
             Next
           </button>
@@ -20,8 +20,33 @@
             Start using MyApp
           </button>
         </ion-nav-buttons>
-  </ion-nav-bar>
-        <ion-slide-box on-slide-changed="slideChanged(index)">
+  </ion-nav-bar>-->
+
+      <div style="height: 7%; background-color:cadetblue;">
+          <div style="display: inline-block; float: left;">
+              <button class="button button-positive button-clear no-animation"
+                      ng-click="startApp()" ng-show="!slideIndex">
+                  Skip Intro
+              </button>
+              <button class="button button-positive button-clear no-animation"
+                      ng-click="previous()" ng-show="slideIndex > 0">
+                  Previous Slide
+              </button>
+          </div>
+          <div style="display: inline-block; float:right;">
+              <button class="button button-positive button-clear no-animation"
+                      ng-click="next()" ng-show="slideIndex != 2">
+                  Next
+              </button>
+              <button class="button button-positive button-clear no-animation"
+                      ng-click="startApp()" ng-show="slideIndex == 2">
+                  Start using!
+              </button>
+          </div>
+      </div>
+
+        <ion-slide-box on-slide-changed="slideChanged(index)" style="height:  93%;">
+            
           <ion-slide>
             <h3>Thank you for choosing the Awesome App!</h3>
             <div id="logo">
@@ -53,4 +78,5 @@
             </p>
           </ion-slide>
         </ion-slide-box>
+
 </ion-view>

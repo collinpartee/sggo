@@ -1,21 +1,30 @@
 
 <ion-view view-title="{{friendName}}" hide-nav-bar="false" hide-back-button="true" cache-view="false" hide-tab-bar>
-		<div class="list">
-      	    <div class="item" ng-if="chats.length == 0" class="textCenter">
-      	        <h4>Send message to start.</h4>
-      	    </div>
-      	    <div class="item" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
-      	        <h4>{{chat.user}} :</h4>
-      	        <span am-time-ago="chat.createdAt" class="item-note">
-      	        </span>
-      	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
-      	    </div>
-      	</div>
-      	<div class="item item-input-inset spin-message-box" style="background-color: white;">
-	        <label class="item-input-wrapper">
-	            <input type="text" ng-model="message" placeholder="Type in your message...">
-	        </label>
-	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
-	        </a>
-	    </div>
+
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons no-text button-clear header-item" style="color: white; margin-right: 10px;" ng-click="$ionicGoBack();">
+            <i class="icon ion-ios-arrow-back"></i>
+        </button>
+    </ion-nav-buttons>
+        
+    <ion-content>
+        <div class="list">
+            <div class="item textCenter" ng-if="chats.length == 0">
+                <h4>Send message to start.</h4>
+            </div>
+            <div class="item" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+                <h4>{{chat.user}} :</h4>
+                <span am-time-ago="chat.createdAt" class="item-note">
+                </span>
+                <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+            </div>
+        </div>
+        <div class="item item-input-inset spin-message-box" style="background-color: white;">
+            <label class="item-input-wrapper">
+                <input type="text" ng-model="message" placeholder="Type in your message...">
+            </label>
+            <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
+            </a>
+        </div>
+    </ion-content>
 </ion-view>
