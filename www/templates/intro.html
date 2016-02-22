@@ -22,7 +22,7 @@
         </ion-nav-buttons>
   </ion-nav-bar>-->
 
-      <div style="height: 7%; background-color:cadetblue;">
+      <!--<div style="height: 7%; background-color:cadetblue;">
           <div style="display: inline-block; float: left;">
               <button class="button button-positive button-clear no-animation"
                       ng-click="startApp()" ng-show="!slideIndex">
@@ -43,9 +43,9 @@
                   Start using!
               </button>
           </div>
-      </div>
+      </div>-->
 
-        <ion-slide-box on-slide-changed="slideChanged(index)" style="height:  93%;">
+        <ion-slide-box on-slide-changed="slideChanged(index)" style="height:  100%;">
             
           <ion-slide>
             <h3>Thank you for choosing the Awesome App!</h3>
@@ -58,6 +58,10 @@
             <p>
               But if you are angry, too bad.
             </p>
+            <button class="button button-positive button-clear no-animation"
+                      ng-click="startApp()" ng-show="!slideIndex">
+                  Skip Intro
+              </button>
           </ion-slide>
           <ion-slide>
             <h3>Using Awesome</h3>
@@ -70,12 +74,20 @@
                 <li>There is no step 3</li>
               </ol>
             </div>
+            <button class="button button-positive button-clear no-animation"
+                      ng-click="startApp()">
+                  Skip Intro
+              </button>
           </ion-slide>
           <ion-slide>
             <h3>Any questions?</h3>
             <p>
               Too bad!
             </p>
+            <button class="button button-positive button-clear no-animation"
+                      ng-click="startApp()">
+                  Skip Intro
+              </button>
           </ion-slide>
         </ion-slide-box>
 

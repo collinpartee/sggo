@@ -805,3 +805,20 @@ display:inline !important;
 .danger-alert{
     background-color:lightcoral;
 }
+
+.friendTabs .icon:before{
+    position: absolute;
+    background: red;
+/*    min-height: 1rem;*/
+/*    top: .2rem;*/
+/*    min-width: 1rem;*/
+    max-width: 1rem;
+/*    text-align: center;*/
+/*    font-size: .8rem;*/
+    border-radius: 50%;
+    border: 4px solid white;
+    /* vertical-align: middle; */
+    right: 4.2rem;
+/*    line-height: .8rem;*/
+    max-height: 1rem;
+}

@@ -12,7 +12,7 @@
             <div class="item textCenter" ng-if="chats.length == 0">
                 <h4>Send message to start.</h4>
             </div>
-            <div class="item" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+            <div class="item item-text-wrap" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
                 <h4>{{chat.user}} :</h4>
                 <span am-time-ago="chat.createdAt" class="item-note">
                 </span>
@@ -21,7 +21,7 @@
         </div>
         <div class="item item-input-inset spin-message-box" style="background-color: white;">
             <label class="item-input-wrapper">
-                <input type="text" ng-model="message" placeholder="Type in your message...">
+                <input type="text" style="width: 100%;" ng-model="message" placeholder="Type in your message...">
             </label>
             <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
             </a>

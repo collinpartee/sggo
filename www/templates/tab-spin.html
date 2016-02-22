@@ -22,11 +22,11 @@
 
   <ion-content scroll="false" class="has-header" ng-init="message = '' ">
       <div class="top-of-page hero" style=" overflow: hidden; height: 50%;">
-        <div class="shuffle_container" style="width: 80%; height:60%; margin: 0 auto; padding: 20px; position: relative; text-align: center;" >
+        <div class="shuffle_container" style="width: 80%; height:65%; margin: 0 auto; padding: 20px; position: relative; text-align: center;" >
             <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%); width: 100%; color: black;" ng-show="shuffleButtonPressed"></h3>  
         </div>
 
-          <div class="row">
+          <div class="row" style="height: 20%">
           <div style="margin: 0 auto; width: 100%;">
 
           <button class="button button-custom-color" style="width: 25%;" ng-click='shuffleButton();' ng-disabled='countDown!=0'><span ng-show="countDown==0">FUG!</span><span ng-hide="countDown==0">{{countDown}}</span></button>
@@ -36,9 +36,9 @@
           </div>
 
 
-          <div class="item item-input-inset spin-message-box" style="background-color: white;">
+          <div class="item item-input-inset spin-message-box" style="background-color: white; height: 16%;">
 	        <label class="item-input-wrapper">
-	            <input type="text" ng-model="message" placeholder="Type in your message...">
+	            <input style="width:100%;" type="text" ng-model="message" placeholder="Type in your message...">
 	        </label>
 	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
 	        </a>
@@ -54,11 +54,11 @@
       	    <div class="item" ng-if="chats.length == 0" class="textCenter">
       	        <h4>No messages in this table. Send message to start.</h4>
       	    </div>
-      	    <div class="item" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+      	    <div class="item item-text-wrap" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
       	        <h4>{{chat.user}} :</h4>
       	        <span am-time-ago="chat.createdAt" class="item-note">
       	        </span>
-      	        <p>{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+      	        <p class="item-text-wrap">{{chat.message}}</p><span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>
       	    </div>
       	</div>
       </ion-scroll>
