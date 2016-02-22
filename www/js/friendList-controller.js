@@ -1,4 +1,4 @@
-angular.module('starter.friendList', [])
+angular.module('starter.friendList', ['angularMoment'])
 
 .controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk,authData,FBURL,global,friendList) {
     friendList.$loaded()
@@ -128,10 +128,16 @@ angular.module('starter.friendList', [])
   }
     
 })
-.controller('chatCtrl', function($scope, $state,$stateParams,$firebaseArray,FBURL,authData) {
-  console.log('reach chat');
+.controller('chatCtrl', function($scope, $state,$stateParams, $ionicScrollDelegate, $timeout,$firebaseArray,FBURL,authData) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('userMessageScroll');
+  $timeout(function(){
+       viewScroll.scrollBottom();
+    }, 1000);
+  
+   console.log('reach chat');
   $scope.$parent.clearAllFabs();
   $scope.friendName=$stateParams.name;
+
 
   var index= authData.uid>$stateParams.key ? authData.uid+$stateParams.key : $stateParams.key+authData.uid;
   var listSpinRef=new Firebase(FBURL+"/chats/"+index);
@@ -144,8 +150,10 @@ angular.module('starter.friendList', [])
 
     if(message!="")
     {
-      var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+    //   var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+      var meessageEntry={'user':authData.uid,'message':message,'createdAt':new Date()};
       $scope.chats.$add(meessageEntry);
+      console.log('chats' + $scope.chats);
       if($scope.chats.length>10)
       {
           $scope.chats.$remove(0);
