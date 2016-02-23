@@ -150,8 +150,8 @@ angular.module('starter.friendList', ['angularMoment'])
 
     if(message!="")
     {
-    //   var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
-      var meessageEntry={'user':authData.uid,'message':message,'createdAt':new Date()};
+       var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+//      var meessageEntry={'user':authData.uid,'message':message,'createdAt':new Date()};
       $scope.chats.$add(meessageEntry);
       console.log('chats' + $scope.chats);
       if($scope.chats.length>10)
@@ -160,7 +160,7 @@ angular.module('starter.friendList', ['angularMoment'])
       }
       this.message="";
     }
-
+      viewScroll.scrollBottom();
   }    
 
 });

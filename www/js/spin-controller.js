@@ -1,8 +1,9 @@
 angular.module('starter.spin', [])
 .controller('spinCtrl', function($scope, $state,$firebaseObject, $interval, $timeout,$stateParams,$ionicPopup,$firebaseArray, $ionicHistory, authData,friendList , FBURL,tables, global) {
     $scope.$parent.clearAllFabs();
-console.log($stateParams);
+    console.log($stateParams);
     $scope.friends=friendList;
+    $scope.currUser = authData.uid;
     $scope.$on('$ionicView.beforeEnter', function() {
             
             $scope.$root.hideTabsOnThisPage = true;
@@ -133,7 +134,8 @@ var listSpinRef;
 
     $scope.sendMessage=function(message){
       console.log(message);
-      var meessageEntry={'user':myName,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+//      var meessageEntry={'user':myName,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
+      var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
       $scope.chats.$add(meessageEntry);
       if($scope.chats.length>10)
       {

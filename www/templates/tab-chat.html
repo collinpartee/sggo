@@ -14,7 +14,7 @@
                 <h4>Send message to start.</h4>
             </div>
             
-            <div ng-repeat="chat in chats"" class="message-wrapper">
+            <div ng-repeat="chat in chats" class="message-wrapper">
                 <div ng-if="currUser === chat.user">
                     <div class="chat-bubble left">
                         <div class="message">{{chat.message}}</div>
@@ -44,7 +44,7 @@
         </div>
         </ion-scroll>
         
-        <div class="item item-input-inset spin-message-box" style="background-color: white; height: 8%;>
+        <div class="item item-input-inset spin-message-box" style="background-color: white; height: 8%;">
             <label class="item-input-wrapper">
                 <input type="text" style="width: 100%;" ng-model="message" placeholder="Type in your message...">
             </label>
