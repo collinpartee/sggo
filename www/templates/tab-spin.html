@@ -21,32 +21,27 @@
     </ion-nav-buttons> 
 
   <ion-content scroll="false" class="has-header" ng-init="message = '' ">
-      <div class="top-of-page hero" style=" overflow: hidden; height: 50%;">
+      <div class="top-of-page hero" style=" overflow: hidden; height: 42%;">
         <div class="shuffle_container" style="width: 80%; height:60%; margin: 0 auto; padding: 20px; position: relative; text-align: center;" >
             <h3 id="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%); width: 100%; color: black;" ng-show="shuffleButtonPressed"></h3>  
         </div>
 
-          <div class="row" style="height: 23%">
-          <div style="margin: 0 auto; width: 100%;">
-
-          <button class="button button-custom-color" style="width: 25%;" ng-click='shuffleButton();' ng-disabled='countDown!=0'><span ng-show="countDown==0">FUG!</span><span ng-hide="countDown==0">{{countDown}}</span></button>
-          <button class="button button-custom-color" style="width: 25%;" ng-click='viewPlace();' >Details</button>
-          <button class="button button-custom-color" style="width: 25%;" ng-click='invite();' >Invite</button>
+          <div class="row" style="height: 20%">
+            <div style="margin: 0 auto; width: 100%;">
+                <button class="button button-custom-color" style="width: 40%;" ng-click='shuffleButton();' ng-disabled='countDown!=0'><span ng-show="countDown==0">FUG!</span><span ng-hide="countDown==0">{{countDown}}</span></button>
+                <button class="button button-custom-color" style="width: 40%;" ng-click='viewPlace();' >Details</button>
+                <!--<button class="button button-custom-color" style="width: 25%;" ng-click='invite();' >Invite</button>-->
+            </div>
           </div>
+          <div class="row" style="height: 20%; margin-top: .3rem;">
+            <div style="margin: 0 auto; width: 80%;">
+                <button class="button button-custom-color" style="width: 100%;" ng-click='invite();' >Invite</button>
+             </div>
           </div>
-
-
-          <div class="item item-input-inset spin-message-box" style="background-color: white; height: 18%;">
-	        <label class="item-input-wrapper">
-	            <input style="width:100%;" type="text" ng-model="message" placeholder="Type in your message...">
-	        </label>
-	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
-	        </a>
-	       </div>
           <img src="{{listImg}}" class="hero-bkgd-image blurry-img">
         </div>
       
-      <ion-scroll direction="y" style="height: 50%;" has-bouncing="true">
+      <ion-scroll direction="y" style="height: 50%;" has-bouncing="true" delegate-handle="userMessageScroll"> 
       	 <div class="list">
       	    <div class="item" ng-hide="chats" class="textCenter">
       	        <i class="icon ion-loading-c"></i> Loading Chats
@@ -55,18 +50,43 @@
       	        <h4>No messages in this table. Send message to start.</h4>
       	    </div>
               
-      	    <div class="item item-text-wrap" ng-repeat="chat in chats | orderBy:'createdAt':true"  type="item-text-wrap">
+              <div ng-repeat="chat in chats" class="message-wrapper">
+                <div ng-if="currUser === chat.userID">
+                    <div class="chat-bubble left">
+                        <div class="message">{{chat.message}}</div>
+                         <div class="message-detail">
+                              <span am-time-ago="chat.createdAt"></span>
+                          </div>
+                    </div>
+                </div>
+                
+                <div ng-if="currUser !== chat.userID">
+                    <div class="chat-bubble right">
+                        <div class="message">{{chat.message}}</div>
+                        <div class="message-detail">
+                              <span am-time-ago="chat.createdAt"></span>
+                          </div>
+                    </div>
+                </div>
+            </div>
+      	    <!--<div class="item item-text-wrap" ng-repeat="chat in chats | orderBy:'createdAt':true"  type="item-text-wrap">
                   
                   
       	        <h4>{{chat.user}} :</h4>
       	        <span am-time-ago="chat.createdAt" class="item-note">
       	        </span>
-      	        <p class="item-text-wrap">{{chat.message}}</p>
+      	        <p class="item-text-wrap">{{chat.message}}</p> -->
 <!--                <span class="timestamp" style="float:right; font-size: small; margin-bottom: -10px; margin-top: -5px;">{{chat.createdAt | date:"MM/dd/yyyy 'at' h:mma"}}</span>-->
-      	    </div>
+      	    <!-- </div> -->
       	</div>
       </ion-scroll>
-      
+      <div class="item item-input-inset spin-message-box" style="background-color: white; height: 9%; width: 101%">
+	        <label class="item-input-wrapper">
+	            <input style="width:100%;" type="text" ng-model="message" placeholder="Type in your message...">
+	        </label>
+	        <a ng-click="sendMessage(message)" class="button button-flat button-icon ion-paper-airplane" style="" ng-disabled="message.length == 0">
+	        </a>
+	       </div>
   </ion-content>
 </ion-view>
 
