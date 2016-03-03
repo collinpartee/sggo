@@ -8,9 +8,7 @@
 angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-material', 'ionMdInput', 'ionic.service.analytics', 'starter.controllers', 'starter.myList', 'starter.tabCtrl', 'starter.decisionTable', 'starter.listNearMe', 'starter.accountSetting', 'starter.friendList', 'starter.services', 'starter.directives', 'starter.spin', 'firebase', 'ngTagsInput', 'starter.useravatar'])
 
 .run(function ($ionicPlatform, $cordovaGeolocation, $ionicLoading, $ionicAnalytics, global) {
-    $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
+
         $ionicAnalytics.register();
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -21,28 +19,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-        var deploy = new Ionic.Deploy();
-        deploy.check().then(function (hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            var alertPopup = $ionicPopup.alert({
-                title: "Update detected",
-                template: "Please comfirm to perform automatic update"
-            });
-            alertPopup.then(function (res) {
-                deploy.update().then(function (res) {
-                    console.log('Ionic Deploy: Update Success! ', res);
-                    $ionicLoading.hide();
-                }, function (err) {
-                    console.log('Ionic Deploy: Update error! ', err);
-                }, function (prog) {
-                    $ionicLoading.show({
-                        template: 'Updating...'
-                    });
-                });
-            });
-        }, function (err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
-        });
+
         // window.screen.lockOrientation('portrait');
         var posOptions = {
             timeout: 10000,
