@@ -14,7 +14,7 @@
    <colgroup span="5"></colgroup>
 
    <tbody >
-    <tr ng-click="" ><i class="center-textAlign avatar-padding-bottom ion-plus"></i></tr>
+    <tr ><i ng-click="uploadAvatar()" class="center-textAlign avatar-padding-bottom ion-plus"></i></tr>
      <tr ng-repeat="days in dates" my-post-repeat-directive='mylist'>
          <td ng-repeat="day in days" class="center-textAlign avatar-padding-bottom">
              <div ng-click="selectAvatar(day);"><img class="avatar-image ink" ng-src='{{day}}' /><br></div>

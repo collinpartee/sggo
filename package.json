@@ -30,7 +30,9 @@
     {
       "locator": "https://github.com/phonegap-build/PushPlugin.git",
       "id": "com.phonegap.plugins.PushPlugin"
-    }
+    },
+    "cordova-plugin-image-picker",
+    "org.apache.cordova.camera"
   ],
   "cordovaPlatforms": [
     "ios"

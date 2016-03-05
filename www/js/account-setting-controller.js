@@ -34,10 +34,7 @@ angular.module('starter.accountSetting', [])
         });
 
      $scope.myName=global.getMyName();
-      var myAvatar=$firebaseObject(ref.child('users/'+authData.uid+'/avatar'));
-      myAvatar.$loaded().then(function() {
-      	myAvatar.$bindTo($scope, "avatar");
-      });
+      $scope.myAvatar=global.getMyAvatar();
 
       var myLikes=$firebaseObject(ref.child('users/'+authData.uid+'/likes'));
       myLikes.$loaded().then(function() {
@@ -155,7 +152,7 @@ angular.module('starter.accountSetting', [])
 		 };
 
 })
-.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,$timeout,ionicMaterialMotion,ionicMaterialInk,FBURL,authData,global) {
+.controller('ChangeAvatarCtrl', function($scope,$stateParams,$state,$timeout,$cordovaCamera,ionicMaterialMotion,ionicMaterialInk,FBURL,authData,global) {
     $scope.$on('applyEffect',function(e){
         // Set Motion
       
@@ -205,8 +202,25 @@ angular.module('starter.accountSetting', [])
 
     $scope.uploadAvatar = function()
     {
-      
+
+      var options = {
+            quality : 75,
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.CAMERA,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 500,
+            targetHeight: 500,
+            saveToPhotoAlbum: false
+        };
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+             $scope.selectAvatar({image: imageData});
+        }, function(error) {
+            console.error(error);
+        });
     };
+
     
 })
 

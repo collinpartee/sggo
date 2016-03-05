@@ -69,7 +69,7 @@ var listSpinRef;
       $scope.viewPlace=function(){
         console.log('currplace: ' +$scope.currPlace);
         $state.go('tab.placeDetailsListNearMe',$scope.currPlace);
-      }
+      };
 
 
     $scope.shuffleButton =function(){
@@ -84,7 +84,7 @@ var listSpinRef;
               }
               listSpinRef.update({'triggers':newSpins});
               
-          })
+          });
           myName='System';
           var message=global.getMyName()+' just fugged your list';
           $scope.sendMessage(message);
@@ -104,18 +104,18 @@ var listSpinRef;
         $scope.countDown -= 1;            
         if ( $scope.countDown > 0)        
             $timeout(runCounter, 1000); 
-    }
+    };
     $(function(){
 	
 	// container is the DOM element;
 	// userText is the textbox
 	     
-        var container = $("#container")
+        var container = $("#container");
         
         listSpinRef.child('triggers').on('value', function(datasnapshot){
             listSpinRef.child('ranNum').once('value',function(snap){
                 $scope.shuffleButtonPressed = true;
-                var currnum=snap.val()==null? 0:snap.val();
+                var currnum=snap.val()===null? 0:snap.val();
                 console.log('currnum',currnum);
                 $scope.currPlace=words[currnum];
                 container.shuffleLetters({
@@ -149,7 +149,7 @@ var listSpinRef;
       }
       this.message="";
       viewScroll.scrollBottom();
-    }
+    };
 
     $scope.goBackAndShowTabBar = function(){
         $scope.$root.tabsHidden = "tabs-show";
@@ -161,7 +161,7 @@ var listSpinRef;
        // console.log(checked);
         
         var lookup = {};           
-            if(checked == true){
+            if(checked === true){
                 console.log('friend',friend);
                 friendlyList.push(friend);
             }else{
@@ -292,7 +292,7 @@ var listSpinRef;
   };
 
 })
-.controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){
+.controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, FBURL,tables, global){
     $scope.$parent.clearAllFabs();
     $scope.placeDetial=$stateParams;
     
