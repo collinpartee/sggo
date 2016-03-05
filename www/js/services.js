@@ -6,8 +6,8 @@ angular.module('starter.services', [])
   return {
     getLocation: function() {
       console.log(global.getMyLoc());
-      var dfd = $q.defer()
-        if(global.getMyLoc().lat==null)
+      var dfd = $q.defer();
+        if(global.getMyLoc().lat===null)
         {
            setTimeout(function() {
            
@@ -26,10 +26,10 @@ angular.module('starter.services', [])
                 }, function(err) {
                   // error
                   console.log("myloc error");
-                  global.setMyLoc({'lat':37.38, 'lon':-122.09})
+                  global.setMyLoc({'lat':37.38, 'lon':-122.09});
                 });
             
-          }, 2000)         
+          }, 2000)  ;       
         }
         else
         {
@@ -40,9 +40,9 @@ angular.module('starter.services', [])
         }
 
 
-      return dfd.promise
+      return dfd.promise;
     }
-  }
+  };
 })
 
 // create a custom Auth factory to handle $firebaseAuth
@@ -69,7 +69,7 @@ angular.module('starter.services', [])
       $timeout(function () {
           $ionicHistory.clearCache();
           $ionicHistory.clearHistory();
-      },300) 
+      },300) ;
         
     },
     // wrap the $onAuth function with $timeout so it processes
@@ -153,4 +153,3 @@ angular.module('starter.services', [])
   var myListsRef = new Firebase('https://sggo.firebaseio.com/users/'+authData.uid+'/friendList');
   return $firebaseObject(myListsRef);
 }]);
-;

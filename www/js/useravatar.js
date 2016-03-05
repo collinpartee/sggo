@@ -76,8 +76,8 @@ angular.module('starter.useravatar', [])
 			var background = colorCodes[charCode];
         
 			return ({ "Initials": initials, "Background": background });
-    }
+    };
     return {
       getAvatar: avatarService
-    }
+    };
 });

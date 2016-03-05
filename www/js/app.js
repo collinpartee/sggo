@@ -45,7 +45,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
                 })
             });
 
-    });
 
 })
 
@@ -382,12 +381,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic-ma
             views: {
                 'tab-listNearMe': {
                     templateUrl: 'templates/tab-listNearMe.html',
-                    controller: 'nearMeCtrl',
-                    resolve: {
-                        myLoc: function (locationService) {
-                            return locationService.getLocation()
-                        }
-                    }
+                    controller: 'nearMeCtrl'
                 }
             }
         })

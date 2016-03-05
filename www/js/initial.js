@@ -80,7 +80,7 @@
 
             e.attr("src", 'data:image/svg+xml;base64,' + svgHtml);
 
-        })
+        });
     };
 console.log("letter avatar");
 }(jQuery));

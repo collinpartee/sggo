@@ -94,19 +94,19 @@ $scope.$on('$ionicView.beforeEnter', function() {
 
             fabs[0].remove();
         }
-    }
+    };
 
     $scope.editThisListP=function(){
         console.log('parent Edit');
         $scope.$broadcast('editClicked');
 
-    }
+    };
 
     $scope.addFriendP=function(){
         console.log('parent Edit');
         $scope.$broadcast('addFriendClicked');
 
-    }
+    };
     
     $scope.goTab=function(tab){
       console.log(tab);
@@ -127,7 +127,7 @@ $scope.$on('$ionicView.beforeEnter', function() {
                 
         }
   
-    }
+    };
     $scope.isEdit=true;
     $scope.$on('changeToAddFriend',function(){
 

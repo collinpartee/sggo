@@ -3,7 +3,7 @@ angular.module('starter.friendList', ['angularMoment'])
 .controller('friendListCtrl', function($scope, $state,$ionicListDelegate, $ionicModal, $firebaseObject,$timeout,ionicMaterialMotion,ionicMaterialInk,authData,FBURL,global,friendList) {
     friendList.$loaded()
   .then(function(data) {
-    friendList.$bindTo($scope, "friendList")
+    friendList.$bindTo($scope, "friendList");
   })
   .catch(function(error) {
     console.error("Error:", error);
@@ -49,7 +49,7 @@ angular.module('starter.friendList', ['angularMoment'])
   $scope.closeModal = function() {
       
     console.log($scope.modal.searchResult);
-    if($scope.modal.searchResult==null)
+    if($scope.modal.searchResult===null)
     {
       console.log("empty");
     }
@@ -125,7 +125,7 @@ angular.module('starter.friendList', ['angularMoment'])
   $scope.goToChatBox = function(v){
     console.log('go chat');
     $state.go('tab.chat',v);
-  }
+  };
     
 })
 .controller('chatCtrl', function($scope, $state,$stateParams, $ionicScrollDelegate, $timeout,$firebaseArray,FBURL,authData) {
@@ -148,7 +148,7 @@ angular.module('starter.friendList', ['angularMoment'])
   $scope.sendMessage=function(message){
     console.log(message);
 
-    if(message!="")
+    if(message!=="")
     {
        var meessageEntry={'user':authData.uid,'message':message,'createdAt':Firebase.ServerValue.TIMESTAMP};
 //      var meessageEntry={'user':authData.uid,'message':message,'createdAt':new Date()};
@@ -161,8 +161,6 @@ angular.module('starter.friendList', ['angularMoment'])
       this.message="";
     }
       viewScroll.scrollBottom();
-  }    
+  };    
 
 });
-
-;

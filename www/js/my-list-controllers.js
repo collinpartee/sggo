@@ -76,7 +76,7 @@ angular.module('starter.myList', ['google.places'])
         }, function(err) {
           // error
           console.log("myloc error");
-          global.setMyLoc(37.38, -122.09)
+          global.setMyLoc(37.38, -122.09);
         });
         //ADD  list Modal
         
@@ -89,7 +89,7 @@ angular.module('starter.myList', ['google.places'])
        // console.log(checked);
         
         var lookup = {};           
-            if(checked == true){
+            if(checked === true){
                 console.log('friend',friend);
                 friendlyList.push(friend);
             }else{
@@ -136,7 +136,7 @@ angular.module('starter.myList', ['google.places'])
         {
           shareListWithFriendsGo(list);
         }
-      }
+      };
       var shareListWithFriendsGo = function(list) {
         console.log(tables.length);
 
@@ -154,7 +154,7 @@ angular.module('starter.myList', ['google.places'])
                 console.log($scope.currTable);
                 $scope.currTable.ListName=list.ListName+' group';
                 $scope.currTable.creater_name=list.creater_name;
-                 if($scope.currTable.ListName!=null)
+                 if($scope.currTable.ListName!==null)
                 {
                     var userRef=ref.child('users/'+authData.uid);
                     userRef.once('value',function(snap){
@@ -163,7 +163,7 @@ angular.module('starter.myList', ['google.places'])
                         $scope.currTable.inviteFriendList.push(addSefl);
                         $scope.currTable.tags=list.tags;
                         $scope.currTable.listImg=list.listImg;
-                        if($scope.currTable.tags==null)
+                        if($scope.currTable.tags===null)
                         {
                             $scope.currTable.tags=[];
                         }
@@ -210,7 +210,7 @@ angular.module('starter.myList', ['google.places'])
     {
         console.log("id",k);
 
-        if(tables.$getRecord(k)==null)
+        if(tables.$getRecord(k)===null)
         {
 
         }
@@ -228,7 +228,7 @@ angular.module('starter.myList', ['google.places'])
                     rec.splice(index);
 
                     //remove table if friend list is 0
-                    if(rec.length==0)
+                    if(rec.length===0)
                     {
                         tables.$ref().child(k).remove();                  
                     }
@@ -241,7 +241,7 @@ angular.module('starter.myList', ['google.places'])
 
 
                 }
-                index++
+                index++;
                 console.log(index); 
                 $ionicListDelegate.closeOptionButtons();
             });
@@ -283,7 +283,7 @@ angular.module('starter.myList', ['google.places'])
             console.log('saved tableRefObj');
         }); 
 
-    }
+    };
 
     $scope.showEditMyListPage = function(){
         $state.go('tab.');
@@ -309,7 +309,7 @@ $scope.goToEditListPage = function(list){
     {
         $state.go('tab.editMyList',list);
     }
-}
+};
     
     
 })
@@ -371,20 +371,20 @@ $scope.goToEditListPage = function(list){
         {
             $state.go('tab.spin',$stateParams);
         }
-    }
+    };
     $scope.option=true;
     $scope.optionClicked=function(){
         $scope.inviteFriend=false;
         $scope.option=true;
         $scope.$emit('changeToEditList');
-    }
+    };
     $scope.inviteFriendClicked=function(){
         $scope.option=false;
         $scope.inviteFriend=true;
         $scope.$emit('changeToAddFriend');
 
-    }
-    console.log(friendList)
+    };
+    console.log(friendList);
     $scope.friends={};
     var idx=0;
 
@@ -425,7 +425,7 @@ $scope.goToEditListPage = function(list){
        // console.log(checked);
         
         var lookup = {};           
-            if(checked == true){
+            if(checked === true){
                 friendlyList.push(friend);
             }else{
                 for(var i = 0; i < friendlyList.length; i++) {
@@ -481,7 +481,7 @@ $scope.goToEditListPage = function(list){
     $scope.viewPlace=function(item){
         console.log(item);
         $state.go('tab.placeDetailsMyList',item);
-      }
+      };
 
 })
 .controller('addListCtrl', function($scope, $state, $ionicHistory, $stateParams, $cordovaGeolocation, $ionicPopup, $http, FBURL,global,myListFirebase,geoFire,authData){
@@ -519,7 +519,7 @@ $scope.goToEditListPage = function(list){
         $scope.goNameList = function(){
             currListItem.places=$scope.placeList;
             console.log('befre',currListItem);
-            if($stateParams.from=='myList' || $stateParams.from=='')
+            if($stateParams.from=='myList' || $stateParams.from==='')
             {
                 $state.go('tab.nameList',currListItem);
             }
@@ -545,8 +545,8 @@ $scope.goToEditListPage = function(list){
         // {
         //     console.log('null');
         // }
-        var lat=global.getMyLoc().lat
-        var lon=global.getMyLoc().lon
+        var lat=global.getMyLoc().lat;
+        var lon=global.getMyLoc().lon;
       console.log(lat);
       var bruceHouse = new google.maps.LatLng(lat, lon);
 
@@ -566,7 +566,7 @@ $scope.goToEditListPage = function(list){
     $scope.listName= currListItem.ListName;
     $scope.tags=currListItem.tags;
     $scope.publicList=currListItem.share;
-    if($scope.placeList==null)
+    if($scope.placeList===null)
     {
         $scope.placeList=[];
     }
@@ -574,11 +574,11 @@ $scope.goToEditListPage = function(list){
     $scope.removePlace=function(index){
       console.log(index);
       $scope.placeList.splice(index,1);
-    }
+    };
     $scope.addToList = function(place){
         console.log(place);
         var _place={};
-        if(place!=null)
+        if(place!==null)
         {
             if(typeof place =='object')
             {
@@ -637,7 +637,7 @@ $scope.goToEditListPage = function(list){
         console.log("tags",tags);
         var newList=true;
         console.log(currListItem.ListName+" tf "+newList);
-        if(currListItem.ListName!=null)
+        if(currListItem.ListName!==null)
         {
             
             $scope.ListName = currListItem.ListName;
@@ -647,16 +647,16 @@ $scope.goToEditListPage = function(list){
 
         if($stateParams.$id=='none')
         {
-            if(myName==null)
+            if(myName===null)
             {
                 myName='oops not fast enough';
             }
-            if(name==null)
+            if(name===null)
             {
                 name='Not Named';
             }
-            console.log(publicList)
-            if(anon==true)
+            console.log(publicList);
+            if(anon===true)
             {
                 myName='Too Afraid to show name';
 
@@ -672,13 +672,13 @@ $scope.goToEditListPage = function(list){
            console.log("final list",finalList);
            myListFirebase.$add(finalList)
            .then(function(ref) {
-                if(publicList==true)
+                if(publicList===true)
                 {
                    var id = ref.key();
                   var key =authData.uid+':'+id;
 
-                  var lat=global.getMyLoc().lat
-                  var lon=global.getMyLoc().lon
+                  var lat=global.getMyLoc().lat;
+                  var lon=global.getMyLoc().lon;
                   console.log(key,lat,lon);
                     geoFire.set(key, [lat, lon]).then(function() {
                       console.log("Provided key has been added to GeoFire");
@@ -708,12 +708,12 @@ $scope.goToEditListPage = function(list){
             .then(function(ref) {
                 var id = ref.key();
                 var key =authData.uid+':'+id;
-                if(publicList==true)
+                if(publicList===true)
                 {
                    
                 
-                  var lat=global.getMyLoc().lat
-                  var lon=global.getMyLoc().lon
+                  var lat=global.getMyLoc().lat;
+                  var lon=global.getMyLoc().lon;
                   console.log(key,lat,lon);
                     geoFire.set(key, [lat, lon]).then(function() {
                       console.log("Provided key has been added to GeoFire");

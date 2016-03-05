@@ -27,7 +27,7 @@ angular.module('starter.decisionTable', ['google.places'])
                 rec.splice(index);
 
                 //remove table if friend list is 0
-                if(rec.length==0)
+                if(rec.length===0)
                 {
                     //thi shit didnt work,, why...-------------------------------
                     tables.$remove(tables.$getRecord(k)).then(function(ref) {
@@ -41,7 +41,7 @@ angular.module('starter.decisionTable', ['google.places'])
 
             }
             else
-            index++
+            index++;
             console.log(index); 
         });
         //remove myself from friend's table's invite list
@@ -80,9 +80,9 @@ angular.module('starter.decisionTable', ['google.places'])
 
         
 
-        tableRefObj.inviteFriendList;
+
         console.log("after",tables.$getRecord(k));
-    }
+    };
 
     
 })
@@ -125,7 +125,7 @@ angular.module('starter.decisionTable', ['google.places'])
 
     $scope.saveAndSendInvite=function(){
         console.log($scope.currTable.tableName);
-        if($scope.currTable.tableName!=null)
+        if($scope.currTable.tableName!==null)
         {
             var userRef=ref.child('users/'+authData.uid);
             userRef.once('value',function(snap){
@@ -141,7 +141,7 @@ angular.module('starter.decisionTable', ['google.places'])
                     angular.forEach($scope.currTable.inviteFriendList, function(friend) {
                         //console.log(friend.name);
                         var friendRefObj=$firebaseObject(ref.child("users/"+friend.key+"/myTables"));
-                        var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:global.getCurrList().ListName}
+                        var myTableEntry={inviteFriendList:$scope.currTable.inviteFriendList,tableName:global.getCurrList().ListName};
                         
                         friendRefObj.$loaded().then(function(data){
                             friendRefObj[refAdd.key()]=myTableEntry;

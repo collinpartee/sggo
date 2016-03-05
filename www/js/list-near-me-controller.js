@@ -31,7 +31,7 @@ angular.module('starter.listNearMe', [])
 		$scope.listDetail=[];
 
 		console.log(lat,lon);
-		if(lat==null)
+		if(lat===null)
 		{
 			
 		}
@@ -117,13 +117,13 @@ angular.module('starter.listNearMe', [])
 	      $scope.goToSpin=function(list){
 	      	console.log(list);
 	      	$state.go('tab.spinNearby',list);
-	      }
+	      };
           
           $scope.goToEditListNearMe=function(listItem){
 	      	$state.go('tab.editListNearMe',listItem);
               console.log(listItem);
               $scope.$root.tabsHidden = "tabs-hide";
-	      }
+	      };
           
 
 })
@@ -176,7 +176,7 @@ angular.module('starter.listNearMe', [])
 
     $scope.goToSpin=function(){
 	      $state.go('tab.spinListNearMe',$stateParams);
-	}
+	};
     var myLikes=$firebaseObject(listLikeRef);
     myLikes.$loaded().then(function() {
       	myLikes.$bindTo($scope, "likes");
@@ -194,7 +194,7 @@ angular.module('starter.listNearMe', [])
     $scope.likeThisList=function(){
     var likeRef=new Firebase(FBURL+"/users/"+uid+"/likes");    
         if ($scope.heartClass== 'ion-ios-heart-outline'){
-            $scope.heartClass= 'ion-ios-heart'
+            $scope.heartClass= 'ion-ios-heart';
             console.log('heartClass activated');
             console.log($scope.likes);
             $scope.likes.$value=1+$scope.likes.$value;
@@ -211,7 +211,7 @@ angular.module('starter.listNearMe', [])
 				  	
 			});
         }else{
-            $scope.heartClass= 'ion-ios-heart-outline'
+            $scope.heartClass= 'ion-ios-heart-outline';
             console.log($scope.likes);
             $scope.likes.$value=-1+$scope.likes.$value;
             likeRef.once('value',function(snapshot){
@@ -228,7 +228,7 @@ angular.module('starter.listNearMe', [])
         }
         
         
-    }
+    };
     $scope.downLoad=function(){
     	var ref = new Firebase(FBURL);
     	
@@ -268,12 +268,12 @@ angular.module('starter.listNearMe', [])
             }
         });
 
-    }
+    };
     
     $scope.viewPlace=function(item){
         console.log(item);
         $state.go('tab.placeDetailsListNearMe',item);
-      }
+      };
     
 })
     

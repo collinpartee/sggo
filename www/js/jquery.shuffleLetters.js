@@ -15,7 +15,7 @@
 			"fps"		: 25,			// Frames Per Second
 			"text"		: "", 			// Use this text instead of the contents
 			"callback"	: function(){}	// Run once the animation is complete
-		},prop)
+		},prop);
 		
 		return this.each(function(){
 			

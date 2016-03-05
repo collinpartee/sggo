@@ -188,9 +188,9 @@ var listSpinRef;
     var date = new Date();
     
     $scope.invite=function(){
-      var limit=3
+      var limit=3;
       console.log(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]);
-      if(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]==null || invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]<limit)
+      if(invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]===null || invitationObject[date.getFullYear()+" "+(date.getMonth()+1)+" "+date.getDate()]<limit)
       {
         if($stateParams.from=='myListNearMe')
         {
@@ -249,7 +249,7 @@ var listSpinRef;
 
 
 
-    }
+    };
 
     var addFriend = function(friend,inivteplace){
       friendList[friend.key]=friend;
@@ -268,7 +268,7 @@ var listSpinRef;
 
       
     });
-  }
+  };
 
   var sendInvite=function(inivteplace,me,her){
                     //send invite
@@ -289,7 +289,7 @@ var listSpinRef;
         }, function(error) {
           console.log("Error:", error);
         });
-  }
+  };
 
 })
 .controller('viewListDetailCtrl', function($scope, $state,$firebaseObject, $interval, $timeout, $ionicPopup ,$stateParams,$firebaseArray, $ionicHistory, $cordovaClipboard, FBURL,tables, global){
@@ -303,11 +303,11 @@ var listSpinRef;
     $scope.gotoWebsite=function(pd)
     {
         window.open(pd.website,'_system','location=yes');
-    }
+    };
     
     $scope.gotoAddress=function(addr){
         window.open('maps://maps.google.com/?daddr=' + addr, '_system');
-    }
+    };
     $scope.showCouponCode = function() {
             $ionicPopup.confirm({
               title: 'Success',
@@ -325,7 +325,7 @@ var listSpinRef;
         }, function() {
             console.error("There was an error copying");
         });
-    }
+    };
     
 })
 ;

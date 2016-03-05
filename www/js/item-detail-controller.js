@@ -4,7 +4,7 @@ angular.module('starter.itemDetails', [])
 
 $scope.goBackToEditMyList = function(){
     $state.go('tab.editMyList');
-}
+};
 
 	
 

@@ -90,11 +90,11 @@ angular.module('starter.accountSetting', [])
     };
     $scope.linkToChangeName = function(){
       $state.go('tab.changeName',{'myName':$scope.myName});
-    }
+    };
     
     $scope.linkToTutorial = function(){
         $state.go('tab.tutorialQuestions');
-    }
+    };
     
 })
 .controller('PasswordCtrl', function($scope, $ionicPopup,$stateParams) {
@@ -143,7 +143,7 @@ angular.module('starter.accountSetting', [])
           	 	
           	 }          	 
           
-	}
+	};
     $scope.showAlert = function(options) {
 	   var alertPopup = $ionicPopup.alert({
 		     title: options.title,
@@ -183,7 +183,7 @@ angular.module('starter.accountSetting', [])
     
     var dates = [];
     for (var i = 0; i < avatarURLs.length; i++ ) {
-        if (i % 4 == 0) dates.push([]);
+        if (i % 4 === 0) dates.push([]);
         dates[dates.length-1].push(avatarURLs[i]);
     }
     $scope.dates = dates;
@@ -201,7 +201,12 @@ angular.module('starter.accountSetting', [])
           $state.go('tab.account');
         }
       });
-    }
+    };
+
+    $scope.uploadAvatar = function()
+    {
+      
+    };
     
 })
 
@@ -231,24 +236,24 @@ angular.module('starter.accountSetting', [])
           $state.go('tab.account');
         }
       });
-    }
+    };
 })
 .controller('TutorialCtrl', function($scope, $stateParams, $state, global){
     
     $scope.linkToTutorialGroup = function(){
         $state.go('tab.tutorialGroup');
-    }
+    };
     
     $scope.linkToTutorialShare = function(){
         $state.go('tab.tutorialShare');
-    }
+    };
     
     $scope.linkToTutorialFriend = function(){
         $state.go('tab.tutorialFriend');
-    }
+    };
     
     $scope.linkToTutorialFug = function(){
         $state.go('tab.tutorialFug');
-    }
+    };
 })
 ;

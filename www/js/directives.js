@@ -39,7 +39,7 @@ angular.module('starter.directives', [])
       }
     }
     return null;
-  }
+  };
 })
 .filter('myFriendFilter', function () {
     console.log('got in my firend filter');
@@ -57,7 +57,7 @@ angular.module('starter.directives', [])
         });
         return false;
 
-    }
+    };
 })
 .directive('hideTabBar', function($timeout,$state, global) {
   var style = angular.element('<style>').html(
@@ -75,7 +75,7 @@ angular.module('starter.directives', [])
             console.log($scope.$root.hideTabsOnThisPage);
             if($state.is('tab.myList') || $state.is('tab.listNearMe') || $state.is('tab.friendList')|| $state.is('tab.account')){
               tabBar.classList.remove('slide-away');
-              scroll.classList.remove('no-tabs')      
+              scroll.classList.remove('no-tabs');      
               console.log('first 4 tab');
             }
             else{
@@ -84,7 +84,7 @@ angular.module('starter.directives', [])
             }
         });
         
-      }
+      };
     }
   };
 });

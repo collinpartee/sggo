@@ -95,12 +95,12 @@ console.log("wtf");
         //$state.go('tab.myList');
       }
        
-    }
+    };
      
   }
   // Logs a user out
 
-};
+}
 // Same as the previous example, except we will also log a message
 // when the data has finished synchronizing
   $scope.logout = Auth.logout;
@@ -258,7 +258,7 @@ console.log("wtf");
           $scope.showAlert(options);
         }
       });
-    }
+    };
     $scope.showAlert = function(options) {
      var alertPopup = $ionicPopup.alert({
          title: options.title,
